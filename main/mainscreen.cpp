@@ -227,7 +227,7 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 }
 void MainScreen::on_actionCredits_triggered()
 {
-    QMessageBox::about(this, "About", " A tiny application to calculate your grades average. <br><br>"
+    QMessageBox::about(this, "About", "A tiny application to calculate your grades average. <br><br>"
                        "This software is licensed under Qt5's <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        "The source code is available at github:<br>"
                        "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
