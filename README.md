@@ -3,18 +3,17 @@ jceAverageCalculator
 
 Compile with QT
 
-  Launch, insert your JCE username and password
-  Once your logged in, go to Coure Tab and hit "ADD"
-  Now you will see all your courses in a table content
+  Launch, insert your JCE username and password.<br>
+  Once your logged in, go to Coure Tab and hit "ADD"<br>
+  Now you will see all your courses in a table content<br>
+<br>
+  Edit your grade and see the average difference.<br>
     
-  Edit your grade and see the average difference.
-    
-Optional: 
-      
-  hit setting tab to select the date interval
-  p.s -> you need to clear the table before.
+Optional: <br>
+  hit setting tab to select the date interval<br>
+  p.s -> you need to clear the table before.<br>
   
-  Thanks to 
+  Thanks to <br>
   <ul>
     <li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>
     <li><a href='mailto:nadav2051@gmail.com'>Nadav Luzzato</a></li>
