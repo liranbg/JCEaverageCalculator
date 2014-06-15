@@ -41,9 +41,6 @@ public:
     int getGrades();
     bool isLoginFlag() const;
 
-
-    void setProgressBar(QProgressBar *);
-
     std::string getPage();
 
 

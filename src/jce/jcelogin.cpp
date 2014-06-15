@@ -15,54 +15,42 @@ jceLogin::~jceLogin()
     JceConnector = NULL;
     recieverPage = NULL;
 }
-
+/**
+ * @brief jceLogin::makeConnection  Connecting to JCE student web site with JceA (username object) and validate it.
+ *                  throws error upon the given error from JCE website or Socket error
+ */
 void jceLogin::makeConnection() throw (jceStatus)
 {
     jceStatus status;
-    cout << "Connecting with username: " << jceA->getUsername() << std::endl;
 
-    if (checkConnection() == true)
+    if (checkConnection() == true) //connected to host
     {
-        cout << "first visiting..." << endl;
-        if (makeFirstVisit() == true)
+        if (makeFirstVisit() == true) //requst and send first validation
         {
             status = jceStatus::JCE_FIRST_VALIDATION_PASSED;
-            cout << "validating..." << endl;
-            if (checkValidation() == true)
+            if (checkValidation() == true) //check if username and password are matching
             {
-                cout << "singing in" << endl;
                 status = jceStatus::JCE_SECOND_VALIDATION_PASSED;
-                if (makeSecondVisit() == true)
+                if (makeSecondVisit() == true) //siging in the website
                 {
                     status = jceStatus::JCE_YOU_ARE_IN;
                     setLoginFlag(true);
                 }
                 else
-                {
                     status = jceStatus::ERROR_ON_VALIDATION;
-                    cout << "not in evantually. error!" << std::endl;
-                }
-
             }
             else
-            {
                 status = jceStatus::ERROR_ON_VALIDATION;
-                cout<< "error on validation" << std::endl;
-            }
 
         }
         else
-        {
-            cout << "error on first visit" << std::endl;
             status = jceStatus::ERROR_ON_VALIDATION_USER_BLOCKED;
-        }
 
     }
     else
-    {
-        cout << "error on creating socket" << std::endl;
         status = jceStatus::ERROR_ON_OPEN_SOCKET;
-    }
+
+    //we throw status even if we are IN!
     throw status;
 
 }
@@ -151,11 +139,6 @@ void jceLogin::setLoginFlag(bool x)
 {
     this->loginFlag = x;
 }
-
-void jceLogin::setProgressBar(QProgressBar *ptr)
-{
-    this->JceConnector->setProgressBar(ptr);
-}
 bool jceLogin::isLoginFlag() const
 {
     return this->loginFlag;
@@ -166,6 +149,10 @@ std::string jceLogin::getPage()
     return *recieverPage;
 }
 
+/**
+ * @brief jceLogin::checkValidation Made by Nadav Luzzato
+ * @return  true if second validation step is right
+ */
 bool jceLogin::checkValidation()
 {
     //finds the hashed password

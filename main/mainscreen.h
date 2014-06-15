@@ -41,8 +41,6 @@ private slots:
 
     void on_spinBoxToSemester_editingFinished();
 
-    void on_coursesTable_itemChanged(QTableWidgetItem *item);
-
     void on_loginButton_clicked();
 
     void on_checkBox_toggled(bool checked);
@@ -54,6 +52,8 @@ private slots:
     void on_clearTableButton_clicked();
 
     void on_actionExit_triggered();
+
+    void on_coursesTable_itemChanged(QTableWidgetItem *item);
 
 private:
 

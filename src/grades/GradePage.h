@@ -1,6 +1,13 @@
 #ifndef GRADE_PAGE_H
 #define GRADE_PAGE_H
 
+/*  This Code Made By Sagi Dayan
+ *  SagiDayan@gmail.com
+ *
+ *  Minor changes  has been made by Liran Ben Gida
+ *  LiranBG@gmail.com
+*/
+
 #include "Page.h"
 #include "Course.h"
 
@@ -15,7 +22,6 @@ class GradePage : public Page
 	
 public:
     GradePage(std::string html);
-	void printCourses();
 	~GradePage();
 
 	void addCourse(Course *);

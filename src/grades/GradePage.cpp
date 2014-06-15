@@ -160,12 +160,6 @@ bool GradePage::isGradedYet(std::string grade)
     }
     return true;
 }
-void GradePage::printCourses()
-{
-    for(Course* c : *courses)
-        c->printCourse();
-}
-
 double GradePage::getAvg()
 {
     double avg = 0;

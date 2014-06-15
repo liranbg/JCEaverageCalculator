@@ -1,6 +1,13 @@
 #ifndef COURSE_H
 #define COURSE_H
 
+/*  This Code Made By Sagi Dayan
+ *  SagiDayan@gmail.com
+ *
+ *  Minor changes  has been made by Liran Ben Gida
+ *  LiranBG@gmail.com
+*/
+
 #include <string>
 #include <iostream>
 #include <list>
@@ -25,9 +32,6 @@ public:
 
     Course(int serial,std::string name, std::string type, double points, double hours, double grade, std::string additions);
 	~Course();
-
-
-	void printCourse();
 
     int getSerialNum() const {return this->serialNum;}
     std::string getName() const {return this->name;}

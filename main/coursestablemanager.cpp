@@ -56,9 +56,13 @@ void coursesTableManager::setCoursesList(std::string &html)
  * @param change    string change
  * @param row       row index
  * @param col       col index
+ * @return  if change has been done
  */
-void coursesTableManager::changes(std::string change, int row, int col)
+bool coursesTableManager::changes(QString change, int row, int col)
 {
+
+    bool isNumFlag = true;
+
     int serialCourse = courseTBL->item(row,Course::CourseScheme::SERIAL)->text().toInt();
     for (Course *c: *gp->getCourses())
     {
@@ -67,27 +71,60 @@ void coursesTableManager::changes(std::string change, int row, int col)
             switch (col)
             {
             case (Course::CourseScheme::NAME):
-                c->setName(change);
+                c->setName(change.toStdString());
                 break;
             case (Course::CourseScheme::TYPE):
-                c->setType(change);
+                c->setType(change.toStdString());
                 break;
             case (Course::CourseScheme::POINTS):
-                c->setPoints(stod(change));
+            {
+                change.toDouble(&isNumFlag);
+
+                if (!isNumFlag)
+                {
+                    courseTBL->item(row,col)->setText(QString::number(c->getPoints()));
+                }
+                else
+                    c->setPoints(change.toDouble());
                 break;
+            }
             case (Course::CourseScheme::HOURS):
-                c->setHours(stod(change));
+            {
+                change.toDouble(&isNumFlag);
+
+                if (!isNumFlag)
+                {
+                    courseTBL->item(row,col)->setText(QString::number(c->getHours()));
+                }
+                else
+                    c->setHours(change.toDouble());
                 break;
+            }
             case (Course::CourseScheme::GRADE):
-                c->setGrade(stod(change));
+            {
+                change.toDouble(&isNumFlag);
+
+                if (!isNumFlag)
+                {
+                    courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
+                }
+                else
+                {
+                    if ((change.toDouble() >= 0) && (change.toDouble() <= 100))
+                        c->setGrade(change.toDouble());
+                    else
+                        courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
+                }
                 break;
+            }
             case (Course::CourseScheme::ADDITION):
-                c->setAdditions(change);
+                c->setAdditions(change.toStdString());
                 break;
             }
             break;
         }
     }
+    return isNumFlag;
 
 }
 /**

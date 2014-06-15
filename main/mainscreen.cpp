@@ -5,29 +5,36 @@
 MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScreen)
 {
     ui->setupUi(this);
-    //    this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 
     this->setFixedSize(this->size()); //main not resizeable
+
+    //Login Tab
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
+
+    //Status Bar
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
     ButtomStatusLabel = new QLabel(this);
     statusLabel = new QLabel(this);
-
-
-
-    ui->CoursesTab->setDisabled(true);
-    ui->SettingsTab->setDisabled(true);
     ui->statusBar->setMaximumSize(this->geometry().width(),StatusIconHeight);
     ui->statusBar->addPermanentWidget(ButtomStatusLabel,0);
     ui->statusBar->addPermanentWidget(statusLabel,1);
+    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
 
+    //Course and Setting Tab
+    ui->CoursesTab->setDisabled(true);
+    ui->SettingsTab->setDisabled(true);
+    ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
+
+
+
+    //Pointer allocating
     this->jceLog = NULL;
     this->userLoginSetting = new user("","");
-
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
 
+
     updateDates();
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
+
 
 }
 
@@ -103,15 +110,14 @@ void MainScreen::on_spinBoxToSemester_editingFinished()
 
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
-    this->courseTableMgr->changes(item->text().toStdString(),item->row(),item->column());
-    ui->avgLCD->display(courseTableMgr->getAvg());
+    if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
+        ui->avgLCD->display(courseTableMgr->getAvg());
+    else
+        QMessageBox::critical(this,"Error","Missmatching data");
 }
 
 void MainScreen::on_loginButton_clicked()
 {
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
-
-
     if (this->jceLog == NULL)
         uiSetConnectMode();
     else
@@ -167,6 +173,8 @@ void MainScreen::uiSetConnectMode()
         //add icon near to username and password to mark it
         return;
     }
+    setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
+
     username = ui->usrnmLineEdit->text().toStdString();
     password = ui->pswdLineEdit->text().toStdString();
 
@@ -220,7 +228,7 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 void MainScreen::on_actionCredits_triggered()
 {
     QMessageBox::about(this, "About", " A tiny application to calculate your grades average. <br><br>"
-                       "This software is licensed under the <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
+                       "This software is licensed under Qt5's <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        "The source code is available at github:<br>"
                        "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
                        "<br><br>This front end is Powered by <a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
@@ -246,3 +254,4 @@ void MainScreen::on_actionExit_triggered()
 {
     exit(0);
 }
+

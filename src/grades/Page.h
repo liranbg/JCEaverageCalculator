@@ -1,6 +1,13 @@
 #ifndef PAGE_H
 #define PAGE_H
 
+/*  This Code Made By Sagi Dayan
+ *  SagiDayan@gmail.com
+ *
+ *  Minor changes  has been made by Liran Ben Gida
+ *  LiranBG@gmail.com
+*/
+
 #include <iostream>
 #include <string>
 
@@ -10,8 +17,6 @@ class Page
 public:
 
 	~Page() {}
-
-
 
 protected:
 	Page(std::string& html);

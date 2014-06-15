@@ -34,23 +34,3 @@ bool qtsslsocket::recieve(std::string &str)
         flag = true;
     return flag;
 }
-
-void qtsslsocket::setProgressBar(QProgressBar *ptr)
-{
-    if (ptr != NULL)
-    {
-        this->pb=ptr;
-        connect(this->socket,SIGNAL(encryptedBytesWritten(qint64)),this,SLOT(on_read()));
-        //connect(this->socket,SIGNAL(readChannelFinished()),this,SLOT(on_read()));
-    }
-
-}
-
-void qtsslsocket::on_read()
-{
-    if (this->pb != NULL)
-    {
-        if (pb->value() <= 90)
-            pb->setValue(pb->value() + 10);
-    }
-}

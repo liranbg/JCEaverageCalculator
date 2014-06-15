@@ -4,8 +4,5 @@
         <file>greenStatusIcon.png</file>
         <file>redStatusIcon.png</file>
         <file>icon.png</file>
-        <file>AVG_LOGO.png</file>
-
     </qresource>
-
 </RCC>

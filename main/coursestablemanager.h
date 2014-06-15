@@ -8,7 +8,8 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QTableWidget>
-#include <QProgressBar>
+#include <QString>
+#include <QMessageBox>
 
 #include <list>
 
@@ -23,7 +24,7 @@ public:
     ~coursesTableManager();
     void insertJceCoursesIntoTable();
     void setCoursesList(std::string &htmlPage);
-    void changes(std::string change, int row, int col);
+    bool changes(QString change, int row, int col);
     void addRow(const Course * courseToAdd = 0);
     double getAvg();
 
