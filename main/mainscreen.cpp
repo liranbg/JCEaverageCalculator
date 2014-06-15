@@ -219,9 +219,20 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 }
 void MainScreen::on_actionCredits_triggered()
 {
-    QMessageBox credits;
-    credits.setText(" A tiny application to calculate your grades average. \n Made by Liran Ben Gida \n Thanks to: Sagi Dayan, Nadav Luzzato");
-    credits.exec();
+    QMessageBox::about(this, "About", " A tiny application to calculate your grades average. <br><br>"
+                       "This software is licensed under the <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
+                       "The source code is available at github:<br>"
+                       "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
+                       "<br><br>This front end is Powered by <a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
+                       "Made by:"
+                       "<ul>"
+                       "<li><a href='mailto:liranbg@gmail.com'>Liran Ben Gida</a></li>"
+                       "</ul>"
+                       "Thanks to: "
+                       "<ul>"
+                       "<li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>"
+                       "<li><a href='mailto:nadav2051@gmail.com'>Nadav Luzzato</a></li>"
+                       "</ul>");
 }
 
 void MainScreen::on_clearTableButton_clicked()
