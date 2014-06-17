@@ -22,7 +22,8 @@ SOURCES +=     main/coursestablemanager.cpp \
     src/grades/GradePage.cpp \
     src/grades/Page.cpp \
     src/jce/jcedate.cpp \
-    src/jce/jcelogin.cpp
+    src/jce/jcelogin.cpp \
+    src/data/savedata.cpp
 
 
 
@@ -37,6 +38,7 @@ HEADERS  +=     main/coursestablemanager.h \
     src/jce/jcedate.h \
     src/jce/jcelogin.h \
     src/jce/jceLoginHtmlScripts.h \
+    src/data/savedata.h
 
 
 
