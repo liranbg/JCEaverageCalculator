@@ -27,6 +27,7 @@ void jceLogin::makeConnection() throw (jceStatus)
     {
         if (makeFirstVisit() == true) //requst and send first validation
         {
+
             status = jceStatus::JCE_FIRST_VALIDATION_PASSED;
             if (checkValidation() == true) //check if username and password are matching
             {

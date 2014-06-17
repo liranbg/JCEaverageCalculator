@@ -34,7 +34,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
 
     updateDates();
-
+    std::cout << "hello world" << std::endl;
 
 }
 
@@ -166,6 +166,9 @@ void MainScreen::uiSetDisconnectMode()
 
 void MainScreen::uiSetConnectMode()
 {
+    if (this->jceLog != NULL)
+        delete jceLog;
+
     string username;
     string password;
     if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
