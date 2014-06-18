@@ -21,19 +21,24 @@ jceLogin::~jceLogin()
  */
 void jceLogin::makeConnection() throw (jceStatus)
 {
-    jceStatus status;
+    jceStatus status = jceStatus::JCE_NOT_CONNECTED;
 
     if (checkConnection() == true) //connected to host
     {
         if (makeFirstVisit() == true) //requst and send first validation
         {
-
+            std::cout << "visit 1\n";
+            std::cout << *(this->recieverPage);
             status = jceStatus::JCE_FIRST_VALIDATION_PASSED;
             if (checkValidation() == true) //check if username and password are matching
             {
+                std::cout << "visit 2\n";
+                std::cout << *(this->recieverPage);
                 status = jceStatus::JCE_SECOND_VALIDATION_PASSED;
                 if (makeSecondVisit() == true) //siging in the website
                 {
+                    std::cout << "visit 3\n";
+                    std::cout << *(this->recieverPage);
                     status = jceStatus::JCE_YOU_ARE_IN;
                     setLoginFlag(true);
                 }
@@ -91,7 +96,6 @@ int jceLogin::makeFirstVisit()
 {
     std::string usr = jceA->getUsername();
     std::string psw = jceA->getPassword();
-
     if (JceConnector->send(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
         if (!JceConnector->recieve(*recieverPage))
@@ -157,6 +161,7 @@ std::string jceLogin::getPage()
 bool jceLogin::checkValidation()
 {
     //finds the hashed password
+    std::cout << *recieverPage << std::endl;
 
     std::size_t hasspass_position1 = recieverPage->find("-A,-N");
     hasspass_position1 += 5;

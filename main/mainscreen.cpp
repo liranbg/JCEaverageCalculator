@@ -34,7 +34,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
 
     updateDates();
-    std::cout << "hello world" << std::endl;
 
 }
 
@@ -166,6 +165,8 @@ void MainScreen::uiSetDisconnectMode()
 
 void MainScreen::uiSetConnectMode()
 {
+    std::string page;
+
     if (this->jceLog != NULL)
         delete jceLog;
 
@@ -188,12 +189,19 @@ void MainScreen::uiSetConnectMode()
     userLoginSetting->setPassword(password);
 
     this->repaint();
+    page = "connecting with username ";
+    page = username;
+    page += "and password: ";
+    page += password;
+    ui->textEdit->setText(ui->textEdit->toPlainText() + QString::fromStdString(page));
 
     jceLog = new jceLogin(userLoginSetting);
     this->loginHandel = new loginHandler(jceLog,statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
 
     if (loginHandel->makeConnection() == true)
     {
+        page = this->jceLog->getPage();
+        ui->textEdit->setText(ui->textEdit->toPlainText() + QString::fromStdString(page));
         setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
         ui->loginButton->setText("&Logout");
         this->ui->ratesButton->setEnabled(true);

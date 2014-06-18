@@ -17,8 +17,9 @@ bool qtsslsocket::isCon()
 
 bool qtsslsocket::send(std::string str)
 {
-    bool flag = true;
-    this->socket->write(str.c_str());
+    bool flag = isCon();
+    if (flag)
+        this->socket->write(str.c_str());
 
     return flag;
 }

@@ -46,6 +46,7 @@ bool loginHandler::makeConnection()
         }
         else if (a == jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED)
         {
+            std::cout << "error!!!!!!" <<  (jceLog->getPage()) << std::endl;
             popMessage("You were blocked, please wait couple of minutes or contact JCE");
             jceLog->closeAll();
 

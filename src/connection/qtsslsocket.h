@@ -7,7 +7,7 @@
 #include <QString>
 #include <iostream>
 #include <string>
-#define milisTimeOut 3000
+#define milisTimeOut 5000
 
 class qtsslsocket : public QObject
 {
