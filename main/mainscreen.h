@@ -55,6 +55,8 @@ private slots:
 
     void on_coursesTable_itemChanged(QTableWidgetItem *item);
 
+    void on_keepLogin_clicked();
+
 private:
 
     void updateDates();

@@ -7,11 +7,13 @@
 #include <QPixmap>
 
 #include "src/jce/jcelogin.h"
+#include "./src/data/savedata.h"
 
 class loginHandler
 {
 public:
-    loginHandler(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr);
+    loginHandler();
+    void setPointers(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr);
     bool makeConnection();
 
 private:

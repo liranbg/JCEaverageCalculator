@@ -7,24 +7,24 @@
 #include <QString>
 #include <iostream>
 #include <string>
-#define milisTimeOut 5000
+#define milisTimeOut 3000
 
 class qtsslsocket : public QObject
 {
     Q_OBJECT
 
 public:
-    qtsslsocket(std::string server,int  port);
-    ~qtsslsocket() {
-        socket->close();
-        socket = NULL;
-    }
+    qtsslsocket();
+    ~qtsslsocket();
+
+    bool makeConnect(std::string server,int port);
     bool isCon();
     bool send(std::string str);
     bool recieve(std::string &str);
 
 
 private:
+
     QSslSocket *socket;
     bool flag;
 };

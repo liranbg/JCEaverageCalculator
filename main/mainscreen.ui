@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>855</width>
-    <height>636</height>
+    <height>649</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -169,20 +169,14 @@ font-size: 15px;
            <property name="bottomMargin">
             <number>15</number>
            </property>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <layout class="QHBoxLayout" name="loginButtonHorizontalLayout">
              <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QCheckBox" name="keepLogin">
+               <property name="text">
+                <string>Keep login</string>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="loginButton">
@@ -442,7 +436,7 @@ font-size: 15px;
           <x>20</x>
           <y>20</y>
           <width>251</width>
-          <height>141</height>
+          <height>159</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
@@ -593,6 +587,9 @@ font-size: 15px;
                       <property name="readOnly">
                        <bool>false</bool>
                       </property>
+                      <property name="showGroupSeparator" stdset="0">
+                       <bool>false</bool>
+                      </property>
                       <property name="minimum">
                        <number>2009</number>
                       </property>
@@ -601,9 +598,6 @@ font-size: 15px;
                       </property>
                       <property name="value">
                        <number>2009</number>
-                      </property>
-                      <property name="showGroupSeparator" stdset="0">
-                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -684,7 +678,7 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>21</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">

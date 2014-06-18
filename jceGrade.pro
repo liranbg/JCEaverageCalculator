@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = jceGrade
 TEMPLATE = app
 RC_FILE = appConfigure.rc
-CONFIG += c++11 static console
+CONFIG += c++11 static
 
 SOURCES +=     main/coursestablemanager.cpp \
     main/loginhandler.cpp \

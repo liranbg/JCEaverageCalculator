@@ -1,6 +1,10 @@
 #include "loginhandler.h"
 
-loginHandler::loginHandler(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
+loginHandler::loginHandler()
+{
+
+}
+void loginHandler::setPointers(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
 {
     this->jceLog = ptr;
     this->statusLabelPtr = statusLabelPtr;
@@ -11,9 +15,8 @@ loginHandler::loginHandler(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdE
 bool loginHandler::makeConnection()
 {
     if (this->jceLog == NULL)
-    {
         return false;
-    }
+
     try
     {
         jceLog->makeConnection();
@@ -38,15 +41,12 @@ bool loginHandler::makeConnection()
         }
         else if (a == jceLogin::ERROR_ON_OPEN_SOCKET)
         {
-            popMessage("Please check your internet status");
-
+            popMessage("Please check your Internet status");
             jceLog->closeAll();
-
             return false;
         }
         else if (a == jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED)
         {
-            std::cout << "error!!!!!!" <<  (jceLog->getPage()) << std::endl;
             popMessage("You were blocked, please wait couple of minutes or contact JCE");
             jceLog->closeAll();
 

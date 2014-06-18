@@ -4,7 +4,7 @@ jceLogin::jceLogin(user * username)
 {
     this->recieverPage = new std::string();
     this->jceA = username;
-    this->JceConnector = new qtsslsocket(dst_host, dst_port);
+    this->JceConnector = new qtsslsocket();
 }
 
 jceLogin::~jceLogin()
@@ -21,24 +21,21 @@ jceLogin::~jceLogin()
  */
 void jceLogin::makeConnection() throw (jceStatus)
 {
+    if (JceConnector->makeConnect(dst_host,dst_port) == false)
+        throw jceStatus::ERROR_ON_OPEN_SOCKET;
+
     jceStatus status = jceStatus::JCE_NOT_CONNECTED;
 
     if (checkConnection() == true) //connected to host
     {
         if (makeFirstVisit() == true) //requst and send first validation
         {
-            std::cout << "visit 1\n";
-            std::cout << *(this->recieverPage);
             status = jceStatus::JCE_FIRST_VALIDATION_PASSED;
             if (checkValidation() == true) //check if username and password are matching
             {
-                std::cout << "visit 2\n";
-                std::cout << *(this->recieverPage);
                 status = jceStatus::JCE_SECOND_VALIDATION_PASSED;
                 if (makeSecondVisit() == true) //siging in the website
                 {
-                    std::cout << "visit 3\n";
-                    std::cout << *(this->recieverPage);
                     status = jceStatus::JCE_YOU_ARE_IN;
                     setLoginFlag(true);
                 }
@@ -72,8 +69,10 @@ bool jceLogin::checkConnection()
 void jceLogin::reConnect()  throw (jceStatus)
 {
     closeAll();
+    if (this->JceConnector != NULL)
+        delete JceConnector;
     this->recieverPage = new std::string();
-    this->JceConnector = new qtsslsocket(dst_host, dst_port);
+    this->JceConnector = new qtsslsocket();
     try
     {
         makeConnection();
@@ -161,8 +160,6 @@ std::string jceLogin::getPage()
 bool jceLogin::checkValidation()
 {
     //finds the hashed password
-    std::cout << *recieverPage << std::endl;
-
     std::size_t hasspass_position1 = recieverPage->find("-A,-N");
     hasspass_position1 += 5;
     std::size_t hasspass_position2 = recieverPage->find(",-A,-A", hasspass_position1);

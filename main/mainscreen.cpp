@@ -31,16 +31,25 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     this->jceLog = NULL;
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
-
+    this->loginHandel = new loginHandler();
 
     updateDates();
 
+    //check login File
+    SaveData::init();
+    if (SaveData::isSaved())
+    {
+        ui->usrnmLineEdit->setText(SaveData::getUsername());
+        ui->pswdLineEdit->setText(SaveData::getPassword());
+        ui->keepLogin->setChecked(true);
+    }
 }
 
 MainScreen::~MainScreen()
 {
     delete userLoginSetting;
     delete jceLog;
+    delete loginHandel;
     delete ui;
 }
 void MainScreen::on_ratesButton_clicked()
@@ -163,7 +172,7 @@ void MainScreen::uiSetDisconnectMode()
     return;
 }
 
-void MainScreen::uiSetConnectMode()
+void MainScreen::uiSetConnectMode() //fix before distrbute
 {
     std::string page;
 
@@ -196,7 +205,7 @@ void MainScreen::uiSetConnectMode()
     ui->textEdit->setText(ui->textEdit->toPlainText() + QString::fromStdString(page));
 
     jceLog = new jceLogin(userLoginSetting);
-    this->loginHandel = new loginHandler(jceLog,statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
+    this->loginHandel->setPointers(jceLog,statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
 
     if (loginHandel->makeConnection() == true)
     {
@@ -266,3 +275,12 @@ void MainScreen::on_actionExit_triggered()
     exit(0);
 }
 
+
+void MainScreen::on_keepLogin_clicked()
+{
+    if (ui->keepLogin->isChecked())
+        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
+
+    else
+        SaveData::deleteData();
+}
