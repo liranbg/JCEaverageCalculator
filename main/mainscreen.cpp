@@ -58,13 +58,21 @@ void MainScreen::on_ratesButton_clicked()
     std::string pageString;
     if (this->jceLog != NULL)
     {
-        if (jceLog->getGrades())
+        if (jceLog->isLoginFlag() == true)
         {
-            phrase.setText(QString::fromStdString(jceLog->getPage()));
-            pageString = phrase.toPlainText().toStdString();
-            courseTableMgr->setCoursesList(pageString);
-            courseTableMgr->insertJceCoursesIntoTable();
+            if (jceLog->getGrades() == jceLogin::JCE_GRADE_PAGE_PASSED)
+            {
+                phrase.setText(QString::fromStdString(jceLog->getPage()));
+                pageString = phrase.toPlainText().toStdString();
+                courseTableMgr->setCoursesList(pageString);
+                courseTableMgr->insertJceCoursesIntoTable();
+            }
+            else
+            {
+
+            }
         }
+
     }
 
 }

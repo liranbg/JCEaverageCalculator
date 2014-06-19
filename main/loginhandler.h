@@ -18,7 +18,7 @@ public:
 
 private:
 
-    void popMessage(QString message);
+    void popMessage(QString message, bool addInfo = true);
 
 
     jceLogin *jceLog;

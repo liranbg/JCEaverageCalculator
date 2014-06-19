@@ -24,20 +24,33 @@ void jceLogin::makeConnection() throw (jceStatus)
     if (JceConnector->makeConnect(dst_host,dst_port) == false)
         throw jceStatus::ERROR_ON_OPEN_SOCKET;
 
+    int returnMode;
     jceStatus status = jceStatus::JCE_NOT_CONNECTED;
 
-    if (checkConnection() == true) //connected to host
+    returnMode = checkConnection();
+    if (returnMode == true) //connected to host
     {
-        if (makeFirstVisit() == true) //requst and send first validation
+        returnMode = makeFirstVisit();
+        if (returnMode == true) //requst and send first validation
         {
-            status = jceStatus::JCE_FIRST_VALIDATION_PASSED;
-            if (checkValidation() == true) //check if username and password are matching
+            status = jceStatus::JCE_START_VALIDATING_PROGRESS;
+            returnMode = checkValidation();
+            if (returnMode == true) //check if username and password are matching
             {
-                status = jceStatus::JCE_SECOND_VALIDATION_PASSED;
-                if (makeSecondVisit() == true) //siging in the website
+                status = jceStatus::JCE_VALIDATION_PASSED;
+                returnMode = makeSecondVisit();
+                if (returnMode == true) //siging in the website
                 {
                     status = jceStatus::JCE_YOU_ARE_IN;
                     setLoginFlag(true);
+                }
+                else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
+                {
+                    status = jceLogin::ERROR_ON_GETTING_INFO;
+                }
+                else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
+                {
+                    status = jceLogin::ERROR_ON_SEND_REQUEST;
                 }
                 else
                     status = jceStatus::ERROR_ON_VALIDATION;
@@ -46,12 +59,20 @@ void jceLogin::makeConnection() throw (jceStatus)
                 status = jceStatus::ERROR_ON_VALIDATION;
 
         }
+        else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
+        {
+            status = jceLogin::ERROR_ON_GETTING_INFO;
+        }
+        else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
+        {
+            status = jceLogin::ERROR_ON_SEND_REQUEST;
+        }
         else
             status = jceStatus::ERROR_ON_VALIDATION_USER_BLOCKED;
 
     }
     else
-        status = jceStatus::ERROR_ON_OPEN_SOCKET;
+        status = jceStatus::JCE_NOT_CONNECTED;
 
     //we throw status even if we are IN!
     throw status;
@@ -129,8 +150,8 @@ int jceLogin::getGrades()
     {
         if (!(JceConnector->recieve(*recieverPage)))
             return jceLogin::ERROR_ON_GETTING_GRADES;
-
-        return true;
+        else
+            return jceLogin::JCE_GRADE_PAGE_PASSED;
     }
     else
         return jceLogin::ERROR_ON_SEND_REQUEST;
@@ -160,14 +181,17 @@ std::string jceLogin::getPage()
 bool jceLogin::checkValidation()
 {
     //finds the hashed password
-    std::size_t hasspass_position1 = recieverPage->find("-A,-N");
+    std::size_t hasspass_position1,hasspass_position2;
+
+    if ((hasspass_position1 = recieverPage->find("-A,-N")) == string::npos)
+        return false;
     hasspass_position1 += 5;
-    std::size_t hasspass_position2 = recieverPage->find(",-A,-A", hasspass_position1);
-    if ((hasspass_position2 != std::string::npos) && (hasspass_position1 != std::string::npos))
-    {
-        std::string hasspass = recieverPage->substr(hasspass_position1,hasspass_position2-hasspass_position1);
-        jceA->setHashedPassword(hasspass);
-    }
+    if ((hasspass_position2 = recieverPage->find(",-A,-A", hasspass_position1)) == string::npos)
+        return false;
+
+    std::string hasspass = recieverPage->substr(hasspass_position1,hasspass_position2-hasspass_position1);
+    jceA->setHashedPassword(hasspass);
+
     //finds the user id
     std::size_t id_position1 = recieverPage->find("value=\"-N", 0);
     id_position1 += 9;
