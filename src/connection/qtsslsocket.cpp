@@ -3,29 +3,24 @@
 
 bool qtsslsocket::makeConnect(std::string server,int  port)
 {
-    if (this->socket != NULL) //already connected?
-    {
-        socket->close();
-        socket = NULL;
-    }
-
-    if (this->socket == NULL) //if was connected, we deleted it and remake it
-        socket = new QSslSocket();
+    if (isCon())
+        socket->abort();
 
 
-    if (this->socket != NULL) //now we will connect it to host
-    {
-        socket->connectToHostEncrypted(server.c_str(), port);
-        if (socket->waitForEncrypted()) //waiting for encryption
-            flag = true;
-    }
+    socket->connectToHostEncrypted(server.c_str(), port);
+    socket->waitForEncrypted();
 
-    return isCon(); //return true/false upon isCon function
+    return true; //return true/false upon isCon function
 }
 
 qtsslsocket::qtsslsocket() :  flag(false)
 {
     socket = new QSslSocket();
+    connect(socket,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
+    connect(socket,SIGNAL(connected()),this,SLOT(setConnected()));
+    connect(socket,SIGNAL(encrypted()),this,SLOT(setEncrypted()));
+    this->flag = true;
+
 }
 
 
@@ -72,3 +67,21 @@ bool qtsslsocket::makeDiconnect()
         return false;
     return true;
 }
+
+void qtsslsocket::checkErrors(QAbstractSocket::SocketError info)
+{
+}
+
+void qtsslsocket::setConnected()
+{
+//    socket->waitForEncrypted();
+
+}
+
+void qtsslsocket::setEncrypted()
+{
+
+//    this->flag = true;
+}
+
+

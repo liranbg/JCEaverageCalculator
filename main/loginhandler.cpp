@@ -82,6 +82,7 @@ bool loginHandler::makeConnection()
     return false;
 }
 
+
 bool loginHandler::isLoggedInFlag()
 {
     return this->logggedInFlag;

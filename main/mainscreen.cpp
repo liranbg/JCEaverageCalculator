@@ -50,9 +50,18 @@ MainScreen::~MainScreen()
     delete loginHandel;
     delete ui;
 }
+void MainScreen::on_loginButton_clicked()
+{
+    if (loginHandel->isLoggedInFlag())
+        uiSetDisconnectMode();
+
+    else
+        uiSetConnectMode();
+
+}
+
 void MainScreen::on_ratesButton_clicked()
 {
-
     std::string pageString;
     int status = 0;
     if (loginHandel->isLoggedInFlag())
@@ -72,7 +81,6 @@ void MainScreen::on_ratesButton_clicked()
 
 
 }
-
 void MainScreen::on_spinBoxFromYear_editingFinished()
 {
     if (ui->spinBoxFromYear->value() > ui->spinBoxToYear->value())
@@ -128,15 +136,7 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
         QMessageBox::critical(this,"Error","Missmatching data");
 }
 
-void MainScreen::on_loginButton_clicked()
-{
-    if (loginHandel->isLoggedInFlag())
-        uiSetDisconnectMode();
 
-    else
-        uiSetConnectMode();
-
-}
 
 void MainScreen::on_checkBox_toggled(bool checked)
 {
@@ -192,7 +192,6 @@ void MainScreen::uiSetConnectMode() //fix before distrbute
     userLoginSetting->setPassword(password);
 
     this->loginHandel->setPointers(statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
-
     if (loginHandel->makeConnection() == true)
     {
         setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
@@ -200,6 +199,7 @@ void MainScreen::uiSetConnectMode() //fix before distrbute
         this->ui->ratesButton->setEnabled(true);
         ui->CoursesTab->setEnabled(true);
         ui->SettingsTab->setEnabled(true);
+
     }
     else
     {

@@ -7,7 +7,7 @@
 #include <QString>
 #include <iostream>
 #include <string>
-#define milisTimeOut 3000
+#define milisTimeOut 3500
 
 class qtsslsocket : public QObject
 {
@@ -24,10 +24,18 @@ public:
     bool makeDiconnect();
 
 
+private slots:
+    void checkErrors(QAbstractSocket::SocketError);
+    void setConnected();
+    void setEncrypted();
+
+
 private:
 
     QSslSocket *socket;
     bool flag;
+
 };
+
 
 #endif // QTSSLSOCKET_H

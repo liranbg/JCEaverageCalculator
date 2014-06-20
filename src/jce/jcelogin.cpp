@@ -5,6 +5,7 @@ jceLogin::jceLogin(user * username)
     this->recieverPage = new std::string();
     this->jceA = username;
     this->JceConnector = new qtsslsocket();
+
 }
 
 jceLogin::~jceLogin()

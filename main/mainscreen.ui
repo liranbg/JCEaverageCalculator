@@ -293,9 +293,6 @@ font-size: 15px;
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QTextEdit" name="textEdit"/>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="CoursesTab">
@@ -587,9 +584,6 @@ font-size: 15px;
                       <property name="readOnly">
                        <bool>false</bool>
                       </property>
-                      <property name="showGroupSeparator" stdset="0">
-                       <bool>false</bool>
-                      </property>
                       <property name="minimum">
                        <number>2009</number>
                       </property>
@@ -598,6 +592,9 @@ font-size: 15px;
                       </property>
                       <property name="value">
                        <number>2009</number>
+                      </property>
+                      <property name="showGroupSeparator" stdset="0">
+                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -655,7 +652,7 @@ font-size: 15px;
             <item row="1" column="0">
              <widget class="QCheckBox" name="checkBox">
               <property name="text">
-               <string>Only influences Courses</string>
+               <string>Only influence Courses</string>
               </property>
               <property name="checked">
                <bool>false</bool>
@@ -678,7 +675,7 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>29</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">

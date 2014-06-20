@@ -9,8 +9,6 @@
 #include "jceLoginHtmlScripts.h"
 
 
-
-
 class jceLogin
 {
 public:
@@ -40,6 +38,8 @@ public:
     bool isLoginFlag() const;
 
     std::string getPage();
+
+
 
 
 

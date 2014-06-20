@@ -34,6 +34,9 @@ private:
     QLabel *statusLabelPtr;
     QLineEdit *pswdEditPtr;
     QLineEdit *usrnmEditPtr;
+
+
+
 };
 
 #endif // LOGINHANDLER_H
