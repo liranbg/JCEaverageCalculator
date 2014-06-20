@@ -21,6 +21,7 @@ public:
     bool isCon();
     bool send(std::string str);
     bool recieve(std::string &str);
+    bool makeDiconnect();
 
 
 private:

@@ -42,11 +42,11 @@ bool qtsslsocket::isCon()
 //need to fix the method
 bool qtsslsocket::send(std::string str)
 {
-    int status;
+    //    int status;
     bool flag = isCon();
     if (flag) //if connected
     {
-        status = socket->write(str.c_str(),str.length());
+        socket->write(str.c_str(),str.length());
         while (socket->waitForBytesWritten());
     }
     return flag;
@@ -63,4 +63,12 @@ bool qtsslsocket::recieve(std::string &str)
         flag = true;
 
     return flag;
+}
+
+bool qtsslsocket::makeDiconnect()
+{
+    this->socket->abort();
+    if (socket->isOpen())
+        return false;
+    return true;
 }

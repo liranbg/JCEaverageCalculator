@@ -21,6 +21,9 @@ jceLogin::~jceLogin()
  */
 void jceLogin::makeConnection() throw (jceStatus)
 {
+    if (this->recieverPage == NULL)
+        this->recieverPage = new std::string();
+
     if (JceConnector->makeConnect(dst_host,dst_port) == false)
         throw jceStatus::ERROR_ON_OPEN_SOCKET;
 
@@ -96,6 +99,7 @@ void jceLogin::reConnect()  throw (jceStatus)
     this->JceConnector = new qtsslsocket();
     try
     {
+
         makeConnection();
     }
     catch (jceLogin::jceStatus &a)
@@ -106,9 +110,10 @@ void jceLogin::reConnect()  throw (jceStatus)
 
 void jceLogin::closeAll()
 {
+    JceConnector->makeDiconnect();
     delete recieverPage;
     recieverPage = NULL;
-    JceConnector = NULL;
+    loginFlag = false;
 
 }
 

@@ -28,10 +28,9 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
 
     //Pointer allocating
-    this->jceLog = NULL;
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
-    this->loginHandel = new loginHandler();
+    this->loginHandel = new loginHandler(userLoginSetting);
 
     updateDates();
 
@@ -48,32 +47,29 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 MainScreen::~MainScreen()
 {
     delete userLoginSetting;
-    delete jceLog;
     delete loginHandel;
     delete ui;
 }
 void MainScreen::on_ratesButton_clicked()
 {
-    QTextEdit phrase;
+
     std::string pageString;
-    if (this->jceLog != NULL)
+    int status = 0;
+    if (loginHandel->isLoggedInFlag())
     {
-        if (jceLog->isLoginFlag() == true)
+        if ((status = loginHandel->makeGradeRequest()) == jceLogin::JCE_GRADE_PAGE_PASSED)
         {
-            if (jceLog->getGrades() == jceLogin::JCE_GRADE_PAGE_PASSED)
-            {
-                phrase.setText(QString::fromStdString(jceLog->getPage()));
-                pageString = phrase.toPlainText().toStdString();
-                courseTableMgr->setCoursesList(pageString);
-                courseTableMgr->insertJceCoursesIntoTable();
-            }
-            else
-            {
-
-            }
+            pageString = loginHandel->getCurrentPageContect().toStdString();
+            courseTableMgr->setCoursesList(pageString);
+            courseTableMgr->insertJceCoursesIntoTable();
         }
-
+        else if (status == jceLogin::JCE_NOT_CONNECTED)
+        {
+            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+        }
     }
+
+
 
 }
 
@@ -134,15 +130,11 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 
 void MainScreen::on_loginButton_clicked()
 {
-    if (this->jceLog == NULL)
-        uiSetConnectMode();
+    if (loginHandel->isLoggedInFlag())
+        uiSetDisconnectMode();
+
     else
-    {
-        if (jceLog->isLoginFlag() == true)
-            uiSetDisconnectMode();
-        else
-            uiSetConnectMode();
-    }
+        uiSetConnectMode();
 
 }
 
@@ -173,8 +165,7 @@ void MainScreen::uiSetDisconnectMode()
     ui->usrnmLineEdit->setEnabled(true);
     ui->pswdLineEdit->setEnabled(true);
 
-    delete jceLog;
-    jceLog = NULL;
+    loginHandel->makeDisconnectionRequest();
     ui->loginButton->setText("&Login");
     this->ui->ratesButton->setDisabled(true);
     return;
@@ -182,11 +173,6 @@ void MainScreen::uiSetDisconnectMode()
 
 void MainScreen::uiSetConnectMode() //fix before distrbute
 {
-    std::string page;
-
-    if (this->jceLog != NULL)
-        delete jceLog;
-
     string username;
     string password;
     if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
@@ -205,20 +191,10 @@ void MainScreen::uiSetConnectMode() //fix before distrbute
     userLoginSetting->setUsername(username);
     userLoginSetting->setPassword(password);
 
-    this->repaint();
-    page = "connecting with username ";
-    page = username;
-    page += "and password: ";
-    page += password;
-    ui->textEdit->setText(ui->textEdit->toPlainText() + QString::fromStdString(page));
-
-    jceLog = new jceLogin(userLoginSetting);
-    this->loginHandel->setPointers(jceLog,statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
+    this->loginHandel->setPointers(statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
 
     if (loginHandel->makeConnection() == true)
     {
-        page = this->jceLog->getPage();
-        ui->textEdit->setText(ui->textEdit->toPlainText() + QString::fromStdString(page));
         setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
         ui->loginButton->setText("&Logout");
         this->ui->ratesButton->setEnabled(true);

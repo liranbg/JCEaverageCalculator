@@ -10,9 +10,6 @@
 #include <string>
 #include <iostream>
 
-
-#include "src/grades/GradePage.h"
-#include "src/jce/jcelogin.h"
 #include "coursestablemanager.h"
 #include "loginhandler.h"
 
@@ -66,7 +63,6 @@ private:
 
     Ui::MainScreen *ui;
 
-    jceLogin *jceLog;
     user *userLoginSetting;
 
     coursesTableManager *courseTableMgr;

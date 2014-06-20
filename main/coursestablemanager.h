@@ -13,7 +13,6 @@
 
 #include <list>
 
-#include "src/grades/Course.h"
 #include "src/grades/GradePage.h"
 #include "src/user.h"
 

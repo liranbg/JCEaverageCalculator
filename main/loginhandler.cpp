@@ -1,12 +1,12 @@
 #include "loginhandler.h"
 
-loginHandler::loginHandler()
+loginHandler::loginHandler(user *ptr): logggedInFlag(false)
+{
+    this->jceLog = new jceLogin(ptr);
+}
+void loginHandler::setPointers(QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
 {
 
-}
-void loginHandler::setPointers(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
-{
-    this->jceLog = ptr;
     this->statusLabelPtr = statusLabelPtr;
     this->pswdEditPtr = pswdEditPtr;
     this->usrnmEditPtr = usrnmEditPtr;
@@ -28,7 +28,8 @@ bool loginHandler::makeConnection()
         {
         case jceLogin::JCE_YOU_ARE_IN:
         {
-            return true;
+            logggedInFlag = true;
+            return logggedInFlag;
             break;
         }
         case jceLogin::ERROR_ON_VALIDATION:
@@ -79,6 +80,40 @@ bool loginHandler::makeConnection()
         }
     }
     return false;
+}
+
+bool loginHandler::isLoggedInFlag()
+{
+    return this->logggedInFlag;
+}
+
+void loginHandler::setLoginFlag(bool flag)
+{
+    this->logggedInFlag = flag;
+}
+
+QString loginHandler::getCurrentPageContect()
+{
+    QTextEdit phrase;
+    if (isLoggedInFlag())
+        phrase.setText(QString::fromStdString(jceLog->getPage()));
+    else
+        throw jceLogin::ERROR_ON_GETTING_INFO;
+
+    return phrase.toPlainText();
+}
+
+void loginHandler::makeDisconnectionRequest()
+{
+    jceLog->closeAll();
+}
+
+int loginHandler::makeGradeRequest()
+{
+    if (isLoggedInFlag())
+        return jceLog->getGrades();
+    else
+        return jceLogin::JCE_NOT_CONNECTED;
 }
 void loginHandler::popMessage(QString message,bool addInfo)
 {

@@ -3,6 +3,7 @@
 #include <QString>
 #include <QLabel>
 #include <QLineEdit>
+#include <QTextEdit>
 #include <QMessageBox>
 #include <QPixmap>
 
@@ -12,15 +13,22 @@
 class loginHandler
 {
 public:
-    loginHandler();
-    void setPointers(jceLogin *ptr,QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr);
+    loginHandler(user *ptr);
+    void setPointers(QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr);
     bool makeConnection();
+    bool isLoggedInFlag();
+    void setLoginFlag(bool flag);
+
+    QString getCurrentPageContect();
+    int makeGradeRequest();
+
+    void makeDisconnectionRequest();
 
 private:
 
     void popMessage(QString message, bool addInfo = true);
 
-
+    bool logggedInFlag;
     jceLogin *jceLog;
 
     QLabel *statusLabelPtr;
