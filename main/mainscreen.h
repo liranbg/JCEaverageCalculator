@@ -54,6 +54,8 @@ private slots:
 
     void on_keepLogin_clicked();
 
+    void on_actionHow_To_triggered();
+
 private:
 
     void updateDates();

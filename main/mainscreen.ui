@@ -682,6 +682,7 @@ font-size: 15px;
     <property name="title">
      <string>&amp;About</string>
     </property>
+    <addaction name="actionHow_To"/>
     <addaction name="actionCredits"/>
     <addaction name="actionExit"/>
    </widget>
@@ -709,6 +710,11 @@ font-size: 15px;
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionHow_To">
+   <property name="text">
+    <string>How-To</string>
    </property>
   </action>
  </widget>
