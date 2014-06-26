@@ -4,10 +4,9 @@
 #include <string>
 #include <fstream>
 
-#include "../connection/qtsslsocket.h"
+#include "../connection/jcesslclient.h"
 #include "../user.h"
 #include "jceLoginHtmlScripts.h"
-
 
 class jceLogin
 {
@@ -52,7 +51,8 @@ private:
     bool loginFlag;
     std::string * recieverPage;
     user * jceA;
-    qtsslsocket * JceConnector;
+    jceSSLClient * JceConnector;
+
 
 };
 

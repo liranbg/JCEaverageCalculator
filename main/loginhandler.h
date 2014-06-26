@@ -10,6 +10,7 @@
 #include "src/jce/jcelogin.h"
 #include "./src/data/savedata.h"
 
+
 class loginHandler
 {
 public:
@@ -34,7 +35,6 @@ private:
     QLabel *statusLabelPtr;
     QLineEdit *pswdEditPtr;
     QLineEdit *usrnmEditPtr;
-
 
 
 };

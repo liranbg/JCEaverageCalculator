@@ -4,8 +4,7 @@ jceLogin::jceLogin(user * username)
 {
     this->recieverPage = new std::string();
     this->jceA = username;
-    this->JceConnector = new qtsslsocket();
-
+    this->JceConnector = new jceSSLClient();
 }
 
 jceLogin::~jceLogin()
@@ -85,7 +84,7 @@ void jceLogin::makeConnection() throw (jceStatus)
 
 bool jceLogin::checkConnection()
 {
-    if (JceConnector->isCon())
+    if (JceConnector->isConnected())
         return true;
 
     return false;
@@ -97,7 +96,7 @@ void jceLogin::reConnect()  throw (jceStatus)
     if (this->JceConnector != NULL)
         delete JceConnector;
     this->recieverPage = new std::string();
-    this->JceConnector = new qtsslsocket();
+    this->JceConnector = new jceSSLClient();
     try
     {
 
@@ -122,9 +121,9 @@ int jceLogin::makeFirstVisit()
 {
     std::string usr = jceA->getUsername();
     std::string psw = jceA->getPassword();
-    if (JceConnector->send(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
+    if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
-        if (!JceConnector->recieve(*recieverPage))
+        if (!JceConnector->recieveData(*recieverPage,true))
             return jceLogin::ERROR_ON_GETTING_INFO;
     }
     else
@@ -137,9 +136,9 @@ int jceLogin::makeSecondVisit()
 {
     std::string usrid=jceA->getUserID();
     std::string pswid=jceA->getHashedPassword();
-    if ((JceConnector->send(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getSecondValidationStep(*jceA)))))
+    if ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getSecondValidationStep(*jceA)))))
     {
-        if (!(JceConnector->recieve(*recieverPage)))
+        if (!(JceConnector->recieveData(*recieverPage,true)))
             return jceLogin::ERROR_ON_GETTING_INFO;
 
         return true;
@@ -152,9 +151,9 @@ int jceLogin::makeSecondVisit()
 
 int jceLogin::getGrades()
 {
-    if  ((JceConnector->send(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA)))))
+    if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA)))))
     {
-        if (!(JceConnector->recieve(*recieverPage)))
+        if (!(JceConnector->recieveData(*recieverPage,false)))
             return jceLogin::ERROR_ON_GETTING_GRADES;
         else
             return jceLogin::JCE_GRADE_PAGE_PASSED;

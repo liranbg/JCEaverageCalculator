@@ -16,21 +16,22 @@ SOURCES +=     main/coursestablemanager.cpp \
     main/loginhandler.cpp \
     main/main.cpp \
     main/mainscreen.cpp \
-    src/connection/qtsslsocket.cpp \
+    src/connection/jcesslclient.cpp \
     src/user.cpp \
     src/grades/Course.cpp \
     src/grades/GradePage.cpp \
     src/grades/Page.cpp \
     src/jce/jcedate.cpp \
     src/jce/jcelogin.cpp \
-    src/data/savedata.cpp
+    src/data/savedata.cpp \
+
 
 
 
 HEADERS  +=     main/coursestablemanager.h \
     main/loginhandler.h \
     main/mainscreen.h \
-    src/connection/qtsslsocket.h \
+    src/connection/jcesslclient.h \
     src/user.h \
     src/grades/Course.h \
     src/grades/GradePage.h \
@@ -38,7 +39,8 @@ HEADERS  +=     main/coursestablemanager.h \
     src/jce/jcedate.h \
     src/jce/jcelogin.h \
     src/jce/jceLoginHtmlScripts.h \
-    src/data/savedata.h
+    src/data/savedata.h \
+
 
 
 

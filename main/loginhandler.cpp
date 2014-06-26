@@ -107,6 +107,7 @@ QString loginHandler::getCurrentPageContect()
 void loginHandler::makeDisconnectionRequest()
 {
     jceLog->closeAll();
+    this->logggedInFlag = false;
 }
 
 int loginHandler::makeGradeRequest()
