@@ -1,6 +1,6 @@
 #include "jcesslclient.h"
 
-jceSSLClient::jceSSLClient(QObject *parent) : flag(false), packet("")
+jceSSLClient::jceSSLClient() : flag(false), packet("")
 {
     connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
     connect(this,SIGNAL(connected()),this,SLOT(setConnected()));
@@ -83,13 +83,11 @@ bool jceSSLClient::recieveData(std::string &str, bool fast)
             {
                 p = readAll();
                 packet.append(p);
-                debugEdit->setPlainText(debugEdit->toPlainText() + "\n Size" + QString::number(p.size()));
             }while (p.size() > 0);
         }
     }
 
     str = packet.toStdString();
-    debugEdit->setPlainText(debugEdit->toPlainText() + "\n" + QString::fromStdString(str));
     if (str.size() > 0)
         sflag = true;
 
@@ -103,7 +101,6 @@ void jceSSLClient::readIt()
     {
         p = readAll();
         packet.append(p);
-        debugEdit->setPlainText(debugEdit->toPlainText() + "\n Size" + QString::number(p.size()));
     }while (p.size() > 0);
 
 

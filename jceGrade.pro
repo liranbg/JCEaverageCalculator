@@ -11,7 +11,6 @@ TARGET = jceGrade
 TEMPLATE = app
 RC_FILE = appConfigure.rc
 CONFIG += c++11 static
-
 SOURCES +=     main/coursestablemanager.cpp \
     main/loginhandler.cpp \
     main/main.cpp \
