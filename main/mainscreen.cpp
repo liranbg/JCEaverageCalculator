@@ -236,13 +236,13 @@ void MainScreen::on_actionCredits_triggered()
                        "The source code is available at github:<br>"
                        "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
                        "<br><br>This front end is Powered by <a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
-                       "Made by:"
+                       "Developed by: "
                        "<ul>"
                        "<li><a href='mailto:liranbg@gmail.com'>Liran Ben Gida</a></li>"
+                       "<li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>"
                        "</ul>"
                        "Thanks to: "
                        "<ul>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>"
                        "<li><a href='mailto:nadav2051@gmail.com'>Nadav Luzzato</a></li>"
                        "</ul>");
 }

@@ -25,7 +25,7 @@ coursesTableManager::~coursesTableManager()
 {
     courseTBL = NULL;
     delete gp;
-    gp=NULL;
+    gp = NULL;
 }
 /**
  * @brief coursesTableManager::insertJceCoursesIntoTable    phrasing the course list to rows in table
