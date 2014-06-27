@@ -8,6 +8,8 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
     this->setFixedSize(this->size()); //main not resizeable
 
+    ui->usrnmLabel->setText(tr("<color=#000000>Username"));
+
     //Login Tab
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
 
