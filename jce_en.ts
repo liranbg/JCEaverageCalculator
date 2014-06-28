@@ -20,10 +20,14 @@
         <translation>Keep login</translation>
     </message>
     <message>
+        <source>&lt;color=#000000&gt;Username</source>
+        <translation type="vanished">Usernameasdfasdg</translation>
+    </message>
+    <message>
         <location filename="main/mainscreen.ui" line="234"/>
         <location filename="main/mainscreen.cpp" line="11"/>
-        <source>&lt;color=#000000&gt;Username</source>
-        <translation>Usernameasdfasdg</translation>
+        <source>Username</source>
+        <translation>Username</translation>
     </message>
     <message>
         <location filename="main/mainscreen.ui" line="260"/>
@@ -120,5 +124,98 @@
         <source>Not Connected</source>
         <translation>Not Connected</translation>
     </message>
+
+    <message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>CREDITS-ROOL-UP1</source>
+<translation>A tiny Application to calculate your grades average.</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>CREDITS-ROOL-UP2</source>
+<translation>This software is licensed under Qt5's </translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>CREDITS-ROOL-UP3</source>
+<translation>The source code is available at github:</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>CREDITS-ROOL-UP4</source>
+<translation>This front end is Powered by</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>DevBy</source>
+<translation>Developed By</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>Liran</source>
+<translation>Liran Ben Gida</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>Sagi</source>
+<translation>Sagi Dayan</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>Nadav</source>
+<translation>Nadav Luzzato</translation>
+</message>
+
+<message>
+<location filename="main/mainscreen.cpp" line="226"/>
+<source>Tnks</source>
+<translation>Thanks to</translation>
+</message>
+
+
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Code</source>
+<translation>Code</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Name</source>
+<translation>Course</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Type</source>
+<translation>Type</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Points</source>
+<translation>Points</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Hours</source>
+<translation>Weekly Hours</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Grade</source>
+<translation>Grade</translation>
+</message>
+<message>
+<location filename="main/coursestablemanager.cpp" line="15"/>
+<source>Additions</source>
+<translation>Additions</translation>
+</message>
+
+
 </context>
+
 </TS>

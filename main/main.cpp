@@ -1,12 +1,15 @@
 #include "mainscreen.h"
 #include <QApplication>
 #include <QTranslator>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
-    QTranslator translator;
-    translator.load("jce_he");
     QApplication a(argc, argv);
+    QTranslator translator;
+    bool is;
+    is = translator.load("jce_he.qm", a.applicationDirPath());
+    qDebug() << " =============== " << is ;
     a.installTranslator(&translator);
     MainScreen w;
     w.show();

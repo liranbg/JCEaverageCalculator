@@ -8,7 +8,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
     this->setFixedSize(this->size()); //main not resizeable
 
-    ui->usrnmLabel->setText(tr("<color=#000000>Username"));
 
     //Login Tab
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
@@ -216,15 +215,15 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 
     case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
         iconPix.load(":/icons/blueStatusIcon.png");
-        statusLabel->setText("Connecting");
+        statusLabel->setText(tr("Connecting"));
         break;
     case jceLogin::jceStatus::JCE_YOU_ARE_IN:
         iconPix.load(":/icons/greenStatusIcon.png");
-        statusLabel->setText("Connected");
+        statusLabel->setText(tr("Connected"));
         break;
     default:
         iconPix.load(":/icons/redStatusIcon.png");
-        statusLabel->setText("Disconnected");
+        statusLabel->setText(tr("Disconnected"));
         break;
     }
     ButtomStatusLabel->setPixmap(iconPix);
@@ -233,19 +232,19 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 }
 void MainScreen::on_actionCredits_triggered()
 {
-    QMessageBox::about(this, "About", "A tiny Application to calculate your grades average. v1.0 <br><br>"
-                       "This software is licensed under Qt5's <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
-                       "The source code is available at github:<br>"
+    QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
+                       + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
+                       + tr("CREDITS-ROOL-UP3")+"<br>"
                        "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                       "<br><br>This front end is Powered by <a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
-                       "Made by:"
+                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                       +tr("DevBy")+":"
                        "<ul>"
-                       "<li><a href='mailto:liranbg@gmail.com'>Liran Ben Gida</a></li>"
+                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
                        "</ul>"
-                       "Thanks to: "
+                       +tr("Tnks")+ "... :"
                        "<ul>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>"
-                       "<li><a href='mailto:nadav2051@gmail.com'>Nadav Luzzato</a></li>"
+                       "<li><a href='mailto:nadav2051@gmail.com'>"+tr("Nadav")+"</a></li>"
                        "</ul>");
 }
 
