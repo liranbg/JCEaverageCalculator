@@ -225,6 +225,37 @@
 <translation>הערות</translation>
 </message>
 
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP1</source>
+<translation>הכנס את שם המשתמש והסיסמה כמו שצריך</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP2</source>
+<translation>לחץ התחבר והמתן על שהתוכנה תתחבר, עיגול ירוק למטה</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP3</source>
+<translation>הכנס להגדרות כדי לבחור את טווח הגיליון</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP4</source>
+<translation>לחץ על העמוד של גיליון הציונים ולחץ הוספהת המתן עד שהציונים יופיעו בטבלה</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP5</source>
+<translation>שנה ושחק עם הציונים כדי לראות את הממוצע משתנה</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP6</source>
+<translation>טיפ: רוצה לשנות את תקופת הזמן? לחץ על  נקה, ולאחר מכן שנה את תקופת הזמן ולחץ על הוספה שוב! :-)</translation>
+</message>
+
 
 
 </context>

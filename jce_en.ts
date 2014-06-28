@@ -216,6 +216,38 @@
 </message>
 
 
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP1</source>
+<translation>Insert your username and password correctly</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP2</source>
+<translation>Login and wait for the ball in the status (buttom) bar to become Green</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP3</source>
+<translation>Check the Settings to select your date Interval</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP4</source>
+<translation>Press Courses tab and then press the Add button and wait until courses will be loaded into the table</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP5</source>
+<translation>Change the once of the grade cell and see your average is changing.</translation>
+</message>
+<message>
+<location filename="main/mainscreen.cpp" line="276"/>
+<source>HELP6</source>
+<translation>Tip: Need to change Date interval? in Courses tab click Clean, then change the date interval then hit the Add button again! :-)</translation>
+</message>
+
+
 </context>
 
 </TS>

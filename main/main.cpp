@@ -7,9 +7,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QTranslator translator;
-    bool is;
-    is = translator.load("jce_he.qm", a.applicationDirPath());
-    qDebug() << " =============== " << is ;
+    QString locale = QLocale::system().name();
+    translator.load("jce_"+locale , a.applicationDirPath());
     a.installTranslator(&translator);
     MainScreen w;
     w.show();

@@ -275,21 +275,12 @@ void MainScreen::on_actionHow_To_triggered()
     QMessageBox::information(this,"How To",
                              "<b>How To..</b>"
                              "<ul>"
-                             "<br><li>Insert your username and password correctly</li>"
-                             "<br><li>Login and wait for the ball in the status (buttom) bar to become Green</li>"
-                             "<br><li>Check <b>Settings</b> to select your date Interval</li>"
-                             "<br><li>Press <b>Courses</b> tab and then press <u>Add</u> button and wait until courses will be loaded into the table</li>"
-                             "<br><li>Change the once of the grade cell and see your average is changing. </li>"
-                             "<br><br>Tip: Need to change Date interval? in Courses tab click <u>Clean</u>, then change the date interval then hit <u>Add</u> again! :-)"
-                             "</ul>"
-                             "<br><br><b>הסבר</b>"
-                             "<ul>"
-                             "<br><li>הכנס את שם המשתמש והסיסמה שלך כנדרש</li>"
-                             "<br><li>לחץ התחבר והמתן מספר שניות עד להופעת כדור ירוק בתחתית המסך</li>"
-                             "<br><li>בדוק <b>הגדרות</b> כדי לבדוק את תקופת הזמן אותם תרצה להציג</li>"
-                             "<br><li> לחץ על <b>Courses</b> ולאחר מכן על כפתור <u>Add</u> והמתן מספר שניות עד להופעת הקורסים בטבלה</li>"
-                             "<br><li>כעת ניתן לשנות ערכים בתא הציונים ולראות את ממוצע הציונים בהתאם </li>"
-                             "<br><br>טיפ: רוצה לשנות את תקופת הזמן? לחץ על  <u>Clean</u> , ולאחר מכן שנה את תקופת הזמן ולחץ על <u>Add</u> שוב! :-)"
-                             " </ul>");
+                             "<br><li>"+tr("HELP1")+"</li>"
+                             "<br><li>"+tr("HELP2")+"</li>"
+                             "<br><li>"+tr("HELP3")+"</li>"
+                             "<br><li>"+tr("HELP4")+"</li>"
+                             "<br><li>"+tr("HELP5")+"</li>"
+                             "<br><br>"+tr("HELP6")+
+                             "</ul>");
 
 }
