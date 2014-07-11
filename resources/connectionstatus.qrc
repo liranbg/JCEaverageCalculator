@@ -3,6 +3,6 @@
         <file>blueStatusIcon.png</file>
         <file>greenStatusIcon.png</file>
         <file>redStatusIcon.png</file>
-        <file>icon.png</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>
