@@ -52,7 +52,7 @@ void coursesTableManager::setCoursesList(std::string &html)
     gp = new GradePage(html);
 }
 /**
- * @brief coursesTableManager::changes  when user changes the table manually it updates it
+ * @brief coursesTableManager::changes  when user changes the table manually
  * @param change    string change
  * @param row       row index
  * @param col       col index
@@ -61,7 +61,7 @@ void coursesTableManager::setCoursesList(std::string &html)
 bool coursesTableManager::changes(QString change, int row, int col)
 {
 
-    bool isNumFlag = true;
+    bool isNumFlag = true; //a flag to check if number
 
     int serialCourse = courseTBL->item(row,Course::CourseScheme::SERIAL)->text().toInt();
     for (Course *c: *gp->getCourses())

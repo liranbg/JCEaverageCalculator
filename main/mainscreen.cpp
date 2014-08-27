@@ -50,6 +50,7 @@ MainScreen::~MainScreen()
     delete loginHandel;
     delete ui;
 }
+/*** LOGIN TAB FUNCTIONS ***/
 void MainScreen::on_loginButton_clicked()
 {
     if (loginHandel->isLoggedInFlag())
@@ -59,7 +60,19 @@ void MainScreen::on_loginButton_clicked()
         uiSetConnectMode();
 
 }
+void MainScreen::on_usrnmLineEdit_editingFinished()
+{
+    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
+}
+void MainScreen::on_keepLogin_clicked()
+{
+    if (ui->keepLogin->isChecked())
+        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
 
+    else
+        SaveData::deleteData();
+}
+/*** COURSES TAB FUNCTIONS ***/
 void MainScreen::on_ratesButton_clicked()
 {
     std::string pageString;
@@ -77,10 +90,22 @@ void MainScreen::on_ratesButton_clicked()
             QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
         }
     }
-
-
-
 }
+void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
+{
+    if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
+        ui->avgLCD->display(courseTableMgr->getAvg());
+    else
+        QMessageBox::critical(this,"Error","Missmatching data");
+}
+void MainScreen::on_clearTableButton_clicked()
+{
+
+    courseTableMgr->clearTable();
+    ui->avgLCD->display(courseTableMgr->getAvg());
+}
+
+/*** SETTING TAB FUNCTIONS ***/
 void MainScreen::on_spinBoxFromYear_editingFinished()
 {
     if (ui->spinBoxFromYear->value() > ui->spinBoxToYear->value())
@@ -127,26 +152,15 @@ void MainScreen::on_spinBoxToSemester_editingFinished()
     }
     updateDates();
 }
-
-void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
-{
-    if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
-        ui->avgLCD->display(courseTableMgr->getAvg());
-    else
-        QMessageBox::critical(this,"Error","Missmatching data");
-}
-
-
-
 void MainScreen::on_checkBox_toggled(bool checked)
 {
     this->userLoginSetting->setInfluenceCourseOnly(checked);
     this->courseTableMgr->influnceCourseChanged(checked);
 }
-void MainScreen::on_usrnmLineEdit_editingFinished()
-{
-    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
-}
+/*
+ * ------------------------------
+ *
+*/
 void MainScreen::updateDates()
 {
     std::string fy,ty,fs,ts;
@@ -247,12 +261,6 @@ void MainScreen::on_actionCredits_triggered()
                        "</ul>");
 }
 
-void MainScreen::on_clearTableButton_clicked()
-{
-
-    courseTableMgr->clearTable();
-    ui->avgLCD->display(courseTableMgr->getAvg());
-}
 
 void MainScreen::on_actionExit_triggered()
 {
@@ -260,14 +268,7 @@ void MainScreen::on_actionExit_triggered()
 }
 
 
-void MainScreen::on_keepLogin_clicked()
-{
-    if (ui->keepLogin->isChecked())
-        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
 
-    else
-        SaveData::deleteData();
-}
 
 void MainScreen::on_actionHow_To_triggered()
 {
@@ -292,3 +293,5 @@ void MainScreen::on_actionHow_To_triggered()
                              " </ul>");
 
 }
+
+
