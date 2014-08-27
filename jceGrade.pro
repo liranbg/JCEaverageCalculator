@@ -41,7 +41,8 @@ HEADERS  +=     main/coursestablemanager.h \
     src/data/savedata.h \
 
 
-
+TRANSLATIONS = jce_en.ts \
+               jce_he.ts
 
 FORMS    += \
     main/mainscreen.ui

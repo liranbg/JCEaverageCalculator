@@ -231,7 +231,7 @@ font-size: 15px;
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>&lt;color=#000000&gt;Username</string>
+                  <string>Username</string>
                  </property>
                  <property name="textFormat">
                   <enum>Qt::RichText</enum>

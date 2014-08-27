@@ -12,13 +12,12 @@ coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
     courseTBL->setRowCount(0);
     courseTBL->setColumnCount(COURSE_FIELDS);
     QStringList mz;
-    mz << "Serial" << "Name" << "Type" << "Points" << "Hours" << "Grade" << "Additions";
+    mz << QObject::tr("Code") << QObject::tr("Name") << QObject::tr("Type") << QObject::tr("Points") << QObject::tr("Hours") << QObject::tr("Grade") << QObject::tr("Additions");
     courseTBL->setHorizontalHeaderLabels(mz);
     courseTBL->verticalHeader()->setVisible(true);
     courseTBL->setSelectionMode(QAbstractItemView::SingleSelection);
     courseTBL->setShowGrid(true);
     courseTBL->setStyleSheet("QTableView {selection-background-color: red;}");
-
 }
 
 coursesTableManager::~coursesTableManager()

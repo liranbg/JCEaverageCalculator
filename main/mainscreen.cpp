@@ -8,6 +8,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
     this->setFixedSize(this->size()); //main not resizeable
 
+
     //Login Tab
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
 
@@ -228,15 +229,15 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 
     case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
         iconPix.load(":/icons/blueStatusIcon.png");
-        statusLabel->setText("Connecting");
+        statusLabel->setText(tr("Connecting"));
         break;
     case jceLogin::jceStatus::JCE_YOU_ARE_IN:
         iconPix.load(":/icons/greenStatusIcon.png");
-        statusLabel->setText("Connected");
+        statusLabel->setText(tr("Connected"));
         break;
     default:
         iconPix.load(":/icons/redStatusIcon.png");
-        statusLabel->setText("Disconnected");
+        statusLabel->setText(tr("Disconnected"));
         break;
     }
     ButtomStatusLabel->setPixmap(iconPix);
@@ -245,19 +246,19 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 }
 void MainScreen::on_actionCredits_triggered()
 {
-    QMessageBox::about(this, "About", "A tiny Application to calculate your grades average. v1.0 <br><br>"
-                       "This software is licensed under Qt5's <br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
-                       "The source code is available at github:<br>"
+    QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
+                       + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
+                       + tr("CREDITS-ROOL-UP3")+"<br>"
                        "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                       "<br><br>This front end is Powered by <a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
-                       "Developed by: "
+                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                       +tr("DevBy")+":"
                        "<ul>"
-                       "<li><a href='mailto:liranbg@gmail.com'>Liran Ben Gida</a></li>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>Sagi Dayan</a></li>"
+                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
                        "</ul>"
-                       "Thanks to: "
+                       +tr("Tnks")+ "... :"
                        "<ul>"
-                       "<li><a href='mailto:nadav2051@gmail.com'>Nadav Luzzato</a></li>"
+                       "<li><a href='mailto:nadav2051@gmail.com'>"+tr("Nadav")+"</a></li>"
                        "</ul>");
 }
 
@@ -275,22 +276,13 @@ void MainScreen::on_actionHow_To_triggered()
     QMessageBox::information(this,"How To",
                              "<b>How To..</b>"
                              "<ul>"
-                             "<br><li>Insert your username and password correctly</li>"
-                             "<br><li>Login and wait for the ball in the status (buttom) bar to become Green</li>"
-                             "<br><li>Check <b>Settings</b> to select your date Interval</li>"
-                             "<br><li>Press <b>Courses</b> tab and then press <u>Add</u> button and wait until courses will be loaded into the table</li>"
-                             "<br><li>Change the once of the grade cell and see your average is changing. </li>"
-                             "<br><br>Tip: Need to change Date interval? in Courses tab click <u>Clean</u>, then change the date interval then hit <u>Add</u> again! :-)"
-                             "</ul>"
-                             "<br><br><b>הסבר</b>"
-                             "<ul>"
-                             "<br><li>הכנס את שם המשתמש והסיסמה שלך כנדרש</li>"
-                             "<br><li>לחץ התחבר והמתן מספר שניות עד להופעת כדור ירוק בתחתית המסך</li>"
-                             "<br><li>בדוק <b>הגדרות</b> כדי לבדוק את תקופת הזמן אותם תרצה להציג</li>"
-                             "<br><li> לחץ על <b>Courses</b> ולאחר מכן על כפתור <u>Add</u> והמתן מספר שניות עד להופעת הקורסים בטבלה</li>"
-                             "<br><li>כעת ניתן לשנות ערכים בתא הציונים ולראות את ממוצע הציונים בהתאם </li>"
-                             "<br><br>טיפ: רוצה לשנות את תקופת הזמן? לחץ על  <u>Clean</u> , ולאחר מכן שנה את תקופת הזמן ולחץ על <u>Add</u> שוב! :-)"
-                             " </ul>");
+                             "<br><li>"+tr("HELP1")+"</li>"
+                             "<br><li>"+tr("HELP2")+"</li>"
+                             "<br><li>"+tr("HELP3")+"</li>"
+                             "<br><li>"+tr("HELP4")+"</li>"
+                             "<br><li>"+tr("HELP5")+"</li>"
+                             "<br><br>"+tr("HELP6")+
+                             "</ul>");
 
 }
 
