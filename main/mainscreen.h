@@ -10,8 +10,9 @@
 #include <string>
 #include <iostream>
 
-#include "coursestablemanager.h"
-#include "loginhandler.h"
+#include "./CourseTab/coursestablemanager.h"
+#include "./LoginTab/loginhandler.h"
+#include "./CalendarTab/CalendarManager.h"
 
 #define StatusIconHeight 35
 namespace Ui {
@@ -30,17 +31,15 @@ private slots:
 
     void on_ratesButton_clicked();
 
-    void on_spinBoxFromYear_editingFinished();
+    void on_spinBoxCoursesFromYear_editingFinished();
 
-    void on_spinBoxFromSem_editingFinished();
+    void on_spinBoxCoursesFromSemester_editingFinished();
 
-    void on_spinBoxToYear_editingFinished();
+    void on_spinBoxCoursesToYear_editingFinished();
 
-    void on_spinBoxToSemester_editingFinished();
+    void on_spinBoxCoursesToSemester_editingFinished();
 
     void on_loginButton_clicked();
-
-    void on_checkBox_toggled(bool checked);
 
     void on_usrnmLineEdit_editingFinished();
 
@@ -56,9 +55,12 @@ private slots:
 
     void on_actionHow_To_triggered();
 
+    void on_pushButton_clicked();
+
+    void on_checkBoxCoursesInfluence_toggled(bool checked);
+
 private:
 
-    void updateDates();
     void uiSetDisconnectMode();
     void uiSetConnectMode();
     void setLabelConnectionStatus(jceLogin::jceStatus statusDescription);
@@ -67,6 +69,7 @@ private:
 
     user *userLoginSetting;
 
+    CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
 
