@@ -6,7 +6,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 {
     ui->setupUi(this);
 
-    this->setFixedSize(this->size()); //main not resizeable
+    //this->setFixedSize(this->size()); //main not resizeable
 
 
     //Login Tab
@@ -21,9 +21,8 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->statusBar->addPermanentWidget(statusLabel,1);
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
 
-    //Course and Setting Tab
+    //Course, Setting, Calendar Tab
     ui->CoursesTab->setDisabled(true);
-    ui->SettingsTab->setDisabled(true);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
 
 
@@ -32,8 +31,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
     this->loginHandel = new loginHandler(userLoginSetting);
-
-    updateDates();
+    this->calendar = new CalendarManager(ui->calendartext);
 
     //check login File
     SaveData::init();
@@ -51,7 +49,6 @@ MainScreen::~MainScreen()
     delete loginHandel;
     delete ui;
 }
-/*** LOGIN TAB FUNCTIONS ***/
 void MainScreen::on_loginButton_clicked()
 {
     if (loginHandel->isLoggedInFlag())
@@ -61,26 +58,32 @@ void MainScreen::on_loginButton_clicked()
         uiSetConnectMode();
 
 }
-void MainScreen::on_usrnmLineEdit_editingFinished()
+void MainScreen::on_pushButton_clicked()
 {
-    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
-}
-void MainScreen::on_keepLogin_clicked()
-{
-    if (ui->keepLogin->isChecked())
-        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
+    int status = 0;
+    if (loginHandel->isLoggedInFlag())
+    {
+        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
+        {
+            //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
+            //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
+            calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
+        }
 
-    else
-        SaveData::deleteData();
+        else if (status == jceLogin::JCE_NOT_CONNECTED)
+        {
+            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+        }
+    }
 }
-/*** COURSES TAB FUNCTIONS ***/
+
 void MainScreen::on_ratesButton_clicked()
 {
     std::string pageString;
     int status = 0;
     if (loginHandel->isLoggedInFlag())
     {
-        if ((status = loginHandel->makeGradeRequest()) == jceLogin::JCE_GRADE_PAGE_PASSED)
+        if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
         {
             pageString = loginHandel->getCurrentPageContect().toStdString();
             courseTableMgr->setCoursesList(pageString);
@@ -91,7 +94,56 @@ void MainScreen::on_ratesButton_clicked()
             QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
         }
     }
+
+
+
 }
+void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
+{
+    this->userLoginSetting->setInfluenceCourseOnly(checked);
+    this->courseTableMgr->influnceCourseChanged(checked);
+}
+void MainScreen::on_spinBoxCoursesFromYear_editingFinished()
+{
+    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
+    {
+        ui->spinBoxCoursesFromYear->setValue(ui->spinBoxCoursesToYear->value());
+        ui->spinBoxCoursesFromYear->setFocus();
+    }
+
+}
+void MainScreen::on_spinBoxCoursesToYear_editingFinished()
+{
+    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
+    {
+        ui->spinBoxCoursesToYear->setValue(ui->spinBoxCoursesFromYear->value());
+        ui->spinBoxCoursesToYear->setFocus();
+
+    }
+}
+void MainScreen::on_spinBoxCoursesFromSemester_editingFinished()
+{
+    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
+    {
+        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
+        {
+            ui->spinBoxCoursesFromSemester->setValue(ui->spinBoxCoursesToSemester->value());
+            ui->spinBoxCoursesFromSemester->setFocus();
+        }
+    }
+}
+void MainScreen::on_spinBoxCoursesToSemester_editingFinished()
+{
+    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
+    {
+        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
+        {
+            ui->spinBoxCoursesToSemester->setValue(ui->spinBoxCoursesFromSemester->value());
+            ui->spinBoxCoursesToSemester->setFocus();
+        }
+    }
+}
+
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
     if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
@@ -99,79 +151,11 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
     else
         QMessageBox::critical(this,"Error","Missmatching data");
 }
-void MainScreen::on_clearTableButton_clicked()
-{
 
-    courseTableMgr->clearTable();
-    ui->avgLCD->display(courseTableMgr->getAvg());
-}
-
-/*** SETTING TAB FUNCTIONS ***/
-void MainScreen::on_spinBoxFromYear_editingFinished()
+void MainScreen::on_usrnmLineEdit_editingFinished()
 {
-    if (ui->spinBoxFromYear->value() > ui->spinBoxToYear->value())
-    {
-        ui->spinBoxFromYear->setValue(ui->spinBoxToYear->value());
-        ui->spinBoxFromYear->setFocus();
-        updateDates();
-    }
-    else
-        updateDates();
+    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
 }
-void MainScreen::on_spinBoxToYear_editingFinished()
-{
-    if (ui->spinBoxFromYear->value() > ui->spinBoxToYear->value())
-    {
-        ui->spinBoxToYear->setValue(ui->spinBoxFromYear->value());
-        ui->spinBoxToYear->setFocus();
-        updateDates();
-    }
-    else
-        updateDates();
-}
-void MainScreen::on_spinBoxFromSem_editingFinished()
-{
-    if (ui->spinBoxFromYear->value() == ui->spinBoxToYear->value())
-    {
-        if (ui->spinBoxFromSem->value() > ui->spinBoxToSemester->value())
-        {
-            ui->spinBoxFromSem->setValue(ui->spinBoxToSemester->value());
-            ui->spinBoxFromSem->setFocus();
-        }
-    }
-    updateDates();
-}
-void MainScreen::on_spinBoxToSemester_editingFinished()
-{
-    if (ui->spinBoxFromYear->value() == ui->spinBoxToYear->value())
-    {
-        if (ui->spinBoxFromSem->value() > ui->spinBoxToSemester->value())
-        {
-            ui->spinBoxToSemester->setValue(ui->spinBoxFromSem->value());
-            ui->spinBoxToSemester->setFocus();
-        }
-    }
-    updateDates();
-}
-void MainScreen::on_checkBox_toggled(bool checked)
-{
-    this->userLoginSetting->setInfluenceCourseOnly(checked);
-    this->courseTableMgr->influnceCourseChanged(checked);
-}
-/*
- * ------------------------------
- *
-*/
-void MainScreen::updateDates()
-{
-    std::string fy,ty,fs,ts;
-    fy = std::to_string(ui->spinBoxFromYear->value());
-    ty = std::to_string(ui->spinBoxToYear->value());
-    fs = std::to_string(ui->spinBoxFromSem->value());
-    ts = std::to_string(ui->spinBoxToSemester->value());
-    userLoginSetting->setDate(fy,fs,ty,ts);
-}
-
 void MainScreen::uiSetDisconnectMode()
 {
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
@@ -213,7 +197,6 @@ void MainScreen::uiSetConnectMode() //fix before distrbute
         ui->loginButton->setText("&Logout");
         this->ui->ratesButton->setEnabled(true);
         ui->CoursesTab->setEnabled(true);
-        ui->SettingsTab->setEnabled(true);
 
     }
     else
@@ -262,6 +245,12 @@ void MainScreen::on_actionCredits_triggered()
                        "</ul>");
 }
 
+void MainScreen::on_clearTableButton_clicked()
+{
+
+    courseTableMgr->clearTable();
+    ui->avgLCD->display(courseTableMgr->getAvg());
+}
 
 void MainScreen::on_actionExit_triggered()
 {
@@ -269,7 +258,14 @@ void MainScreen::on_actionExit_triggered()
 }
 
 
+void MainScreen::on_keepLogin_clicked()
+{
+    if (ui->keepLogin->isChecked())
+        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
 
+    else
+        SaveData::deleteData();
+}
 
 void MainScreen::on_actionHow_To_triggered()
 {

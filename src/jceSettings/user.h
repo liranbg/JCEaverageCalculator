@@ -1,0 +1,43 @@
+#ifndef user_H
+#define user_H
+
+#include <string>
+#include <iostream>
+
+using namespace std;
+class user
+{
+public:
+    user(string username,string password);
+    ~user();
+    void setUsername(string& username);
+    void setPassword(string& password);
+
+    string getPassword() const;
+    string getUsername() const;
+
+    void setUserID(string& ID);
+    void setHashedPassword(string& hashpass);
+
+    string getUserID() const;
+    string getHashedPassword() const;
+
+    void setInfluenceCourseOnly(bool status);
+    bool getInfluenceCourseOnly() const;
+
+private:
+
+    string username;
+    string password;
+
+    string hashedPassword;
+    string userID;
+
+    bool influenceCourseOnly;
+
+
+
+};
+#endif
+
+
