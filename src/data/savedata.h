@@ -41,14 +41,19 @@ class SaveData
 public:
     bool static isSaved();
     bool static save(QString username, QString password);
+    bool static saveCal(QString cal);
+    bool static saveLocal(QString local);
     bool static deleteData();
     QString static getUsername();
     QString static getPassword();
+    QString static gatCal();
+    QString static getLocal();
     void static init();
 private:
     QString static getValViaTag(QString tag, QFile *file);
     QString static hashPassword(QString pass);
     QString static deHashPasword(QString pass);
+    bool static isTagLine(QString line, QString tag);
 };
 
 #endif // SAVEDATA_H

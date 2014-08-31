@@ -48,6 +48,18 @@ bool SaveData::save(QString username, QString password)
     return true;
 }
 
+bool SaveData::saveCal(QString cal)
+{
+    std::cout << "Trying to save data..." << std::endl;
+    QFile file(FILE_NAME);
+    if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
+        return false; /* IO Error! */
+    QTextStream output(&file);
+    QString text = output.readAll();
+    QString line = text.
+
+}
+
 /**
  * @brief Deletes the data from file, and sets status tag to false.
  * @return true if success
@@ -95,6 +107,36 @@ QString SaveData::getPassword()
    pass = deHashPasword(pass);
     return pass;
 
+}
+
+/**
+ * @brief Getiing the last calendar user hase been viewing.
+ * @return QString - cal - in format [year]-[semester]
+ */
+QString SaveData::gatCal()
+{
+    QString cal = "";
+    QFile* file = new QFile(FILE_NAME);
+    /* Opening file for read */
+    if(file->open(QIODevice::ReadOnly|QIODevice::Text))
+            cal = getValViaTag("cal", file);
+    file->close();
+    return cal;
+}
+
+/**
+ * @brief Getiing the users local - default is the OS local
+ * @return QString - local (heb/en/default)
+ */
+QString SaveData::getLocal()
+{
+    QString local = "";
+    QFile* file = new QFile(FILE_NAME);
+    /* Opening file for read */
+    if(file->open(QIODevice::ReadOnly|QIODevice::Text))
+            local = getValViaTag("local", file);
+    file->close();
+    return local;
 }
 
 /**
@@ -197,4 +239,20 @@ QString SaveData::deHashPasword(QString pass)
         tok = strtok(NULL, "-");
     }
     return password;
+}
+
+bool SaveData::isTagLine(QString line, QString tag)
+{
+    for(int i = 0 ; i< line.length() ;++i)
+    {
+        if(line[i] == '[' && line[i+1] != '/') //get open tag at begining of line and not end of tag ("[/")
+        {
+            i++;
+            tmpTag = line.mid(i, tag.length());
+            if(tmpTag == tag)
+                return true;
+        }
+        return false;
+    }
+    return false;
 }
