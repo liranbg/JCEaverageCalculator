@@ -35,23 +35,23 @@
 class SaveData
 {
 public:
-    void static init();
-    bool static isSaved();
-    bool static reset();
-    QString static setUsername(QString username);
-    QString static setPassword(QString password);
-    QString static setCal(QString cal);
-    QString static setLocal(QString local);
-    QString static getUsername();
-    QString static getPassword();
-    QString static getCal();
-    QString static getLocal();
+    SaveData();
+    bool isSaved();
+    void reset();
+    void setUsername(QString username);
+    void setPassword(QString password);
+    void setCal(QString cal);
+    void setLocal(QString local);
+    QString getUsername();
+    QString getPassword();
+    QString getCal();
+    QString getLocal();
 
 private:
     QMap<QString, QString> DB;
-    void static load();
-    void static save();
-    void static createDB();
+    void load();
+    void save();
+    void createDB();
 };
 
 #endif // SAVEDATA_H

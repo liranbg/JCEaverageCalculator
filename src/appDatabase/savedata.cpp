@@ -6,7 +6,7 @@
  * if there is no file, it will create it and run the deleteData function
  * so tags will be set.
  */
-void SaveData::init()
+SaveData::SaveData()
 {
     QFile file(FILE_NAME);
     if(!file.exists())
@@ -27,34 +27,34 @@ bool SaveData::isSaved()
     return true;
 }
 
-bool SaveData::reset()
+void SaveData::reset()
 {
     DB.clear();
     createDB();
     save();
 }
 
-QString SaveData::setUsername(QString username)
+void SaveData::setUsername(QString username)
 {
-    DB.value("username") = username;
+    DB.insert("username", username);
     save();
 }
 
-QString SaveData::setPassword(QString password)
+void SaveData::setPassword(QString password)
 {
-    DB.value("password") = password;
+    DB.insert("password", password);
     save();
 }
 
-QString SaveData::setCal(QString cal)
+void SaveData::setCal(QString cal)
 {
-    DB.value("calendar") = cal;
+    DB.insert("calendar", cal);
     save();
 }
 
-QString SaveData::setLocal(QString local)
+void SaveData::setLocal(QString local)
 {
-    DB.value("local") = local;
+    DB.insert("local", local);
     save();
 }
 
