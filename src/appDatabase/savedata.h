@@ -27,33 +27,31 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
-
-/* C/C++ libs */
-#include <string.h>
-#include <stdlib.h>
-#include <iostream>
+#include <QDebug>
+#include <QMap>
 
 #define FILE_NAME   "JAC_DB.dat"
-#define DEFAULT_DATA_EMPTY "[status]false[/]\n[username][/]\n[password][/]"
 
 class SaveData
 {
 public:
+    void static init();
     bool static isSaved();
-    bool static save(QString username, QString password);
-    bool static saveCal(QString cal);
-    bool static saveLocal(QString local);
-    bool static deleteData();
+    bool static reset();
+    QString static setUsername(QString username);
+    QString static setPassword(QString password);
+    QString static setCal(QString cal);
+    QString static setLocal(QString local);
     QString static getUsername();
     QString static getPassword();
-    QString static gatCal();
+    QString static getCal();
     QString static getLocal();
-    void static init();
+
 private:
-    QString static getValViaTag(QString tag, QFile *file);
-    QString static hashPassword(QString pass);
-    QString static deHashPasword(QString pass);
-    bool static isTagLine(QString line, QString tag);
+    QMap<QString, QString> DB;
+    void static load();
+    void static save();
+    void static createDB();
 };
 
 #endif // SAVEDATA_H
