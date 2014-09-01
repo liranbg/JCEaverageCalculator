@@ -32,13 +32,14 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
     this->loginHandel = new loginHandler(userLoginSetting);
     this->calendar = new CalendarManager(ui->calendartext);
+    this->data = new SaveData();
 
     //check login File
-    SaveData::init();
-    if (SaveData::isSaved())
+    //SaveData::init(); --> No need. constructor dose everything.
+    if (data->isSaved())
     {
-        ui->usrnmLineEdit->setText(SaveData::getUsername());
-        ui->pswdLineEdit->setText(SaveData::getPassword());
+        ui->usrnmLineEdit->setText(data->getUsername());
+        ui->pswdLineEdit->setText(data->getPassword());
         ui->keepLogin->setChecked(true);
     }
 }
@@ -48,6 +49,9 @@ MainScreen::~MainScreen()
     delete userLoginSetting;
     delete loginHandel;
     delete ui;
+
+    //Delete save data
+    delete data;
 }
 void MainScreen::on_loginButton_clicked()
 {
@@ -261,10 +265,12 @@ void MainScreen::on_actionExit_triggered()
 void MainScreen::on_keepLogin_clicked()
 {
     if (ui->keepLogin->isChecked())
-        SaveData::save(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text());
-
+    {
+        data->setUsername(ui->usrnmLineEdit->text());
+        data->setPassword(ui->pswdLineEdit->text());
+    }
     else
-        SaveData::deleteData();
+        data->reset();
 }
 
 void MainScreen::on_actionHow_To_triggered()

@@ -68,7 +68,7 @@ private:
     Ui::MainScreen *ui;
 
     user *userLoginSetting;
-
+    SaveData *data;
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
