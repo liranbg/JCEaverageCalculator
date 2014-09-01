@@ -10,9 +10,15 @@
 class CalendarPage : public Page
 {
 public:
-    CalendarPage(std::string html);
+
     std::string htmlToString();
     std::list<calendarCourse*>* getCourses() { return courses; }
+
+
+protected:
+    virtual void setPage(std::string html);
+CalendarPage() { }
+
 
 private:
     std::string tokenToLines(std::string& textToPhrase);
@@ -21,6 +27,8 @@ private:
 
     std::string tempHtml;
     std::list<calendarCourse*>* courses;
+
+
 };
 
 #endif // CALENDARPAGE_H

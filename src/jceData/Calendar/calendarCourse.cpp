@@ -114,14 +114,28 @@ std::string calendarCourse::courseToString()
     return courseText;
 
 }
-std::string calendarCourse::getDay() const
+int calendarCourse::getDay() const
 {
     return day;
 }
 
 void calendarCourse::setDay(const std::string &value)
 {
-    day = value;
+    std::string dayTemp = value.substr(0,2);
+    if (dayTemp.compare("\u05D0") == 0) //alef
+        day = 1;
+    else if (dayTemp.compare("\u05D1") == 0) //bet
+        day = 2;
+    else if (dayTemp.compare("\u05D2") == 0) //gimel
+        day = 3;
+    else if (dayTemp.compare("\u05D3") == 0) //dalet
+        day = 4;
+    else if (dayTemp.compare("\u05D4") == 0) //hey
+        day = 5;
+    else if (dayTemp.compare("\u05D5") == 0) //vav
+        day = 6;
+    else
+        day= -1;
 }
 
 std::string calendarCourse::getRoom() const

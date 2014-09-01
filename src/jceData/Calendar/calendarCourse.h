@@ -24,12 +24,11 @@ public:
         DAY_AND_HOURS,
         ROOM
     };
-
     calendarCourse(int serial, std::string name, std::string type, std::string lecturer,
                    double points, double semesterHours, std::string dayAndHour, std::string room);
     ~calendarCourse(){}
 
-    std::string getDay() const;
+    int getDay() const;
     std::string getLecturer() const;
     std::string getRoom() const;
     double getSemesterHours() const;
@@ -56,7 +55,7 @@ private:
 
     std::string lecturer;
     double semesterHours;
-    std::string day;
+    int day;
     int hourBegin;
     int minutesBegin;
     int hourEnd;

@@ -22,16 +22,19 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
 
     //Course, Setting, Calendar Tab
+    calendarSchedule * calendarSchedulePtr = new calendarSchedule();
+    ui->calendarGridLayoutMain->addWidget(calendarSchedulePtr);
     ui->CoursesTab->setDisabled(true);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
 
 
 
     //Pointer allocating
+
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
     this->loginHandel = new loginHandler(userLoginSetting);
-    this->calendar = new CalendarManager(ui->calendartext);
+    this->calendar = new CalendarManager(calendarSchedulePtr);
     this->data = new SaveData();
 
     //check login File
@@ -71,6 +74,7 @@ void MainScreen::on_pushButton_clicked()
         {
             //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
             //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
+                calendar->resetTable();
             calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
         }
 
@@ -287,5 +291,3 @@ void MainScreen::on_actionHow_To_triggered()
                              "</ul>");
 
 }
-
-

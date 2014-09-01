@@ -25,7 +25,7 @@ public:
         msg += "Content-Type: application/x-www-form-urlencoded\r\n";
         msg += "Content-Length: " + to_string(parameters.length()) + "\r\n";
         msg += "Proxy-Connection: Keep-Alive\r\n";
-        msg += "Accept-Charset: utf-8";
+        msg += "Accept-Charset: UTF-8";
         msg += "Accept: text/plain\r\n";
         msg += "Connection: Keep-Alive\r\n";
         msg += "\r\n";
