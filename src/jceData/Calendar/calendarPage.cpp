@@ -1,17 +1,16 @@
 #include "calendarPage.h"
 
-CalendarPage::CalendarPage(std::string html)
+std::string CalendarPage::htmlToString()
+{
+    return tempHtml;
+}
+
+void CalendarPage::setPage(std::string html)
 {
     courses = new std::list<calendarCourse*>();
     tempHtml = getString(html);
     tempHtml = tokenToLines(tempHtml);
-    std::cout << "last one..." << std::endl;
     calendarListInit(tempHtml);
-}
-
-std::string CalendarPage::htmlToString()
-{
-    return tempHtml;
 }
 
 std::string CalendarPage::tokenToLines(std::string &textToPhrase)
@@ -84,10 +83,6 @@ calendarCourse *CalendarPage::lineToCourse(std::string line)
     }
     if (templinearray[0] == "") //empty phrasing
         return NULL;
-    for (int p = 0; p < 8; ++p)
-    {
-        std::cout << "index : " << p << " is: " << templinearray[p] << std::endl;
-    }
     serial = stoi(templinearray[calendarCourse::CourseScheme::SERIAL]);
     name = templinearray[calendarCourse::CourseScheme::NAME];
     type = templinearray[calendarCourse::CourseScheme::TYPE];

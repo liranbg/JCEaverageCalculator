@@ -2,23 +2,22 @@
 #define CALENDARMANAGER_H
 
 #include "./src/jceData/Calendar/calendarPage.h"
+#include "./src/jceData/Calendar/calendarSchedule.h"
 #include <iostream>
-
-#include <QPlainTextEdit>
 
 class CalendarManager
 {
 public:
-    CalendarManager(QPlainTextEdit *ptr);
+    CalendarManager(calendarSchedule *ptr);
     ~CalendarManager()
     {
-        delete cali;
+        delete caliSchedPtr;
     }
 
     void setCalendar(std::string html);
+    void resetTable() { if (caliSchedPtr != NULL) caliSchedPtr->clearTableItems(); }
 private:
-    QPlainTextEdit * ptr;
-    CalendarPage * cali;
+    calendarSchedule * caliSchedPtr;
 };
 
 #endif // CALENDARMANAGER_H

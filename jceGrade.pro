@@ -4,13 +4,13 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui network widgets
 TARGET = jceGrade
 TEMPLATE = app
 RC_FILE = appConfigure.rc
-CONFIG += c++11 static
+CONFIG += qt c++11
+CONFIG += console
+
 
 FORMS    += \
     main/mainscreen.ui
@@ -35,7 +35,8 @@ HEADERS += \
     src/jceSettings/jcelogin.h \
     src/jceSettings/jceLoginHtmlScripts.h \
     src/jceSettings/user.h \
-    src/jceData/Calendar/calendarCourse.h
+    src/jceData/Calendar/calendarCourse.h \
+    src/jceData/Calendar/calendarSchedule.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -51,5 +52,6 @@ SOURCES += \
     src/jceData/page.cpp \
     src/jceSettings/jcelogin.cpp \
     src/jceSettings/user.cpp \
-    src/jceData/Calendar/calendarCourse.cpp
+    src/jceData/Calendar/calendarCourse.cpp \
+    src/jceData/Calendar/calendarSchedule.cpp
 

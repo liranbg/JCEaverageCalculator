@@ -1,17 +1,11 @@
 #include "CalendarManager.h"
 
-CalendarManager::CalendarManager(QPlainTextEdit *ptr)
+CalendarManager::CalendarManager(calendarSchedule *ptr)
 {
-    this->ptr = ptr;
+    this->caliSchedPtr = ptr;
 }
 
 void CalendarManager::setCalendar(std::string html)
 {
-    cali = new CalendarPage(html);
-    QString text;
-    for (calendarCourse *a: *cali->getCourses())
-    {
-        text += QString::fromStdString(a->courseToString());
-    }
-    ptr->setPlainText(text);
+    caliSchedPtr->setPage(html);
 }
