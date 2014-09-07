@@ -291,3 +291,8 @@ void MainScreen::on_actionHow_To_triggered()
                              "</ul>");
 
 }
+
+void MainScreen::on_pushButton_2_clicked()
+{
+    CSV_Exporter::exportCalendar(this->calendar->getSch());
+}

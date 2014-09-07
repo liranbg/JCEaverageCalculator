@@ -20,7 +20,7 @@ public:
     calendarSchedule();
     ~calendarSchedule() { clearTableItems(); }
     void setPage(std::string html);
-       void clearTableItems();
+    void clearTableItems();
 
 signals:
 
