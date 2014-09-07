@@ -42,7 +42,7 @@ void SaveData::setUsername(QString username)
 
 void SaveData::setPassword(QString password)
 {
-    DB.insert("password", password);
+    DB.insert("password", encrypt(password));
     save();
 }
 
@@ -65,7 +65,7 @@ QString SaveData::getUsername()
 
 QString SaveData::getPassword()
 {
-    return DB.value("password");
+    return decrypte(DB.value("password"));
 }
 
 QString SaveData::getLocal()
@@ -105,4 +105,16 @@ void SaveData::createDB()
     DB.insert("password", "");
     DB.insert("local", "default");
     DB.insert("calendar", "");
+}
+
+QString SaveData::encrypt(QString pass)
+{
+    SimpleCrypt crypto(Q_UINT64_C(0x0c2ad4a4acb9f027));
+    return crypto.encryptToString(pass);
+}
+
+QString SaveData::decrypte(QString pass)
+{
+    SimpleCrypt crypto(Q_UINT64_C(0x0c2ad4a4acb9f027));
+    return crypto.decryptToString(pass);
 }

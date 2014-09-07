@@ -37,7 +37,8 @@ HEADERS += \
     src/jceSettings/user.h \
     src/jceData/Calendar/calendarCourse.h \
     src/jceData/Calendar/calendarSchedule.h \
-    src/jceData/CSV/csv_exporter.h
+    src/jceData/CSV/csv_exporter.h \
+    src/appDatabase/simplecrypt.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -55,5 +56,6 @@ SOURCES += \
     src/jceSettings/user.cpp \
     src/jceData/Calendar/calendarCourse.cpp \
     src/jceData/Calendar/calendarSchedule.cpp \
-    src/jceData/CSV/csv_exporter.cpp
+    src/jceData/CSV/csv_exporter.cpp \
+    src/appDatabase/simplecrypt.cpp
 
