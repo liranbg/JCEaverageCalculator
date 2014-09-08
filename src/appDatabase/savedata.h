@@ -29,6 +29,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QMap>
+#include "simplecrypt.h"
 
 #define FILE_NAME   "JAC_DB.dat"
 
@@ -52,6 +53,9 @@ private:
     void load();
     void save();
     void createDB();
+    QString encrypt(QString pass);
+    QString decrypte(QString pass);
+
 };
 
 #endif // SAVEDATA_H
