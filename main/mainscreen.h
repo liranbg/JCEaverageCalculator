@@ -66,6 +66,8 @@ private slots:
 
     void on_actionEnglish_triggered();
 
+    void on_actionOS_Default_triggered();
+
 private:
 
     void uiSetDisconnectMode();
@@ -82,6 +84,8 @@ private:
 
     QLabel *ButtomStatusLabel;
     QLabel *statusLabel;
+
+    void showMSG(QString msg);
 
 };
 
