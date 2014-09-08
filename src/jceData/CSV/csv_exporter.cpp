@@ -18,12 +18,12 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
     qDebug() << "Atempting to export the Schedule...";
 
     QFile file(filePath);
-    if(!file.open(QIODevice::ReadWrite | QIODevice::Text))
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Text |QIODevice::Truncate))
     {
         qDebug() << "unable to open/create the file... maybe permissions error.";
         return false;
     }//else
-
+    //Delete the file
     QTextStream out(&file);
     out << CSV_CALENDAR_HEADER << "\n";
     for (calendarCourse *coursePtr: *(calSched->getCourses()))
@@ -40,13 +40,18 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
         QString room = QString(coursePtr->getRoom().c_str());
 
         QString line = makeLine(name, day, startH, startM, endH, endM, lecturer, room, type);
+#ifdef Q_OS_LINUX || Q_OS_UNIX
         if(line != NULL)
-        {
-            #ifndef  Q_OS_WIN32
-            out << line << char(0x0D) << " "; //Fucking M$ Special end line shit...
-            #endif
             out << line << char(0x0A);
-        }
+#endif
+#ifdef Q_OS_OSX
+        if(line != NULL)
+            out << line << char(0x0A);
+#endif
+#ifdef Q_OS_WIN
+        if(line != NULL)
+            out << line << char(0x0D) << char(0x0A);
+#endif
     }
 
 
