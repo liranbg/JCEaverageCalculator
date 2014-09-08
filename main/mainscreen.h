@@ -13,7 +13,6 @@
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"
-#include "../src/jceData/CSV/csv_exporter.h"
 
 #define StatusIconHeight 35
 namespace Ui {
@@ -56,11 +55,15 @@ private slots:
 
     void on_actionHow_To_triggered();
 
-    void on_pushButton_clicked();
-
     void on_checkBoxCoursesInfluence_toggled(bool checked);
 
-    void on_pushButton_2_clicked();
+    void on_exportToCVSBtn_clicked();
+
+    void on_getCalendarBtn_clicked();
+
+    void on_actionHebrew_triggered();
+
+    void on_actionEnglish_triggered();
 
 private:
 

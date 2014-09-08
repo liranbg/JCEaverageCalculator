@@ -30,7 +30,7 @@ public:
     jceLogin(user* username);
     ~jceLogin();
     void makeConnection()  throw (jceStatus);
-    bool checkConnection();
+    bool checkConnection() const;
     void reConnect() throw (jceStatus);
     void closeAll();
     int getCalendar(int year, int semester);

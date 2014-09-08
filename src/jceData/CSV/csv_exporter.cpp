@@ -7,6 +7,8 @@ CSV_Exporter::CSV_Exporter()
 
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
 {
+    if (calSched == NULL)
+        return false;
     qDebug() << "Getting path for csv file from user...";
     QString filePath = getFileFath();
     if(filePath == NULL) //User canceled
@@ -40,6 +42,10 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
         QString room = QString(coursePtr->getRoom().c_str());
 
         QString line = makeLine(name, day, startH, startM, endH, endM, lecturer, room, type);
+#ifndef Q_OS_WIN32
+                if(line != NULL)
+        out << line << char(0x0D) << " ";
+#endif
         if(line != NULL)
             out << line << char(0x0A);
     }
