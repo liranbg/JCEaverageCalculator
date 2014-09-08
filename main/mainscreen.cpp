@@ -13,7 +13,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
 
     //Status Bar
-    ui->actionEnglish->setChecked(true);
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
     ButtomStatusLabel = new QLabel(this);
     statusLabel = new QLabel(this);
@@ -53,6 +52,7 @@ MainScreen::~MainScreen()
     delete userLoginSetting;
     delete loginHandel;
     delete ui;
+
     //Delete save data
     delete data;
 }
@@ -60,16 +60,12 @@ void MainScreen::on_loginButton_clicked()
 {
     if (loginHandel->isLoggedInFlag())
         uiSetDisconnectMode();
+
     else
         uiSetConnectMode();
-}
 
-void MainScreen::on_exportToCVSBtn_clicked()
-{
-    if (loginHandel->isLoggedInFlag())
-        this->calendar->exportCalendarCSV();
 }
-void MainScreen::on_getCalendarBtn_clicked()
+void MainScreen::on_pushButton_clicked()
 {
     int status = 0;
     if (loginHandel->isLoggedInFlag())
@@ -78,7 +74,7 @@ void MainScreen::on_getCalendarBtn_clicked()
         {
             //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
             //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
-            calendar->resetTable();
+                calendar->resetTable();
             calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
         }
 
@@ -106,6 +102,9 @@ void MainScreen::on_ratesButton_clicked()
             QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
         }
     }
+
+
+
 }
 void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
 {
@@ -175,9 +174,7 @@ void MainScreen::uiSetDisconnectMode()
 
     loginHandel->makeDisconnectionRequest();
     ui->loginButton->setText("&Login");
-    ui->ratesButton->setDisabled(true);
-    ui->exportToCVSBtn->setDisabled(true);
-    ui->getCalendarBtn->setDisabled(true);
+    this->ui->ratesButton->setDisabled(true);
     return;
 }
 
@@ -206,11 +203,8 @@ void MainScreen::uiSetConnectMode() //fix before distrbute
     {
         setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
         ui->loginButton->setText("&Logout");
-        ui->ratesButton->setEnabled(true);
+        this->ui->ratesButton->setEnabled(true);
         ui->CoursesTab->setEnabled(true);
-
-        ui->exportToCVSBtn->setEnabled(true);
-        ui->getCalendarBtn->setEnabled(true);
 
     }
     else
@@ -252,6 +246,10 @@ void MainScreen::on_actionCredits_triggered()
                        "<ul>"
                        "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
                        "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
+                       "</ul>"
+                       +tr("Tnks")+ "... :"
+                       "<ul>"
+                       "<li><a href='mailto:nadav2051@gmail.com'>"+tr("Nadav")+"</a></li>"
                        "</ul>");
 }
 
@@ -294,30 +292,19 @@ void MainScreen::on_actionHow_To_triggered()
 
 }
 
-void MainScreen::on_actionHebrew_triggered()
+void MainScreen::on_pushButton_2_clicked()
 {
-    if (ui->actionEnglish->isChecked())
+    if(CSV_Exporter::exportCalendar(this->calendar->getSch()))
     {
-        ui->actionEnglish->setChecked(false);
-        qDebug() << "Changed Language";
-    }
-    else
+        QMessageBox msgBox;
+        msgBox.setText("<center>Exported Successfuly!<br><b>HaazZaA!!");
+        msgBox.exec();
+    }else
     {
-        ui->actionHebrew->setChecked(true);
-        qDebug() << "Set Hebrew Language: ";
-    }
-}
-
-void MainScreen::on_actionEnglish_triggered()
-{
-    if (ui->actionHebrew->isChecked())
-    {
-        ui->actionHebrew->setChecked(false);
-        qDebug() << "Changed Language";
-    }
-    else
-    {
-        ui->actionEnglish->setChecked(true);
-        qDebug() << "Set English Language: ";
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText("<center>Something went wrong...<br></center>Maybe: <ul><li>You Canceled</li><li>Unable to save the File - try again</li></ul><br><br>"
+                       "<b><center>In case of a serious problem, please file a bug report.<br>thank you. OpenJCE teem");
+        msgBox.exec();
     }
 }

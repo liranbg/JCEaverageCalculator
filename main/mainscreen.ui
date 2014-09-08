@@ -582,20 +582,14 @@ font-size: 15px;
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="getCalendarBtn">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
+               <widget class="QPushButton" name="pushButton">
                 <property name="text">
                  <string>Get Calendar</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="exportToCVSBtn">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
+               <widget class="QPushButton" name="pushButton_2">
                 <property name="text">
                  <string>Export to CSV</string>
                 </property>
@@ -632,21 +626,13 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>21</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">
     <property name="title">
-     <string>&amp;File</string>
+     <string>&amp;About</string>
     </property>
-    <widget class="QMenu" name="menuLanguage">
-     <property name="title">
-      <string>Language</string>
-     </property>
-     <addaction name="actionHebrew"/>
-     <addaction name="actionEnglish"/>
-    </widget>
-    <addaction name="menuLanguage"/>
     <addaction name="actionHow_To"/>
     <addaction name="actionCredits"/>
     <addaction name="actionExit"/>
@@ -680,22 +666,6 @@ font-size: 15px;
   <action name="actionHow_To">
    <property name="text">
     <string>How-To</string>
-   </property>
-  </action>
-  <action name="actionHebrew">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Hebrew</string>
-   </property>
-  </action>
-  <action name="actionEnglish">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>English</string>
    </property>
   </action>
  </widget>

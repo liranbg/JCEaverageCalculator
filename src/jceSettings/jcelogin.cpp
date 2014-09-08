@@ -82,7 +82,7 @@ void jceLogin::makeConnection() throw (jceStatus)
 
 }
 
-bool jceLogin::checkConnection() const
+bool jceLogin::checkConnection()
 {
     if (JceConnector->isConnected())
         return true;
@@ -187,9 +187,7 @@ void jceLogin::setLoginFlag(bool x)
 }
 bool jceLogin::isLoginFlag() const
 {
-    if (checkConnection())
-        return this->loginFlag;
-    return false;
+    return this->loginFlag;
 }
 
 std::string jceLogin::getPage()
