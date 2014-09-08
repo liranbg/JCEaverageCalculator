@@ -85,7 +85,11 @@ bool loginHandler::makeConnection()
 
 bool loginHandler::isLoggedInFlag()
 {
-    return this->logggedInFlag;
+    if (jceLog->isLoginFlag()) //checking connection and then if logged in
+        return this->logggedInFlag;
+    else
+        this->setLoginFlag(false);
+    return false;
 }
 
 void loginHandler::setLoginFlag(bool flag)

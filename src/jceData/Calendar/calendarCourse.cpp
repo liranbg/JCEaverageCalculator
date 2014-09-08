@@ -107,7 +107,7 @@ std::string calendarCourse::courseToString()
     courseText += " " + this->lecturer;
     courseText += " " + std::to_string(this->getPoints());
     courseText += " " + std::to_string(this->semesterHours);
-    courseText += " " + this->day;
+    courseText += " " + std::to_string(this->day);
     courseText += " " + std::to_string(this->hourBegin) + ":" + std::to_string(this->minutesBegin) + "-" + std::to_string(this->hourEnd) + ":" + std::to_string(this->minutesEnd);
     courseText += " " + this->room;
     courseText += "\n";

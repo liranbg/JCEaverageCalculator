@@ -582,14 +582,14 @@ font-size: 15px;
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="getCalendarBtn">
                 <property name="text">
                  <string>Get Calendar</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="exportToCVSBtn">
                 <property name="text">
                  <string>Export to CSV</string>
                 </property>
@@ -626,14 +626,21 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">
     <property name="title">
      <string>&amp;About</string>
     </property>
-    <addaction name="actionHow_To"/>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionHebrew"/>
+     <addaction name="actionEnglish"/>
+    </widget>
+    <addaction name="menuLanguage"/>
     <addaction name="actionCredits"/>
     <addaction name="actionExit"/>
    </widget>
@@ -663,9 +670,20 @@ font-size: 15px;
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionHow_To">
+  <action name="actionHebrew">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>How-To</string>
+    <string>hebrew</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>English</string>
    </property>
   </action>
  </widget>
