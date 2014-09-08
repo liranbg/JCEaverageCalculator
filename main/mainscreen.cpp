@@ -46,6 +46,23 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
         ui->pswdLineEdit->setText(data->getPassword());
         ui->keepLogin->setChecked(true);
     }
+
+    //Local Check and ui setting.
+    if(data->getLocal() == "en")
+    {
+        ui->actionHebrew->setChecked(false);
+        ui->actionOS_Default->setChecked(false);
+        ui->actionEnglish->setChecked(true);
+    }else if(data->getLocal() == "he"){
+        ui->actionHebrew->setChecked(true);
+        ui->actionOS_Default->setChecked(false);
+        ui->actionEnglish->setChecked(false);
+    }else{
+        ui->actionHebrew->setChecked(false);
+        ui->actionOS_Default->setChecked(true);
+        ui->actionEnglish->setChecked(false);
+    }
+
 }
 
 MainScreen::~MainScreen()
@@ -240,6 +257,13 @@ void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 
     this->repaint();
 }
+
+void MainScreen::showMSG(QString msg)
+{
+    QMessageBox msgBox;
+    msgBox.setText(msg);
+    msgBox.exec();
+}
 void MainScreen::on_actionCredits_triggered()
 {
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
@@ -318,39 +342,43 @@ void MainScreen::on_exportToCVSBtn_clicked()
 
 void MainScreen::on_actionHebrew_triggered()
 {
-    if (ui->actionEnglish->isChecked())
+    if (ui->actionEnglish->isChecked() || ui->actionOS_Default->isChecked())
     {
         ui->actionEnglish->setChecked(false);
-        qDebug() << "Changed Language";
+        ui->actionOS_Default->setChecked(false);
+        qDebug() << "Changed Language to hebrew";
+        data->setLocal("he");
+        showMSG("ההגדרות שלך יכנסו לתוקף בהפעלה הבאה של התוכנית");
     }
     else
-    {
         ui->actionHebrew->setChecked(true);
-        qDebug() << "Set Hebrew Language: ";
-    }
-
 }
 
 void MainScreen::on_actionEnglish_triggered()
 {
-    if (ui->actionHebrew->isChecked())
+    if (ui->actionHebrew->isChecked() || ui->actionOS_Default->isChecked())
     {
         ui->actionHebrew->setChecked(false);
-        qDebug() << "Changed Language";
+        ui->actionOS_Default->setChecked(false);
+        qDebug() << "Changed Language to English";
+        data->setLocal("en");
+        showMSG("Your settings will take effect next time you start the program");
     }
     else
-    {
         ui->actionEnglish->setChecked(true);
-        qDebug() << "Set English Language: ";
-    }
 }
 
 
-
-
-
-
-
-
-
-
+void MainScreen::on_actionOS_Default_triggered()
+{
+    if (ui->actionHebrew->isChecked() || ui->actionEnglish->isChecked())
+    {
+        ui->actionHebrew->setChecked(false);
+        ui->actionEnglish->setChecked(false);
+        qDebug() << "Changed Language to OS Default";
+        data->setLocal("default");
+        showMSG("Your settings will take effect next time you start the program");
+    }
+    else
+        ui->actionOS_Default->setChecked(true);
+}
