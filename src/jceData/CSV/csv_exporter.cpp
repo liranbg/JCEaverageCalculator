@@ -40,13 +40,18 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
         QString room = QString(coursePtr->getRoom().c_str());
 
         QString line = makeLine(name, day, startH, startM, endH, endM, lecturer, room, type);
+#ifdef Q_OS_LINUX || Q_OS_UNIX
         if(line != NULL)
-        {
-            #ifndef  Q_OS_WIN32
-            out << line << char(0x0D) << " "; //Fucking M$ Special end line shit...
-            #endif
             out << line << char(0x0A);
-        }
+#endif
+#ifdef Q_OS_OSX
+        if(line != NULL)
+            out << line << char(0x0A);
+#endif
+#ifdef Q_OS_WIN
+        if(line != NULL)
+            out << line << char(0x0D);
+#endif
     }
 
 
