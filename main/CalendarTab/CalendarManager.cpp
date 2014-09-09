@@ -9,7 +9,7 @@ void CalendarManager::setCalendar(std::string html)
 {
     caliSchedPtr->setPage(html);
 }
-void CalendarManager::exportCalendarCSV()
+void CalendarManager::exportCalendarCSV(CalendarDialog *calDialog)
 {
     if(CSV_Exporter::exportCalendar(this->caliSchedPtr))
     {

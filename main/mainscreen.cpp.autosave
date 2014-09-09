@@ -346,7 +346,7 @@ void MainScreen::on_exportToCVSBtn_clicked()
         if(calDialog.ok())
             this->calendar->exportCalendarCSV(&calDialog);
         else
-            showMSG("Somthig was not right with the dates you chose... try again");
+            showMSG("Somthig was not right with the dates you have chosen... try again");
     }
 }
 
