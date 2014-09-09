@@ -11,7 +11,7 @@ void CalendarManager::setCalendar(std::string html)
 }
 void CalendarManager::exportCalendarCSV(CalendarDialog *calDialog)
 {
-    if(CSV_Exporter::exportCalendar(this->caliSchedPtr))
+    if(CSV_Exporter::exportCalendar(this->caliSchedPtr, calDialog))
     {
         QMessageBox msgBox;
         msgBox.setText("<center>Exported Successfuly!<br><b>HaazZaA!!");

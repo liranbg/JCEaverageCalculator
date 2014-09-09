@@ -5,7 +5,7 @@ CSV_Exporter::CSV_Exporter()
 
 }
 
-bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
+bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
     qDebug() << "Getting path for csv file from user...";
     QString filePath = getFileFath();
@@ -39,22 +39,29 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched)
         QString name = QString(coursePtr->getName().c_str());
         QString room = QString(coursePtr->getRoom().c_str());
 
-        QString line = makeLine(name, day, startH, startM, endH, endM, lecturer, room, type);
+        QDate currentDate = cal->getStartDate();
+
+        currentDate = currentDate.addDays(day-1);
+
+        for(;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
+        {
+            QString line = makeLine(name, &currentDate, startH, startM, endH, endM, lecturer, room, type);
 #ifdef Q_OS_LINUX || Q_OS_UNIX
-        if(line != NULL)
-            out << line << char(0x0A);
+            if(line != NULL)
+                out << line << char(0x0A);
 #endif
 #ifdef Q_OS_OSX
-        if(line != NULL)
-            out << line << char(0x0A);
+            if(line != NULL)
+                out << line << char(0x0A);
 #endif
 #ifdef Q_OS_WIN
-        if(line != NULL)
-            out << line << char(0x0D) << char(0x0A);
+            if(line != NULL)
+                out << line << char(0x0D) << char(0x0A);
 #endif
+        }
     }
 
-
+here:
     out.flush();
 
 
@@ -74,10 +81,9 @@ QString CSV_Exporter::getFileFath()
     return fileName;
 }
 
-QString CSV_Exporter::makeLine(QString name, int day, int startH, int startM, int endH, int endM, QString lecturer, QString room, QString type)
+QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM, int endH, int endM, QString lecturer, QString room, QString type)
 {
     //Creating a CSV text line for Google Calendar/iCal/Outlook
-    // First day for semester 10/26/2014
 
     QString CSV_line = "";
     QString subject = "\"";
@@ -86,30 +92,9 @@ QString CSV_Exporter::makeLine(QString name, int day, int startH, int startM, in
     subject.append(type);
     subject.append("\"");
 
-    QString date;
-    switch (day) {
-    case 1:
-        date = "10/26/2014";
-        break;
-    case 2:
-        date = "10/27/2014";
-        break;
-    case 3:
-        date = "10/28/2014";
-        break;
-    case 4:
-        date = "10/29/2014";
-        break;
-    case 5:
-        date = "10/30/2014";
-        break;
-    case 6:
-        date = "10/31/2014";
-        break;
-    default:
-        return NULL;
-        break;
-    }
+
+    QString dateStr = date->toString("MM/dd/yyyy");
+
 
     QString start;
     start.append(QString::number(startH));
@@ -135,13 +120,13 @@ QString CSV_Exporter::makeLine(QString name, int day, int startH, int startM, in
     CSV_line.append(subject);
     CSV_line.append(",");
 
-    CSV_line.append(date);
+    CSV_line.append(dateStr);
     CSV_line.append(",");
 
     CSV_line.append(start);
     CSV_line.append(",");
 
-    CSV_line.append(date);
+    CSV_line.append(dateStr);
     CSV_line.append(",");
 
     CSV_line.append(end);
