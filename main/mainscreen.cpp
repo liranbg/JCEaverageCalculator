@@ -337,7 +337,14 @@ void MainScreen::on_actionHow_To_triggered()
 void MainScreen::on_exportToCVSBtn_clicked()
 {
     if (loginHandel->isLoggedInFlag())
+    {
+        CalendarDialog calDialog;
+        int buttonClicked = calDialog.exec();
+        if(buttonClicked == 0)
+            return;
+//calDialog.getStartDate(),calDialog.getEndDate()
         this->calendar->exportCalendarCSV();
+    }
 }
 
 void MainScreen::on_actionHebrew_triggered()
