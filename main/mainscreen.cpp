@@ -5,15 +5,18 @@
 MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScreen)
 {
     ui->setupUi(this);
-
     //this->setFixedSize(this->size()); //main not resizeable
 
-
     //Login Tab
+    QPixmap iconPix;
+    iconPix.load(":/icons/iconX.png");
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
+    ui->labelUsrInputStatus->setVisible(false);
+    ui->labelPswInputStatus->setVisible(false);
+    ui->labelUsrInputStatus->setPixmap(iconPix);
+    ui->labelPswInputStatus->setPixmap(iconPix);
 
     //Status Bar
-    ui->actionEnglish->setChecked(true);
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
     ButtomStatusLabel = new QLabel(this);
     statusLabel = new QLabel(this);
@@ -28,10 +31,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->CoursesTab->setDisabled(true);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
 
-
-
     //Pointer allocating
-
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
     this->loginHandel = new loginHandler(userLoginSetting);
@@ -39,7 +39,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     this->data = new SaveData();
 
     //check login File
-    //SaveData::init(); --> No need. constructor dose everything.
     if (data->isSaved())
     {
         ui->usrnmLineEdit->setText(data->getUsername());
@@ -48,61 +47,136 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     }
 
     //Local Check and ui setting.
-    if(data->getLocal() == "en")
-    {
-        ui->actionHebrew->setChecked(false);
-        ui->actionOS_Default->setChecked(false);
-        ui->actionEnglish->setChecked(true);
-    }else if(data->getLocal() == "he"){
-        ui->actionHebrew->setChecked(true);
-        ui->actionOS_Default->setChecked(false);
-        ui->actionEnglish->setChecked(false);
-    }else{
-        ui->actionHebrew->setChecked(false);
-        ui->actionOS_Default->setChecked(true);
-        ui->actionEnglish->setChecked(false);
-    }
+    checkLocale();
 
 }
 
 MainScreen::~MainScreen()
 {
+    delete ButtomStatusLabel;
+    delete statusLabel;
+    delete calendar;
+    delete courseTableMgr;
     delete userLoginSetting;
     delete loginHandel;
     delete ui;
-
-    //Delete save data
     delete data;
 }
+//EVENTS ON STATUS BAR
+void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
+{
+    QPixmap iconPix;
+    switch (statusDescription)
+    {
+    case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
+        iconPix.load(":/icons/blueStatusIcon.png");
+        statusLabel->setText(tr("Connecting"));
+        break;
+    case jceLogin::jceStatus::JCE_YOU_ARE_IN:
+        iconPix.load(":/icons/greenStatusIcon.png");
+        statusLabel->setText(tr("Connected"));
+        break;
+    default:
+        iconPix.load(":/icons/redStatusIcon.png");
+        statusLabel->setText(tr("Disconnected"));
+        break;
+    }
+    ButtomStatusLabel->setPixmap(iconPix);
+
+    this->repaint();
+}
+//EVENTS ON LOGIN TAB
 void MainScreen::on_loginButton_clicked()
 {
     if (loginHandel->isLoggedInFlag())
         uiSetDisconnectMode();
-
     else
         uiSetConnectMode();
-
 }
-void MainScreen::on_getCalendarBtn_clicked()
+void MainScreen::on_keepLogin_clicked()
 {
-    int status = 0;
-    if (loginHandel->isLoggedInFlag())
+    if (ui->keepLogin->isChecked())
     {
-        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
-        {
-            //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
-            //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
-            calendar->resetTable();
-            calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
-        }
+        data->setUsername(ui->usrnmLineEdit->text());
+        data->setPassword(ui->pswdLineEdit->text());
+    }
+    else
+        data->reset();
+}
+void MainScreen::on_usrnmLineEdit_editingFinished()
+{
+    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
+}
+void MainScreen::uiSetDisconnectMode()
+{
+    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
+    ui->usrnmLineEdit->setText("");
+    ui->pswdLineEdit->setText("");
+    ui->usrnmLineEdit->setEnabled(true);
+    ui->pswdLineEdit->setEnabled(true);
 
-        else if (status == jceLogin::JCE_NOT_CONNECTED)
+    loginHandel->makeDisconnectionRequest();
+    ui->loginButton->setText("&Login");
+    ui->getCalendarBtn->setDisabled(true);
+    ui->exportToCVSBtn->setDisabled(true);
+    ui->ratesButton->setDisabled(true);
+    return;
+}
+void MainScreen::uiSetConnectMode()
+{
+    string username;
+    string password;
+    if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
+    {
+        if (ui->usrnmLineEdit->text().isEmpty())
         {
-            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+            ui->labelUsrInputStatus->setVisible(true);
+            qDebug() << "error, username input is empty";
         }
+        else
+            ui->labelUsrInputStatus->setVisible(false);
+        if (ui->pswdLineEdit->text().isEmpty())
+        {
+            ui->labelPswInputStatus->setVisible(true);
+            qDebug() << "error, password input is empty";
+        }
+        else
+            ui->labelPswInputStatus->setVisible(false);
+        return;
+    }
+    else
+    {
+        ui->labelUsrInputStatus->setVisible(false);
+        ui->labelPswInputStatus->setVisible(false);
+    }
+    setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
+
+    username = ui->usrnmLineEdit->text().toStdString();
+    password = ui->pswdLineEdit->text().toStdString();
+
+    ui->usrnmLineEdit->setDisabled(true);
+    ui->pswdLineEdit->setDisabled(true);
+
+    userLoginSetting->setUsername(username);
+    userLoginSetting->setPassword(password);
+
+    this->loginHandel->setPointers(statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
+    if (loginHandel->makeConnection() == true)
+    {
+        setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
+        ui->loginButton->setText("&Logout");
+        ui->ratesButton->setEnabled(true);
+        ui->CoursesTab->setEnabled(true);
+        ui->exportToCVSBtn->setEnabled(true);
+        ui->getCalendarBtn->setEnabled(true);
+
+    }
+    else
+    {
+        uiSetDisconnectMode();
     }
 }
-
+//EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
     std::string pageString;
@@ -120,9 +194,6 @@ void MainScreen::on_ratesButton_clicked()
             QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
         }
     }
-
-
-
 }
 void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
 {
@@ -169,7 +240,6 @@ void MainScreen::on_spinBoxCoursesToSemester_editingFinished()
         }
     }
 }
-
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
     if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
@@ -177,93 +247,38 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
     else
         QMessageBox::critical(this,"Error","Missmatching data");
 }
-
-void MainScreen::on_usrnmLineEdit_editingFinished()
+void MainScreen::on_clearTableButton_clicked()
 {
-    ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
+    courseTableMgr->clearTable();
+    ui->avgLCD->display(courseTableMgr->getAvg());
 }
-void MainScreen::uiSetDisconnectMode()
+//EVENTS ON CALENDAR TAB
+void MainScreen::on_getCalendarBtn_clicked()
 {
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
-    ui->usrnmLineEdit->setText("");
-    ui->pswdLineEdit->setText("");
-    ui->usrnmLineEdit->setEnabled(true);
-    ui->pswdLineEdit->setEnabled(true);
-
-    loginHandel->makeDisconnectionRequest();
-    ui->loginButton->setText("&Login");
-    ui->getCalendarBtn->setDisabled(true);
-    ui->exportToCVSBtn->setDisabled(true);
-    ui->ratesButton->setDisabled(true);
-    return;
-}
-
-void MainScreen::uiSetConnectMode() //fix before distrbute
-{
-    string username;
-    string password;
-    if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
+    int status = 0;
+    if (loginHandel->isLoggedInFlag())
     {
-        //add icon near to username and password to mark it
-        return;
-    }
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
+        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
+        {
+            //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
+            //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
+            calendar->resetTable();
+            calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
+        }
 
-    username = ui->usrnmLineEdit->text().toStdString();
-    password = ui->pswdLineEdit->text().toStdString();
-
-    ui->usrnmLineEdit->setDisabled(true);
-    ui->pswdLineEdit->setDisabled(true);
-
-    userLoginSetting->setUsername(username);
-    userLoginSetting->setPassword(password);
-
-    this->loginHandel->setPointers(statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
-    if (loginHandel->makeConnection() == true)
-    {
-        setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
-        ui->loginButton->setText("&Logout");
-        ui->ratesButton->setEnabled(true);
-        ui->CoursesTab->setEnabled(true);
-        ui->exportToCVSBtn->setEnabled(true);
-        ui->getCalendarBtn->setEnabled(true);
-
-    }
-    else
-    {
-        uiSetDisconnectMode();
+        else if (status == jceLogin::JCE_NOT_CONNECTED)
+        {
+            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+        }
     }
 }
-void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
+void MainScreen::on_exportToCVSBtn_clicked()
 {
-    QPixmap iconPix;
-    switch (statusDescription)
-    {
-
-    case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
-        iconPix.load(":/icons/blueStatusIcon.png");
-        statusLabel->setText(tr("Connecting"));
-        break;
-    case jceLogin::jceStatus::JCE_YOU_ARE_IN:
-        iconPix.load(":/icons/greenStatusIcon.png");
-        statusLabel->setText(tr("Connected"));
-        break;
-    default:
-        iconPix.load(":/icons/redStatusIcon.png");
-        statusLabel->setText(tr("Disconnected"));
-        break;
-    }
-    ButtomStatusLabel->setPixmap(iconPix);
-
-    this->repaint();
+    if (loginHandel->isLoggedInFlag())
+        this->calendar->exportCalendarCSV();
 }
 
-void MainScreen::showMSG(QString msg)
-{
-    QMessageBox msgBox;
-    msgBox.setText(msg);
-    msgBox.exec();
-}
+//EVENTS ON MENU BAR
 void MainScreen::on_actionCredits_triggered()
 {
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
@@ -277,31 +292,10 @@ void MainScreen::on_actionCredits_triggered()
                        "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
                        "</ul>");
 }
-
-void MainScreen::on_clearTableButton_clicked()
-{
-
-    courseTableMgr->clearTable();
-    ui->avgLCD->display(courseTableMgr->getAvg());
-}
-
 void MainScreen::on_actionExit_triggered()
 {
     exit(0);
 }
-
-
-void MainScreen::on_keepLogin_clicked()
-{
-    if (ui->keepLogin->isChecked())
-    {
-        data->setUsername(ui->usrnmLineEdit->text());
-        data->setPassword(ui->pswdLineEdit->text());
-    }
-    else
-        data->reset();
-}
-
 void MainScreen::on_actionHow_To_triggered()
 {
     QMessageBox::information(this,"How To",
@@ -317,29 +311,6 @@ void MainScreen::on_actionHow_To_triggered()
 
 }
 
-//void MainScreen::on_pushButton_2_clicked()
-//{
-//    if(CSV_Exporter::exportCalendar(this->calendar->getSch()))
-//    {
-//        QMessageBox msgBox;
-//        msgBox.setText("<center>Exported Successfuly!<br><b>HaazZaA!!");
-//        msgBox.exec();
-//    }else
-//    {
-//        QMessageBox msgBox;
-//        msgBox.setIcon(QMessageBox::Critical);
-//        msgBox.setText("<center>Something went wrong...<br></center>Maybe: <ul><li>You Canceled</li><li>Unable to save the File - try again</li></ul><br><br>"
-//                       "<b><center>In case of a serious problem, please file a bug report.<br>thank you. OpenJCE teem");
-//        msgBox.exec();
-//    }
-//}
-
-void MainScreen::on_exportToCVSBtn_clicked()
-{
-    if (loginHandel->isLoggedInFlag())
-        this->calendar->exportCalendarCSV();
-}
-
 void MainScreen::on_actionHebrew_triggered()
 {
     if (ui->actionEnglish->isChecked() || ui->actionOS_Default->isChecked())
@@ -348,7 +319,7 @@ void MainScreen::on_actionHebrew_triggered()
         ui->actionOS_Default->setChecked(false);
         qDebug() << "Changed Language to hebrew";
         data->setLocal("he");
-        showMSG("ההגדרות שלך יכנסו לתוקף בהפעלה הבאה של התוכנית");
+        QMessageBox::information(this,"Settings","will be valid next time you will run the application",QMessageBox::Ok);
     }
     else
         ui->actionHebrew->setChecked(true);
@@ -362,7 +333,7 @@ void MainScreen::on_actionEnglish_triggered()
         ui->actionOS_Default->setChecked(false);
         qDebug() << "Changed Language to English";
         data->setLocal("en");
-        showMSG("Your settings will take effect next time you start the program");
+        QMessageBox::information(this,"Settings","Your settings will take effect next time you start the program",QMessageBox::Ok);
     }
     else
         ui->actionEnglish->setChecked(true);
@@ -377,8 +348,25 @@ void MainScreen::on_actionOS_Default_triggered()
         ui->actionEnglish->setChecked(false);
         qDebug() << "Changed Language to OS Default";
         data->setLocal("default");
-        showMSG("Your settings will take effect next time you start the program");
+        QMessageBox::information(this,"Settings","Your settings will take effect next time you start the program",QMessageBox::Ok);
     }
     else
         ui->actionOS_Default->setChecked(true);
+}
+void MainScreen::checkLocale()
+{
+    if(data->getLocal() == "en")
+    {
+        ui->actionHebrew->setChecked(false);
+        ui->actionOS_Default->setChecked(false);
+        ui->actionEnglish->setChecked(true);
+    }else if(data->getLocal() == "he"){
+        ui->actionHebrew->setChecked(true);
+        ui->actionOS_Default->setChecked(false);
+        ui->actionEnglish->setChecked(false);
+    }else{
+        ui->actionHebrew->setChecked(false);
+        ui->actionOS_Default->setChecked(true);
+        ui->actionEnglish->setChecked(false);
+    }
 }
