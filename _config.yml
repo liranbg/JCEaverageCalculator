@@ -4,7 +4,7 @@ highlighter: pygments
 
 
 # Site settings
-title: "OpenJCE"
+title: "JCE Manager"
 description: > # this means to ignore newlines until "email:"
    Free Your Academic Data
 
@@ -17,8 +17,8 @@ logo: "/JceManager/assets/images/logo.png"
 # blog cover
 cover: "/JceManager/assets/images/background_image.jpg"
 
-name: 'OpenJCE'
-author: 'OpenJCE Teem'
+name: 'JCE Manager'
+author: 'JCE Manager Teem'
 author_image: "/JceManager/assets/images/author.jpg"
 
 paginate: 5

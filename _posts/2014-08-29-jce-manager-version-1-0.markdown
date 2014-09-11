@@ -1,21 +1,21 @@
 ---
 layout: post
-title:  "OpenJCE Version 1.0 Released!"
+title:  "JCE Manager Version 1.0 Released!"
 date:   2014-09-17 14:34:25
 categories: Releases
 tags: featured
-image: /JceManager/assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
+image: /JceManager/assets/article_images/first-release/desktop.JPG
 ---
 #Proud To Announce Our First Release!
-####*OpenJCE v1.0 is now public*
+####*JCE JceManager v1.0 is now public*
 
 <br>
 
 
-After hard development, hacking and some *Moadey beit* , we are finaly
+After **hard** development, hacking and some *Moadey beit* , we are finaly
 happy with the resault. And the project is now avalible to the public.
 
->You can read more about *OpenJCE*, and the team at the [About Page][about].
+>You can read more about *JCE Manager*, and the team at the [About Page][about].
 
 ####V1.0 Release Notes:
  - Hack to the [JCE Studen web site][jce] ("Yedion")
@@ -26,7 +26,7 @@ happy with the resault. And the project is now avalible to the public.
  - Export your Semester Schedule to CSV file to import to GoogleCalendar/iCal/Outlook
  - Translated to Hebrew and English
 
-*OpenJCE* is avalible for Windows, OSX and Linux.
+*JCE Manager* is avalible for Windows, OSX and Linux.
 
  >**Note:**
  >
@@ -44,3 +44,4 @@ happy with the resault. And the project is now avalible to the public.
 [jce]:     	   https://yedion.jce.ac.il/student/
 [download]:   /JceManager/download/
 [about]: /JceManager/about/
+[help]: /JceManager/help/

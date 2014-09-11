@@ -1,14 +1,15 @@
 ---
 layout: page
-title: <i class="fa fa-download"></i> Download
+title: Download
 permalink: /download/
+image: JceManager/assets/images/download.jpg
 ---
 
 
-###***Please select your operating system... & CPU Architecture***
+###***Please select your operating system & CPU Architecture***
 <br>
 
-####OpenJCE Version 1.0 Stable
+#### <i class="fa fa-download"></i> *JCE Manager* Version 1.0 Stable
 
  - <i class="fa fa-windows"></i> Windows XP/7/8
  	- [32bit][win32]
