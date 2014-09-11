@@ -10,9 +10,9 @@ description: > # this means to ignore newlines until "email:"
 
 email: sagidayan@gmail.com
 #blog logo
-logo: "/assets/images/logo.png"
+logo: "{{ site.baseurl }}/assets/images/logo.png"
 # blog cover
-cover: "/assets/images/background_image.jpg"
+cover: "{{ site.baseurl }}/assets/images/background_image.jpg"
 
 name: 'OpenJCE'
 author: 'OpenJCE Teem'
