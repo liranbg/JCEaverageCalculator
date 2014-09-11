@@ -61,7 +61,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -639,7 +639,7 @@ font-size: 15px;
    </property>
    <widget class="QMenu" name="menuA_about">
     <property name="title">
-     <string>&amp;About</string>
+     <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menuLanguage">
      <property name="title">
@@ -712,10 +712,23 @@ font-size: 15px;
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>usrnmLineEdit</tabstop>
+  <tabstop>pswdLineEdit</tabstop>
+  <tabstop>keepLogin</tabstop>
   <tabstop>loginButton</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>checkBoxCoursesInfluence</tabstop>
+  <tabstop>spinBoxCoursesFromYear</tabstop>
+  <tabstop>spinBoxCoursesFromSemester</tabstop>
+  <tabstop>spinBoxCoursesToYear</tabstop>
+  <tabstop>spinBoxCoursesToSemester</tabstop>
   <tabstop>ratesButton</tabstop>
-  <tabstop>clearTableButton</tabstop>
   <tabstop>coursesTable</tabstop>
+  <tabstop>spinBoxYear</tabstop>
+  <tabstop>spinBoxSemester</tabstop>
+  <tabstop>getCalendarBtn</tabstop>
+  <tabstop>clearTableButton</tabstop>
+  <tabstop>exportToCVSBtn</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/connectionstatus.qrc"/>

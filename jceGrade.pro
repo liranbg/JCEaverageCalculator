@@ -9,8 +9,10 @@ TARGET = jceGrade
 TEMPLATE = app
 RC_FILE = appConfigure.rc
 CONFIG += qt c++11
-CONFIG += console
+CONFIG += console static
 
+TRANSLATIONS = jce_en.ts \
+                jce_he.ts
 
 FORMS    += \
     main/mainscreen.ui

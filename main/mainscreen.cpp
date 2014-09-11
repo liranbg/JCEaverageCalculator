@@ -116,7 +116,7 @@ void MainScreen::uiSetDisconnectMode()
     ui->pswdLineEdit->setEnabled(true);
 
     loginHandel->makeDisconnectionRequest();
-    ui->loginButton->setText("&Login");
+    ui->loginButton->setText(tr("&Login"));
     ui->getCalendarBtn->setDisabled(true);
     ui->exportToCVSBtn->setDisabled(true);
     ui->ratesButton->setDisabled(true);
@@ -164,7 +164,7 @@ void MainScreen::uiSetConnectMode()
     if (loginHandel->makeConnection() == true)
     {
         setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
-        ui->loginButton->setText("&Logout");
+        ui->loginButton->setText(tr("&Logout"));
         ui->ratesButton->setEnabled(true);
         ui->CoursesTab->setEnabled(true);
         ui->exportToCVSBtn->setEnabled(true);
@@ -245,7 +245,7 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
     if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
         ui->avgLCD->display(courseTableMgr->getAvg());
     else
-        QMessageBox::critical(this,"Error","Missmatching data");
+        QMessageBox::critical(this,tr("Error"),tr("Missmatching data"));
 }
 void MainScreen::on_clearTableButton_clicked()
 {
@@ -319,7 +319,7 @@ void MainScreen::on_actionHebrew_triggered()
         ui->actionOS_Default->setChecked(false);
         qDebug() << "Changed Language to hebrew";
         data->setLocal("he");
-        QMessageBox::information(this,"Settings","will be valid next time you will run the application",QMessageBox::Ok);
+        QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
     }
     else
         ui->actionHebrew->setChecked(true);
@@ -333,7 +333,7 @@ void MainScreen::on_actionEnglish_triggered()
         ui->actionOS_Default->setChecked(false);
         qDebug() << "Changed Language to English";
         data->setLocal("en");
-        QMessageBox::information(this,"Settings","Your settings will take effect next time you start the program",QMessageBox::Ok);
+        QMessageBox::information(this,"Settings",tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
     }
     else
         ui->actionEnglish->setChecked(true);
@@ -348,7 +348,7 @@ void MainScreen::on_actionOS_Default_triggered()
         ui->actionEnglish->setChecked(false);
         qDebug() << "Changed Language to OS Default";
         data->setLocal("default");
-        QMessageBox::information(this,"Settings","Your settings will take effect next time you start the program",QMessageBox::Ok);
+        QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
     }
     else
         ui->actionOS_Default->setChecked(true);
