@@ -9,9 +9,9 @@ void CalendarManager::setCalendar(std::string html)
 {
     caliSchedPtr->setPage(html);
 }
-void CalendarManager::exportCalendarCSV()
+void CalendarManager::exportCalendarCSV(CalendarDialog *calDialog)
 {
-    if(CSV_Exporter::exportCalendar(this->caliSchedPtr))
+    if(CSV_Exporter::exportCalendar(this->caliSchedPtr, calDialog))
     {
         QMessageBox msgBox;
         msgBox.setText(QObject::tr("Exported Successfuly!"));

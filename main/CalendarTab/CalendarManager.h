@@ -4,6 +4,7 @@
 #include "./src/jceData/Calendar/calendarPage.h"
 #include "./src/jceData/Calendar/calendarSchedule.h"
 #include "./src/jceData/CSV/csv_exporter.h"
+#include "./src/jceData/Calendar/calendardialog.h"
 #include <iostream>
 #include <QMessageBox>
 
@@ -15,12 +16,13 @@ public:
     {
         delete caliSchedPtr;
     }
-    void exportCalendarCSV();
+    void exportCalendarCSV(CalendarDialog*);
     void setCalendar(std::string html);
     void resetTable() { if (caliSchedPtr != NULL) caliSchedPtr->clearTableItems(); }
 
 private:
     calendarSchedule * caliSchedPtr;
+
 };
 
 #endif // CALENDARMANAGER_H
