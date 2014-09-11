@@ -7,6 +7,8 @@ CSV_Exporter::CSV_Exporter()
 
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
+    if ((cal == NULL) || (calSched == NULL) || (calSched->getCourses() == NULL)) //pointers checking!
+        return false;
     qDebug() << "Getting path for csv file from user...";
     QString filePath = getFileFath();
     if(filePath == NULL) //User canceled
