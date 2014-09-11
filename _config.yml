@@ -13,13 +13,13 @@ baseurl: /JceManager
 
 email: sagidayan@gmail.com
 #blog logo
-logo: "{{ site.baseurl }}/assets/images/logo.png"
+logo: "/JceManager/assets/images/logo.png"
 # blog cover
-cover: "{{ site.baseurl }}/assets/images/background_image.jpg"
+cover: "/JceManager/assets/images/background_image.jpg"
 
 name: 'OpenJCE'
 author: 'OpenJCE Teem'
-author_image: "{{ site.baseurl }}/assets/images/author.jpg"
+author_image: "/JceManager/assets/images/author.jpg"
 
 paginate: 5
 
