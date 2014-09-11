@@ -7,10 +7,8 @@ CalendarDialog::CalendarDialog(QWidget *parent) :
     ui(new Ui::CalendarDialog)
 {
     ui->setupUi(this);
-    ui->calEnd->showToday();
-    ui->calStart->showToday();
-
-    this->isOK = false;
+    changeLabeStatusIcon(true);//be default the dates are ok, i Updated it according to jce official dates
+    this->isOK = true;
 }
 
 CalendarDialog::~CalendarDialog()
@@ -32,22 +30,18 @@ bool CalendarDialog::ok()
 {
     return this->isOK;
 }
-
-void CalendarDialog::on_calStart_clicked(const QDate &date)
-{
-
-}
-
 void CalendarDialog::on_calStart_selectionChanged()
 {
-    if(ui->calStart->selectedDate() > ui->calEnd->selectedDate()){
-        ui->lbl_status->setText("[ X ] The End of the semester is before it starts... ");
+    if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
+    {
+        changeLabeStatusIcon(false);
+        ui->lbl_status->setText(tr("The End of the semester can NOT be equal or before semester begins."));
         this->isOK = false;
-    }else if(ui->calStart->selectedDate() == ui->calEnd->selectedDate()){
-        ui->lbl_status->setText("[ ! ] Semester Cannot start and end on the same date... Where are you studying?! :)");
-        this->isOK = false;
-    }else{
-        ui->lbl_status->setText("[ V ] Looks ok, Press OK");
+    }
+    else
+    {
+        changeLabeStatusIcon(true);
+        ui->lbl_status->setText(tr("Looks ok, Press OK"));
         this->isOK = true;
     }
 }
@@ -58,26 +52,28 @@ void CalendarDialog::on_buttonBox_accepted()
         qDebug() << "start bigger than end!";
 }
 
-void CalendarDialog::on_calEnd_clicked(const QDate &date)
-{
-
-}
-
-void CalendarDialog::on_calStart_activated(const QDate &date)
-{
-    //null
-}
-
 void CalendarDialog::on_calEnd_selectionChanged()
 {
-    if(ui->calStart->selectedDate() > ui->calEnd->selectedDate()){
-        ui->lbl_status->setText("[ X ] The End of the semester is before it starts... ");
+    if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
+    {
+        changeLabeStatusIcon(false);
+        ui->lbl_status->setText(tr("The End of the semester can NOT be equal or before semester begins."));
         this->isOK = false;
-    }else if(ui->calStart->selectedDate() == ui->calEnd->selectedDate()){
-        ui->lbl_status->setText("[ ! ] Semester Cannot start and end on the same date... Where are you studying?! :)");
-        this->isOK = false;
-    }else{
-        ui->lbl_status->setText("[ V ] Looks ok, Press OK");
+    }
+    else
+    {
+        changeLabeStatusIcon(true);
+        ui->lbl_status->setText(tr("Looks ok, Press OK"));
         this->isOK = true;
     }
+
+}
+
+void CalendarDialog::changeLabeStatusIcon(bool goodOrBad)
+{
+    if (goodOrBad == true) //good date!
+        iconPixStatus.load(":/icons/iconV.png");
+    else
+        iconPixStatus.load(":/icons/iconX.png");
+    this->ui->labelIconStatus->setPixmap(iconPixStatus);
 }

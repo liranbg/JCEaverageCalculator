@@ -50,7 +50,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
             if(line != NULL)
                 out << line << char(0x0A);
 #endif
-#ifdef Q_OS_OSX
+#ifdef  Q_OS_OSX
             if(line != NULL)
                 out << line << char(0x0A);
 #endif
@@ -59,10 +59,8 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
                 out << line << char(0x0D) << char(0x0A);
 #endif
         }
+        out.flush();
     }
-
-here:
-    out.flush();
 
 
     file.close();

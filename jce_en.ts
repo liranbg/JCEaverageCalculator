@@ -2,6 +2,46 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>CalendarDialog</name>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>Dates</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.ui" line="22"/>
+        <source>&lt;h1&gt;&lt;b&gt;For The Best CSV Export, Please Enter Correctly</source>
+        <translation>&lt;h1&gt;&lt;b&gt;For The Best CSV Export, Please Enter Correctly</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.ui" line="35"/>
+        <source>Semester Starts At:</source>
+        <translation>&lt;b&gt;Semester Starts At:</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.ui" line="42"/>
+        <source>Semester Ends At:</source>
+        <translation>&lt;b&gt;Semester Ends At:</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.ui" line="73"/>
+        <source>[ ! ] Start &amp; End cannot be the same</source>
+        <translation>[ ! ] Start &amp; End cannot be set at the same day</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.cpp" line="46"/>
+        <location filename="src/jceData/Calendar/calendardialog.cpp" line="78"/>
+        <source>The End of the semester can NOT be equal or before semester begins.</source>
+        <translation>The End of the semester can NOT be equal or before semester begins.</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/calendardialog.cpp" line="52"/>
+        <location filename="src/jceData/Calendar/calendardialog.cpp" line="84"/>
+        <source>Looks ok, Press OK</source>
+        <translation>Looks ok, Press OK</translation>
+    </message>
+</context>
+<context>
     <name>MainScreen</name>
     <message>
         <location filename="main/mainscreen.ui" line="20"/>
@@ -189,80 +229,80 @@
         <translation>Missmatching Data</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="284"/>
+        <location filename="main/mainscreen.cpp" line="286"/>
         <source>CREDITS-ROOL-UP1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="285"/>
+        <location filename="main/mainscreen.cpp" line="287"/>
         <source>CREDITS-ROOL-UP2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="286"/>
+        <location filename="main/mainscreen.cpp" line="288"/>
         <source>CREDITS-ROOL-UP3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="288"/>
+        <location filename="main/mainscreen.cpp" line="290"/>
         <source>CREDITS-ROOL-UP4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="289"/>
+        <location filename="main/mainscreen.cpp" line="291"/>
         <source>DevBy</source>
         <translation>Developed By</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="291"/>
+        <location filename="main/mainscreen.cpp" line="293"/>
         <source>Liran</source>
         <translation>Liran Ben Gida</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="292"/>
+        <location filename="main/mainscreen.cpp" line="294"/>
         <source>Sagi</source>
         <translation>Sagi Dayan</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="304"/>
+        <location filename="main/mainscreen.cpp" line="306"/>
         <source>HELP1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="305"/>
+        <location filename="main/mainscreen.cpp" line="307"/>
         <source>HELP2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="306"/>
+        <location filename="main/mainscreen.cpp" line="308"/>
         <source>HELP3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="307"/>
+        <location filename="main/mainscreen.cpp" line="309"/>
         <source>HELP4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="308"/>
+        <location filename="main/mainscreen.cpp" line="310"/>
         <source>HELP5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="309"/>
+        <location filename="main/mainscreen.cpp" line="311"/>
         <source>HELP6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="322"/>
-        <location filename="main/mainscreen.cpp" line="351"/>
+        <location filename="main/mainscreen.cpp" line="327"/>
+        <location filename="main/mainscreen.cpp" line="356"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="322"/>
-        <location filename="main/mainscreen.cpp" line="336"/>
-        <location filename="main/mainscreen.cpp" line="351"/>
+        <location filename="main/mainscreen.cpp" line="327"/>
+        <location filename="main/mainscreen.cpp" line="341"/>
+        <location filename="main/mainscreen.cpp" line="356"/>
         <source>Your settings will take effect next time you start the program</source>
         <translation>Your settings will take effect next time you start the program</translation>
     </message>
@@ -270,14 +310,19 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="main/CalendarTab/CalendarManager.cpp" line="17"/>
+        <location filename="main/CalendarTab/CalendarManager.cpp" line="25"/>
         <source>Exported Successfuly!</source>
         <translation>Exported Successfuly!</translation>
     </message>
     <message>
-        <location filename="main/CalendarTab/CalendarManager.cpp" line="23"/>
-        <source>&lt;center&gt;Something went wrong...&lt;br&gt;&lt;/center&gt;Maybe: &lt;ul&gt;&lt;li&gt;You Canceled&lt;/li&gt;&lt;li&gt;Unable to save the File - try again&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;&lt;center&gt;In case of a serious problem, please file a bug report.&lt;br&gt;thank you. OpenJCE teem</source>
-        <translation type="unfinished"></translation>
+        <location filename="main/CalendarTab/CalendarManager.cpp" line="30"/>
+        <source>Error on exporting. please check your file system.</source>
+        <translation>Error on exporting. Please check your file system.</translation>
+    </message>
+    <message>
+        <location filename="main/CalendarTab/CalendarManager.cpp" line="38"/>
+        <source>Dates not valid</source>
+        <translation>Invalid Dates</translation>
     </message>
     <message>
         <location filename="main/CourseTab/coursestablemanager.cpp" line="15"/>

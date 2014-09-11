@@ -27,11 +27,10 @@ void CalendarManager::exportCalendarCSV()
         }else
         {
             msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText(QObject::tr("Error on exporting. please check your file system."));
+            msgBox.setText(QObject::tr("Error on exporting."));
             msgBox.exec();
         }
     }
-
     else
     {
         msgBox.setIcon(QMessageBox::Critical);
