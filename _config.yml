@@ -8,20 +8,21 @@ title: "OpenJCE"
 description: > # this means to ignore newlines until "email:"
    Free Your Academic Data
 
+url: "http://liranbg.github.io/JceManager" # the base hostname & protocol for your site
+baseur: "/JceManager"
+
 email: sagidayan@gmail.com
 #blog logo
-logo: "{{ site.baseurl }}/assets/images/logo.png"
+logo: "/assets/images/logo.png"
 # blog cover
-cover: "{{ site.baseurl }}/assets/images/background_image.jpg"
+cover: "/assets/images/background_image.jpg"
 
 name: 'OpenJCE'
 author: 'OpenJCE Teem'
 author_image: "/assets/images/author.jpg"
 
-paginate:	5
+paginate: 5
 
-url: "http://liranbg.github.io/JceManager" # the base hostname & protocol for your site
-baseur: "/JceManager"
 
 # social icons and sharing options
 social:
