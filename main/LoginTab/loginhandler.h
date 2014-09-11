@@ -1,5 +1,6 @@
 #ifndef LOGINHANDLER_H
 #define LOGINHANDLER_H
+#include <QObject>
 #include <QString>
 #include <QLabel>
 #include <QLineEdit>

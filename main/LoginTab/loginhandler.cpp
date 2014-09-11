@@ -6,7 +6,6 @@ loginHandler::loginHandler(user *ptr): logggedInFlag(false)
 }
 void loginHandler::setPointers(QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
 {
-
     this->statusLabelPtr = statusLabelPtr;
     this->pswdEditPtr = pswdEditPtr;
     this->usrnmEditPtr = usrnmEditPtr;
@@ -34,7 +33,7 @@ bool loginHandler::makeConnection()
         }
         case jceLogin::ERROR_ON_VALIDATION:
         {
-            popMessage("Please Check Your Username & Password",false);
+            popMessage(QObject::tr("Please Check Your Username & Password"),false);
 
             usrnmEditPtr->setDisabled(false);
             pswdEditPtr->setDisabled(false);
@@ -45,13 +44,13 @@ bool loginHandler::makeConnection()
         }
         case jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED:
         {
-            popMessage("You have been blocked by JCE, please try in a couple of minutes.");
+            popMessage(QObject::tr("You have been blocked by JCE, please try in a couple of minutes."));
             jceLog->closeAll();
             return false;
         }
         case jceLogin::ERROR_ON_OPEN_SOCKET:
         {
-            popMessage("Please Check Your Internet Connection.");
+            popMessage(QObject::tr("Please Check Your Internet Connection."));
             jceLog->closeAll();
             return false;
         }
@@ -65,14 +64,14 @@ bool loginHandler::makeConnection()
         }
         case jceLogin::ERROR_ON_GETTING_INFO:
         {
-            popMessage("Recieve Request Time Out.");
+            popMessage(QObject::tr("Receive Request Timeout."));
             jceLog->closeAll();
             return false;
             break;
         }
         case jceLogin::ERROR_ON_SEND_REQUEST:
         {
-            popMessage("Send Request Time Out.");
+            popMessage(QObject::tr("Send Request Timeout."));
             jceLog->closeAll();
             return false;
             break;
@@ -132,10 +131,10 @@ int loginHandler::makeCalendarRequest(int year, int semester)
 void loginHandler::popMessage(QString message,bool addInfo)
 {
     if (addInfo)
-        message.append("\nIf this message appear without reason, please contact me at liranbg@gmail.com");
+        message.append(QObject::tr("\nIf this message appear without reason, please contact me at liranbg@gmail.com"));
 
     QMessageBox msgBox;
-    msgBox.setWindowTitle("Error");
+    msgBox.setWindowTitle(QObject::tr("Error"));
     msgBox.setText(message);
     msgBox.exec();
     msgBox.setFocus();

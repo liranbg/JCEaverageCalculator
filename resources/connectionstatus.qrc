@@ -4,5 +4,6 @@
         <file>greenStatusIcon.png</file>
         <file>redStatusIcon.png</file>
         <file>icon.ico</file>
+        <file>iconX.png</file>
     </qresource>
 </RCC>

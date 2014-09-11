@@ -45,7 +45,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -61,7 +61,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -153,23 +153,8 @@ font-size: 15px;
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetDefaultConstraint</enum>
-           </property>
-           <property name="leftMargin">
-            <number>20</number>
-           </property>
-           <property name="topMargin">
-            <number>15</number>
-           </property>
-           <property name="rightMargin">
-            <number>20</number>
-           </property>
-           <property name="bottomMargin">
-            <number>15</number>
-           </property>
-           <item row="2" column="0">
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="1" column="0">
             <layout class="QHBoxLayout" name="loginButtonHorizontalLayout">
              <item>
               <widget class="QCheckBox" name="keepLogin">
@@ -197,94 +182,117 @@ font-size: 15px;
             </layout>
            </item>
            <item row="0" column="0">
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <layout class="QGridLayout" name="gridLayout_5">
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="usrnmLineEdit">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="inputMethodHints">
-                  <set>Qt::ImhLatinOnly|Qt::ImhNoPredictiveText</set>
-                 </property>
-                 <property name="maxLength">
-                  <number>20</number>
-                 </property>
-                 <property name="clearButtonEnabled">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0" rowspan="3" colspan="2">
+              <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
-                <widget class="QLabel" name="usrnmLabel">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Username</string>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="pswdHorizontalLayout">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="pswdLabel">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Password</string>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="pswdLineEdit">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="inputMethodHints">
-                  <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
-                 </property>
-                 <property name="maxLength">
-                  <number>20</number>
-                 </property>
-                 <property name="echoMode">
-                  <enum>QLineEdit::Password</enum>
-                 </property>
-                 <property name="clearButtonEnabled">
-                  <bool>true</bool>
-                 </property>
-                </widget>
+                <layout class="QGridLayout" name="gridLayout">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelUsrInputStatus">
+                   <property name="maximumSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEdit" name="pswdLineEdit">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+                   </property>
+                   <property name="maxLength">
+                    <number>20</number>
+                   </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
+                   <property name="clearButtonEnabled">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="usrnmLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>81</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Username</string>
+                   </property>
+                   <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEdit" name="usrnmLineEdit">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="inputMethodHints">
+                    <set>Qt::ImhLatinOnly|Qt::ImhNoPredictiveText</set>
+                   </property>
+                   <property name="maxLength">
+                    <number>20</number>
+                   </property>
+                   <property name="clearButtonEnabled">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabel" name="pswdLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>81</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Password</string>
+                   </property>
+                   <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="labelPswInputStatus">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
@@ -626,12 +634,12 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>29</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">
     <property name="title">
-     <string>&amp;About</string>
+     <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menuLanguage">
      <property name="title">
@@ -642,6 +650,7 @@ font-size: 15px;
      <addaction name="actionEnglish"/>
     </widget>
     <addaction name="menuLanguage"/>
+    <addaction name="actionHow_To"/>
     <addaction name="actionCredits"/>
     <addaction name="actionExit"/>
    </widget>
@@ -695,15 +704,31 @@ font-size: 15px;
     <string>OS Default</string>
    </property>
   </action>
+  <action name="actionHow_To">
+   <property name="text">
+    <string>How To</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>usrnmLineEdit</tabstop>
   <tabstop>pswdLineEdit</tabstop>
+  <tabstop>keepLogin</tabstop>
   <tabstop>loginButton</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>checkBoxCoursesInfluence</tabstop>
+  <tabstop>spinBoxCoursesFromYear</tabstop>
+  <tabstop>spinBoxCoursesFromSemester</tabstop>
+  <tabstop>spinBoxCoursesToYear</tabstop>
+  <tabstop>spinBoxCoursesToSemester</tabstop>
   <tabstop>ratesButton</tabstop>
-  <tabstop>clearTableButton</tabstop>
   <tabstop>coursesTable</tabstop>
+  <tabstop>spinBoxYear</tabstop>
+  <tabstop>spinBoxSemester</tabstop>
+  <tabstop>getCalendarBtn</tabstop>
+  <tabstop>clearTableButton</tabstop>
+  <tabstop>exportToCVSBtn</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/connectionstatus.qrc"/>

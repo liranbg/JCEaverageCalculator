@@ -27,26 +27,6 @@ int Page::runToActualText(std::string& from, int index)
          }
         index++;
     }
-//    while(index < (int)from.length())
-//    {
-//        if(from[index] == '<')
-//        {
-//            index++;
-//            if(from[index] == '!')
-//            {
-//                //!--FileName
-//                std::string bodyTag = from.substr(index, 11); //!--FileName
-
-//                if(bodyTag == "!--FileName") //check if the tag is body tag
-//                {
-//                    while(from[index] != '>')
-//                        index++;
-//                    return index;
-//                }
-//            }
-//        }
-//        index++;
-//}
     return -1;
 }
 

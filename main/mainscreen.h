@@ -73,19 +73,18 @@ private:
     void uiSetDisconnectMode();
     void uiSetConnectMode();
     void setLabelConnectionStatus(jceLogin::jceStatus statusDescription);
+    void checkLocale();
 
     Ui::MainScreen *ui;
+
+    QLabel *ButtomStatusLabel;
+    QLabel *statusLabel;
 
     user *userLoginSetting;
     SaveData *data;
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
-
-    QLabel *ButtomStatusLabel;
-    QLabel *statusLabel;
-
-    void showMSG(QString msg);
 
 };
 
