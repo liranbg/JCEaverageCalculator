@@ -2,7 +2,7 @@
 layout: page
 title: Help
 permalink: /help/
-image: JceManager/assets/images/help.jpg
+image: /JceManager/assets/images/help.jpg
 ---
 
 #Need some help getting arround?

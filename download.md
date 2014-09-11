@@ -2,7 +2,7 @@
 layout: page
 title: Download
 permalink: /download/
-image: JceManager/assets/images/download.jpg
+image: /JceManager/assets/images/download.jpg
 ---
 
 
