@@ -15,13 +15,15 @@ public:
     ~CalendarManager()
     {
         delete caliSchedPtr;
+        delete caliDialog;
     }
-    void exportCalendarCSV(CalendarDialog*);
+    void exportCalendarCSV();
     void setCalendar(std::string html);
     void resetTable() { if (caliSchedPtr != NULL) caliSchedPtr->clearTableItems(); }
 
 private:
     calendarSchedule * caliSchedPtr;
+    CalendarDialog * caliDialog;
 
 };
 

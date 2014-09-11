@@ -3,28 +3,41 @@
 CalendarManager::CalendarManager(calendarSchedule *ptr)
 {
     this->caliSchedPtr = ptr;
+    caliDialog = new CalendarDialog();
 }
 
 void CalendarManager::setCalendar(std::string html)
 {
     caliSchedPtr->setPage(html);
 }
-void CalendarManager::exportCalendarCSV(CalendarDialog *calDialog)
+void CalendarManager::exportCalendarCSV()
 {
-    if(CSV_Exporter::exportCalendar(this->caliSchedPtr, calDialog))
+    QMessageBox msgBox;
+    int buttonClicked = caliDialog->exec();
+    if (buttonClicked == 0) //cancel?
+        return;
+    //calDialog.getStartDate(),calDialog.getEndDate()
+    if(caliDialog->ok())
     {
-        QMessageBox msgBox;
-        msgBox.setText(QObject::tr("Exported Successfuly!"));
-        msgBox.exec();
-    }else
-    {
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(QObject::tr("<center>Something went wrong...<br></center>Maybe: <ul><li>You Canceled</li><li>Unable to save the File - try again</li></ul><br><br>"
-                       "<b><center>In case of a serious problem, please file a bug report.<br>thank you. OpenJCE teem"));
-        msgBox.exec();
+        if(CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog))
+        {
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setText(QObject::tr("Exported Successfuly!"));
+            msgBox.exec();
+        }else
+        {
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setText(QObject::tr("Error on exporting. please check your file system."));
+            msgBox.exec();
+        }
     }
 
+    else
+    {
+        msgBox.setIcon(QMessageBox::Critical);
+         msgBox.setText(QObject::tr("Dates not valid"));
+        msgBox.exec();
+    }
 }
 
 

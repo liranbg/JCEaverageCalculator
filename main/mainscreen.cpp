@@ -275,7 +275,9 @@ void MainScreen::on_getCalendarBtn_clicked()
 void MainScreen::on_exportToCVSBtn_clicked()
 {
     if (loginHandel->isLoggedInFlag())
+    {
         this->calendar->exportCalendarCSV();
+    }
 }
 
 //EVENTS ON MENU BAR
@@ -312,21 +314,7 @@ void MainScreen::on_actionHow_To_triggered()
 }
 
 
-void MainScreen::on_exportToCVSBtn_clicked()
-{
-    if (loginHandel->isLoggedInFlag())
-    {
-        CalendarDialog calDialog;
-        int buttonClicked = calDialog.exec();
-        if(buttonClicked == 0)
-            return;
-//calDialog.getStartDate(),calDialog.getEndDate()
-        if(calDialog.ok())
-            this->calendar->exportCalendarCSV(&calDialog);
-        else
-            showMSG("Somthig was not right with the dates you have chosen... try again");
-    }
-}
+
 
 void MainScreen::on_actionHebrew_triggered()
 {

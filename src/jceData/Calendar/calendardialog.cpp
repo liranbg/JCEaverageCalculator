@@ -33,10 +33,6 @@ bool CalendarDialog::ok()
     return this->isOK;
 }
 
-
-
-
-
 void CalendarDialog::on_calStart_clicked(const QDate &date)
 {
 
