@@ -1,6 +1,9 @@
 # Build settings
 markdown: redcarpet
 highlighter: pygments
+safe: true
+lsi: false
+source: "/JceManager"
 
 # Site settings
 title: "OpenJCE"
