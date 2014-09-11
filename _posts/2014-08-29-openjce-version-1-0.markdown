@@ -4,7 +4,7 @@ title:  "OpenJCE Version 1.0 Released!"
 date:   2014-09-17 14:34:25
 categories: Releases
 tags: featured
-image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
+image: /JceManager/assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 ---
 #Proud To Announce Our First Release!
 ####*OpenJCE v1.0 is now public*
@@ -42,5 +42,5 @@ happy with the resault. And the project is now avalible to the public.
 
 
 [jce]:     	   https://yedion.jce.ac.il/student/
-[download]:   /download/
-[about]: /about/
+[download]:   /JceManager/download/
+[about]: /JceManager/about/
