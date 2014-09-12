@@ -12,7 +12,7 @@ void CalendarManager::setCalendar(std::string html)
 }
 void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
 {
-    if (caliSchedPtr->getCourses()->empty())
+    if (caliSchedPtr->getCourses() == NULL)
         return;
     QMessageBox msgBox;
     int buttonClicked = caliDialog->exec();

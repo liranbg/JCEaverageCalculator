@@ -7,10 +7,12 @@ std::string CalendarPage::htmlToString()
 
 void CalendarPage::setPage(std::string html)
 {
+
     courses = new std::list<calendarCourse*>();
     tempHtml = getString(html);
     tempHtml = tokenToLines(tempHtml);
     calendarListInit(tempHtml);
+
 }
 
 std::string CalendarPage::tokenToLines(std::string &textToPhrase)
