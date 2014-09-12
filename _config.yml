@@ -9,6 +9,7 @@ description: > # this means to ignore newlines until "email:"
    Free Your Academic Data
 
 url: "" # the base hostname & protocol for your site
+fullurl: http://liranbg.github.io/JceManager
 baseurl: /JceManager
 
 email: sagidayan@gmail.com
