@@ -86,6 +86,8 @@ private:
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
 
+    bool calendarLoaded;
+
 };
 
 #endif // MAINSCREEN_H
