@@ -10,14 +10,14 @@ void CalendarManager::setCalendar(std::string html)
 {
     caliSchedPtr->setPage(html);
 }
-void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
+bool CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
 {
-//    if (caliSchedPtr->getCourses()->empty())
-//        return;
+    if (this->caliSchedPtr->getCourses()->empty())
+        return false;
     QMessageBox msgBox;
     int buttonClicked = caliDialog->exec();
     if (buttonClicked == 0) //cancel?
-        return;
+        return false;
     //calDialog.getStartDate(),calDialog.getEndDate()
     if(caliDialog->ok())
     {
@@ -26,6 +26,7 @@ void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer 
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setText(QObject::tr("Exported Successfuly!"));
             msgBox.exec();
+            return true;
         }else
         {
             msgBox.setIcon(QMessageBox::Critical);
@@ -39,6 +40,7 @@ void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer 
          msgBox.setText(QObject::tr("Dates not valid"));
         msgBox.exec();
     }
+    return false;
 }
 
 

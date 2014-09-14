@@ -49,8 +49,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //Local Check and ui setting.
     checkLocale();
 
-    //calendar bug fix
-    calendarLoaded = false;
 
 }
 
@@ -267,7 +265,6 @@ void MainScreen::on_getCalendarBtn_clicked()
             //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
             calendar->resetTable();
             calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
-            calendarLoaded = true;
         }
 
         else if (status == jceLogin::JCE_NOT_CONNECTED)
@@ -280,9 +277,7 @@ void MainScreen::on_exportToCVSBtn_clicked()
 {
     if (loginHandel->isLoggedInFlag())
     {
-        if(calendarLoaded)
-            this->calendar->exportCalendarCSV();
-        else
+        if(!this->calendar->exportCalendarCSV())
         {
             QMessageBox::critical(this,tr("Error"),"No Calendar was loaded."); //Need Translation
         }
