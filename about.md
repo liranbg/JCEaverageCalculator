@@ -39,7 +39,7 @@ Head over to our [<i class="fa fa-github"></i> Github page][github] and fork, se
 
 Or file a Bug report to help us improve.
 
-## <i class="fa fa-copyright"></i> License 
+## <i class="fa fa-file-code-o"></i> License 
 License under [GNU LESSER GENERAL PUBLIC LICENSE][gnu].
 
 
