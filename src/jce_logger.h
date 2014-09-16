@@ -1,0 +1,17 @@
+#ifndef JCE_LOGGER_H
+#define JCE_LOGGER_H
+
+#include <QMessageLogContext>
+#include <QString>
+#include <QDateTime>
+#include <QFile>
+#include <QTextStream>
+
+class jce_logger
+{
+public:
+    static void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+
+};
+
+#endif // JCE_LOGGER_H

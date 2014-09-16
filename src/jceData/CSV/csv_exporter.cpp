@@ -8,21 +8,24 @@ CSV_Exporter::CSV_Exporter()
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
     if ((cal == NULL) || (calSched == NULL) || (calSched->getCourses() == NULL)) //pointers checking!
+    {
+        qWarning() << "CSV : User trying to export to csv but no calendar was loaded. aborting.";
         return false;
-    qDebug() << "Getting path for csv file from user...";
+    }
+    qDebug() << "CSV : Getting path for csv file from user...";
     QString filePath = getFileFath();
     if(filePath == NULL) //User canceled
     {
-        qDebug() << "User pressed Cancel... returning false";
+        qDebug() << "CSV : User pressed Cancel... returning false";
         return false;
     }
-    qDebug() << "User Chose: " << filePath;
-    qDebug() << "Atempting to export the Schedule...";
+    qDebug() << "CSV : User Chose: " << filePath;
+    qDebug() << "CSV : Atempting to export the Schedule...";
 
     QFile file(filePath);
-    if(!file.open(QIODevice::ReadWrite | QIODevice::Text |QIODevice::Truncate))
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        qDebug() << "unable to open/create the file... maybe permissions error.";
+        qCritical() << "CSV : unable to open/create the file... maybe permissions error.";
         return false;
     }//else
     //Delete the file
@@ -48,25 +51,17 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         for(;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
         {
             QString line = makeLine(name, &currentDate, startH, startM, endH, endM, lecturer, room, type);
-#ifdef Q_OS_LINUX || Q_OS_UNIX
             if(line != NULL)
                 out << line << char(0x0A);
-#endif
-#ifdef  Q_OS_OSX
-            if(line != NULL)
-                out << line << char(0x0A);
-#endif
-#ifdef Q_OS_WIN
-            if(line != NULL)
-                out << line << char(0x0D) << char(0x0A);
-#endif
+            else
+                qWarning() << "CSV : Got A NULL in Line! in function: " << Q_FUNC_INFO;
         }
         out.flush();
     }
 
 
     file.close();
-    qDebug() << "Saved Successfuly! - HazZaA!";
+    qDebug() << "CSV : Exported Successfully";
     return true;
 
 }
