@@ -7,7 +7,7 @@ tags: featured
 image: /JceManager/assets/article_images/first-release/desktop.JPG
 ---
 #Proud To Announce Our First Release!
-####*JCE JceManager v1.0 is now public*
+####*JCE Manager v1.0 is now public*
 
 <br>
 
