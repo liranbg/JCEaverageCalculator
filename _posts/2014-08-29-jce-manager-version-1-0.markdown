@@ -18,7 +18,7 @@ happy with the resault. And the project is now avalible to the public.
 >You can read more about *JCE Manager*, and the team at the [About Page][about].
 
 ####V1.0 Release Notes:
- - Hack to the [JCE Studen web site][jce] ("Yedion")
+ - Hack into the [JCE Student web site][jce] ("Yedion")
  - Fetch your grade sheet
  - Change your grades to see how it affects your GPA 
  - Save your *username* and *password* for easy access (Password is encrypted)
