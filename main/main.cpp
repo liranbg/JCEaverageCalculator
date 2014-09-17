@@ -8,7 +8,13 @@
 
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(jce_logger::customMessageHandler);
+#ifdef QT_DEBUG
+  qDebug() << "Running a debug build";
+#else
+  qDebug() << "Running a release build";
+  qInstallMessageHandler(jce_logger::customMessageHandler);
+#endif
+
     qDebug() << "Start : JCE Manager Launched" << Q_FUNC_INFO;
     QApplication a(argc, argv);
     QTranslator translator;
