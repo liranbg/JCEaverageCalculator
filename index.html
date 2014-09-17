@@ -14,6 +14,9 @@ layout: default
     {% endif %}
     <h1 class="blog-title">{{ site.title }}</h1>
     <h2 class="blog-description">{{ site.description }}</h2>
+    
+    <!--[if IE]><b> Get a better browser! - This website dose not support Internet Explorer </b><![endif]-->
+    
     <div class="custom-links">
       {% for social in site.social %}
         <a class="icon-{{ social.icon }}" href="{{ social.url }}">
