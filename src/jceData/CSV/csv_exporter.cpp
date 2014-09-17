@@ -1,10 +1,25 @@
 #include "csv_exporter.h"
 
+/*
+ *
+ * Class doc can be bound in csv_exporter.h
+ *
+ */
+
+
 CSV_Exporter::CSV_Exporter()
 {
-
+    /* EMPTY - NO NEED */
 }
 
+/**
+ * @brief   This method will generate the CSV file (Targeting google calendar import)
+ *          it will create a full Semester calendar based on the users input (@param cal)
+ *          and the @calSched wich holdes all the courses in "this" semester.
+ * @param calSched  - Holdes all the Courses and there info
+ * @param cal       - The Calendar dialog witch holdes the starting date and the eand date.
+ * @return          - True if *all* went well, false if something on the way went wrong.
+ */
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
     if ((cal == NULL) || (calSched == NULL) || (calSched->getCourses() == NULL)) //pointers checking!
@@ -14,7 +29,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     }
     qDebug() << "CSV : Getting path for csv file from user...";
     QString filePath = getFileFath();
-    if(filePath == NULL) //User canceled
+    if(filePath == NULL) //User canceled from the file explorer popup
     {
         qDebug() << "CSV : User pressed Cancel... returning false";
         return false;
@@ -23,31 +38,36 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     qDebug() << "CSV : Atempting to export the Schedule...";
 
     QFile file(filePath);
-    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate))
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) //Incase unable to open the file (binary mode - \n will not be converted on "Windows")
     {
         qCritical() << "CSV : unable to open/create the file... maybe permissions error.";
         return false;
-    }//else
-    //Delete the file
+    }
+
     QTextStream out(&file);
-    out << CSV_CALENDAR_HEADER << "\n";
-    for (calendarCourse *coursePtr: *(calSched->getCourses()))
+    out << CSV_CALENDAR_HEADER << "\n"; // macro in header file
+
+    for (calendarCourse *coursePtr: *(calSched->getCourses())) //main loop - running though all courses
     {
-        // Subject,Start Date,Start Time,End Date,End Time,Description,Location
+        // Getting course info - store in vars for easy access
         int day = coursePtr->getDay();
         int startH = coursePtr->getHourBegin();
         int startM = coursePtr->getMinutesBegin();
         int endH = coursePtr->getHourEnd();
         int endM = coursePtr->getMinutesEnd();
-        QString lecturer = QString(coursePtr->getLecturer().c_str()); //WHY YOU USED STD STRING?!
+        QString lecturer = QString(coursePtr->getLecturer().c_str()); //NOTE: STD String
         QString type = QString(coursePtr->getType().c_str());
         QString name = QString(coursePtr->getName().c_str());
         QString room = QString(coursePtr->getRoom().c_str());
 
-        QDate currentDate = cal->getStartDate();
+        QDate currentDate = cal->getStartDate(); // currentDate will iterate thou the semester
 
-        currentDate = currentDate.addDays(day-1);
+        currentDate = currentDate.addDays(day-1); //selecting the REAL starting day of that course
 
+        /*
+         * secondary loop - We have course info and starting day.
+         * evrey loop enterence we add the course and moving one week forward.
+         */
         for(;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
         {
             QString line = makeLine(name, &currentDate, startH, startM, endH, endM, lecturer, room, type);
@@ -66,6 +86,10 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
 
 }
 
+/**
+ * @brief Get the file path according to user via a file explorer dialog
+ * @return - QString: the file path.
+ */
 QString CSV_Exporter::getFileFath()
 {
     QString fileName = QFileDialog::getSaveFileName();
@@ -76,6 +100,20 @@ QString CSV_Exporter::getFileFath()
     return fileName;
 }
 
+
+/**
+ * @brief Returning a CSV formated ling in QString.
+ * @param name
+ * @param date
+ * @param startH
+ * @param startM
+ * @param endH
+ * @param endM
+ * @param lecturer
+ * @param room
+ * @param type
+ * @return a CSV formated ling in QString.
+ */
 QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM, int endH, int endM, QString lecturer, QString room, QString type)
 {
     //Creating a CSV text line for Google Calendar/iCal/Outlook
@@ -108,7 +146,7 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     description.append("\n");
     description.append(" ב");
     description.append(room);
-    description.append("\"");
+    description.append("\n Created with JCE Manager. \" ");
 
     //Create the Fucking Line
     //Header: Subject,Start Date,Start Time,End Date,End Time,Description,Location
