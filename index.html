@@ -14,9 +14,6 @@ layout: default
     {% endif %}
     <h1 class="blog-title">{{ site.title }}</h1>
     <h2 class="blog-description">{{ site.description }}</h2>
-    
-    <!--[if (gt IE 5)]><b> Get a better browser! - This website dose not support Internet Explorer </b><![endif]-->
-    
     <div class="custom-links">
       {% for social in site.social %}
         <a class="icon-{{ social.icon }}" href="{{ social.url }}">
@@ -30,6 +27,11 @@ layout: default
       &nbsp;&nbsp;·&nbsp;&nbsp;
       <a href="{{ site.baseurl }}/help/">Help</a>
     </div>
+    
+    <br>
+    <center>
+            <!--[if (gt IE 5)]><b><p> Get a better browser! - This website dose not support Internet Explorer </p></b><![endif]-->
+    </center>
 </header>
 
 <script>
