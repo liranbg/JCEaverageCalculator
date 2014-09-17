@@ -32,14 +32,6 @@ private slots:
 
     void on_ratesButton_clicked();
 
-    void on_spinBoxCoursesFromYear_editingFinished();
-
-    void on_spinBoxCoursesFromSemester_editingFinished();
-
-    void on_spinBoxCoursesToYear_editingFinished();
-
-    void on_spinBoxCoursesToSemester_editingFinished();
-
     void on_loginButton_clicked();
 
     void on_usrnmLineEdit_editingFinished();
@@ -68,12 +60,22 @@ private slots:
 
     void on_actionOS_Default_triggered();
 
+    void on_spinBoxCoursesFromSemester_valueChanged(int arg1);
+
+    void on_spinBoxCoursesFromYear_valueChanged(int arg1);
+
+    void on_spinBoxCoursesToYear_valueChanged(int arg1);
+
+    void on_spinBoxCoursesToSemester_valueChanged(int arg1);
+
 private:
 
     void uiSetDisconnectMode();
     void uiSetConnectMode();
     void setLabelConnectionStatus(jceLogin::jceStatus statusDescription);
     void checkLocale();
+
+    bool checkIfValidDates();
 
     Ui::MainScreen *ui;
 

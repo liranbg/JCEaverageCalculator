@@ -28,7 +28,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //Course, Setting, Calendar Tab
     calendarSchedule * calendarSchedulePtr = new calendarSchedule();
     ui->calendarGridLayoutMain->addWidget(calendarSchedulePtr);
-    ui->CoursesTab->setDisabled(true);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
 
     //Pointer allocating
@@ -181,6 +180,12 @@ void MainScreen::uiSetConnectMode()
 //EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
+    if (!checkIfValidDates())
+    {
+        qWarning() << "MainScreen::on_ratesButton_clicked; Invalid dates! ";
+        QMessageBox::critical(this,tr("Error"),tr("Invalid Dates.\nMake Sure everything is correct and try again"));
+        return;
+    }
     QString pageString;
     int status = 0;
     if (loginHandel->isLoggedInFlag())
@@ -197,50 +202,44 @@ void MainScreen::on_ratesButton_clicked()
         }
     }
 }
+bool MainScreen::checkIfValidDates()
+{
+    bool flag = false;
+    if (ui->spinBoxCoursesFromYear->value() < ui->spinBoxCoursesToYear->value())
+    {
+        //doesnt matter what is the semester, its valid!
+        flag = true;
+    }
+    else if ((ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value()))
+    {
+        //semester from must be equal or less than to semester
+        if (ui->spinBoxCoursesFromSemester->value() <= ui->spinBoxCoursesToSemester->value())
+            flag = true;
+    }
+    return flag;
+}
 void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
 {
     this->userLoginSetting->setInfluenceCourseOnly(checked);
     this->courseTableMgr->influnceCourseChanged(checked);
 }
-void MainScreen::on_spinBoxCoursesFromYear_editingFinished()
+void MainScreen::on_spinBoxCoursesFromYear_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
-    {
-        ui->spinBoxCoursesFromYear->setValue(ui->spinBoxCoursesToYear->value());
-        ui->spinBoxCoursesFromYear->setFocus();
-    }
+    ui->spinBoxCoursesFromYear->setValue(arg1);
+}
+
+void MainScreen::on_spinBoxCoursesToYear_valueChanged(int arg1)
+{
+    ui->spinBoxCoursesToYear->setValue(arg1);
 
 }
-void MainScreen::on_spinBoxCoursesToYear_editingFinished()
+void MainScreen::on_spinBoxCoursesFromSemester_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
-    {
-        ui->spinBoxCoursesToYear->setValue(ui->spinBoxCoursesFromYear->value());
-        ui->spinBoxCoursesToYear->setFocus();
-
-    }
+    ui->spinBoxCoursesFromSemester->setValue(arg1%4);
 }
-void MainScreen::on_spinBoxCoursesFromSemester_editingFinished()
+void MainScreen::on_spinBoxCoursesToSemester_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
-    {
-        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
-        {
-            ui->spinBoxCoursesFromSemester->setValue(ui->spinBoxCoursesToSemester->value());
-            ui->spinBoxCoursesFromSemester->setFocus();
-        }
-    }
-}
-void MainScreen::on_spinBoxCoursesToSemester_editingFinished()
-{
-    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
-    {
-        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
-        {
-            ui->spinBoxCoursesToSemester->setValue(ui->spinBoxCoursesFromSemester->value());
-            ui->spinBoxCoursesToSemester->setFocus();
-        }
-    }
+    ui->spinBoxCoursesToSemester->setValue(arg1%4);
 }
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
@@ -291,13 +290,13 @@ void MainScreen::on_actionCredits_triggered()
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
                        + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        + tr("CREDITS-ROOL-UP3")+"<br>"
-                       "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                                                "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
+                                                "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
                        +tr("DevBy")+":"
-                       "<ul>"
-                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
-                       "</ul>");
+                                    "<ul>"
+                                    "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                                                                                          "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
+                                                                                                                                                 "</ul>");
 }
 void MainScreen::on_actionExit_triggered()
 {
@@ -309,11 +308,11 @@ void MainScreen::on_actionHow_To_triggered()
                              "<b>How To..</b>"
                              "<ul>"
                              "<br><li>"+tr("HELP1")+"</li>"
-                             "<br><li>"+tr("HELP2")+"</li>"
-                             "<br><li>"+tr("HELP3")+"</li>"
-                             "<br><li>"+tr("HELP4")+"</li>"
-                             "<br><li>"+tr("HELP5")+"</li>"
-                             "<br><br>"+tr("HELP6")+
+                                                    "<br><li>"+tr("HELP2")+"</li>"
+                                                                           "<br><li>"+tr("HELP3")+"</li>"
+                                                                                                  "<br><li>"+tr("HELP4")+"</li>"
+                                                                                                                         "<br><li>"+tr("HELP5")+"</li>"
+                                                                                                                                                "<br><br>"+tr("HELP6")+
                              "</ul>");
 
 }

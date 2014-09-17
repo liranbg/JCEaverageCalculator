@@ -16,7 +16,6 @@ void Page::makeText(QString &html)
     int index = 0;
     index = html.indexOf("<tbody>",0); //set index into the place where the data is
     manageTableContent(html, index);
-    qDebug() << "page after parsing " << text;
 }
 /**
  * @brief Page::manageTableContent strip html, make it string
