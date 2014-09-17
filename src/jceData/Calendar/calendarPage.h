@@ -4,28 +4,28 @@
 #include "../page.h"
 #include "calendarCourse.h"
 #include <list>
-#include <string.h> //strlen and strtok to phrase the html file
-#include <ctype.h> //checks if character is numeric
+//#include <string.h> //strlen and strtok to phrase the html file
+//#include <ctype.h> //checks if character is numeric
 
 class CalendarPage : public Page
 {
 public:
 
-    std::string htmlToString();
+    QString htmlToString();
     std::list<calendarCourse*>* getCourses() { return courses; }
 
 
 protected:
-    virtual void setPage(std::string html);
-CalendarPage() { }
+    virtual void setPage(QString html);
+    CalendarPage() { courses = NULL; }
 
 
 private:
-    std::string tokenToLines(std::string& textToPhrase);
-    void calendarListInit(std::string& linesTokinzedString);
-    calendarCourse* lineToCourse(std::string line);
+    QString tokenToLines(QString &textToParse);
+    void calendarListInit(QString &linesTokinzedString);
+    calendarCourse* lineToCourse(QString line);
 
-    std::string tempHtml;
+    QString tempHtml;
     std::list<calendarCourse*>* courses;
 
 

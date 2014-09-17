@@ -1,56 +1,50 @@
 #include "page.h"
 
-Page::Page()
+Page::Page() {}
+/**
+ * @brief Page::getString
+ * @param htmlToPhrased
+ * @return
+ */
+QString Page::getString(QString &htmlToParse)
 {
-
-}
-std::string Page::getString(std::string& htmlToPhrased)
-{
-    makeText(htmlToPhrased);
+    makeText(htmlToParse);
     return this->text;
 }
-void Page::makeText(std::string& html)
+void Page::makeText(QString &html)
 {
     int index = 0;
-    index = runToActualText(html, index); //set index into the actual place where the data is
+    index = html.indexOf("<tbody>",0); //set index into the place where the data is
     manageTableContent(html, index);
 }
-
-int Page::runToActualText(std::string& from, int index)
+/**
+ * @brief Page::manageTableContent strip html, make it string
+ * @param html html to parse
+ * @param index index to start looking for data
+ */
+void Page::manageTableContent(QString &html, int index)
 {
-    while (index < (int)from.length())
+    if (index == -1)
+        return;
+    QString temp;
+    for (int i = index; i < html.length(); i++)
     {
-        if (from[index] == '<')
-        {
-                if (from.substr(index,7) == "<tbody>")
-                    return index+7;
-         }
-        index++;
-    }
-    return -1;
-}
-
-void Page::manageTableContent(std::string& html, int index)
-{
-    std::string temp;
-    for (int i = index; i < (int)html.length(); i++)
-    {
-        if(html[i] == '<')
+        if(html.at(i) == '<')
         {
             //<tr> / <td> / <th>
-            std::string endofTable = "</tbody>";
-            std::string tableTag = html.substr(i, 4); //legth of "tr/td"
-            if(tableTag == "<tr>")
+            QString endofTable = "</tbody>";
+            QString tableTag = html.mid(i, 4); //legth of "tr/td"
+            if (tableTag == "<tr>")
             {
                 temp += "\n"; //new row -> new line
                 i = stitchText(html, temp, i+4);
                 if(i == -1) //EOF
                     break;
             }
-            else if(tableTag == "<td>" || tableTag == "<th>")
+            else if (tableTag == "<td>" || tableTag == "<th>")
             {
                 temp += "\t"; // new cell -> tab between data
-                if (html.substr(i, 6) == "<td><a") //link to lecturer portal, need to be deleted
+                if (html.mid(i, 6) == "<td><a") //link to lecturer portal, need to be deleted
                 {
                     i += 6;
                     while (html.at(++i) != '>');
@@ -64,11 +58,11 @@ void Page::manageTableContent(std::string& html, int index)
             else if(tableTag == "<td ") // a Year title (in grades table)
             {
                 temp += "\t";
-                while(html[i] != '>')
+                while(html.at(i) != '>')
                     i++;
                 i = stitchText(html, temp, i+1);
             }
-            else if (html.substr(i,(endofTable).length()) == endofTable) //is end of table
+            else if (html.mid(i,(endofTable).length()) == endofTable) //is end of table
             {
                 break;
             }
@@ -79,26 +73,26 @@ void Page::manageTableContent(std::string& html, int index)
     this->text = temp;
 }
 
-int Page::stitchText(std::string& from, std::string& to, int index)
+int Page::stitchText(QString &from, QString &to, int index)
 {
-    if (from[index] == '<')
+    if (from.at(index) == '<')
     {
-        std::string bTag = from.substr(index, 3);
+        QString bTag = from.mid(index, 3);
         if (bTag != "<b>")
             return index-1; //go back one step - for the main function to inc i
         index += 3;
     }
 
-    while (from[index] != '<' && index < (int)from.length())
+    while (from.at(index) != '<' && index < (int)from.length())
     {
         if (from[index] == '&')
         {
             //&nbsp;
-            std::string nbspChr = from.substr(index, 6);
+            QString nbspChr = from.mid(index, 6);
             if (nbspChr == "&nbsp;")
             {
                 index += 5;
-                from.at(index) = ' ';
+                from.replace(index,1,' ');
             }
 
         }
@@ -106,11 +100,11 @@ int Page::stitchText(std::string& from, std::string& to, int index)
         if (endOfString(index,(int) from.length()))
             return -1; //EOF
 
-        else if (from[index] == '<')
+        else if (from.at(index) == '<')
             return index - 1; //go back one step - for the main function to inc i
 
-        if (from[index] != '\n') //check the actuall data before continue
-            to += from[index];
+        if (from.at(index) != '\n') //check the actuall data before continue
+            to += from.at(index);
         index++;
     }
 

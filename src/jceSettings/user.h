@@ -1,41 +1,38 @@
 #ifndef user_H
 #define user_H
 
-#include <string>
-#include <iostream>
+#include <QString>
 
-using namespace std;
 class user
 {
 public:
-    user(string username,string password);
+
+    user(QString username,QString password);
     ~user();
-    void setUsername(string& username);
-    void setPassword(string& password);
+    void setUsername(QString& username);
+    void setPassword(QString& password);
 
-    string getPassword() const;
-    string getUsername() const;
+    QString getPassword() const;
+    QString getUsername() const;
 
-    void setUserID(string& ID);
-    void setHashedPassword(string& hashpass);
+    void setUserID(QString& ID);
+    void setHashedPassword(QString& hashpass);
 
-    string getUserID() const;
-    string getHashedPassword() const;
+    QString getUserID() const;
+    QString getHashedPassword() const;
 
     void setInfluenceCourseOnly(bool status);
     bool getInfluenceCourseOnly() const;
 
 private:
 
-    string username;
-    string password;
+    QString username;
+    QString password;
 
-    string hashedPassword;
-    string userID;
+    QString hashedPassword;
+    QString userID;
 
     bool influenceCourseOnly;
-
-
 
 };
 #endif

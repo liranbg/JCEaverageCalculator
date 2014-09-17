@@ -30,22 +30,22 @@ public:
         ADDITION
     };
 
-    gradeCourse(int serial, std::string name, std::string type, double points,double hours, double grade, std::string additions);
+    gradeCourse(int serial, QString name, QString type, double points,double hours, double grade, QString additions);
     ~gradeCourse();
 
     double getHours() const {return this->hours;}
     double getGrade() const ;
-    std::string getAddidtions() const {return this->additions;}
+    QString getAddidtions() const {return this->additions;}
 
     void setHours(double hours);
     void setGrade(double grade);
-    void setAdditions(std::string additions);
+    void setAdditions(QString additions);
 
 private:
 
 	double hours;
 	double grade;
-    std::string additions;
+    QString additions;
 };
 
 

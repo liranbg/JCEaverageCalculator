@@ -46,7 +46,7 @@ void coursesTableManager::insertJceCoursesIntoTable()
  * @brief coursesTableManager::setCoursesList   creating courses list with given html page
  * @param html
  */
-void coursesTableManager::setCoursesList(std::string &html)
+void coursesTableManager::setCoursesList(QString &html)
 {
     gp = new GradePage(html);
 }
@@ -70,10 +70,10 @@ bool coursesTableManager::changes(QString change, int row, int col)
             switch (col)
             {
             case (gradeCourse::CourseScheme::NAME):
-                c->setName(change.toStdString());
+                c->setName(change);
                 break;
             case (gradeCourse::CourseScheme::TYPE):
-                c->setType(change.toStdString());
+                c->setType(change);
                 break;
             case (gradeCourse::CourseScheme::POINTS):
             {
@@ -117,7 +117,7 @@ bool coursesTableManager::changes(QString change, int row, int col)
                 break;
             }
             case (gradeCourse::CourseScheme::ADDITION):
-                c->setAdditions(change.toStdString());
+                c->setAdditions(change);
                 break;
             }
             break;
@@ -150,11 +150,11 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
             hours = new QTableWidgetItem(QString::number(c->getHours()));
             hours->setFlags(serial->flags() & ~Qt::ItemIsEditable);
             grade = new QTableWidgetItem(QString::number(c->getGrade()));
-            name = new QTableWidgetItem(QString::fromStdString(c->getName()));
+            name = new QTableWidgetItem(c->getName());
             name->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            type = new QTableWidgetItem(QString::fromStdString(c->getType()));
+            type = new QTableWidgetItem(c->getType());
             type->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            addition = new QTableWidgetItem(QString::fromStdString(c->getAddidtions()));
+            addition = new QTableWidgetItem(c->getAddidtions());
 
             courseTBL->setItem(i,j++,serial);
             courseTBL->setItem(i,j++,name);
@@ -212,7 +212,7 @@ void coursesTableManager::clearTable()
     int i = 0; //starting point
     while (courseTBL->rowCount() > i)
     {
-        gp->removeCourse(courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text().toStdString());
+        gp->removeCourse(courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text());
         courseTBL->removeRow(i);
     }
     gp = NULL;

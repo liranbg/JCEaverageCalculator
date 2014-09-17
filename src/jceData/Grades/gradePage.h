@@ -4,7 +4,7 @@
 /*  This Code Made By Sagi Dayan
  *  SagiDayan@gmail.com
  *
- *  Minor changes  has been made by Liran Ben Gida
+ *  Changes  has been made by Liran Ben Gida
  *  LiranBG@gmail.com
 */
 
@@ -12,32 +12,29 @@
 #include "../Grades/gradeCourse.h"
 
 #include <list>
-#include <string.h> //strlen and strtok to phrase the html file
-#include <ctype.h> //checks if character is numeric
 
 class GradePage : public Page
 {
 	
 public:
-    GradePage(std::string html);
+    GradePage(QString html);
 	~GradePage();
 
-    void addCourse(gradeCourse *);
-    void removeCourse(std::string courseSerialID);
+    void removeCourse(QString courseSerialID);
 	double getAvg();
 
     std::list<gradeCourse*>* getCourses() { return courses; }
 
 private:
 
-    std::string tokenToLines(std::string& textToPhrase);
-	void coursesListInit(std::string& linesTokinzedString);
-    gradeCourse* lineToCourse(std::string line);
+    QString tokenToLines(QString &textToPhrase);
+    void coursesListInit(QString &linesTokinzedString);
+    gradeCourse* lineToCourse(QString line);
 
-	bool isGradedYet(std::string grade);
+    bool isGradedYet(QString grade);
 
     std::list<gradeCourse*>* courses;
-	std::string tempHtml;
+    QString tempHtml;
 
 };
 

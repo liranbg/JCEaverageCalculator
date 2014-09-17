@@ -1,12 +1,11 @@
 #ifndef JCELOGIN_H
 #define JCELOGIN_H
 
-#include <string>
-#include <fstream>
-
 #include "./src/jceConnection/jcesslclient.h"
 #include "./src/jceSettings/user.h"
 #include "jceLoginHtmlScripts.h"
+
+#include <QString>
 
 class jceLogin
 {
@@ -29,28 +28,28 @@ public:
 
     jceLogin(user* username);
     ~jceLogin();
+
     void makeConnection()  throw (jceStatus);
-    bool checkConnection() const;
     void reConnect() throw (jceStatus);
     void closeAll();
-    int getCalendar(int year, int semester);
-    int getGrades(int fromYear, int toYear, int fromSemester, int toSemester);
+
+    bool checkConnection() const;
     bool isLoginFlag() const;
 
-    std::string getPage();
+    int getCalendar(int year, int semester);
+    int getGrades(int fromYear, int toYear, int fromSemester, int toSemester);
 
-
-
-
+    QString getPage();
 
 private:
+
     int makeFirstVisit();
-    bool checkValidation();
     int makeSecondVisit();
+    bool checkValidation();
     void setLoginFlag(bool x);
 
     bool loginFlag;
-    std::string * recieverPage;
+    QString * recieverPage;
     user * jceA;
     jceSSLClient * JceConnector;
 

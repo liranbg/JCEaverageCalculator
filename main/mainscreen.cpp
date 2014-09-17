@@ -20,7 +20,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
     ButtomStatusLabel = new QLabel(this);
     statusLabel = new QLabel(this);
-    ui->statusBar->setMaximumSize(this->geometry().width(),StatusIconHeight);
+    ui->statusBar->setMaximumSize(this->geometry().width(),STATUS_ICON_HEIGH);
     ui->statusBar->addPermanentWidget(ButtomStatusLabel,0);
     ui->statusBar->addPermanentWidget(statusLabel,1);
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
@@ -28,7 +28,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //Course, Setting, Calendar Tab
     calendarSchedule * calendarSchedulePtr = new calendarSchedule();
     ui->calendarGridLayoutMain->addWidget(calendarSchedulePtr);
-    ui->CoursesTab->setDisabled(true);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
 
     //Pointer allocating
@@ -49,8 +48,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //Local Check and ui setting.
     checkLocale();
 
-    //calendar bug fix
-    calendarLoaded = false;
+
 
 }
 
@@ -127,8 +125,8 @@ void MainScreen::uiSetDisconnectMode()
 }
 void MainScreen::uiSetConnectMode()
 {
-    string username;
-    string password;
+    QString username;
+    QString password;
     if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
     {
         if (ui->usrnmLineEdit->text().isEmpty())
@@ -154,8 +152,8 @@ void MainScreen::uiSetConnectMode()
     }
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
 
-    username = ui->usrnmLineEdit->text().toStdString();
-    password = ui->pswdLineEdit->text().toStdString();
+    username = ui->usrnmLineEdit->text();
+    password = ui->pswdLineEdit->text();
 
     ui->usrnmLineEdit->setDisabled(true);
     ui->pswdLineEdit->setDisabled(true);
@@ -172,7 +170,6 @@ void MainScreen::uiSetConnectMode()
         ui->CoursesTab->setEnabled(true);
         ui->exportToCVSBtn->setEnabled(true);
         ui->getCalendarBtn->setEnabled(true);
-
     }
     else
     {
@@ -182,13 +179,19 @@ void MainScreen::uiSetConnectMode()
 //EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
-    std::string pageString;
+    if (!checkIfValidDates())
+    {
+        qWarning() << "MainScreen::on_ratesButton_clicked; Invalid dates! ";
+        QMessageBox::critical(this,tr("Error"),tr("Invalid Dates.\nMake Sure everything is correct and try again"));
+        return;
+    }
+    QString pageString;
     int status = 0;
     if (loginHandel->isLoggedInFlag())
     {
         if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
         {
-            pageString = loginHandel->getCurrentPageContect().toStdString();
+            pageString = loginHandel->getCurrentPageContect();
             courseTableMgr->setCoursesList(pageString);
             courseTableMgr->insertJceCoursesIntoTable();
         }
@@ -198,50 +201,44 @@ void MainScreen::on_ratesButton_clicked()
         }
     }
 }
+bool MainScreen::checkIfValidDates()
+{
+    bool flag = false;
+    if (ui->spinBoxCoursesFromYear->value() < ui->spinBoxCoursesToYear->value())
+    {
+        //doesnt matter what is the semester, its valid!
+        flag = true;
+    }
+    else if ((ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value()))
+    {
+        //semester from must be equal or less than to semester
+        if (ui->spinBoxCoursesFromSemester->value() <= ui->spinBoxCoursesToSemester->value())
+            flag = true;
+    }
+    return flag;
+}
 void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
 {
     this->userLoginSetting->setInfluenceCourseOnly(checked);
     this->courseTableMgr->influnceCourseChanged(checked);
 }
-void MainScreen::on_spinBoxCoursesFromYear_editingFinished()
+void MainScreen::on_spinBoxCoursesFromYear_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
-    {
-        ui->spinBoxCoursesFromYear->setValue(ui->spinBoxCoursesToYear->value());
-        ui->spinBoxCoursesFromYear->setFocus();
-    }
+    ui->spinBoxCoursesFromYear->setValue(arg1);
+}
+
+void MainScreen::on_spinBoxCoursesToYear_valueChanged(int arg1)
+{
+    ui->spinBoxCoursesToYear->setValue(arg1);
 
 }
-void MainScreen::on_spinBoxCoursesToYear_editingFinished()
+void MainScreen::on_spinBoxCoursesFromSemester_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() > ui->spinBoxCoursesToYear->value())
-    {
-        ui->spinBoxCoursesToYear->setValue(ui->spinBoxCoursesFromYear->value());
-        ui->spinBoxCoursesToYear->setFocus();
-
-    }
+    ui->spinBoxCoursesFromSemester->setValue(arg1%4);
 }
-void MainScreen::on_spinBoxCoursesFromSemester_editingFinished()
+void MainScreen::on_spinBoxCoursesToSemester_valueChanged(int arg1)
 {
-    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
-    {
-        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
-        {
-            ui->spinBoxCoursesFromSemester->setValue(ui->spinBoxCoursesToSemester->value());
-            ui->spinBoxCoursesFromSemester->setFocus();
-        }
-    }
-}
-void MainScreen::on_spinBoxCoursesToSemester_editingFinished()
-{
-    if (ui->spinBoxCoursesFromYear->value() == ui->spinBoxCoursesToYear->value())
-    {
-        if (ui->spinBoxCoursesFromSemester->value() > ui->spinBoxCoursesToSemester->value())
-        {
-            ui->spinBoxCoursesToSemester->setValue(ui->spinBoxCoursesFromSemester->value());
-            ui->spinBoxCoursesToSemester->setFocus();
-        }
-    }
+    ui->spinBoxCoursesToSemester->setValue(arg1%4);
 }
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
@@ -266,8 +263,7 @@ void MainScreen::on_getCalendarBtn_clicked()
             //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
             //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
             calendar->resetTable();
-            calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
-            calendarLoaded = true;
+            calendar->setCalendar(loginHandel->getCurrentPageContect());
         }
 
         else if (status == jceLogin::JCE_NOT_CONNECTED)
@@ -280,12 +276,8 @@ void MainScreen::on_exportToCVSBtn_clicked()
 {
     if (loginHandel->isLoggedInFlag())
     {
-        if(calendarLoaded)
-            this->calendar->exportCalendarCSV();
-        else
-        {
-            QMessageBox::critical(this,tr("Error"),"No Calendar was loaded."); //Need Translation
-        }
+        this->calendar->exportCalendarCSV();
+
     }
 }
 
@@ -295,13 +287,13 @@ void MainScreen::on_actionCredits_triggered()
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
                        + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        + tr("CREDITS-ROOL-UP3")+"<br>"
-                       "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                                                "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
+                                                "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
                        +tr("DevBy")+":"
-                       "<ul>"
-                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
-                       "</ul>");
+                                    "<ul>"
+                                    "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                                                                                          "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
+                                                                                                                                                 "</ul>");
 }
 void MainScreen::on_actionExit_triggered()
 {
@@ -313,11 +305,11 @@ void MainScreen::on_actionHow_To_triggered()
                              "<b>How To..</b>"
                              "<ul>"
                              "<br><li>"+tr("HELP1")+"</li>"
-                             "<br><li>"+tr("HELP2")+"</li>"
-                             "<br><li>"+tr("HELP3")+"</li>"
-                             "<br><li>"+tr("HELP4")+"</li>"
-                             "<br><li>"+tr("HELP5")+"</li>"
-                             "<br><br>"+tr("HELP6")+
+                                                    "<br><li>"+tr("HELP2")+"</li>"
+                                                                           "<br><li>"+tr("HELP3")+"</li>"
+                                                                                                  "<br><li>"+tr("HELP4")+"</li>"
+                                                                                                                         "<br><li>"+tr("HELP5")+"</li>"
+                                                                                                                                                "<br><br>"+tr("HELP6")+
                              "</ul>");
 
 }

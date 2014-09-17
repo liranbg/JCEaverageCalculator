@@ -16,7 +16,7 @@ TRANSLATIONS = jce_en.ts \
 
 FORMS    += \
     main/mainscreen.ui \
-    src/jceData/Calendar/calendardialog.ui
+    src/jceData/Calendar/calendarDialog.ui
 
 OTHER_FILES +=
 
@@ -42,7 +42,7 @@ HEADERS += \
     src/jceData/Calendar/calendarSchedule.h \
     src/jceData/CSV/csv_exporter.h \
     src/appDatabase/simplecrypt.h \
-    src/jceData/Calendar/calendardialog.h \
+    src/jceData/Calendar/calendarDialog.h \
     src/jce_logger.h
 
 SOURCES += \
@@ -63,7 +63,5 @@ SOURCES += \
     src/jceData/Calendar/calendarSchedule.cpp \
     src/jceData/CSV/csv_exporter.cpp \
     src/appDatabase/simplecrypt.cpp \
-    src/jceData/Calendar/calendardialog.cpp \
+    src/jceData/Calendar/calendarDialog.cpp \
     src/jce_logger.cpp
-
-

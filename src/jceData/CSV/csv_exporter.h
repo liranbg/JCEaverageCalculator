@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <QString>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "../Calendar/calendarSchedule.h"
 #include "../Calendar/calendardialog.h"

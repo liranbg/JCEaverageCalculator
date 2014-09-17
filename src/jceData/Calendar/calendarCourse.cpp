@@ -1,38 +1,42 @@
 #include "calendarCourse.h"
 
-calendarCourse::calendarCourse(int serial, std::string name, std::string type, std::string lecturer, double points,
-                               double semesterHours, std::string dayAndHour,
-                               std::string room) : Course(serial,name, type,points)
+calendarCourse::calendarCourse(int serial, QString name, QString type, QString lecturer, double points,
+                               double semesterHours, QString dayAndHour,
+                               QString room) : Course(serial,name, type,points)
 {
     this->lecturer = lecturer;
     this->semesterHours = semesterHours;
     this->room = room;
     setDayAndHour(dayAndHour);
-
 }
-void calendarCourse::setDayAndHour(std::string phrase)
+/**
+ * @brief calendarCourse::setDayAndHour
+ * given a string of time and day - parsing it into day, hour it begins and hour it ends seperated
+ * @param parse -
+ */
+void calendarCourse::setDayAndHour(QString parse)
 {
     int ctr = 0;
-    std::string temp = "";
+    QString temp = "";
     QTime timetemp;
     char *tok;
-    char* textToTok = strdup(phrase.c_str());
+    char* textToTok = strdup(parse.toStdString().c_str());
     tok = strtok(textToTok, " -");
     while(tok != NULL)
     {
         temp = tok;
         switch (ctr)
         {
-        case 0:
+        case 0: //day
             setDay(temp);
             break;
-        case 1:
-            timetemp = QTime::fromString(QString::fromStdString(temp),"hh:mm");
+        case 1: //hour it begins
+            timetemp = QTime::fromString(temp,"hh:mm");
             setHourBegin(timetemp.hour());
             setMinutesBegin(timetemp.minute());
             break;
-        case 2:
-            timetemp = QTime::fromString(QString::fromStdString(temp),"hh:mm");
+        case 2: //hour it ends
+            timetemp = QTime::fromString(temp,"hh:mm");
             setHourEnd(timetemp.hour());
             setMinutesEnd(timetemp.minute());
             break;
@@ -43,12 +47,12 @@ void calendarCourse::setDayAndHour(std::string phrase)
     }
 }
 
-std::string calendarCourse::getLecturer() const
+QString calendarCourse::getLecturer() const
 {
     return lecturer;
 }
 
-void calendarCourse::setLecturer(const std::string &value)
+void calendarCourse::setLecturer(const QString &value)
 {
     lecturer = value;
 }
@@ -97,18 +101,21 @@ void calendarCourse::setMinutesEnd(int value)
 {
     minutesEnd = value;
 }
-
-std::string calendarCourse::courseToString()
+/**
+ * @brief calendarCourse::courseToString
+ * @return prints the course into string pattern
+ */
+QString calendarCourse::courseToString()
 {
-    std::string courseText = "";
-    courseText += " " + std::to_string(this->getSerialNum());
+    QString courseText = "";
+    courseText += " " + QString::number(this->getSerialNum());
     courseText += " " + this->getName();
     courseText += " " + this->getType();
     courseText += " " + this->lecturer;
-    courseText += " " + std::to_string(this->getPoints());
-    courseText += " " + std::to_string(this->semesterHours);
-    courseText += " " + std::to_string(this->day);
-    courseText += " " + std::to_string(this->hourBegin) + ":" + std::to_string(this->minutesBegin) + "-" + std::to_string(this->hourEnd) + ":" + std::to_string(this->minutesEnd);
+    courseText += " " + QString::number(this->getPoints());
+    courseText += " " + QString::number(this->semesterHours);
+    courseText += " " + QString::number(this->day);
+    courseText += " " + QString::number(this->hourBegin) + ":" + QString::number(this->minutesBegin) + "-" + QString::number(this->hourEnd) + ":" + QString::number(this->minutesEnd);
     courseText += " " + this->room;
     courseText += "\n";
     return courseText;
@@ -118,10 +125,14 @@ int calendarCourse::getDay() const
 {
     return day;
 }
-
-void calendarCourse::setDay(const std::string &value)
+/**
+ * @brief calendarCourse::setDay
+ * translating a day that written with hebrew unicode character to an integer
+ * @param value     -   contains the day in unicode
+ */
+void calendarCourse::setDay(const QString &value)
 {
-    std::string dayTemp = value.substr(0,2);
+    std::string dayTemp = value.toStdString().substr(0,2); //recieving two characters respresting days
     if (dayTemp.compare("\u05D0") == 0) //alef
         day = 1;
     else if (dayTemp.compare("\u05D1") == 0) //bet
@@ -137,13 +148,12 @@ void calendarCourse::setDay(const std::string &value)
     else
         day= -1;
 }
-
-std::string calendarCourse::getRoom() const
+QString calendarCourse::getRoom() const
 {
     return room;
 }
 
-void calendarCourse::setRoom(const std::string &value)
+void calendarCourse::setRoom(const QString &value)
 {
     room = value;
 }

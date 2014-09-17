@@ -1,11 +1,11 @@
 #include "gradePage.h"
 
-GradePage::GradePage(std::string html) : Page()
+GradePage::GradePage(QString html) : Page()
 {
-    this->courses = new std::list<gradeCourse*>();
-    this->tempHtml = getString(html);
-    this->tempHtml = tokenToLines(this->tempHtml);
-    coursesListInit(this->tempHtml);
+    courses = new std::list<gradeCourse*>();
+    tempHtml = getString(html);
+    tempHtml = tokenToLines(tempHtml);
+    coursesListInit(tempHtml);
 
 }
 GradePage::~GradePage()
@@ -15,17 +15,11 @@ GradePage::~GradePage()
     delete courses;
 }
 
-void GradePage::addCourse(gradeCourse *a)
-{
-    GradePage::courses->push_back(a);
-    return;
-}
-
-void GradePage::removeCourse(std::string courseSerialID)
+void GradePage::removeCourse(QString courseSerialID)
 {
     for(gradeCourse* c : *courses)
     {
-        if (c->getSerialNum() == stoi(courseSerialID))
+        if (c->getSerialNum() == courseSerialID.toInt())
         {
             courses->remove(c);
             delete c;
@@ -34,13 +28,13 @@ void GradePage::removeCourse(std::string courseSerialID)
     }
 
 }
-void GradePage::coursesListInit(std::string& linesTokinzedString)
+void GradePage::coursesListInit(QString &linesTokinzedString)
 {
-    std::list<std::string> stringHolder;
-    std::string temp;
+    std::list<QString> stringHolder;
+    QString temp;
     gradeCourse* cTemp = NULL;
     char* tok;
-    char* textToTok = strdup(linesTokinzedString.c_str());
+    char* textToTok = strdup(linesTokinzedString.toStdString().c_str());
     tok = strtok(textToTok,"\n");
     while (tok != NULL)
     {
@@ -48,20 +42,20 @@ void GradePage::coursesListInit(std::string& linesTokinzedString)
         stringHolder.push_back(temp);
         tok = strtok(NULL, "\n");
     }
-    for(std::string temp: stringHolder)
+    for(QString temp: stringHolder)
     {
         cTemp = lineToCourse(temp);
         if (cTemp != NULL)
-            addCourse(cTemp);
+            courses->push_back(cTemp);
     }
 }
 
-std::string GradePage::tokenToLines(std::string& textToPhrase)
+QString GradePage::tokenToLines(QString &textToPhrase)
 {
     int ctr = 0;
-    std::string temp = "";
+    QString temp = "";
     char *tok;
-    char* textToTok = strdup(textToPhrase.c_str());
+    char* textToTok = strdup(textToPhrase.toStdString().c_str());
     tok = strtok(textToTok, "\n");
     while(tok != NULL)
     {
@@ -77,17 +71,17 @@ std::string GradePage::tokenToLines(std::string& textToPhrase)
     return temp;
 
 }
-gradeCourse* GradePage::lineToCourse(std::string line)
+gradeCourse* GradePage::lineToCourse(QString line)
 {
     gradeCourse *tempC = NULL;
-    std::string templinearray[COURSE_FIELDS];//[serial,name,type,points,hours,grade,additions]
+    QString templinearray[COURSE_FIELDS];//[serial,name,type,points,hours,grade,additions]
     int serial;
     double points,hours,grade;
-    std::string name,type, additions;
-    std::string tempS = "";
+    QString name,type, additions;
+    QString tempS = "";
     int i = 0;
     char* tok;
-    char* cLine = strdup(line.c_str());
+    char* cLine = strdup(line.toStdString().c_str());
     tok = strtok(cLine, "\t");
     while(tok != NULL)
     {
@@ -98,37 +92,38 @@ gradeCourse* GradePage::lineToCourse(std::string line)
             tempS = "";
             char *tokTemp;
             tokTemp = tok;
-
             while (!(isdigit((int)*tokTemp)))
                 tokTemp++;
 
             while (isdigit((int)*tokTemp))
             {
-                tempS += *tokTemp;
+                tempS += QString(*tokTemp);
                 tokTemp++;
             }
             templinearray[i-1] = tempS;
-            templinearray[i] = tokTemp;
+            templinearray[i] = QString(tokTemp);
 
         }
         else if (i > 1)
+        {
             templinearray[i] = tempS;
+        }
         i++;
         tok=strtok(NULL, "\t");
     }
     if (templinearray[0] == "") //empty phrasing
         return NULL;
 
-    serial = stoi(templinearray[gradeCourse::CourseScheme::SERIAL]);
+    serial = templinearray[gradeCourse::CourseScheme::SERIAL].toInt();
 
     name = templinearray[gradeCourse::CourseScheme::NAME];
     type = templinearray[gradeCourse::CourseScheme::TYPE];
 
-    points = stod(templinearray[gradeCourse::CourseScheme::POINTS]);
-    hours = stod(templinearray[gradeCourse::CourseScheme::HOURS]);
+    points = templinearray[gradeCourse::CourseScheme::POINTS].toDouble();
+    hours = templinearray[gradeCourse::CourseScheme::HOURS].toDouble();
 
     if (isGradedYet(templinearray[gradeCourse::CourseScheme::GRADE]))
-        grade = stod(templinearray[gradeCourse::CourseScheme::GRADE]);
+        grade = templinearray[gradeCourse::CourseScheme::GRADE].toDouble();
     else
         grade = NO_GRADE_YET;
 
@@ -139,12 +134,12 @@ gradeCourse* GradePage::lineToCourse(std::string line)
 }
 
 //checking if one of the chars inside grade is not a number
-bool GradePage::isGradedYet(std::string grade)
+bool GradePage::isGradedYet(QString grade)
 {
-    if (strlen(grade.c_str()) <= 1)
+    if (strlen(grade.toStdString().c_str()) <= 1)
         return false;
 
-    for (char c: grade)
+    for (char c: grade.toStdString())
     {
         if (c == '\0')
             break;

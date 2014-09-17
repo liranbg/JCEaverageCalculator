@@ -1,5 +1,5 @@
-#include "calendardialog.h"
-#include "ui_calendardialog.h"
+#include "calendarDialog.h"
+#include "ui_calenDardialog.h"
 
 
 CalendarDialog::CalendarDialog(QWidget *parent) :
@@ -35,7 +35,7 @@ void CalendarDialog::on_calStart_selectionChanged()
     if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
     {
         changeLabeStatusIcon(false);
-        ui->lbl_status->setText(tr("The End of the semester can NOT be equal or before semester begins."));
+        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
         this->isOK = false;
     }
     else
@@ -49,7 +49,7 @@ void CalendarDialog::on_calStart_selectionChanged()
 void CalendarDialog::on_buttonBox_accepted()
 {
     if(ui->calStart->selectedDate() > ui->calEnd->selectedDate())
-        qDebug() << "start bigger than end!";
+        qDebug() << "start is bigger than end!";
 }
 
 void CalendarDialog::on_calEnd_selectionChanged()
@@ -57,7 +57,7 @@ void CalendarDialog::on_calEnd_selectionChanged()
     if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
     {
         changeLabeStatusIcon(false);
-        ui->lbl_status->setText(tr("The End of the semester can NOT be equal or before semester begins."));
+        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before semester begins."));
         this->isOK = false;
     }
     else

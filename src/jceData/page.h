@@ -4,35 +4,36 @@
 /*  This Code Made By Sagi Dayan
  *  SagiDayan@gmail.com
  *
- *  Minor changes  has been made by Liran Ben Gida
+ *  Changes  has been made by Liran Ben Gida
  *  LiranBG@gmail.com
 */
+#include <QDebug>
+#include <QString>
 
-#include <iostream>
-#include <string>
-
+/**
+ * @brief The Page class
+ * parsing given page - strip and clean html tags
+ * use only with JCE
+ */
 class Page
 {
 
 public:
-
 	~Page() {}
 
 protected:
     Page();
-    std::string getString(std::string& htmlToPhrased);
-	void makeText(std::string& html);
-
+    QString getString(QString &htmlToParse);
+    void makeText(QString &html);
 
 private:
 
-	int runToActualText(std::string& from, int index);
-	void manageTableContent(std::string& html, int index);
-	int stitchText(std::string& from, std::string& to, int index);
+    void manageTableContent(QString &html, int index);
+    int stitchText(QString &from, QString &to, int index);
 	bool endOfString(int index, int length);
 
-	std::string text;
-	std::string title;
+    QString text;
+    QString title;
 
 };
 

@@ -7,14 +7,16 @@ CSV_Exporter::CSV_Exporter()
 
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
-    if ((cal == NULL) || (calSched == NULL) || (calSched->getCourses() == NULL)) //pointers checking!
-    {
-        qWarning() << "CSV : User trying to export to csv but no calendar was loaded. aborting.";
+    if ((cal == NULL) || (calSched == NULL)) //pointers checking!
         return false;
-    }
-    qDebug() << "CSV : Getting path for csv file from user...";
+
+    if (calSched->getCourses() == NULL)
+        return false;
+
+    qDebug() << "Getting path for csv file from user...";
+
     QString filePath = getFileFath();
-    if(filePath == NULL) //User canceled
+    if (filePath == NULL) //User canceled
     {
         qDebug() << "CSV : User pressed Cancel... returning false";
         return false;
@@ -25,7 +27,11 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     QFile file(filePath);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate))
     {
-        qCritical() << "CSV : unable to open/create the file... maybe permissions error.";
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText(QObject::tr("Unable to open or create the file.\nExporting Failed"));
+        msgBox.exec();
+        qCritical() << "unable to open/create the file... maybe permissions error.";
         return false;
     }//else
     //Delete the file
@@ -39,16 +45,16 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         int startM = coursePtr->getMinutesBegin();
         int endH = coursePtr->getHourEnd();
         int endM = coursePtr->getMinutesEnd();
-        QString lecturer = QString(coursePtr->getLecturer().c_str()); //WHY YOU USED STD STRING?!
-        QString type = QString(coursePtr->getType().c_str());
-        QString name = QString(coursePtr->getName().c_str());
-        QString room = QString(coursePtr->getRoom().c_str());
+        QString lecturer = coursePtr->getLecturer();
+        QString type = coursePtr->getType();
+        QString name = coursePtr->getName();
+        QString room = coursePtr->getRoom();
 
         QDate currentDate = cal->getStartDate();
 
         currentDate = currentDate.addDays(day-1);
 
-        for(;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
+        for (;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
         {
             QString line = makeLine(name, &currentDate, startH, startM, endH, endM, lecturer, room, type);
             if(line != NULL)
@@ -69,9 +75,9 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
 QString CSV_Exporter::getFileFath()
 {
     QString fileName = QFileDialog::getSaveFileName();
-    if(fileName == "")
+    if (fileName == "")
         return NULL;
-    if(!fileName.contains(".csv", Qt::CaseInsensitive))
+    if (!fileName.contains(".csv", Qt::CaseInsensitive))
         fileName.append(".csv");
     return fileName;
 }

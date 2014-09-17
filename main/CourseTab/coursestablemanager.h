@@ -22,7 +22,7 @@ public:
     coursesTableManager(QTableWidget *, user *usrPtr);
     ~coursesTableManager();
     void insertJceCoursesIntoTable();
-    void setCoursesList(std::string &htmlPage);
+    void setCoursesList(QString &htmlPage);
     bool changes(QString change, int row, int col);
     void addRow(const gradeCourse * courseToAdd = 0);
     double getAvg();

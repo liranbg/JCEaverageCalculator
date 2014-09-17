@@ -1,6 +1,6 @@
 #include "gradeCourse.h"
 
-gradeCourse::gradeCourse(int serial,std::string name, std::string type, double points, double hours, double grade, std::string additions) :  Course(serial,name,type,points)
+gradeCourse::gradeCourse(int serial, QString name, QString type, double points, double hours, double grade, QString additions) :  Course(serial,name,type,points)
 {
     this->hours = hours;
     this->grade = grade;
@@ -30,7 +30,7 @@ void gradeCourse::setGrade(double grade)
     this->grade = grade;
 }
 
-void gradeCourse::setAdditions(std::string additions)
+void gradeCourse::setAdditions(QString additions)
 {
     this->additions = additions;
 }
