@@ -17,7 +17,7 @@ public:
 
 protected:
     virtual void setPage(QString html);
-    CalendarPage() { }
+    CalendarPage() { courses = NULL; }
 
 
 private:

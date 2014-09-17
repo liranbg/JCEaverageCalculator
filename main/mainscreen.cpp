@@ -170,7 +170,6 @@ void MainScreen::uiSetConnectMode()
         ui->CoursesTab->setEnabled(true);
         ui->exportToCVSBtn->setEnabled(true);
         ui->getCalendarBtn->setEnabled(true);
-
     }
     else
     {
@@ -277,10 +276,8 @@ void MainScreen::on_exportToCVSBtn_clicked()
 {
     if (loginHandel->isLoggedInFlag())
     {
-        if(!this->calendar->exportCalendarCSV())
-        {
-            QMessageBox::critical(this,tr("Error"),"No Calendar was loaded."); //Need Translation
-        }
+        this->calendar->exportCalendarCSV();
+
     }
 }
 

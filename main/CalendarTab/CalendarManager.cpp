@@ -10,37 +10,30 @@ void CalendarManager::setCalendar(QString html)
 {
     caliSchedPtr->setPage(html);
 }
-bool CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
+void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
 {
-    if (this->caliSchedPtr->getCourses()->empty())
-        return false;
+    qDebug() << this->caliSchedPtr->getCourses();
+    if (this->caliSchedPtr->getCourses() == NULL)
+        return;
     QMessageBox msgBox;
     int buttonClicked = caliDialog->exec();
     if (buttonClicked == 0) //cancel?
-        return false;
+        return;
     //calDialog.getStartDate(),calDialog.getEndDate()
-    if(caliDialog->ok())
+    if (caliDialog->ok())
     {
-        if(CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog))
+        if (CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog))
         {
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setText(QObject::tr("Exported Successfuly!"));
-            msgBox.exec();
-            return true;
-        }else
-        {
-            msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText(QObject::tr("Error on exporting."));
-            msgBox.exec();
         }
     }
     else
     {
         msgBox.setIcon(QMessageBox::Critical);
-         msgBox.setText(QObject::tr("Dates not valid"));
-        msgBox.exec();
+        msgBox.setText(QObject::tr("Dates not valid"));
     }
-    return false;
+    msgBox.exec();
 }
 
 

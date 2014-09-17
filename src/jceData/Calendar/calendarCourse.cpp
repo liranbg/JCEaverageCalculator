@@ -8,30 +8,34 @@ calendarCourse::calendarCourse(int serial, QString name, QString type, QString l
     this->semesterHours = semesterHours;
     this->room = room;
     setDayAndHour(dayAndHour);
-
 }
-void calendarCourse::setDayAndHour(QString phrase)
+/**
+ * @brief calendarCourse::setDayAndHour
+ * given a string of time and day - parsing it into day, hour it begins and hour it ends seperated
+ * @param parse -
+ */
+void calendarCourse::setDayAndHour(QString parse)
 {
     int ctr = 0;
     QString temp = "";
     QTime timetemp;
     char *tok;
-    char* textToTok = strdup(phrase.toStdString().c_str());
+    char* textToTok = strdup(parse.toStdString().c_str());
     tok = strtok(textToTok, " -");
     while(tok != NULL)
     {
         temp = tok;
         switch (ctr)
         {
-        case 0:
+        case 0: //day
             setDay(temp);
             break;
-        case 1:
+        case 1: //hour it begins
             timetemp = QTime::fromString(temp,"hh:mm");
             setHourBegin(timetemp.hour());
             setMinutesBegin(timetemp.minute());
             break;
-        case 2:
+        case 2: //hour it ends
             timetemp = QTime::fromString(temp,"hh:mm");
             setHourEnd(timetemp.hour());
             setMinutesEnd(timetemp.minute());
@@ -97,7 +101,10 @@ void calendarCourse::setMinutesEnd(int value)
 {
     minutesEnd = value;
 }
-
+/**
+ * @brief calendarCourse::courseToString
+ * @return prints the course into string pattern
+ */
 QString calendarCourse::courseToString()
 {
     QString courseText = "";
@@ -118,7 +125,11 @@ int calendarCourse::getDay() const
 {
     return day;
 }
-
+/**
+ * @brief calendarCourse::setDay
+ * translating a day that written with hebrew unicode character to an integer
+ * @param value     -   contains the day in unicode
+ */
 void calendarCourse::setDay(const QString &value)
 {
     std::string dayTemp = value.toStdString().substr(0,2); //recieving two characters respresting days
@@ -137,7 +148,6 @@ void calendarCourse::setDay(const QString &value)
     else
         day= -1;
 }
-
 QString calendarCourse::getRoom() const
 {
     return room;

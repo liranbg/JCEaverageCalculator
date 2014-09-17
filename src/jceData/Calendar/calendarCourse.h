@@ -2,10 +2,6 @@
 #define CALENDARCOURSE_H
 
 #include "../course.h"
-#include <string>
-#include <iostream>
-#include <list>
-
 #include <QTime>
 
 #define	CALENDAR_COURSE_FIELDS	8
@@ -51,7 +47,7 @@ public:
 
 private:
 
-    void setDayAndHour(QString phrase);
+    void setDayAndHour(QString parse);
 
     QString lecturer;
     double semesterHours;

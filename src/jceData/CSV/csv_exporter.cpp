@@ -7,11 +7,15 @@ CSV_Exporter::CSV_Exporter()
 
 bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
 {
-    if ((cal == NULL) || (calSched == NULL) || (calSched->getCourses() == NULL)) //pointers checking!
+    if ((cal == NULL) || (calSched == NULL)) //pointers checking!
         return false;
+    if (calSched->getCourses() == NULL)
+    {
+        return false;
+    }
     qDebug() << "Getting path for csv file from user...";
     QString filePath = getFileFath();
-    if(filePath == NULL) //User canceled
+    if (filePath == NULL) //User canceled
     {
         qDebug() << "User pressed Cancel... returning false";
         return false;
@@ -20,7 +24,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     qDebug() << "Atempting to export the Schedule...";
 
     QFile file(filePath);
-    if(!file.open(QIODevice::ReadWrite | QIODevice::Text |QIODevice::Truncate))
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text |QIODevice::Truncate))
     {
         qDebug() << "unable to open/create the file... maybe permissions error.";
         return false;
@@ -45,7 +49,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
 
         currentDate = currentDate.addDays(day-1);
 
-        for(;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
+        for (;currentDate <= cal->getEndDate(); currentDate = currentDate.addDays(7))
         {
             QString line = makeLine(name, &currentDate, startH, startM, endH, endM, lecturer, room, type);
 #ifdef Q_OS_LINUX || Q_OS_UNIX
@@ -74,9 +78,9 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
 QString CSV_Exporter::getFileFath()
 {
     QString fileName = QFileDialog::getSaveFileName();
-    if(fileName == "")
+    if (fileName == "")
         return NULL;
-    if(!fileName.contains(".csv", Qt::CaseInsensitive))
+    if (!fileName.contains(".csv", Qt::CaseInsensitive))
         fileName.append(".csv");
     return fileName;
 }

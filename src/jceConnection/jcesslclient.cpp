@@ -240,7 +240,7 @@ void jceSSLClient::showIfErrorMsg()
         break;
     case QAbstractSocket::SocketError::SocketTimeoutError:
         errorString = QObject::tr("SocketTimeoutError");
-        if (isConnected())
+        if (!isConnected())
             relevantError = true;
         break;
     case QAbstractSocket::SocketError::DatagramTooLargeError:
