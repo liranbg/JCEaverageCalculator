@@ -8,7 +8,6 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //this->setFixedSize(this->size()); //main not resizeable
 
     //Login Tab
-    QPixmap iconPix;
     iconPix.load(":/icons/iconX.png");
     ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
     ui->labelUsrInputStatus->setVisible(false);
@@ -25,7 +24,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->statusBar->addPermanentWidget(statusLabel,1);
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
 
-    //Course, Setting, Calendar Tab
+    //Course, Calendar Tab
     calendarSchedule * calendarSchedulePtr = new calendarSchedule();
     ui->calendarGridLayoutMain->addWidget(calendarSchedulePtr);
     ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
@@ -45,10 +44,8 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
         ui->keepLogin->setChecked(true);
     }
 
-    //Local Check and ui setting.
+    //language
     checkLocale();
-
-
 
 }
 
@@ -60,13 +57,12 @@ MainScreen::~MainScreen()
     delete courseTableMgr;
     delete userLoginSetting;
     delete loginHandel;
-    delete ui;
     delete data;
+    delete ui;
 }
 //EVENTS ON STATUS BAR
 void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
 {
-    QPixmap iconPix;
     switch (statusDescription)
     {
     case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:

@@ -81,14 +81,15 @@ private:
 
     QLabel *ButtomStatusLabel;
     QLabel *statusLabel;
+    QPixmap iconPix;
 
     user *userLoginSetting;
     SaveData *data;
+
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
-    loginHandler *loginHandel;
 
-    bool calendarLoaded;
+    loginHandler *loginHandel;
 
 };
 
