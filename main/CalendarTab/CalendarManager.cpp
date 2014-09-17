@@ -12,7 +12,6 @@ void CalendarManager::setCalendar(QString html)
 }
 void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
 {
-    qDebug() << this->caliSchedPtr->getCourses();
     if (this->caliSchedPtr->getCourses() == NULL)
         return;
     QMessageBox msgBox;
@@ -26,14 +25,17 @@ void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer 
         {
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setText(QObject::tr("Exported Successfuly!"));
+            msgBox.exec();
+
         }
     }
     else
     {
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setText(QObject::tr("Dates not valid"));
+        msgBox.exec();
     }
-    msgBox.exec();
+
 }
 
 

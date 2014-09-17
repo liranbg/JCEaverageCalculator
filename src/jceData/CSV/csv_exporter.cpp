@@ -10,9 +10,8 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     if ((cal == NULL) || (calSched == NULL)) //pointers checking!
         return false;
     if (calSched->getCourses() == NULL)
-    {
         return false;
-    }
+
     qDebug() << "Getting path for csv file from user...";
     QString filePath = getFileFath();
     if (filePath == NULL) //User canceled
@@ -24,9 +23,13 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     qDebug() << "Atempting to export the Schedule...";
 
     QFile file(filePath);
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text |QIODevice::Truncate))
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Truncate))
     {
-        qDebug() << "unable to open/create the file... maybe permissions error.";
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText(QObject::tr("Unable to open or create the file.\nExporting Failed"));
+        msgBox.exec();
+        qWarning() << "unable to open/create the file... maybe permissions error.";
         return false;
     }//else
     //Delete the file
