@@ -2,142 +2,142 @@
 
 loginHandler::loginHandler(user *ptr): logggedInFlag(false)
 {
-    this->jceLog = new jceLogin(ptr);
+  this->jceLog = new jceLogin(ptr);
 }
 void loginHandler::setPointers(QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr)
 {
-    this->statusLabelPtr = statusLabelPtr;
-    this->pswdEditPtr = pswdEditPtr;
-    this->usrnmEditPtr = usrnmEditPtr;
+  this->statusLabelPtr = statusLabelPtr;
+  this->pswdEditPtr = pswdEditPtr;
+  this->usrnmEditPtr = usrnmEditPtr;
 }
 
 bool loginHandler::makeConnection()
 {
-    if (this->jceLog == NULL)
-        return false;
+  if (this->jceLog == NULL)
+    return false;
 
-    try
-    {
-        jceLog->makeConnection();
-    }
-    catch (jceLogin::jceStatus &a)
-    {
-        int status = (int)a;
-        switch (status)
+  try
+  {
+    jceLog->makeConnection();
+  }
+  catch (jceLogin::jceStatus &a)
+  {
+    int status = (int)a;
+    switch (status)
+      {
+      case jceLogin::JCE_YOU_ARE_IN:
         {
-        case jceLogin::JCE_YOU_ARE_IN:
-        {
-            logggedInFlag = true;
-            return logggedInFlag;
-            break;
+          logggedInFlag = true;
+          return logggedInFlag;
+          break;
         }
-        case jceLogin::ERROR_ON_VALIDATION:
+      case jceLogin::ERROR_ON_VALIDATION:
         {
-            popMessage(QObject::tr("Please Check Your Username & Password"),false);
+          popMessage(QObject::tr("Please Check Your Username & Password"),false);
 
-            usrnmEditPtr->setDisabled(false);
-            pswdEditPtr->setDisabled(false);
+          usrnmEditPtr->setDisabled(false);
+          pswdEditPtr->setDisabled(false);
 
-            pswdEditPtr->selectAll();
-            pswdEditPtr->setFocus();
-            return false;
+          pswdEditPtr->selectAll();
+          pswdEditPtr->setFocus();
+          return false;
         }
-        case jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED:
+      case jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED:
         {
-            popMessage(QObject::tr("You have been blocked by JCE, please try in a couple of minutes."));
-            jceLog->closeAll();
-            return false;
+          popMessage(QObject::tr("You have been blocked by JCE, please try in a couple of minutes."));
+          jceLog->closeAll();
+          return false;
         }
-        case jceLogin::ERROR_ON_OPEN_SOCKET:
+      case jceLogin::ERROR_ON_OPEN_SOCKET:
         {
-            popMessage(QObject::tr("Please Check Your Internet Connection."));
-            jceLog->closeAll();
-            return false;
+          popMessage(QObject::tr("Please Check Your Internet Connection."));
+          jceLog->closeAll();
+          return false;
         }
-        case jceLogin::JCE_NOT_CONNECTED:
+      case jceLogin::JCE_NOT_CONNECTED:
         {
-            jceLog->reConnect();
-            /*
+          jceLog->reConnect();
+          /*
              *  Fix: need to add a prompte window to ask user whether he wants to reconnect or not
              */
-            break;
+          break;
         }
-        case jceLogin::ERROR_ON_GETTING_INFO:
+      case jceLogin::ERROR_ON_GETTING_INFO:
         {
-            popMessage(QObject::tr("Receive Request Timeout."));
-            jceLog->closeAll();
-            return false;
-            break;
+          popMessage(QObject::tr("Receive Request Timeout."));
+          jceLog->closeAll();
+          return false;
+          break;
         }
-        case jceLogin::ERROR_ON_SEND_REQUEST:
+      case jceLogin::ERROR_ON_SEND_REQUEST:
         {
-            popMessage(QObject::tr("Send Request Timeout."));
-            jceLog->closeAll();
-            return false;
-            break;
+          popMessage(QObject::tr("Send Request Timeout."));
+          jceLog->closeAll();
+          return false;
+          break;
         }
-        }
-    }
-    return false;
+      }
+  }
+  return false;
 }
 
 
 bool loginHandler::isLoggedInFlag()
 {
-    if (jceLog->isLoginFlag()) //checking connection and then if logged in
-        return this->logggedInFlag;
-    else
-        this->setLoginFlag(false);
-    return false;
+  if (jceLog->isLoginFlag()) //checking connection and then if logged in
+    return this->logggedInFlag;
+  else
+    this->setLoginFlag(false);
+  return false;
 }
 
 void loginHandler::setLoginFlag(bool flag)
 {
-    this->logggedInFlag = flag;
+  this->logggedInFlag = flag;
 }
 
 QString loginHandler::getCurrentPageContect()
 {
-    QTextEdit phrase;
-    if (isLoggedInFlag())
-        phrase.setText(QString::fromStdString(jceLog->getPage()));
-    else
-        throw jceLogin::ERROR_ON_GETTING_INFO;
+  QTextEdit phrase;
+  if (isLoggedInFlag())
+    phrase.setText(jceLog->getPage());
+  else
+    throw jceLogin::ERROR_ON_GETTING_INFO;
 
-    return phrase.toPlainText();
+  return phrase.toPlainText();
 }
 
 void loginHandler::makeDisconnectionRequest()
 {
-    jceLog->closeAll();
-    this->logggedInFlag = false;
+  jceLog->closeAll();
+  this->logggedInFlag = false;
 }
 
 int loginHandler::makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester)
 {
-    if (isLoggedInFlag())
-        return jceLog->getGrades(fromYear, toYear, fromSemester, toSemester);
-    else
-        return jceLogin::JCE_NOT_CONNECTED;
+  if (isLoggedInFlag())
+    return jceLog->getGrades(fromYear, toYear, fromSemester, toSemester);
+  else
+    return jceLogin::JCE_NOT_CONNECTED;
 }
 
 int loginHandler::makeCalendarRequest(int year, int semester)
 {
-    if (isLoggedInFlag())
-        return jceLog->getCalendar(year,semester);
-    else
-        return jceLogin::JCE_NOT_CONNECTED;
+  if (isLoggedInFlag())
+    return jceLog->getCalendar(year,semester);
+  else
+    return jceLogin::JCE_NOT_CONNECTED;
 }
 void loginHandler::popMessage(QString message,bool addInfo)
 {
-    if (addInfo)
-        message.append(QObject::tr("\nIf this message appear without reason, please contact me at liranbg@gmail.com"));
+  if (addInfo)
+    message.append(QObject::tr("\nIf this message appear without reason, please contact me at liranbg@gmail.com"));
 
-    QMessageBox msgBox;
-    msgBox.setWindowTitle(QObject::tr("Error"));
-    msgBox.setText(message);
-    msgBox.exec();
-    msgBox.setFocus();
+  QMessageBox msgBox;
+  msgBox.setWindowTitle(QObject::tr("Error"));
+  msgBox.setText(message);
+  msgBox.exec();
+  msgBox.setFocus();
 
 }
 

@@ -5,6 +5,7 @@
 #include <QSslSocket>
 #include <QThread>
 #include <QEventLoop>
+#include <QMessageBox>
 
 #include <iostream>
 #include <string>
@@ -16,14 +17,15 @@ class jceSSLClient : QSslSocket
 public:
     jceSSLClient();
 
-    bool makeConnect(std::string server,int port);
+    bool makeConnect(QString server, int port);
     bool isConnected();
-    bool sendData(std::string str);
-    bool recieveData(std::string &str, bool fast);
+    bool sendData(QString str);
+    bool recieveData(QString &str, bool fast);
     bool makeDiconnect();
+    void showIfErrorMsg();
 
 private slots:
-    void checkErrors(QAbstractSocket::SocketError);
+    void checkErrors(QAbstractSocket::SocketError a);
     void setConnected();
     void setEncrypted();
     void setDisconnected();
@@ -33,6 +35,7 @@ private:
 
     bool flag;
     QString packet;
+    QEventLoop loop; //handle the connection as thread
 
 };
 

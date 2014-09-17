@@ -18,7 +18,7 @@ public:
         delete caliDialog;
     }
     bool exportCalendarCSV();
-    void setCalendar(std::string html);
+    void setCalendar(QString html);
     void resetTable() { if (caliSchedPtr != NULL) caliSchedPtr->clearTableItems(); }
 
 private:

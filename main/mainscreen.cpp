@@ -20,7 +20,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
     ButtomStatusLabel = new QLabel(this);
     statusLabel = new QLabel(this);
-    ui->statusBar->setMaximumSize(this->geometry().width(),StatusIconHeight);
+    ui->statusBar->setMaximumSize(this->geometry().width(),STATUS_ICON_HEIGH);
     ui->statusBar->addPermanentWidget(ButtomStatusLabel,0);
     ui->statusBar->addPermanentWidget(statusLabel,1);
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
@@ -48,6 +48,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
 
     //Local Check and ui setting.
     checkLocale();
+
 
 
 }
@@ -125,8 +126,8 @@ void MainScreen::uiSetDisconnectMode()
 }
 void MainScreen::uiSetConnectMode()
 {
-    string username;
-    string password;
+    QString username;
+    QString password;
     if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
     {
         if (ui->usrnmLineEdit->text().isEmpty())
@@ -152,8 +153,8 @@ void MainScreen::uiSetConnectMode()
     }
     setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
 
-    username = ui->usrnmLineEdit->text().toStdString();
-    password = ui->pswdLineEdit->text().toStdString();
+    username = ui->usrnmLineEdit->text();
+    password = ui->pswdLineEdit->text();
 
     ui->usrnmLineEdit->setDisabled(true);
     ui->pswdLineEdit->setDisabled(true);
@@ -180,13 +181,13 @@ void MainScreen::uiSetConnectMode()
 //EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
-    std::string pageString;
+    QString pageString;
     int status = 0;
     if (loginHandel->isLoggedInFlag())
     {
         if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
         {
-            pageString = loginHandel->getCurrentPageContect().toStdString();
+            pageString = loginHandel->getCurrentPageContect();
             courseTableMgr->setCoursesList(pageString);
             courseTableMgr->insertJceCoursesIntoTable();
         }
@@ -264,7 +265,7 @@ void MainScreen::on_getCalendarBtn_clicked()
             //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
             //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
             calendar->resetTable();
-            calendar->setCalendar(loginHandel->getCurrentPageContect().toStdString());
+            calendar->setCalendar(loginHandel->getCurrentPageContect());
         }
 
         else if (status == jceLogin::JCE_NOT_CONNECTED)

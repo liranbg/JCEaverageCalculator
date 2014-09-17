@@ -24,43 +24,43 @@ public:
         DAY_AND_HOURS,
         ROOM
     };
-    calendarCourse(int serial, std::string name, std::string type, std::string lecturer,
-                   double points, double semesterHours, std::string dayAndHour, std::string room);
+    calendarCourse(int serial, QString name, QString type, QString lecturer,
+                   double points, double semesterHours, QString dayAndHour, QString room);
     ~calendarCourse(){}
 
     int getDay() const;
-    std::string getLecturer() const;
-    std::string getRoom() const;
+    QString getLecturer() const;
+    QString getRoom() const;
     double getSemesterHours() const;
     int getHourBegin() const;
     int getMinutesBegin() const;
     int getHourEnd() const;
     int getMinutesEnd() const;
 
-    void setDay(const std::string &value);
-    void setLecturer(const std::string &value);
-    void setRoom(const std::string &value);
+    void setDay(const QString &value);
+    void setLecturer(const QString &value);
+    void setRoom(const QString &value);
     void setSemesterHours(double value);
     void setHourBegin(int value);
     void setMinutesBegin(int value);
     void setHourEnd(int value);
     void setMinutesEnd(int value);
 
-    std::string courseToString();
+    QString courseToString();
 
 
 private:
 
-    void setDayAndHour(std::string phrase);
+    void setDayAndHour(QString phrase);
 
-    std::string lecturer;
+    QString lecturer;
     double semesterHours;
     int day;
     int hourBegin;
     int minutesBegin;
     int hourEnd;
     int minutesEnd;
-    std::string room;
+    QString room;
 
 };
 

@@ -34,7 +34,7 @@ calendarSchedule::calendarSchedule()
 
 }
 
-void calendarSchedule::setPage(std::string html)
+void calendarSchedule::setPage(QString html)
 {
     CalendarPage::setPage(html);
 
@@ -69,7 +69,7 @@ void calendarSchedule::insertCourseIntoTable()
         {
             row = currentHour % HOURS_BEGIN;
             col = currentDay-1;
-            courseString = (QString::fromStdString(coursePtr->getName() + " \n" + coursePtr->getLecturer() + " \n" + coursePtr->getRoom()));
+            courseString = (QString(coursePtr->getName() + " \n" + coursePtr->getLecturer() + " \n" + coursePtr->getRoom()));
             item = new QTableWidgetItem(courseString);
             if (this->takeItem(row,col) != NULL)
                 delete this->takeItem(row,col);

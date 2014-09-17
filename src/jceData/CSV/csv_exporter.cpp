@@ -36,10 +36,10 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         int startM = coursePtr->getMinutesBegin();
         int endH = coursePtr->getHourEnd();
         int endM = coursePtr->getMinutesEnd();
-        QString lecturer = QString(coursePtr->getLecturer().c_str()); //WHY YOU USED STD STRING?!
-        QString type = QString(coursePtr->getType().c_str());
-        QString name = QString(coursePtr->getName().c_str());
-        QString room = QString(coursePtr->getRoom().c_str());
+        QString lecturer = coursePtr->getLecturer();
+        QString type = coursePtr->getType();
+        QString name = coursePtr->getName();
+        QString room = coursePtr->getRoom();
 
         QDate currentDate = cal->getStartDate();
 

@@ -1,11 +1,11 @@
 #include "calendarPage.h"
 
-std::string CalendarPage::htmlToString()
+QString CalendarPage::htmlToString()
 {
     return tempHtml;
 }
 
-void CalendarPage::setPage(std::string html)
+void CalendarPage::setPage(QString html)
 {
 
     courses = new std::list<calendarCourse*>();
@@ -15,12 +15,12 @@ void CalendarPage::setPage(std::string html)
 
 }
 
-std::string CalendarPage::tokenToLines(std::string &textToPhrase)
+QString CalendarPage::tokenToLines(QString &textToParse)
 {
     int ctr = 0;
-    std::string temp = "";
+    QString temp = "";
     char *tok;
-    char* textToTok = strdup(textToPhrase.c_str());
+    char* textToTok = strdup(textToParse.toStdString().c_str());
     tok = strtok(textToTok, "\n");
     while(tok != NULL)
     {
@@ -36,13 +36,13 @@ std::string CalendarPage::tokenToLines(std::string &textToPhrase)
     return temp;
 }
 
-void CalendarPage::calendarListInit(std::string &linesTokinzedString)
+void CalendarPage::calendarListInit(QString &linesTokinzedString)
 {
-    std::list<std::string> stringHolder;
-    std::string temp;
+    std::list<QString> stringHolder;
+    QString temp;
     calendarCourse * cTemp = NULL;
     char* tok;
-    char* textToTok = strdup(linesTokinzedString.c_str());
+    char* textToTok = strdup(linesTokinzedString.toStdString().c_str());
     tok = strtok(textToTok,"\n");
     while (tok != NULL)
     {
@@ -50,7 +50,7 @@ void CalendarPage::calendarListInit(std::string &linesTokinzedString)
         stringHolder.push_back(temp);
         tok = strtok(NULL, "\n");
     }
-    for(std::string temp: stringHolder)
+    for (QString temp: stringHolder)
     {
         cTemp = lineToCourse(temp);
         if (cTemp != NULL)
@@ -58,24 +58,23 @@ void CalendarPage::calendarListInit(std::string &linesTokinzedString)
     }
 }
 
-calendarCourse *CalendarPage::lineToCourse(std::string line)
+calendarCourse *CalendarPage::lineToCourse(QString line)
 {
 
     calendarCourse *tempC = NULL;
-    std::string templinearray[CALENDAR_COURSE_FIELDS];//[serial,name,type,lecturer,points,semesterhours,dayandhours,room]
+    QString templinearray[CALENDAR_COURSE_FIELDS];//[serial,name,type,lecturer,points,semesterhours,dayandhours,room]
     int serial;
     double points,semesterHours;
-    std::string name,type, lecturer,dayAndHour,room;
-    std::string tempS = "";
-    std::string emptyTab = " ";
+    QString name,type, lecturer,dayAndHour,room;
+    QString tempS = "";
     int i = 0;
     char* tok;
-    char* cLine = strdup(line.c_str());
+    char* cLine = strdup(line.toStdString().c_str());
     tok = strtok(cLine, "\t");
     while(tok != NULL)
     {
 
-        tempS = tok;
+        tempS = QString(tok);
         if (i>=1)
             templinearray[i-1] = tempS;
         i++;
@@ -83,19 +82,19 @@ calendarCourse *CalendarPage::lineToCourse(std::string line)
             break;
         tok=strtok(NULL, "\t");
     }
-    if (templinearray[0] == "") //empty phrasing
+    if (templinearray[0] == "") //empty parsing
         return NULL;
-    serial = stoi(templinearray[calendarCourse::CourseScheme::SERIAL]);
+    serial = templinearray[calendarCourse::CourseScheme::SERIAL].toInt();
     name = templinearray[calendarCourse::CourseScheme::NAME];
     type = templinearray[calendarCourse::CourseScheme::TYPE];
     lecturer = templinearray[calendarCourse::CourseScheme::LECTURER];
 
     if (templinearray[calendarCourse::CourseScheme::POINTS].compare(" ") == 0)
-        points = stod(templinearray[calendarCourse::CourseScheme::POINTS]);
+        points = templinearray[calendarCourse::CourseScheme::POINTS].toDouble();
     else
         points = 0;
     if (templinearray[calendarCourse::CourseScheme::SEM_HOURS].compare(" ") == 0)
-        semesterHours = stod(templinearray[calendarCourse::CourseScheme::SEM_HOURS]);
+        semesterHours = templinearray[calendarCourse::CourseScheme::SEM_HOURS].toDouble();
     else
         semesterHours = 0;
     dayAndHour = templinearray[calendarCourse::CourseScheme::DAY_AND_HOURS];

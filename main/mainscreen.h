@@ -15,7 +15,7 @@
 #include "./CalendarTab/CalendarManager.h"
 
 
-#define StatusIconHeight 35
+#define STATUS_ICON_HEIGH 35
 namespace Ui {
 class MainScreen;
 }

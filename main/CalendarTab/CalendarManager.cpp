@@ -6,7 +6,7 @@ CalendarManager::CalendarManager(calendarSchedule *ptr)
     caliDialog = new CalendarDialog();
 }
 
-void CalendarManager::setCalendar(std::string html)
+void CalendarManager::setCalendar(QString html)
 {
     caliSchedPtr->setPage(html);
 }

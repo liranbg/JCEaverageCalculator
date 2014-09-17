@@ -8,8 +8,7 @@
  *  LiranBG@gmail.com
 */
 
-#include <string>
-#include <iostream>
+#include <QString>
 #include <list>
 
 
@@ -17,7 +16,7 @@ class Course {
 
 public:
 
-    Course(int serial,std::string name, std::string type, double points) {
+    Course(int serial,QString name, QString type, double points) {
         this->serialNum = serial;
         this->name = name;
         this->type = type;
@@ -26,20 +25,20 @@ public:
     virtual ~Course() { }
 
     int getSerialNum() const {return this->serialNum;}
-    virtual std::string getName() const {return this->name;}
-    virtual std::string getType() const {return this->type;}
+    virtual QString getName() const {return this->name;}
+    virtual QString getType() const {return this->type;}
     virtual double getPoints() const {return this->points;}
 
-    virtual void setName(std::string name) { this->name = name;}
-    virtual void setType(std::string type){ this->type = type;}
+    virtual void setName(QString name) { this->name = name;}
+    virtual void setType(QString type){ this->type = type;}
     virtual void setPoints(double points){ this->points = points;}
 
 
 private:
 
  	int serialNum;
-    std::string name;
-    std::string type;
+    QString name;
+    QString type;
 	double points;
 
 };

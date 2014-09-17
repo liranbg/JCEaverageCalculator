@@ -1,45 +1,73 @@
 #include "user.h"
 
-
-user::user(string username,string password) : hashedPassword(""),userID(""), influenceCourseOnly(false)
+/**
+ * @brief user::user Constructor
+ * @param username user name
+ * @param password password
+ */
+user::user(QString username,QString password) : hashedPassword(""),userID(""), influenceCourseOnly(false)
 {
-
     this->username = username;
     this->password = password;
 }
+
 user::~user()
 {
 }
 
-
+/**
+ * @brief user::setInfluenceCourseOnly
+ * @param status show only courses with influnce?
+ */
 void user::setInfluenceCourseOnly(bool status)
 {
     this->influenceCourseOnly = status;
 }
-
+/**
+ * @brief user::getInfluenceCourseOnly
+ * @return if user wants to show only influence courses
+ */
 bool user::getInfluenceCourseOnly() const
 {
     return this->influenceCourseOnly;
 }
-
-void user::setUsername(string& username) {
-    this->username=username;
+/**
+ * @brief user::setUsername
+ * @param username given username to change to
+ */
+void user::setUsername(QString& username)
+{
+    this->username = username;
 }
-
-void user::setPassword(string& password) {
-    this->password=password;
+/**
+ * @brief user::setPassword
+ * @param password given password to change to
+ */
+void user::setPassword(QString& password)
+{
+    this->password = password;
 }
-
-void user::setUserID(string& ID)
+/**
+ * @brief user::setUserID
+ * @param ID given ID from html
+ */
+void user::setUserID(QString& ID)
 {
     this->userID = ID;
 }
-void user::setHashedPassword(string& hashpass)
+/**
+ * @brief user::setHashedPassword
+ * @param hashpass given hashed password given from html
+ */
+void user::setHashedPassword(QString& hashpass)
 {
     this->hashedPassword = hashpass;
 }
-
-string user::getPassword() const { return password; }
-string user::getUsername() const { return username; }
-string user::getUserID() const { return userID; }
-string user::getHashedPassword() const { return hashedPassword; }
+/**
+ * @brief user::get*
+ * @return getters
+ */
+QString user::getPassword() const { return password; }
+QString user::getUsername() const { return username; }
+QString user::getUserID() const { return userID; }
+QString user::getHashedPassword() const { return hashedPassword; }

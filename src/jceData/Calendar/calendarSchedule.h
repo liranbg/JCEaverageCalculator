@@ -19,7 +19,7 @@ class calendarSchedule : public QTableWidget, public CalendarPage
 public:
     calendarSchedule();
     ~calendarSchedule() { clearTableItems(); }
-    void setPage(std::string html);
+    void setPage(QString html);
     void clearTableItems();
 
 signals:
