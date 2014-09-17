@@ -4,6 +4,15 @@
  * This Static method will help parsing our debug messages to a readable Log file
  *
  * timestamp - Message type - message
+ *
+ * Message types cam be:
+ *
+ *      - DEBUG
+ *      - WARNING
+ *      - CRITICAL
+ *      - FATAL
+ *
+ * Logs stored in a log file. File name is Stored in the Macro in Header file
  */
 void jce_logger::customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -29,7 +38,7 @@ void jce_logger::customMessageHandler(QtMsgType type, const QMessageLogContext &
          break;
    }
 
-   QFile outFile("J_M_Log.log");
+   QFile outFile(LOG_FILE_NAME);
    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
 
    QTextStream textStream(&outFile);
