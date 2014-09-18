@@ -23,6 +23,11 @@ public:
     bool recieveData(QString &str, bool fast);
     void showIfErrorMsg();
 
+signals:
+    void serverDisconnectedbyRemote();
+    void noInternetLink();
+    void socketDisconnected();
+
 private slots:
     void checkErrors(QAbstractSocket::SocketError a);
     void setConnected();
@@ -32,11 +37,11 @@ private slots:
     void setOnlineState(bool isOnline);
 
 private:
-
     bool flag;
     QString packet;
     QEventLoop loop; //handle the connection as thread
-    QNetworkConfigurationManager networkConf; //checking online
+    QNetworkConfigurationManager networkConf; //checking if online
+    bool reConnection; //used for remote host disconnecting
 
 };
 

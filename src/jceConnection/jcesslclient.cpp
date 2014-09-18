@@ -3,7 +3,7 @@
 /**
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
-jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf()
+jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf(), reConnection(false)
 {
     //setting signals
     connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
@@ -16,7 +16,6 @@ jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf()
     connect(this, SIGNAL(encrypted()), &loop, SLOT(quit()));
     connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loop,SLOT(quit()));
 
-
 }
 
 /**
@@ -28,7 +27,7 @@ jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf()
 bool jceSSLClient::makeConnect(QString server, int port)
 {
     qDebug() << Q_FUNC_INFO <<  "Making connection";
-    if (flag)
+    if (isConnected())
     {
         qDebug() << Q_FUNC_INFO <<  "flag=true, calling makeDisconnect()";
         makeDiconnect();
@@ -48,14 +47,14 @@ bool jceSSLClient::makeConnect(QString server, int port)
  */
 bool jceSSLClient::makeDiconnect()
 {
-    this->disconnectFromHost();
     if (loop.isRunning())
     {
         qWarning() << Q_FUNC_INFO << "Killing connection thread";
         loop.exit();
     }
-    qDebug() << Q_FUNC_INFO << "emitting disconnected()";
-    emit disconnected();
+    qDebug() << Q_FUNC_INFO << "disconnecting from host and emitting disconnected()";
+    this->disconnectFromHost(); //emits disconnected > setDisconnected
+    setSocketState(QAbstractSocket::SocketState::UnconnectedState);
     return (!isConnected());
 
 }
@@ -66,29 +65,30 @@ bool jceSSLClient::makeDiconnect()
  */
 bool jceSSLClient::isConnected()
 {
+    bool tempFlag;
     //checking state before returning flag!
     if (state() == QAbstractSocket::SocketState::UnconnectedState)
     {
-        flag = false;
+        tempFlag = false;
     }
     else if (state() == QAbstractSocket::SocketState::ClosingState)
     {
-        flag = false;
+        tempFlag = false;
     }
     else if (state() == QAbstractSocket::SocketState::ConnectedState)
     {
         if (this->networkConf.isOnline())
-            flag = true;
+            tempFlag = true;
         else
         {
             this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
-            flag = false;
+            tempFlag = false;
         }
 
     }
     if (!this->networkConf.isOnline()) //no link, ethernet\wifi
-        flag = false;
-    return flag;
+        tempFlag = false;
+    return ((flag) && (tempFlag));
 }
 /**
  * @brief jceSSLClient::sendData  - given string, send it to server
@@ -167,16 +167,16 @@ void jceSSLClient::readIt()
 void jceSSLClient::setOnlineState(bool isOnline)
 {
     qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
-    if (isOnline)
+    if (isOnline) //to be added later
     {
-        if (this->makeConnect())
-            qDebug() << Q_FUNC_INFO <<  "reconnected";
-
+        //we can add here auto reconnect if wifi\ethernet link has appear
+        //will be added next version
     }
     else
     {
-        setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+        //abort() ?
         this->makeDiconnect();
+        emit noInternetLink();
     }
 
 }
@@ -194,21 +194,27 @@ void jceSSLClient::setDisconnected()
 {
     qDebug() << Q_FUNC_INFO << "DISCONNECTED";
     this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+    packet.clear();
     flag = false;
+    if (reConnection)
+        makeConnect();
+
 }
 /**
  * @brief jceSSLClient::setEncrypted called when signaled with encrypted. setting the buffer size and keeping alive.
  */
 void jceSSLClient::setEncrypted()
 {
+     qDebug() << Q_FUNC_INFO << "ENCRYPTED";
     setReadBufferSize(10000);
-    setSocketOption(QAbstractSocket::KeepAliveOption,1);
-    if (isConnected());
-    else
+    setSocketOption(QAbstractSocket::KeepAliveOption,true);
+    flag = true;
+    if (!isConnected())
     {
-        qWarning() << "jceSSLClient::setEncrypted(); Connection status didnt change!";
+        qWarning() << Q_FUNC_INFO <<  "Connection status didnt change! reseting flag to false";
         flag = false;
     }
+
 }
 /**
  * @brief jceSSLClient::showIfErrorMsg message box to show the error occured according to socket
@@ -231,15 +237,9 @@ void jceSSLClient::showIfErrorMsg()
     case QAbstractSocket::SocketError::RemoteHostClosedError: /**/
         errorString = QObject::tr("RemoteHostClosedError");
         //The remote host closed the connection
-        if (isConnected()) //we can reconnect
+        if (networkConf.isOnline()) //we can reconnect
         {
-            qDebug() << Q_FUNC_INFO << "trying to reconnect";
-                flag = false;
-                this->disconnectFromHost();
-                qDebug() << Q_FUNC_INFO << "we disconnected.";
-                if (makeConnect())
-                    qDebug() << Q_FUNC_INFO << "RECONNECTED";
-
+            reConnection = true;
         }
         else
             relevantError = true;
@@ -263,13 +263,11 @@ void jceSSLClient::showIfErrorMsg()
     case QAbstractSocket::SocketError::NetworkError: /**/
         errorString = QObject::tr("NetworkError");
         //An error occurred with the network (e.g., the network cable was accidentally plugged out).
-        if (isConnected()) //we can reconnect
+        if (networkConf.isOnline()) //we can reconnect
         {
-            makeConnect();
         }
         else
             relevantError = true;
-        relevantError = true;
         break;
     case QAbstractSocket::SocketError::SslHandshakeFailedError: /**/
         errorString = QObject::tr("SslHandshakeFailedError");
