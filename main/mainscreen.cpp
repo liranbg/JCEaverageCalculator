@@ -185,7 +185,9 @@ void MainScreen::on_ratesButton_clicked()
     int status = 0;
     if (loginHandel->isLoggedInFlag())
     {
-        if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
+        if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),
+                                                    ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),
+                                                    ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_GRADE_PAGE_PASSED)
         {
             pageString = loginHandel->getCurrentPageContect();
             courseTableMgr->setCoursesList(pageString);
@@ -283,13 +285,13 @@ void MainScreen::on_actionCredits_triggered()
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
                        + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        + tr("CREDITS-ROOL-UP3")+"<br>"
-                                                "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                                                "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                       "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
+                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
                        +tr("DevBy")+":"
-                                    "<ul>"
-                                    "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
-                                                                                          "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
-                                                                                                                                                 "</ul>");
+                       "<ul>"
+                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
+                       "</ul>");
 }
 void MainScreen::on_actionExit_triggered()
 {
@@ -301,13 +303,11 @@ void MainScreen::on_actionHow_To_triggered()
                              "<b>How To..</b>"
                              "<ul>"
                              "<br><li>"+tr("HELP1")+"</li>"
-                                                    "<br><li>"+tr("HELP2")+"</li>"
-                                                                           "<br><li>"+tr("HELP3")+"</li>"
-                                                                                                  "<br><li>"+tr("HELP4")+"</li>"
-                                                                                                                         "<br><li>"+tr("HELP5")+"</li>"
-                                                                                                                                                "<br><br>"+tr("HELP6")+
+                             "<br><li>"+tr("HELP2")+"</li>"
+                             "<br><li>"+tr("HELP3")+"</li>"
+                             "<br><li>"+tr("HELP4")+"</li>"
+                             "<br><li>"+tr("HELP5")+"</li>"
                              "</ul>");
-
 }
 
 

@@ -1,18 +1,21 @@
 #include "jcesslclient.h"
+
 /**
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
-jceSSLClient::jceSSLClient() : flag(false), packet("")
+jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf()
 {
     //setting signals
     connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
     connect(this,SIGNAL(connected()),this,SLOT(setConnected()));
     connect(this,SIGNAL(encrypted()),this,SLOT(setEncrypted()));
     connect(this,SIGNAL(disconnected()),this,SLOT(setDisconnected()));
+    connect(&networkConf,SIGNAL(onlineStateChanged(bool)),this,SLOT(setOnlineState(bool)));
 
     //loop event will connect the server, and when it is connected, it will quit - but connection will be open
-   connect(this, SIGNAL(encrypted()), &loop, SLOT(quit()));
-   connect(this,SIGNAL(error(QAbstractSocket::SocketError)),&loop,SLOT(quit()));
+    connect(this, SIGNAL(encrypted()), &loop, SLOT(quit()));
+    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),&loop,SLOT(quit()));
+
 
 }
 
@@ -51,37 +54,16 @@ bool jceSSLClient::makeConnect(QString server, int port)
  */
 bool jceSSLClient::makeDiconnect()
 {
-    qDebug() << "jceSSLClient::makeDiconnect;";
+
     if (loop.isRunning())
-  {
-        qWarning() << "jceSSLClient::makeDiconnect; Killing connection thread";
+    {
+        qWarning() << Q_FUNC_INFO << "Killing connection thread";
         loop.exit();
-   }
-        if (state() == QAbstractSocket::SocketState::UnconnectedState)
-    {
-        qDebug() << "jceSSLClient::makeDiconnect; Disconnected with [UnconnectedState]";
-        flag = false;
     }
-    else if (state() == QAbstractSocket::SocketState::ConnectedState)
-    {
-        qWarning() << "jceSSLClient::makeDiconnect; Disconnecting with [ConnectedState] ";
-        abort();
-        if (state() != QAbstractSocket::SocketState::UnconnectedState)
-        {
-            qWarning() << "jceSSLClient::makeDiconnect; still open! recursion call to disconnect";
-            abort();//still connected? ensure the disconnection
-            flag = makeDiconnect(); //recursion call!
-        }
-        flag = false;
-    }
-    else
-    {
-        qWarning() << "jceSSLClient::makeDiconnect; Disconnecting [else] ";
-        abort(); //ensure the disconnection
-        flag = false;
-    }
-    qDebug() << "jceSSLClient::makeDiconnect; disconnect return with " << flag;
-    return flag;
+    qDebug() << Q_FUNC_INFO << "emitting disconnected()";
+    emit disconnected();
+    return isConnected();
+
 }
 
 /**
@@ -101,8 +83,17 @@ bool jceSSLClient::isConnected()
     }
     else if (state() == QAbstractSocket::SocketState::ConnectedState)
     {
-        flag = true;
+        if (this->networkConf.isOnline())
+            flag = true;
+        else
+        {
+            this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+            flag = false;
+        }
+
     }
+    if (!this->networkConf.isOnline()) //no link, ethernet\wifi
+        flag = false;
     return flag;
 }
 /**
@@ -178,6 +169,21 @@ void jceSSLClient::readIt()
     }while (p.size() > 0);
 
 }
+
+void jceSSLClient::setOnlineState(bool isOnline)
+{
+    qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
+    if (isOnline)
+    {
+        this->makeConnect();
+
+    }
+    else
+    {
+        this->makeDiconnect();
+    }
+
+}
 /**
  * @brief jceSSLClient::setConnected called when signaled with connected, calling the encryption function
  */
@@ -186,10 +192,13 @@ void jceSSLClient::setConnected()
     waitForEncrypted();
 }
 /**
- * @brief jceSSLClient::setDisconnected called when signaled with disconnected, setting flag to false
+ * @brief jceSSLClient::setDisconnected closing socket, updating state and setting flag to false
  */
 void jceSSLClient::setDisconnected()
 {
+    qDebug() << Q_FUNC_INFO << "DISCONNECTED";
+    this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+    abort();
     flag = false;
 }
 /**
@@ -199,8 +208,7 @@ void jceSSLClient::setEncrypted()
 {
     setReadBufferSize(10000);
     setSocketOption(QAbstractSocket::KeepAliveOption,1);
-    if (state() == QAbstractSocket::SocketState::ConnectedState)
-        flag = true;
+    if (isConnected());
     else
     {
         qWarning() << "jceSSLClient::setEncrypted(); Connection status didnt change!";
@@ -226,6 +234,7 @@ void jceSSLClient::showIfErrorMsg()
         break;
     case QAbstractSocket::SocketError::RemoteHostClosedError:
         errorString = QObject::tr("RemoteHostClosedError");
+
         relevantError = true;
         break;
     case QAbstractSocket::SocketError::HostNotFoundError:
@@ -240,8 +249,12 @@ void jceSSLClient::showIfErrorMsg()
         break;
     case QAbstractSocket::SocketError::SocketTimeoutError:
         errorString = QObject::tr("SocketTimeoutError");
-        if (!isConnected())
+
+        if (state() == QAbstractSocket::SocketState::UnconnectedState)
+        {
+
             relevantError = true;
+        }
         break;
     case QAbstractSocket::SocketError::DatagramTooLargeError:
         errorString = QObject::tr("DatagramTooLargeError");
@@ -315,8 +328,10 @@ void jceSSLClient::showIfErrorMsg()
  */
 void jceSSLClient::checkErrors(QAbstractSocket::SocketError a)
 {
-    qWarning() << "jceSSLClient::checkErrors; Var Error: " << a;
-    qWarning() << "jceSSLClient::checkErrors; Error: " << this->errorString();
+    qWarning() << Q_FUNC_INFO << "isOnline?: " << this->networkConf.isOnline();
+    qWarning() << Q_FUNC_INFO << "state is: " << state();
+    qWarning() << Q_FUNC_INFO << "Var Error: " << a;
+    qWarning() << Q_FUNC_INFO << "Error: " << errorString();
     showIfErrorMsg();
 }
 

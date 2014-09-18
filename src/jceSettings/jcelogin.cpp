@@ -202,7 +202,6 @@ int jceLogin::getCalendar(int year, int semester)
  */
 int jceLogin::getGrades(int fromYear, int toYear, int fromSemester, int toSemester)
 {
-  std::cout << fromYear << " " << toYear << " " << fromSemester << " " << toSemester << std::endl;
   if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA,fromYear, toYear, fromSemester, toSemester)))))
     {
       if (!(JceConnector->recieveData(*recieverPage,false)))
