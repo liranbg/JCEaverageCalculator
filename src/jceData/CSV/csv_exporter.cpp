@@ -50,7 +50,9 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         return false;
     }
 
-    QTextStream out(&file);
+    QTextStream out(&file); //The output streem.
+    out.setCodec("UTF-8"); //Unicode 8
+
     out << CSV_CALENDAR_HEADER << "\n"; // macro in header file
 
     for (calendarCourse *coursePtr: *(calSched->getCourses())) //main loop - running though all courses
