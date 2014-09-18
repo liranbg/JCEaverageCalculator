@@ -68,7 +68,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         QString name = coursePtr->getName();
         QString room = coursePtr->getRoom();
 
-        QDate currentDate = cal->getStartDate(); // currentDate will iterate thou the semester
+        QDate currentDate = cal->getStartDate(); // currentDate will iterate throuh the semester
 
         currentDate = currentDate.addDays(day-1); //selecting the REAL starting day of that course
 
