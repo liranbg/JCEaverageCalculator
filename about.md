@@ -9,7 +9,9 @@ image: /JceManager/assets/images/about.png
 ## <i class="fa fa-cogs"></i> The Vision & Muse
 ####We - The *"JCE Manager Team"* got tired of the cluttered and non-friendly  Yedion Website.
 
-The data at the site is "static", and we wanted more functions regarding data manipulation.
+The data at the website is "static", and we wanted *more* functions regarding data manipulation.
+After all its *our* data...
+
 for example, every semester we always needed to decide if we should take the chance and apply to another test. So, as all of us, we opened an excel spreadsheet and added formulas, and exhausting information...
 
 JCE computers admid didn't want to give us a public API, so we needed so hack the website.
