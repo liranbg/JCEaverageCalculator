@@ -10,7 +10,7 @@
 
 #define milisTimeOut 4000
 
-class jceSSLClient : QSslSocket
+class jceSSLClient : public QSslSocket
 {
     Q_OBJECT
 public:

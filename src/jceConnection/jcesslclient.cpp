@@ -26,18 +26,31 @@ jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf(), reConnect
  */
 bool jceSSLClient::makeConnect(QString server, int port)
 {
-    qDebug() << Q_FUNC_INFO <<  "Making connection";
+    if (reConnection) //reset reconnectiong flag
+    {
+        qDebug() << Q_FUNC_INFO <<  "Making Reconnection";
+    }
+    else
+        qDebug() << Q_FUNC_INFO <<  "Making Connection";
+
     if (isConnected())
     {
         qDebug() << Q_FUNC_INFO <<  "flag=true, calling makeDisconnect()";
         makeDiconnect();
     }
+
+
     qDebug() << Q_FUNC_INFO <<  "Connection to: " << server << "On Port: " << port;
     connectToHostEncrypted(server.toStdString().c_str(), port);
 
     loop.exec(); //starting connection, waiting to encryption and then it ends
 
     qDebug() << Q_FUNC_INFO <<  "returning the connection status: " << isConnected();
+    if (reConnection)
+    {
+        reConnection = false;
+        emit serverDisconnectedbyRemote();
+    }
     return isConnected();
 
 }
@@ -205,7 +218,7 @@ void jceSSLClient::setDisconnected()
  */
 void jceSSLClient::setEncrypted()
 {
-     qDebug() << Q_FUNC_INFO << "ENCRYPTED";
+    qDebug() << Q_FUNC_INFO << "ENCRYPTED";
     setReadBufferSize(10000);
     setSocketOption(QAbstractSocket::KeepAliveOption,true);
     flag = true;
