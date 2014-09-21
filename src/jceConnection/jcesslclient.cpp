@@ -205,7 +205,7 @@ void jceSSLClient::setConnected()
  */
 void jceSSLClient::setDisconnected()
 {
-    qDebug() << Q_FUNC_INFO << "DISCONNECTED";
+    qDebug() << Q_FUNC_INFO << "connection has been DISCONNECTED";
     this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
     packet.clear();
     flag = false;
@@ -218,7 +218,7 @@ void jceSSLClient::setDisconnected()
  */
 void jceSSLClient::setEncrypted()
 {
-    qDebug() << Q_FUNC_INFO << "ENCRYPTED";
+    qDebug() << Q_FUNC_INFO << "connection has been ENCRYPTED";
     setReadBufferSize(10000);
     setSocketOption(QAbstractSocket::KeepAliveOption,true);
     flag = true;

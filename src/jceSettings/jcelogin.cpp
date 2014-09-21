@@ -31,13 +31,14 @@ void jceLogin::makeConnection() throw (jceStatus)
     if (this->recieverPage == NULL)
         this->recieverPage = new QString();
 
-    if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
-        throw jceStatus::ERROR_ON_OPEN_SOCKET;
-
     int returnMode; //gets status according to called function of validation step
     jceStatus status = jceStatus::JCE_NOT_CONNECTED;
 
     returnMode = checkConnection(); //checking socket status. is connected?
+
+    if (returnMode == false)
+        if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
+            throw jceStatus::ERROR_ON_OPEN_SOCKET;
 
     if (returnMode == true) //connected to host
     {
@@ -292,10 +293,34 @@ QString jceLogin::getPage()
 void jceLogin::reValidation()
 {
     qDebug() << Q_FUNC_INFO << "Revalidating user";
-    if (makeFirstVisit())
+    if (makeFirstVisit() == true)
     {
-        if (makeSecondVisit())
-            qDebug() << Q_FUNC_INFO << "Validated";
+        if (checkValidation())
+        {
+            if (makeSecondVisit() == true)
+                qDebug() << Q_FUNC_INFO << "Validated";
+            else
+                qWarning() << Q_FUNC_INFO << "Second visit finished with an error";
+        }
+        else
+            qDebug() << Q_FUNC_INFO << "checking validation ended with an error";
     }
+    else
+    {
+        qDebug() << Q_FUNC_INFO << "Couldnt Validate User";
+    }
+    /*
+    delete recieverPage;
+    recieverPage = NULL;
+    if (this->JceConnector != NULL)
+        delete JceConnector;
+    this->recieverPage = new QString();
+    this->JceConnector = new jceSSLClient();
+    if (makeFirstVisit() == true)
+    {
+        if (checkValidation())
+        {
+            if (makeSecondVisit() == true)
+     */
 
 }
