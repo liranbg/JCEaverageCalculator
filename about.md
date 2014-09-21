@@ -14,7 +14,7 @@ After all its **our** data...
 
 for example, every semester we always needed to decide if we should take the chance and apply to another test. So, as all of us, we opened an excel spreadsheet and added formulas, and exhausting information...
 
-*JCE computer sys admid* didn't want to give us a public API, so we needed so hack the website.
+*JCE computer sys admin* didn't want to give us a public API, so we needed so hack the website.
 
 The project started as an [open API][openAPI] for the Yedion website, and rapidly changed to a full software!
 
