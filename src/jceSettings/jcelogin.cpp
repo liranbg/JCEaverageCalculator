@@ -9,7 +9,7 @@ jceLogin::jceLogin(user* username)
     this->recieverPage = new QString();
     this->jceA = username;
     this->JceConnector = new jceSSLClient();
-    JceConnector->connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
+    QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
 }
 
 jceLogin::~jceLogin()

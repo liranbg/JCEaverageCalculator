@@ -9,11 +9,9 @@
 #include <QString>
 
 
-class jceLogin
+class jceLogin : public QObject
 {
-
      Q_OBJECT
-
 public:
     jceLogin() {}
     jceLogin(user* username);
