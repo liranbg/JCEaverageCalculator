@@ -5,20 +5,21 @@
 #-------------------------------------------------
 
 QT       += core gui network widgets
-TARGET = jceGrade
-TEMPLATE = app
-RC_FILE = appConfigure.rc
+
 CONFIG += qt c++11
 CONFIG += console static
 
+TARGET = jceManager
+TEMPLATE = app
+VERSION = 1.0.0
+
+RC_FILE = appConfigure.rc
 TRANSLATIONS = jce_en.ts \
                 jce_he.ts
 
 FORMS    += \
     main/mainscreen.ui \
     src/jceData/Calendar/calendarDialog.ui
-
-OTHER_FILES +=
 
 RESOURCES += \
     resources/connectionstatus.qrc
@@ -43,7 +44,7 @@ HEADERS += \
     src/jceData/CSV/csv_exporter.h \
     src/appDatabase/simplecrypt.h \
     src/jceData/Calendar/calendarDialog.h \
-    src/jce_logger.h
+    src/appDatabase/jce_logger.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -64,4 +65,4 @@ SOURCES += \
     src/jceData/CSV/csv_exporter.cpp \
     src/appDatabase/simplecrypt.cpp \
     src/jceData/Calendar/calendarDialog.cpp \
-    src/jce_logger.cpp
+    src/appDatabase/jce_logger.cpp

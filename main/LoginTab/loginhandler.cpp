@@ -17,10 +17,10 @@ loginHandler::loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *logi
 }
 bool loginHandler::login(QString username,QString password)
 {
-    qDebug() << Q_FUNC_INFO << "Login with username and password";
+    qDebug() << Q_FUNC_INFO << "logging in with username and password";
     if (isLoggedInFlag())
     {
-        qDebug() << Q_FUNC_INFO << "Loging out";
+        qDebug() << Q_FUNC_INFO << "we are already connected. Logging out and return false";
         logout();
         return false;
     }

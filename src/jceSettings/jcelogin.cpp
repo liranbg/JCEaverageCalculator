@@ -188,9 +188,9 @@ int jceLogin::getCalendar(int year, int semester)
     if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getCalendar(*jceA,year,semester)))))
     {
         if (!(JceConnector->recieveData(*recieverPage,false)))
-            return jceLogin::ERROR_ON_GETTING_GRADES;
+            return jceLogin::ERROR_ON_GETTING_PAGE;
         else
-            return jceLogin::JCE_GRADE_PAGE_PASSED;
+            return jceLogin::JCE_PAGE_PASSED;
     }
     else
         return jceLogin::ERROR_ON_SEND_REQUEST;
@@ -211,9 +211,9 @@ int jceLogin::getGrades(int fromYear, int toYear, int fromSemester, int toSemest
     if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA,fromYear, toYear, fromSemester, toSemester)))))
     {
         if (!(JceConnector->recieveData(*recieverPage,false)))
-            return jceLogin::ERROR_ON_GETTING_GRADES;
+            return jceLogin::ERROR_ON_GETTING_PAGE;
         else
-            return jceLogin::JCE_GRADE_PAGE_PASSED;
+            return jceLogin::JCE_PAGE_PASSED;
     }
     else
         return jceLogin::ERROR_ON_SEND_REQUEST;

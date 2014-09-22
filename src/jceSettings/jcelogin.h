@@ -24,12 +24,12 @@ public:
         ERROR_ON_OPEN_SOCKET,
         ERROR_ON_SEND_REQUEST,
         ERROR_ON_GETTING_INFO,
-        ERROR_ON_GETTING_GRADES,
+        ERROR_ON_GETTING_PAGE,
 
         JCE_START_VALIDATING_PROGRESS,
         JCE_VALIDATION_PASSED,
         JCE_YOU_ARE_IN,
-        JCE_GRADE_PAGE_PASSED
+        JCE_PAGE_PASSED
     };
 
     int makeConnection();

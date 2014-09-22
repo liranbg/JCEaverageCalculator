@@ -1,8 +1,9 @@
 #include "CalendarManager.h"
 
-CalendarManager::CalendarManager(calendarSchedule *ptr)
+CalendarManager::CalendarManager(QGridLayout *ptr)
 {
-    this->caliSchedPtr = ptr;
+    caliSchedPtr = new calendarSchedule();
+    ptr->addWidget(caliSchedPtr);
     caliDialog = new CalendarDialog();
 }
 

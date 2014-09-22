@@ -5,13 +5,17 @@
 #include "./src/jceData/Calendar/calendarSchedule.h"
 #include "./src/jceData/CSV/csv_exporter.h"
 #include "./src/jceData/Calendar/calendarDialog.h"
-#include <iostream>
+
+#include <QObject>
+#include <QGridLayout>
 #include <QMessageBox>
 
-class CalendarManager
+class CalendarManager : public QObject
 {
+    Q_OBJECT
+
 public:
-    CalendarManager(calendarSchedule *ptr);
+    CalendarManager(QGridLayout  *ptr);
     ~CalendarManager()
     {
         delete caliSchedPtr;

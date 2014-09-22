@@ -7,9 +7,6 @@
 #include <QMessageBox>
 #include <QTextEdit>
 
-#include <string>
-#include <iostream>
-
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"
@@ -82,7 +79,6 @@ private:
 
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
-
     loginHandler *loginHandel;
 
 };
