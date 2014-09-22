@@ -3,7 +3,7 @@
 #include <QTranslator>
 #include <QDebug>
 #include "../src/appDatabase/savedata.h"
-#include "../src/jce_logger.h"
+#include "../src/appDatabase/jce_logger.h"
 
 
 int main(int argc, char *argv[])
