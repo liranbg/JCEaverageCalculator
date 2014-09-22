@@ -69,8 +69,20 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         QString room = coursePtr->getRoom();
 
         QDate currentDate = cal->getStartDate(); // currentDate will iterate throuh the semester
+        int firstDayOfSemester = currentDate.dayOfWeek(); //Returns the weekday (1 = Monday to 7 = Sunday) for this date.
 
-        currentDate = currentDate.addDays(day-1); //selecting the REAL starting day of that course
+        changeDayNumberFromQtToNormal(&firstDayOfSemester); //Get sync with our day numbers.
+
+        /*
+         * these 6 lines will get the right day for the starting poin in a
+         * semester for eatch course.
+         */
+        if(day > firstDayOfSemester)
+            currentDate = currentDate.addDays(day-firstDayOfSemester); //add the gap
+        else if(day < firstDayOfSemester)
+            currentDate = currentDate.addDays(6); //move a week nius one day
+        else// ==
+            currentDate = currentDate; //just for clearaty
 
         /*
          * secondary loop - We have course info and starting day.
@@ -179,4 +191,32 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     CSV_line.append("\"JCE Jerusalem\"");
 
     return CSV_line;
+}
+
+void CSV_Exporter::changeDayNumberFromQtToNormal(int *QtDay)
+{
+    switch(*QtDay){
+    case 7:
+        *QtDay = SUNDAY;
+        break;
+    case 1:
+        *QtDay = MONDAY;
+        break;
+    case 2:
+        *QtDay = TUESDAY;
+        break;
+    case 3:
+        *QtDay = WENDSDAY;
+        break;
+    case 4:
+        *QtDay = THURSDAY;
+        break;
+    case 5:
+        *QtDay = FRIDAY;
+        break;
+    default:
+        *QtDay = 7;
+        break;
+    }
+    return; //Done.
 }

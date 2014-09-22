@@ -5,22 +5,20 @@
  *	SaveData Class 
  * --------------------------------------
  * 
- * all functions in this class are static!
- * no need to create an object!
- * 
- * provides all the needed functions
- * for saving user data for JCE login.
+ * Uses QMap
  *
- * the class will enteract with a file formated by tags for storing the valus.
- * the file format is as sutch:
- * 
- * 		[status]Status Value[/]
- * 		[username]usernaem vale[/]
- * 		[password]hashed(not really) password vale[/]
+ * key :  vale
  *
- * the class will create a file if not exists by calling Save Data::init() function.
+ * Keys:
+ * "username"
+ * "password"
+ * "local"
+ * "calendar"
  *
- * for more info about functions - see implantation
+ * Note that the password will be encrypted using the SimpleCrypt class!
+ *
+ * SimpleCrypt class was found at the qt projects forms - and been fixed by Sagi Dayan.
+ *
  */
 
 /* QT libs */
@@ -31,7 +29,7 @@
 #include <QMap>
 #include "simplecrypt.h"
 
-#define FILE_NAME   "JAC_DB.dat"
+#define FILE_NAME   "JM.dat"
 
 class SaveData
 {

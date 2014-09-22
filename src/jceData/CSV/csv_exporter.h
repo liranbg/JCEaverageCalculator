@@ -9,7 +9,7 @@
 #include <QMessageBox>
 
 #include "../Calendar/calendarSchedule.h"
-#include "../Calendar/calendardialog.h"
+#include "../Calendar/calendarDialog.h"
 
 
 #define CSV_CALENDAR_HEADER "Subject,Start Date,Start Time,End Date,End Time,Description,Location"
@@ -24,6 +24,8 @@ public:
 private:
     static QString getFileFath();
     static QString makeLine(QString name,QDate *date,int startH,int startM,int endH,int endM,QString lecturer,QString room,QString type);
+    static void changeDayNumberFromQtToNormal(int *);
+    enum DAYS{SUNDAY=1, MONDAY=2, TUESDAY=3, WENDSDAY=4, THURSDAY=5, FRIDAY=6};
 };
 
 #endif // CSV_EXPORTER_H

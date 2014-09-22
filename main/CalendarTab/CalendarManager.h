@@ -4,7 +4,7 @@
 #include "./src/jceData/Calendar/calendarPage.h"
 #include "./src/jceData/Calendar/calendarSchedule.h"
 #include "./src/jceData/CSV/csv_exporter.h"
-#include "./src/jceData/Calendar/calendardialog.h"
+#include "./src/jceData/Calendar/calendarDialog.h"
 #include <iostream>
 #include <QMessageBox>
 
