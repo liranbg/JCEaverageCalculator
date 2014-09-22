@@ -9,7 +9,7 @@
 #include <QMessageBox>
 
 #include "../Calendar/calendarSchedule.h"
-#include "../Calendar/calendardialog.h"
+#include "../Calendar/calendarDialog.h"
 
 
 #define CSV_CALENDAR_HEADER "Subject,Start Date,Start Time,End Date,End Time,Description,Location"
