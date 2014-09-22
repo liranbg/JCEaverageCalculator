@@ -15,14 +15,10 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     ui->labelUsrInputStatus->setPixmap(iconPix);
     ui->labelPswInputStatus->setPixmap(iconPix);
 
-    //Status Bar
+    //StatusBar
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
-    ButtomStatusLabel = new QLabel(this);
-    statusLabel = new QLabel(this);
     ui->statusBar->setMaximumSize(this->geometry().width(),STATUS_ICON_HEIGH);
-    ui->statusBar->addPermanentWidget(ButtomStatusLabel,0);
-    ui->statusBar->addPermanentWidget(statusLabel,1);
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
+    ui->statusBar->showMessage(tr("Ready"));
 
     //Course, Calendar Tab
     calendarSchedule * calendarSchedulePtr = new calendarSchedule();
@@ -32,7 +28,7 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     //Pointer allocating
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
-    this->loginHandel = new loginHandler(userLoginSetting);
+    this->loginHandel = new loginHandler(userLoginSetting,ui->statusBar,ui->loginButton);
     this->calendar = new CalendarManager(calendarSchedulePtr);
     this->data = new SaveData();
 
@@ -48,11 +44,8 @@ MainScreen::MainScreen(QWidget *parent) :QMainWindow(parent), ui(new Ui::MainScr
     checkLocale();
 
 }
-
 MainScreen::~MainScreen()
 {
-    delete ButtomStatusLabel;
-    delete statusLabel;
     delete calendar;
     delete courseTableMgr;
     delete userLoginSetting;
@@ -61,34 +54,48 @@ MainScreen::~MainScreen()
     delete ui;
 }
 //EVENTS ON STATUS BAR
-void MainScreen::setLabelConnectionStatus(jceLogin::jceStatus statusDescription)
-{
-    switch (statusDescription)
-    {
-    case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
-        iconPix.load(":/icons/blueStatusIcon.png");
-        statusLabel->setText(tr("Connecting"));
-        break;
-    case jceLogin::jceStatus::JCE_YOU_ARE_IN:
-        iconPix.load(":/icons/greenStatusIcon.png");
-        statusLabel->setText(tr("Connected"));
-        break;
-    default:
-        iconPix.load(":/icons/redStatusIcon.png");
-        statusLabel->setText(tr("Disconnected"));
-        break;
-    }
-    ButtomStatusLabel->setPixmap(iconPix);
 
-    this->repaint();
-}
 //EVENTS ON LOGIN TAB
 void MainScreen::on_loginButton_clicked()
 {
-    if (loginHandel->isLoggedInFlag())
-        uiSetDisconnectMode();
+    qDebug() << Q_FUNC_INFO;
+    bool isSettingsOk = false;
+    if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
+    {
+        if (ui->usrnmLineEdit->text().isEmpty())
+        {
+            ui->labelUsrInputStatus->setVisible(true);
+            qDebug() << Q_FUNC_INFO << "username input is empty";
+        }
+        else
+            ui->labelUsrInputStatus->setVisible(false);
+        if (ui->pswdLineEdit->text().isEmpty())
+        {
+            ui->labelPswInputStatus->setVisible(true);
+            qDebug() << Q_FUNC_INFO << "password input is empty";
+        }
+        else
+            ui->labelPswInputStatus->setVisible(false);
+        return;
+    }
     else
-        uiSetConnectMode();
+    {
+        isSettingsOk = true;
+        ui->labelUsrInputStatus->setVisible(false);
+        ui->labelPswInputStatus->setVisible(false);
+    }
+
+    if (this->loginHandel->login(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text()) == true)
+    {
+        ui->pswdLineEdit->setDisabled(true);
+        ui->usrnmLineEdit->setDisabled(true);
+    }
+    else
+    {
+        ui->pswdLineEdit->setDisabled(false);
+        ui->usrnmLineEdit->setDisabled(false);
+
+    }
 }
 void MainScreen::on_keepLogin_clicked()
 {
@@ -104,74 +111,7 @@ void MainScreen::on_usrnmLineEdit_editingFinished()
 {
     ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
 }
-void MainScreen::uiSetDisconnectMode()
-{
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
-    ui->usrnmLineEdit->setText("");
-    ui->pswdLineEdit->setText("");
-    ui->usrnmLineEdit->setEnabled(true);
-    ui->pswdLineEdit->setEnabled(true);
 
-    loginHandel->makeDisconnectionRequest();
-    ui->loginButton->setText(tr("&Login"));
-    ui->getCalendarBtn->setDisabled(true);
-    ui->exportToCVSBtn->setDisabled(true);
-    ui->ratesButton->setDisabled(true);
-    return;
-}
-void MainScreen::uiSetConnectMode()
-{
-    QString username;
-    QString password;
-    if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
-    {
-        if (ui->usrnmLineEdit->text().isEmpty())
-        {
-            ui->labelUsrInputStatus->setVisible(true);
-            qDebug() << "error, username input is empty";
-        }
-        else
-            ui->labelUsrInputStatus->setVisible(false);
-        if (ui->pswdLineEdit->text().isEmpty())
-        {
-            ui->labelPswInputStatus->setVisible(true);
-            qDebug() << "error, password input is empty";
-        }
-        else
-            ui->labelPswInputStatus->setVisible(false);
-        return;
-    }
-    else
-    {
-        ui->labelUsrInputStatus->setVisible(false);
-        ui->labelPswInputStatus->setVisible(false);
-    }
-    setLabelConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
-
-    username = ui->usrnmLineEdit->text();
-    password = ui->pswdLineEdit->text();
-
-    ui->usrnmLineEdit->setDisabled(true);
-    ui->pswdLineEdit->setDisabled(true);
-
-    userLoginSetting->setUsername(username);
-    userLoginSetting->setPassword(password);
-
-    this->loginHandel->setPointers(statusLabel,ui->pswdLineEdit,ui->usrnmLineEdit);
-    if (loginHandel->makeConnection() == true)
-    {
-        setLabelConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
-        ui->loginButton->setText(tr("&Logout"));
-        ui->ratesButton->setEnabled(true);
-        ui->CoursesTab->setEnabled(true);
-        ui->exportToCVSBtn->setEnabled(true);
-        ui->getCalendarBtn->setEnabled(true);
-    }
-    else
-    {
-        uiSetDisconnectMode();
-    }
-}
 //EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
@@ -224,7 +164,6 @@ void MainScreen::on_spinBoxCoursesFromYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesFromYear->setValue(arg1);
 }
-
 void MainScreen::on_spinBoxCoursesToYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesToYear->setValue(arg1);
@@ -278,20 +217,19 @@ void MainScreen::on_exportToCVSBtn_clicked()
 
     }
 }
-
 //EVENTS ON MENU BAR
 void MainScreen::on_actionCredits_triggered()
 {
     QMessageBox::about(this, "About", tr("CREDITS-ROOL-UP1")  + " v1.0<br><br>"
                        + tr("CREDITS-ROOL-UP2")+"<br>GNU LESSER GENERAL PUBLIC LICENSE V2<br>"
                        + tr("CREDITS-ROOL-UP3")+"<br>"
-                       "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
-                       "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                                                "<a href='https://github.com/liranbg/jceAverageCalculator'>jceAverageCalculator Repository</a>"
+                                                "<br><br>"+tr("CREDITS-ROOL-UP4")+"<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
                        +tr("DevBy")+":"
-                       "<ul>"
-                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
-                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
-                       "</ul>");
+                                    "<ul>"
+                                    "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"
+                                                                                          "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li>"
+                                                                                                                                                 "</ul>");
 }
 void MainScreen::on_actionExit_triggered()
 {
@@ -303,16 +241,12 @@ void MainScreen::on_actionHow_To_triggered()
                              "<b>How To..</b>"
                              "<ul>"
                              "<br><li>"+tr("HELP1")+"</li>"
-                             "<br><li>"+tr("HELP2")+"</li>"
-                             "<br><li>"+tr("HELP3")+"</li>"
-                             "<br><li>"+tr("HELP4")+"</li>"
-                             "<br><li>"+tr("HELP5")+"</li>"
-                             "</ul>");
+                                                    "<br><li>"+tr("HELP2")+"</li>"
+                                                                           "<br><li>"+tr("HELP3")+"</li>"
+                                                                                                  "<br><li>"+tr("HELP4")+"</li>"
+                                                                                                                         "<br><li>"+tr("HELP5")+"</li>"
+                                                                                                                                                "</ul>");
 }
-
-
-
-
 void MainScreen::on_actionHebrew_triggered()
 {
     if (ui->actionEnglish->isChecked() || ui->actionOS_Default->isChecked())
@@ -326,7 +260,6 @@ void MainScreen::on_actionHebrew_triggered()
     else
         ui->actionHebrew->setChecked(true);
 }
-
 void MainScreen::on_actionEnglish_triggered()
 {
     if (ui->actionHebrew->isChecked() || ui->actionOS_Default->isChecked())
@@ -340,8 +273,6 @@ void MainScreen::on_actionEnglish_triggered()
     else
         ui->actionEnglish->setChecked(true);
 }
-
-
 void MainScreen::on_actionOS_Default_triggered()
 {
     if (ui->actionHebrew->isChecked() || ui->actionEnglish->isChecked())

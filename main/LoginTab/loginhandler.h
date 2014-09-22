@@ -2,43 +2,55 @@
 #define LOGINHANDLER_H
 #include <QObject>
 #include <QString>
-#include <QLabel>
-#include <QLineEdit>
 #include <QTextEdit>
+#include <QLabel>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QStatusBar>
+#include <QPushButton>
 
 #include "./src/jceSettings/jcelogin.h"
 #include "./src/appDatabase/savedata.h"
 
 
-class loginHandler
+class loginHandler : public QObject
 {
+    Q_OBJECT
 public:
-    loginHandler(user *ptr);
-    void setPointers(QLabel *statusLabelPtr,QLineEdit *pswdEditPtr,QLineEdit *usrnmEditPtr);
+    loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *loginButtonPtr);
+    ~loginHandler()
+    {
+        delete iconButtomStatusLabel;
+        delete jceLog;
+    }
+
+    bool login(QString username,QString password);
+    void logout();
+    void setIconConnectionStatus(jceLogin::jceStatus statusDescription);
+
     bool makeConnection();
+
     bool isLoggedInFlag();
     void setLoginFlag(bool flag);
-
     QString getCurrentPageContect();
 
     int makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester);
     int makeCalendarRequest(int year,int semester);
 
-    void makeDisconnectionRequest();
+private slots:
+    void readyAfterConnectionLost();
 
 private:
 
     void popMessage(QString message, bool addInfo = true);
 
     bool logggedInFlag;
-    jceLogin *jceLog;
+    jceLogin * jceLog;
+    user * userPtr;
 
-    QLabel *statusLabelPtr;
-    QLineEdit *pswdEditPtr;
-    QLineEdit *usrnmEditPtr;
-
+    QStatusBar *statusBar;
+    QLabel *iconButtomStatusLabel;
+    QPushButton *loginButtonPtr;
 
 };
 

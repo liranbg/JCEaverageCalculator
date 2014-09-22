@@ -10,6 +10,7 @@ jceLogin::jceLogin(user* username)
     this->jceA = username;
     this->JceConnector = new jceSSLClient();
     QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
+    QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
 }
 
 jceLogin::~jceLogin()
@@ -24,7 +25,7 @@ jceLogin::~jceLogin()
  * @brief jceLogin::makeConnection  Connecting to JCE student web site with JceA (username object) and validate it.
  *                  throws error upon the given error from JCE website or Socket error
  */
-void jceLogin::makeConnection() throw (jceStatus)
+int jceLogin::makeConnection()
 {
     qDebug() << "jceLogin::makeConnection(); connection to be make";
 
@@ -37,8 +38,12 @@ void jceLogin::makeConnection() throw (jceStatus)
     returnMode = checkConnection(); //checking socket status. is connected?
 
     if (returnMode == false)
+    {
         if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
-            throw jceStatus::ERROR_ON_OPEN_SOCKET;
+            return jceStatus::ERROR_ON_OPEN_SOCKET;
+        else
+            returnMode = true;
+    }
 
     if (returnMode == true) //connected to host
     {
@@ -88,8 +93,8 @@ void jceLogin::makeConnection() throw (jceStatus)
         status = jceStatus::JCE_NOT_CONNECTED;
 
     //we throw status even if we are IN!
-    qDebug() << "jceLogin::makeConnection(); throw status: " << status;
-    throw status;
+    qDebug() << "jceLogin::makeConnection(); return status: " << status;
+    return status;
 
 }
 /**
@@ -104,35 +109,34 @@ bool jceLogin::checkConnection() const
     return false;
 }
 /**
- * @brief jceLogin::reConnect
- * closing connection and deleting pointers.
- * calling class's makeConnection function and throw the exception of it.
- */
-void jceLogin::reConnect()  throw (jceStatus)
-{
-    closeAll();
-    if (this->JceConnector != NULL)
-        delete JceConnector;
-    this->recieverPage = new QString();
-    this->JceConnector = new jceSSLClient();
-
-    try
-    {
-        makeConnection();
-    }
-    catch (jceLogin::jceStatus &a)
-    {
-        throw a;
-    }
-}
-/**
  * @brief jceLogin::closeAll
  */
 void jceLogin::closeAll()
 {
-    JceConnector->makeDiconnect();
-    delete recieverPage;
+    this->JceConnector->makeDiconnect();
+    if ((this->recieverPage != NULL) && (!this->recieverPage->isEmpty()))
+    {
+        delete recieverPage;
+        recieverPage = NULL;
+    }
+
+}
+/**
+ * @brief jceLogin::reMakeConnection
+ */
+void jceLogin::reMakeConnection()
+{
+    if (this->JceConnector != NULL)
+        delete JceConnector;
+    if (this->recieverPage != NULL)
+        delete recieverPage;
     recieverPage = NULL;
+    JceConnector = NULL;
+    this->recieverPage = new QString();
+    this->JceConnector = new jceSSLClient();
+    QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
+    QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
+    emit connectionReadyAfterDisconnection();
 
 }
 /**
@@ -309,18 +313,4 @@ void jceLogin::reValidation()
     {
         qDebug() << Q_FUNC_INFO << "Couldnt Validate User";
     }
-    /*
-    delete recieverPage;
-    recieverPage = NULL;
-    if (this->JceConnector != NULL)
-        delete JceConnector;
-    this->recieverPage = new QString();
-    this->JceConnector = new jceSSLClient();
-    if (makeFirstVisit() == true)
-    {
-        if (checkValidation())
-        {
-            if (makeSecondVisit() == true)
-     */
-
 }

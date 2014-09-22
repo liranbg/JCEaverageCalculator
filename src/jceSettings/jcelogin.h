@@ -32,10 +32,7 @@ public:
         JCE_GRADE_PAGE_PASSED
     };
 
-
-
-    void makeConnection()  throw (jceStatus);
-    void reConnect() throw (jceStatus);
+    int makeConnection();
     void closeAll();
 
     bool checkConnection() const;
@@ -48,6 +45,10 @@ public:
 
 private slots:
     void reValidation();
+    void reMakeConnection();
+
+signals:
+    void connectionReadyAfterDisconnection();
 
 private:
 

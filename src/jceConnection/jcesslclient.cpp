@@ -17,7 +17,6 @@ jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf(), reConnect
     connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loop,SLOT(quit()));
 
 }
-
 /**
  * @brief jceSSLClient::makeConnect connecting to server with given port. using eventloop to assure it wont stuck the application.
  * @param server  - server to connect to
@@ -26,6 +25,9 @@ jceSSLClient::jceSSLClient() : flag(false), packet(""), networkConf(), reConnect
  */
 bool jceSSLClient::makeConnect(QString server, int port)
 {
+    if (this->networkConf.isOnline() == false)
+        return false;
+
     if (reConnection) //reset reconnectiong flag
     {
         qDebug() << Q_FUNC_INFO <<  "Making Reconnection";
@@ -38,7 +40,6 @@ bool jceSSLClient::makeConnect(QString server, int port)
         qDebug() << Q_FUNC_INFO <<  "flag=true, calling makeDisconnect()";
         makeDiconnect();
     }
-
 
     qDebug() << Q_FUNC_INFO <<  "Connection to: " << server << "On Port: " << port;
     connectToHostEncrypted(server.toStdString().c_str(), port);
@@ -182,12 +183,13 @@ void jceSSLClient::setOnlineState(bool isOnline)
     qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
     if (isOnline) //to be added later
     {
+        qDebug() << Q_FUNC_INFO << "Online Statue has been changed. we are online";
         //we can add here auto reconnect if wifi\ethernet link has appear
         //will be added next version
     }
     else
     {
-        //abort() ?
+        qWarning() << Q_FUNC_INFO << "Online State has been changed. emitting NoInternetLink";
         this->makeDiconnect();
         emit noInternetLink();
     }
@@ -211,6 +213,7 @@ void jceSSLClient::setDisconnected()
     flag = false;
     if (reConnection)
         makeConnect();
+
 
 }
 /**
@@ -348,8 +351,6 @@ void jceSSLClient::showIfErrorMsg()
         msgBox.exec();
     }
 }
-
-
 /**
  * @brief jceSSLClient::checkErrors this function exctuing when socket error has occured
  * @param a includes the error enum from QAbstractSocket::SocketError enum list
