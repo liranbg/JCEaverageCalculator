@@ -5,11 +5,17 @@
 #include "./src/jceSettings/user.h"
 #include "jceLoginHtmlScripts.h"
 
+#include <QObject>
 #include <QString>
 
-class jceLogin
+
+class jceLogin : public QObject
 {
+     Q_OBJECT
 public:
+    jceLogin() {}
+    jceLogin(user* username);
+    ~jceLogin();
 
     enum jceStatus {
         JCE_NOT_CONNECTED,
@@ -26,11 +32,7 @@ public:
         JCE_GRADE_PAGE_PASSED
     };
 
-    jceLogin(user* username);
-    ~jceLogin();
-
-    void makeConnection()  throw (jceStatus);
-    void reConnect() throw (jceStatus);
+    int makeConnection();
     void closeAll();
 
     bool checkConnection() const;
@@ -40,6 +42,13 @@ public:
     int getGrades(int fromYear, int toYear, int fromSemester, int toSemester);
 
     QString getPage();
+
+private slots:
+    void reValidation();
+    void reMakeConnection();
+
+signals:
+    void connectionReadyAfterDisconnection();
 
 private:
 

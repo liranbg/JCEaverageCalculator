@@ -70,25 +70,20 @@ private slots:
 
 private:
 
-    void uiSetDisconnectMode();
-    void uiSetConnectMode();
-    void setLabelConnectionStatus(jceLogin::jceStatus statusDescription);
     void checkLocale();
 
     bool checkIfValidDates();
 
     Ui::MainScreen *ui;
 
-    QLabel *ButtomStatusLabel;
-    QLabel *statusLabel;
-
+    QPixmap iconPix;
     user *userLoginSetting;
     SaveData *data;
+
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
-    loginHandler *loginHandel;
 
-    bool calendarLoaded;
+    loginHandler *loginHandel;
 
 };
 

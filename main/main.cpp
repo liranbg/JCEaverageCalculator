@@ -8,19 +8,21 @@
 
 int main(int argc, char *argv[])
 {
-#ifdef QT_DEBUG
+#ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal
   qDebug() << "Running a debug build";
-#else
+#else          // If QtCreator is on  Release mode , qDebug messages will be logged in a log file.
   qDebug() << "Running a release build";
   qInstallMessageHandler(jce_logger::customMessageHandler);
 #endif
 
-    qDebug() << "Start : JCE Manager Launched" << Q_FUNC_INFO;
+    qDebug() << "Start : JCE Manager Launched";
+
     QApplication a(argc, argv);
     QTranslator translator;
     QString loco;
     SaveData data;
     loco = data.getLocal();
+    //Loading Local (From Settings file (SaveData.cpp)
     if(loco == "default")
     {
         QString locale = QLocale::system().name();
@@ -33,10 +35,11 @@ int main(int argc, char *argv[])
         translator.load("jce_en" , a.applicationDirPath());
         qDebug() << "Local : English Local Loaded";
     }
-    a.installTranslator(&translator);
+    a.installTranslator(&translator); //Setting local
     MainScreen w;
     w.show();
 
+    //Getting the exit code from QApplication. for debug reasons
     int returnCode =  a.exec();
     if(returnCode == 0)
         qDebug() << "End : JCE Manager Ended Successfully With A Return Code: " << returnCode;
