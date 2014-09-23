@@ -23,7 +23,7 @@ Compile with QT
   
   
   More to come.
-  check us at <a hreg='http://liranbg.github.io/JceManager'>Jce Manager Developers</a>
+  check us at <a href='http://liranbg.github.io/JceManager'>Jce Manager Developers</a>
 
     
     
