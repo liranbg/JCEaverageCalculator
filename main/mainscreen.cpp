@@ -17,7 +17,7 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
 
     //StatusBar
     ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
-    ui->statusBar->setMaximumSize(this->geometry().width(),STATUS_ICON_HEIGH);
+    ui->statusBar->setFixedHeight(STATUS_ICON_HEIGH);
     ui->statusBar->showMessage(tr("Ready"));
 
     //GPA Tab
