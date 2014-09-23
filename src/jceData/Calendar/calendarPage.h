@@ -4,8 +4,9 @@
 #include "../page.h"
 #include "calendarCourse.h"
 #include <list>
-//#include <string.h> //strlen and strtok to phrase the html file
-//#include <ctype.h> //checks if character is numeric
+
+#define ROOM_DEFAULT_STRING "nullRoom"
+#define LECTURER_DEFAULT_STRING "nullLecturer"
 
 class CalendarPage : public Page
 {

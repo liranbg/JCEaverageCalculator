@@ -73,10 +73,13 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
     tok = strtok(cLine, "\t");
     while(tok != NULL)
     {
-
         tempS = QString(tok);
-        if (i>=1)
-            templinearray[i-1] = tempS;
+
+        if (i >= 1)
+        {
+            templinearray[i-1] = tempS.trimmed();
+        }
+
         i++;
         if (i > 8)
             break;
@@ -84,22 +87,32 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
     }
     if (templinearray[0] == "") //empty parsing
         return NULL;
+
     serial = templinearray[calendarCourse::CourseScheme::SERIAL].toInt();
     name = templinearray[calendarCourse::CourseScheme::NAME];
     type = templinearray[calendarCourse::CourseScheme::TYPE];
-    lecturer = templinearray[calendarCourse::CourseScheme::LECTURER];
 
-    if (templinearray[calendarCourse::CourseScheme::POINTS].compare(" ") == 0)
+
+    if (!templinearray[calendarCourse::CourseScheme::LECTURER].isEmpty())
+        lecturer = templinearray[calendarCourse::CourseScheme::LECTURER];
+    else
+        lecturer = LECTURER_DEFAULT_STRING;
+
+    if (!templinearray[calendarCourse::CourseScheme::POINTS].isEmpty())
         points = templinearray[calendarCourse::CourseScheme::POINTS].toDouble();
     else
         points = 0;
-    if (templinearray[calendarCourse::CourseScheme::SEM_HOURS].compare(" ") == 0)
+    if (!templinearray[calendarCourse::CourseScheme::SEM_HOURS].isEmpty())
         semesterHours = templinearray[calendarCourse::CourseScheme::SEM_HOURS].toDouble();
     else
         semesterHours = 0;
-    dayAndHour = templinearray[calendarCourse::CourseScheme::DAY_AND_HOURS];
-    room = templinearray[calendarCourse::CourseScheme::ROOM];
 
+    dayAndHour = templinearray[calendarCourse::CourseScheme::DAY_AND_HOURS];
+
+    if (!templinearray[calendarCourse::CourseScheme::ROOM].isEmpty())
+        room = templinearray[calendarCourse::CourseScheme::ROOM];
+    else
+        room = ROOM_DEFAULT_STRING;
 
     tempC = new calendarCourse(serial,name,type,lecturer,points,semesterHours,dayAndHour,room);
 

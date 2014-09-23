@@ -2,12 +2,11 @@
 #define CALENDARSCHEDULE_H
 
 #include <QTableWidget>
+#include <QHeaderView>
 #include <QTextStream>
-#include <iostream>
 
 #include "calendarPage.h"
-#include <iostream>
-#include <QHeaderView>
+
 
 #define HOURS_BEGIN 8
 #define HOURS_END 20

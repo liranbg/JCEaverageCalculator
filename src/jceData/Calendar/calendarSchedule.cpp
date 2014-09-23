@@ -48,8 +48,8 @@ void calendarSchedule::clearTableItems()
         for (j = 0; j < columnCount(); j++)
             if (this->takeItem(i,j) != NULL)
                 delete this->takeItem(i,j);
-    horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void calendarSchedule::insertCourseIntoTable()
@@ -64,12 +64,24 @@ void calendarSchedule::insertCourseIntoTable()
         courseString = "";
         currentHour = coursePtr->getHourBegin();
         currentDay = coursePtr->getDay();
-        blocksNumer = coursePtr->getHourEnd() - coursePtr->getHourBegin();
+        blocksNumer = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
         while (blocksNumer >= 0)
         {
-            row = currentHour % HOURS_BEGIN;
+            row = currentHour - HOURS_BEGIN;
             col = currentDay-1;
-            courseString = (QString(coursePtr->getName() + " \n" + coursePtr->getLecturer() + " \n" + coursePtr->getRoom()));
+            courseString = QString(coursePtr->getName() + "\n");
+
+            if (coursePtr->getLecturer() != LECTURER_DEFAULT_STRING)
+                courseString += coursePtr->getLecturer() + "\n";
+            else
+                courseString += QString("טרם נקבע מרצה או מתרגל\n");
+
+            if (coursePtr->getRoom() != ROOM_DEFAULT_STRING)
+                courseString += coursePtr->getRoom();
+            else
+                courseString += QString("טרם נקבעה כיתה");
+
+
             item = new QTableWidgetItem(courseString);
             if (this->takeItem(row,col) != NULL)
                 delete this->takeItem(row,col);
@@ -78,9 +90,12 @@ void calendarSchedule::insertCourseIntoTable()
             currentHour++;
             --blocksNumer;
         }
+        horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+        verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
-    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+        horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+        verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
 }
 
 

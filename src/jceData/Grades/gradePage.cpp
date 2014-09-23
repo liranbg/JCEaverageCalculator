@@ -100,8 +100,8 @@ gradeCourse* GradePage::lineToCourse(QString line)
                 tempS += QString(*tokTemp);
                 tokTemp++;
             }
-            templinearray[i-1] = tempS;
-            templinearray[i] = QString(tokTemp);
+            templinearray[i-1] = tempS.trimmed();
+            templinearray[i] = QString(tokTemp).trimmed();
 
         }
         else if (i > 1)

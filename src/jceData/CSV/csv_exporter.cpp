@@ -5,8 +5,6 @@
  * Class doc can be bound in csv_exporter.h
  *
  */
-
-
 CSV_Exporter::CSV_Exporter()
 {
     /* EMPTY - NO NEED */
@@ -28,16 +26,16 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     if (calSched->getCourses() == NULL)
         return false;
 
-    qDebug() << "Getting path for csv file from user...";
+    qDebug() << Q_FUNC_INFO << "Getting path for csv file from user...";
 
     QString filePath = getFileFath();
     if(filePath == NULL) //User canceled from the file explorer popup
     {
-        qDebug() << "CSV : User pressed Cancel... returning false";
+        qDebug() << Q_FUNC_INFO << "CSV : User pressed Cancel... returning false";
         return false;
     }
-    qDebug() << "CSV : User Chose: " << filePath;
-    qDebug() << "CSV : Atempting to export the Schedule...";
+    qDebug() << Q_FUNC_INFO << "CSV : User Chose: " << filePath;
+    qDebug() << Q_FUNC_INFO << "CSV : Atempting to export the Schedule...";
 
     QFile file(filePath);
     if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) //Incase unable to open the file (binary mode - \n will not be converted on "Windows")
@@ -46,7 +44,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setText(QObject::tr("Unable to open or create the file.\nExporting Failed"));
         msgBox.exec();
-        qCritical() << "unable to open/create the file... maybe permissions error.";
+        qCritical() << Q_FUNC_INFO << "unable to open/create the file... maybe permissions error.";
         return false;
     }
 
@@ -94,14 +92,14 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
             if(line != NULL)
                 out << line << char(0x0A);
             else
-                qWarning() << "CSV : Got A NULL in Line! in function: " << Q_FUNC_INFO;
+                qWarning() << Q_FUNC_INFO << "CSV : Got A NULL in Line! in function: " << Q_FUNC_INFO;
         }
         out.flush();
     }
 
 
     file.close();
-    qDebug() << "CSV : Exported Successfully";
+    qDebug() << Q_FUNC_INFO << "CSV : Exported Successfully";
     return true;
 
 }
@@ -152,7 +150,7 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     QString start;
     start.append(QString::number(startH));
     start.append(":00");
-    //start.append(QString::number(startM));
+//    start.append(QString::number(startM));
     start.append(":00");
 
     QString end;
@@ -162,10 +160,22 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     end.append(":00");
 
     QString description = "\"מרצה ";
-    description.append(lecturer);
+
+    if (lecturer == LECTURER_DEFAULT_STRING)
+        description.append("טרם נקבע מרצה או מתרגל");
+    else
+        description.append(lecturer);
+
     description.append("\n");
-    description.append(" ב");
-    description.append(room);
+
+    if (room == ROOM_DEFAULT_STRING)
+        description.append("טרם נקבע מיקום");
+    else
+    {
+            description.append(" ב");
+        description.append(room);
+    }
+
     description.append("\n Created with JCE Manager.\"");
 
     //Create the Fucking Line

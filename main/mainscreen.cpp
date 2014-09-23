@@ -98,7 +98,7 @@ void MainScreen::on_loginButton_clicked()
     }
     else
     {
-        qDebug() << Q_FUNC_INFO <<  "login session end with end";
+        qDebug() << Q_FUNC_INFO <<  "login session end with false";
         ui->pswdLineEdit->setDisabled(false);
         ui->usrnmLineEdit->setDisabled(false);
 
