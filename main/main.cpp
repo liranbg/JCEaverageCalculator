@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 #ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal
   qDebug() << "Running a debug build";
 #else          // If QtCreator is on  Release mode , qDebug messages will be logged in a log file.
-  qDebug() << "Running a release build";
+//  qDebug() << "Running a release build";
   qInstallMessageHandler(jce_logger::customMessageHandler);
 #endif
 

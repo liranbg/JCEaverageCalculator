@@ -61,7 +61,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -519,10 +519,10 @@ font-size: 15px;
                <number>2008</number>
               </property>
               <property name="maximum">
-               <number>2015</number>
+               <number>2016</number>
               </property>
               <property name="value">
-               <number>2014</number>
+               <number>2015</number>
               </property>
              </widget>
             </item>
@@ -566,13 +566,13 @@ font-size: 15px;
               <item>
                <widget class="QSpinBox" name="spinBoxYear">
                 <property name="minimum">
-                 <number>2012</number>
+                 <number>2013</number>
                 </property>
                 <property name="maximum">
                  <number>2020</number>
                 </property>
                 <property name="value">
-                 <number>2014</number>
+                 <number>2015</number>
                 </property>
                </widget>
               </item>
@@ -585,7 +585,7 @@ font-size: 15px;
                  <number>3</number>
                 </property>
                 <property name="value">
-                 <number>2</number>
+                 <number>1</number>
                 </property>
                </widget>
               </item>
@@ -624,6 +624,13 @@ font-size: 15px;
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
+      </property>
      </widget>
     </item>
    </layout>

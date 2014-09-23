@@ -6,8 +6,8 @@
 
 QT       += core gui network widgets
 
-CONFIG += qt c++11
-CONFIG += console static
+CONFIG += qt c++11 static
+#CONFIG += console static
 
 TARGET = jceManager
 TEMPLATE = app

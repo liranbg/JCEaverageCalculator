@@ -11,15 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Dates Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>551</width>
-     <height>235</height>
+     <width>613</width>
+     <height>263</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">

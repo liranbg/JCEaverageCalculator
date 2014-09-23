@@ -251,16 +251,15 @@ void MainScreen::on_actionCredits_triggered()
 {
     qDebug() << Q_FUNC_INFO;
     QMessageBox::about(this, "About",
-                       tr("Jce Manager")+
-                       "v1.0.0<br><br>"
+                       "<a href='http://liranbg.github.io/JceManager/'>Jce Manager</a> v1.0.0<br><br>"
                        +tr("License:")+
                        "<br>GNU LESSER GENERAL PUBLIC LICENSE V2.1<br>"
                        +"<br>"+
                        "<a href='https://github.com/liranbg/JceManager'>JceManager Repository</a>"+
                        "<br><br>"
-                       +tr("powered by: ")+
-                       "<a href='https://github.com/liranbg/jceConnection'>Jce Connection</a><br><br>"
-                       +tr("DevBy")+
+                       +tr("Powered By: ")+
+                       "<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                       +tr("Developed By")+
                        ":<ul>"+
                        "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"+
                        "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li></ul>"
@@ -276,18 +275,15 @@ void MainScreen::on_actionHow_To_triggered()
     qDebug() << Q_FUNC_INFO;
     QMessageBox::information(this,"How To",
                              "<b>"
-                             +tr("Guide")+
-                             "</b><ul><br><li>"
-                             +tr("login")+
-                             "</li><br><li>"
-                             +tr("get gpa")+
-                             "</li><br><li>"
-                             +tr("changing gpa")+
-                             "</li><br><li>"
-                             +tr("getting calendar")+
-                             "</li><br><li>"
-                             +tr("exporting")+
-                             "</li></ul>");
+                             +tr("Help Guide")+
+                             "</b><ul>"
+                             +tr("<br><li>Login: <ul><li>Type your username and password and click Login.</li><li>Once you are connected, you will see a green ball in the right buttom panel.</li></ul></li>")
+                             +tr("<br><li>Getting GPA sheet<ul><li>Click on GPA Tab</li><li> Select your dates and click on Add</li></ul></li>")
+                             +tr("<br><li>Average Changing<ul><li>Change one of your grade and see the average in the buttom panel changing.</li></ul></li>")
+                             +tr("<br><li>Getting Calendar<ul><li>Click on Calendar Tab</li><li> Select your dates and click on Get Calendar</li></ul></li>")
+                             +tr("<br><li>For exporting your calendar to a .CSV file:<ul><li>Do previous step and continue to next step</li><li> Click on Export to CSV</li><li>Select your dates and click OK</li><li>Once you're Done, go on your calendar and import your csv file</li></li>")+
+                             "<br><br>"
+                             +tr("<b>For more information, please visit us at: <a href='http://liranbg.github.io/JceManager/'>Jce Manager site</a></b>"));
 }
 void MainScreen::on_actionHebrew_triggered()
 {

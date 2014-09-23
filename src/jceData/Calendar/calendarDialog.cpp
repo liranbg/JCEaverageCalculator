@@ -57,7 +57,7 @@ void CalendarDialog::on_calEnd_selectionChanged()
     if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
     {
         changeLabeStatusIcon(false);
-        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before semester begins."));
+        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
         this->isOK = false;
     }
     else

@@ -70,7 +70,7 @@ bool loginHandler::makeConnection()
     }
     case jceLogin::ERROR_ON_VALIDATION_USER_BLOCKED:
     {
-        popMessage(QObject::tr("You have been blocked by JCE, please try in a couple of minutes."));
+        popMessage(QObject::tr("You have been <b>BLOCKED</b> by JCE, please try in a couple of minutes."));
         return false;
     }
     case jceLogin::ERROR_ON_OPEN_SOCKET:
