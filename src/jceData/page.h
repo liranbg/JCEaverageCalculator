@@ -4,7 +4,7 @@
 /*  This Code Made By Sagi Dayan
  *  SagiDayan@gmail.com
  *
- *  Changes  has been made by Liran Ben Gida
+ *  Changes  have been made by Liran Ben Gida
  *  LiranBG@gmail.com
 */
 #include <QDebug>

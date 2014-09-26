@@ -26,30 +26,42 @@ QDate CalendarDialog::getEndDate()
     return ui->calEnd->selectedDate();
 }
 
+/**
+ * @breif This method will return the state of the dates aka User input.
+ * @return true - if dates are valid, invalid false.
+ */
 bool CalendarDialog::ok()
 {
     return this->isOK;
 }
+
+/**
+ * @breif A Slot - triggers when the start calendar widget is selected (Date changed by user)
+ * it will change the status label (ui->lbl_status) according to the users input.
+ */
 void CalendarDialog::on_calStart_selectionChanged()
 {
-    if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
+    if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate()) //User input is invalid
     {
         changeLabeStatusIcon(false);
         ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
         this->isOK = false;
     }
-    else
+    else // input is valid
     {
         changeLabeStatusIcon(true);
-        ui->lbl_status->setText(tr("Looks ok, Press OK"));
+        ui->lbl_status->setText(tr("Looks fine, Click \"OK\""));
         this->isOK = true;
     }
 }
 
+/**
+ * @breif A Slot triggerd when OK clicked
+ */
 void CalendarDialog::on_buttonBox_accepted()
 {
-    if(ui->calStart->selectedDate() > ui->calEnd->selectedDate())
-        qDebug() << "start is bigger than end!";
+    if(this->isOK)
+      qDebug() << "CalendarDialog: Valid input";
 }
 
 void CalendarDialog::on_calEnd_selectionChanged()
@@ -69,6 +81,10 @@ void CalendarDialog::on_calEnd_selectionChanged()
 
 }
 
+/**
+ * @breif changes the status icon according to the... status... smart huh?
+ * @param goodOrBad - self explained
+ */
 void CalendarDialog::changeLabeStatusIcon(bool goodOrBad)
 {
     if (goodOrBad == true) //good date!
