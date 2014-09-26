@@ -38,7 +38,7 @@ The software is free and the source code is available to anyone who wants to loo
 ---
 
 ## <i class="fa fa-plus-square-o"></i> Join US
-If you have some spear time, you know how to code (C++ / QT), and you are a friendly dude (Male / Female).
+If you have some spare time, you know how to code (C++ / QT), and you are a friendly dude (Male / Female).
 Head over to our [<i class="fa fa-github"></i> Github page][github] and fork, send us a pull request !
 
 Or file a <i class="fa fa-bug"></i> Bug report to help us improve.
