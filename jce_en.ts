@@ -150,7 +150,7 @@
         <location filename="main/mainscreen.ui" line="632"/>
         <source>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</source>
         <oldsource>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</oldsource>
-        <translation>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="main/mainscreen.ui" line="649"/>
