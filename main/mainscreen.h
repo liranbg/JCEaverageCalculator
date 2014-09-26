@@ -65,6 +65,8 @@ private slots:
 
     void on_spinBoxCoursesToSemester_valueChanged(int arg1);
 
+    void on_labelMadeBy_linkActivated(const QString &link);
+
 private:
 
     void checkLocale();

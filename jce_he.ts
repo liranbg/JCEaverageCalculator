@@ -46,8 +46,8 @@
     <name>MainScreen</name>
     <message>
         <location filename="main/mainscreen.ui" line="20"/>
-        <source>JCE Avg Calculator</source>
-        <translation>JCE Avg Calculator</translation>
+        <source>JCE Manager</source>
+        <translation>JCE Manager</translation>
     </message>
     <message>
         <location filename="main/mainscreen.ui" line="86"/>
@@ -148,8 +148,9 @@
     </message>
     <message>
         <location filename="main/mainscreen.ui" line="632"/>
-        <source>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;right&quot;&gt;נוצר ע&quot;י: &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
+        <source>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</source>
+        <oldsource>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</oldsource>
+        <translation>&lt;p align=&quot;center&quot;&gt;נוצר ע&quot;י: &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="main/mainscreen.ui" line="649"/>
@@ -192,107 +193,107 @@
         <translation>עזרה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="21"/>
+        <location filename="main/mainscreen.cpp" line="23"/>
         <source>Ready</source>
         <translation>מוכן</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="132"/>
-        <location filename="main/mainscreen.cpp" line="151"/>
-        <location filename="main/mainscreen.cpp" line="206"/>
-        <location filename="main/mainscreen.cpp" line="234"/>
+        <location filename="main/mainscreen.cpp" line="136"/>
+        <location filename="main/mainscreen.cpp" line="157"/>
+        <location filename="main/mainscreen.cpp" line="212"/>
+        <location filename="main/mainscreen.cpp" line="242"/>
         <source>Error</source>
         <translation>שגיאה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="132"/>
+        <location filename="main/mainscreen.cpp" line="136"/>
         <source>Invalid Dates.
 Make Sure everything is correct and try again</source>
         <translation>תאריכים לא חוקיים. אנא בדוק שהנתונים שהוזנו נכונים ונסה מחדשה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="151"/>
-        <location filename="main/mainscreen.cpp" line="234"/>
+        <location filename="main/mainscreen.cpp" line="157"/>
+        <location filename="main/mainscreen.cpp" line="242"/>
         <source>Not Connected</source>
         <translation>לא מחובר</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="206"/>
+        <location filename="main/mainscreen.cpp" line="212"/>
         <source>Missmatching data</source>
         <translation>שגיאה בהכנסת נתונים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="255"/>
+        <location filename="main/mainscreen.cpp" line="264"/>
         <source>License:</source>
         <translation>רישיון:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="260"/>
+        <location filename="main/mainscreen.cpp" line="269"/>
         <source>Powered By: </source>
         <oldsource>powered by: </oldsource>
         <translation>מנוע:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="262"/>
+        <location filename="main/mainscreen.cpp" line="271"/>
         <source>Developed By</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="278"/>
+        <location filename="main/mainscreen.cpp" line="287"/>
         <source>Help Guide</source>
         <oldsource>Guide</oldsource>
         <translation>תפריט עזרה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="264"/>
+        <location filename="main/mainscreen.cpp" line="273"/>
         <source>Liran</source>
         <translation>לירן בן גידה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="265"/>
+        <location filename="main/mainscreen.cpp" line="274"/>
         <source>Sagi</source>
         <translation>שגיא דיין</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="280"/>
+        <location filename="main/mainscreen.cpp" line="289"/>
         <source>&lt;br&gt;&lt;li&gt;Login: &lt;ul&gt;&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;&lt;li&gt;Once you are connected, you will see a green ball in the right buttom panel.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;התחברות: &lt;ul&gt;&lt;li&gt;הזן את שם המשתמש והסיסמה ולחץ על התחבר&lt;/li&gt;&lt;li&gt;בגמר ההתחברות תראה בכדור ירוק בשורת המצב. המשמעות שהינך מחובר לאתר&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="281"/>
+        <location filename="main/mainscreen.cpp" line="290"/>
         <source>&lt;br&gt;&lt;li&gt;Getting GPA sheet&lt;ul&gt;&lt;li&gt;Click on GPA Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Add&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;קבלת גליון ציונים&lt;ul&gt;&lt;li&gt;לחץ על לשונית הציונים&lt;/li&gt;&lt;li&gt;בחר את טווח התאריכים הרצויים ולחץ על הוספה&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="282"/>
+        <location filename="main/mainscreen.cpp" line="291"/>
         <source>&lt;br&gt;&lt;li&gt;Average Changing&lt;ul&gt;&lt;li&gt;Change one of your grade and see the average in the buttom panel changing.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;שינוי ממוצע&lt;ul&gt;&lt;li&gt;שנה את אחד הציונים שלך בקורס והממוצע ישתנה בהתאם.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="283"/>
+        <location filename="main/mainscreen.cpp" line="292"/>
         <source>&lt;br&gt;&lt;li&gt;Getting Calendar&lt;ul&gt;&lt;li&gt;Click on Calendar Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Get Calendar&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;קבלת שעות מערכת&lt;ul&gt;&lt;li&gt;לחץ על לשונית שעות מערכת&lt;/li&gt;&lt;li&gt;בחר את השנה והסמסטר ולחץ על הצג מערכת&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="284"/>
+        <location filename="main/mainscreen.cpp" line="293"/>
         <source>&lt;br&gt;&lt;li&gt;For exporting your calendar to a .CSV file:&lt;ul&gt;&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;&lt;li&gt; Click on Export to CSV&lt;/li&gt;&lt;li&gt;Select your dates and click OK&lt;/li&gt;&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;על מנת לייצא לקובץ CSV&lt;ul&gt;&lt;li&gt;בצע את השלב הקודם ואז&lt;/li&gt;&lt;li&gt; לחץ על ייצוא לCSV&lt;/li&gt;&lt;li&gt;בחר את התאריכים המתאימים ולחץ אישור&lt;/li&gt;&lt;li&gt;לאחר השלמת הפעולה תוכל לייבא את המערכת שעות&lt;/li&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="286"/>
+        <location filename="main/mainscreen.cpp" line="295"/>
         <source>&lt;b&gt;For more information, please visit us at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</source>
         <translation>&lt;b&gt;לעוד מידע: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="297"/>
-        <location filename="main/mainscreen.cpp" line="325"/>
+        <location filename="main/mainscreen.cpp" line="306"/>
+        <location filename="main/mainscreen.cpp" line="334"/>
         <source>Settings</source>
         <translation>הגדרות</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="297"/>
-        <location filename="main/mainscreen.cpp" line="311"/>
-        <location filename="main/mainscreen.cpp" line="325"/>
+        <location filename="main/mainscreen.cpp" line="306"/>
+        <location filename="main/mainscreen.cpp" line="320"/>
+        <location filename="main/mainscreen.cpp" line="334"/>
         <source>Your settings will take effect next time you start the program</source>
         <translation>ההגדרות שלך ייכנסו לתוקפן בפעם הבאה שתפעיל את התוכנה</translation>
     </message>
@@ -423,117 +424,117 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
         <translation>שישי</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="249"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="263"/>
         <source>ConnectionRefusedError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="254"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="268"/>
         <source>RemoteHostClosedError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="264"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="278"/>
         <source>HostNotFoundError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="269"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="283"/>
         <source>SocketAccessError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="273"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="287"/>
         <source>SocketTimeoutError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="280"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="294"/>
         <source>NetworkError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="289"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="303"/>
         <source>SslHandshakeFailedError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="293"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="307"/>
         <source>SslInternalError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="297"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="311"/>
         <source>SslInvalidUserDataError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="301"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="315"/>
         <source>DatagramTooLargeError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="306"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="320"/>
         <source>OperationError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="309"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="323"/>
         <source>AddressInUseError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="312"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="326"/>
         <source>SocketAddressNotAvailableError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="315"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="329"/>
         <source>UnsupportedSocketOperationError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="318"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="332"/>
         <source>ProxyAuthenticationRequiredError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="321"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="335"/>
         <source>ProxyConnectionRefusedError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="324"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="338"/>
         <source>UnfinishedSocketOperationError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="327"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="341"/>
         <source>ProxyConnectionClosedError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="330"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="344"/>
         <source>ProxyConnectionTimeoutError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="333"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="347"/>
         <source>ProxyNotFoundError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="336"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="350"/>
         <source>ProxyProtocolError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="339"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="353"/>
         <source>TemporaryError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="342"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="356"/>
         <source>UnknownSocketError</source>
         <translation></translation>
     </message>

@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>JCE Avg Calculator</string>
+   <string>JCE Manager</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/connectionstatus.qrc">
@@ -61,7 +61,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -627,7 +627,7 @@ font-size: 15px;
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="labelMadeBy">
       <property name="text">
        <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
       </property>

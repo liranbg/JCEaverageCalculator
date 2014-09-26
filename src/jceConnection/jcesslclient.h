@@ -7,6 +7,7 @@
 #include <QEventLoop>
 #include <QMessageBox>
 #include <QNetworkConfigurationManager>
+#include <QtNetwork/QNetworkInterface>
 
 #define milisTimeOut 4000
 
@@ -37,6 +38,7 @@ private slots:
     void setOnlineState(bool isOnline);
 
 private:
+    bool isConnectedToNetwork(); //checking if online
     bool flag;
     QString packet;
     QEventLoop loop; //handle the connection as thread
