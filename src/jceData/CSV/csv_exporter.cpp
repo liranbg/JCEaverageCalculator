@@ -124,7 +124,7 @@ QString CSV_Exporter::getFileFath()
  * @param name
  * @param date
  * @param startH
- * @param startM
+ * @param startM - Not used at the moment.
  * @param endH
  * @param endM
  * @param lecturer
@@ -203,6 +203,13 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     return CSV_line;
 }
 
+/**
+ * @brief The QDate.dayOfWeek() returns an integer as follows (Sunday = 7, monday = 1... Friday = 5)
+ * This method will make that return integer more uderstandble and easy to use with the Calander classes of
+ * JCE Manager. so Sunday = 1, Monday = 2 and so on...
+ *
+ * @param QtDay - A  Qt dayOfWeek integer pointer. it will cange his value.
+ */
 void CSV_Exporter::changeDayNumberFromQtToNormal(int *QtDay)
 {
     switch(*QtDay){

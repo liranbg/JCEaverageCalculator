@@ -1,3 +1,11 @@
+/**
+ * This simple static class will generate a csv file of a given semester.
+ *
+ * the class wat written for the JCE Manager and exporting a calendar to Goolgle Calendar.
+ *
+ * this CSV file should also work for iCal and Outlook. but have not been tested.
+ *
+ */
 #ifndef CSV_EXPORTER_H
 #define CSV_EXPORTER_H
 

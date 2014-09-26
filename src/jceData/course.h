@@ -3,8 +3,7 @@
 
 /*  This Code Made By Sagi Dayan
  *  SagiDayan@gmail.com
- *
- *  minor changes by Liran Ben Gida
+ *  & Liran Ben Gida
  *  LiranBG@gmail.com
 */
 
