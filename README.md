@@ -4,22 +4,19 @@
 
 ---
 
-## <i class="fa fa-cogs"></i> The Vision & Muse
-####We - The *"JCE Manager Team"* got tired of the cluttered and non-friendly  Yedion Website.
+## <i class="fa fa-cogs"></i> The Vision
 
-The data at the website is "static", and we wanted **more** functions regarding data manipulation.
-After all its **our** data...
+At the Jerusalem College of Engineering, students tend to monitor their grades day in and day out.
+They try to understand how their grade point average (GPA) was or will be affected by specific exams and whether it is worthwhile to try to take an exam again or to just let it be.
 
-for example, every semester we always needed to decide if we should take the chance and apply to another test. So, as all of us, we opened an excel spreadsheet and added formulas, and exhausting information...
+With this in mind, we decided to create a program that will give students access to their college accounts, dismantle the information given and present data in a user-friendly manner.
 
-*JCE computer sys admin* didn't want to give us a public API, so we needed so hack the website.
+To start, we allow the courses and grades portion of the student portal to be imported directly into the program. A student’s transcript is then displayed as a table with the option to edit the given grades. With each edit, the student’s GPA will adjust accordingly. 
 
-The project started as an [open API][openAPI] for the Yedion website, and rapidly changed to a full software!
+Next, we gave students the ability to import their class schedules from the student portal into the program and with just three clicks, export it as a CSV file.
 
-Now we can fetch our Grade-Sheet in one click and manipulate the grades to see our GPA.
-There is no need to enter each and every course to our Google Calendar every Semester! One click and we can import all the calendar to Google...
-
-And we still have lots of ideas for future versions...
+This type of file can be exported to many different calendars such as Google, iCal, and more!
+The next part of the program…okay, this part we will leave open for the future as we still have lots of ideas for future versions...
 
 ---
 
