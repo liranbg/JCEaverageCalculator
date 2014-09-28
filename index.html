@@ -81,7 +81,12 @@ if (window.clipboardData)
             {% endif %}
 
             <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
+              <p>
+                {{ post.content | strip_html | truncatewords: 50 }}
+                <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">
+                  <br><b>[Read More] </b>
+                </a>
+              </p>
             </section>
             <div class="post-meta">
               <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
@@ -101,7 +106,7 @@ if (window.clipboardData)
             <header class="post-header">
               <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
             </header>
-            
+
             {% if post.img %}
               <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">
                 <p><img class="img-responsive" src="{{ "/assets/images/posts/" | prepend: site.baseurl }}{{ post.img }}"></p>
@@ -109,7 +114,12 @@ if (window.clipboardData)
             {% endif %}
 
             <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
+              <p>
+                {{ post.content | strip_html | truncatewords: 50 }}
+                <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">
+                  <br><b>[Read More] </b>
+                </a>
+              </p>
             </section>
             <div class="post-meta">
               <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
