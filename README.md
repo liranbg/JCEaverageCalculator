@@ -23,16 +23,13 @@ The next part of the program…okay, this part we will leave open for the future
 ---
 
 ## <i class="fa fa-users"></i> The Team
-####*Just For Fun*
+Our team consists of two Software Engineering students from the Jerusalem College of Engineering.
 
-The Founder of the idea [Liran Ben-Gida][liran] is the project manager.
-[Sagi Dayan][sagi] is a full partner developer and the website maintainer.
+Project Manager: [Liran Ben-Gida][liran]
+Co-developer: [Sagi Dayan][sagi]
 
-Both of us are Software Engineer Students at [JCE][jce].  And Develop the software for our fun on our spear time. and we don't have much of it... 
-
-We have chosen to spread this useful tool to all students at no cost or any special requirements. Only, if possible, a feedback or a suggestion for optimization. 
-
-The software is free and the source code is available to anyone who wants to look.
+This open source application was developed in our spare time and is available for and meant to be shared with other students attending our college.
+The project is private and free to use \ change and was not done in collaboration with the college
 
 ---
 
