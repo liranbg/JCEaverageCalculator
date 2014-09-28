@@ -34,10 +34,15 @@ The project is private and free to use \ change and was not done in collaboratio
 ---
 
 ## <i class="fa fa-plus-square-o"></i> Join US
-If you have some spare time, you know how to code (C++ / QT), and you are a friendly dude (Male / Female).
-Head over to our [<i class="fa fa-github"></i> Github page][github] and fork, send us a pull request !
+Have you used the application? Do you think there is room for improvement?
+Do you have ideas on how we can improve? We would love to hear them!
 
+For all issues, suggestions and ideas, please contact [Liran Ben-Gida][liran].
+
+If you have some spare time, you know how to code (C++ / QT),
+Head over to our [<i class="fa fa-github"></i> Github page][github] and fork
 Or file a <i class="fa fa-bug"></i> Bug report to help us improve.
+
 
 ## <i class="fa fa-gavel"></i> License 
 License under [GNU LESSER GENERAL PUBLIC LICENSE][gnu].
