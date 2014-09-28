@@ -11,7 +11,9 @@ They try to understand how their grade point average (GPA) was or will be affect
 
 With this in mind, we decided to create a program that will give students access to their college accounts, dismantle the information given and present data in a user-friendly manner.
 
-To start, we allow the courses and grades portion of the student portal to be imported directly into the program. A student’s transcript is then displayed as a table with the option to edit the given grades. With each edit, the student’s GPA will adjust accordingly. 
+To start, we allow the courses and grades portion of the student portal to be imported directly into the program.
+A student’s transcript is then displayed as a table with the option to edit the given grades.
+With each edit, the student’s GPA will adjust accordingly. 
 
 Next, we gave students the ability to import their class schedules from the student portal into the program and with just three clicks, export it as a CSV file.
 
