@@ -32,7 +32,7 @@ if (window.clipboardData)
       &nbsp;&nbsp;·&nbsp;&nbsp;
       <a href="{{ site.baseurl }}/help/">Help</a>
     </div>
-    
+
     <br>
     <center>
             <!--[if IE]><b><p> Get a better browser! - This website dose not support Internet Explorer </p></b><![endif]-->
@@ -73,6 +73,13 @@ if (window.clipboardData)
             <header class="post-header">
               <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
             </header>
+
+            {% if post.img %}
+              <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">
+                <p><img class="img-responsive" src="{{ "/assets/images/posts/" | prepend: site.baseurl }}{{ post.img }}"></p>
+              </a>
+            {% endif %}
+
             <section class="post-excerpt" itemprop="description">
               <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
             </section>
@@ -94,15 +101,21 @@ if (window.clipboardData)
             <header class="post-header">
               <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
             </header>
+            
+            {% if post.img %}
+              <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">
+                <p><img class="img-responsive" src="{{ "/assets/images/posts/" | prepend: site.baseurl }}{{ post.img }}"></p>
+              </a>
+            {% endif %}
+
             <section class="post-excerpt" itemprop="description">
               <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
             </section>
             <div class="post-meta">
               <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-<!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
+
             </div>
-          <div>
-        </article>
+
       {% endfor %}
     </div>
 

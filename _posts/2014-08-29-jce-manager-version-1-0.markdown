@@ -5,6 +5,7 @@ date:   2014-09-17 14:34:25
 categories: Releases
 tags: featured
 image: /JceManager/assets/article_images/first-release/desktop.JPG
+img: v1.png
 ---
 #Proud To Announce Our First Release!
 ####*JCE Manager v1.0 is now public*
@@ -20,7 +21,7 @@ happy with the resault. And the project is now avalible to the public.
 ####V1.0 Release Notes:
  - Hack into the [JCE Student web site][jce] ("Yedion")
  - Fetch your grade sheet
- - Change your grades to see how it affects your GPA 
+ - Change your grades to see how it affects your GPA
  - Save your *username* and *password* for easy access (Password is encrypted)
  - Fetch your Semester Schedule
  - Export your Semester Schedule to CSV file to import to GoogleCalendar/iCal/Outlook
@@ -34,7 +35,7 @@ happy with the resault. And the project is now avalible to the public.
  >It is only to see if you realy want or should take a second attempt...
 
 ---
- >Head over to the [**Download Page**][download] to get a fresh copy. 
+ >Head over to the [**Download Page**][download] to get a fresh copy.
 
 ---
 
