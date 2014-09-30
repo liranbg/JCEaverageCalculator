@@ -60,4 +60,4 @@ License under [GNU LESSER GENERAL PUBLIC LICENSE][gnu].
 [liran]: mailto:liranbg@gmail.com
 [openAPI]: https://github.com/liranbg/jceConnection
 [logo]: http://liranbg.github.io/JceManager/assets/images/logo.png
-[Bug]: ../../issues/new
+[Bug]: https://github.com/liranbg/JceManager/issues/new
