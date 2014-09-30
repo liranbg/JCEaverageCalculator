@@ -53,7 +53,7 @@ The username and password will now appear automaticly every time you launch *JCE
 
 ---
 
-## <a name="GPA"/></a><i class="fa fa-file"></i> How do i get my GPA?
+## <a name="GPA"/><i class="fa fa-file"></i> How do i get my GPA?
 <br/>
 Login with [JCE Manager][connect]
 <br/>
