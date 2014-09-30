@@ -26,14 +26,17 @@ image: /JceManager/assets/images/help.jpg
 ---
 ## <a name="connect"></a><i class="fa fa-sign-in"></i> How Do I Log in?
 <br/>
-![][pictureLogin1]
+![1][pictureLogin1]
 <br/>
 1. Enter your JCE Username & Password
+<br/>
 2. Save your <a href="#credentials">credentials</a> (optionally).
+<br/>
 3. click "Login" and wait (~2-3 sec)
+<br/>
 The connection icon should turn from Red to Green.
 <br/>
-![][pictureLogin2]
+![2][pictureLogin2]
 <br/>
 If you see a Green circle at the status bar, you are logged in.
 
