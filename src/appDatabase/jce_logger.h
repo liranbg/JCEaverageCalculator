@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QTextStream>
 
-#define LOG_FILE_NAME "J_M_Log.log"
+#define LOG_FILE_NAME "JMLog.log"
 
 class jce_logger
 {
