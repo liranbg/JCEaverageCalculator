@@ -53,7 +53,7 @@ The username and password will now appear automaticly every time you launch *JCE
 
 ---
 
-## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA?
+## <a name="GPA"/></a><i class="fa fa-file"></i> How do i get my GPA?
 <br/>
 Login with [JCE Manager][connect]
 <br/>
@@ -72,7 +72,7 @@ click on the GPA tab
 >No problem just adjust the time frame you want to see at the top of the GPA tab. clear the table with the
 >"Clear" button and click "Add" again.
 
-#### <a name="GPAchange"><i class="fa fa-search"></i> Change your grades
+#### <a name="GPAchange"/><i class="fa fa-search"></i>Change your grades
 Want to see if another exam is worth your time? how much dose it affect your GPA?
 ![2][pictureGPA2]
 1. Add your <a href="#GPA">GPA</a> table to JCE Manager.
