@@ -73,8 +73,10 @@ click on the GPA tab
 >"Clear" button and click "Add" again.
 
 #### <a name="GPAchange"/><i class="fa fa-search"></i>Change your grades
+
 Want to see if another exam is worth your time? how much dose it affect your GPA?
 ![2][pictureGPA2]
+
 1. Add your <a href="#GPA">GPA</a> table to JCE Manager.
 <br/>
 2. Change the grade of each course by clicking on the grade and type the grade you think you can get next time.
