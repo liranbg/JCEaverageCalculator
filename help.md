@@ -14,7 +14,7 @@ image: /JceManager/assets/images/help.jpg
 	-  <a href="#notConnecting">Not Connecting</a>
 	-  <a href="#credentials">Save your credentials</a>
 -  [How Do I See My GPA][GPA]
-	-  Change Your Grades
+	-  <a href="#GPAchange">Change your grades</a>
 -  [See Your Semester Calendar][cal]
 	-  Export to Google calendar/iCal/Outlook
 -  [Language Selection][loco]
@@ -53,29 +53,39 @@ The username and password will now appear automaticly every time you launch *JCE
 
 ---
 
-## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA
-Want to just see your GPA Really fast without: 
+## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA?
+<br/>
+Login with [JCE Manager][connect]
+<br/>
+click on the GPA tab
+<br/>
+![1][pictureGPA1]
+1. Select the relevant dates interval
+<br/>
+2. Want to see only (>0) courses grade point?
+<br/>
+3. Hit the "Add" button and voila!
+<br/>
 
- - Opening the browser
- - Re-entering your credentials 
- - Find the right menu
- - Click on the right sub-menu.....
- - .... ???
-
-Login with *JCE Manager*, click on the GPA tab, and hit the "Add" button and **voila!**
 >Want to Select a spesific semester? 
 
 >No problem just adjust the time frame you want to see at the top of the GPA tab. clear the table with the
 >"Clear" button and click "Add" again.
 
-#### <i class="fa fa-search"></i> Change Your Grades
-Want to see if another exam is worth your time? how mutch dose it effect your GPA?
-After you have added your GPA table to *JCE Manager* you can change the grade of each course by clicking on the grade and input the grade you think you can get next time. the GPA at the bottom will change accordingly.
+#### <a name="GPAchange"><i class="fa fa-search"></i> Change your grades
+Want to see if another exam is worth your time? how much dose it affect your GPA?
+![2][pictureGPA2]
+1. Add your <a href="#GPA">GPA</a> table to JCE Manager.
+<br/>
+2. Change the grade of each course by clicking on the grade and type the grade you think you can get next time.
+<br/>
+![3][pictureGPA3]
+3. The GPA average display will change accordingly.
 Now you can easily see if you really should take the next test or not...
 
 >**Note:**
 
->The Grades you change are **locally**. No, this Software is **not** a hack to change your grades...
+>The grades are stored locally. therefore, it does NOT change your real grade.
 
 ---
 
