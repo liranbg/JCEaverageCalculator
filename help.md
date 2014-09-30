@@ -11,8 +11,8 @@ image: /JceManager/assets/images/help.jpg
 
 
 -  [How Do I Log in?][connect]
-	-  Not Connecting
-	-  Save Your Credentials
+	-  <a href="#notConnecting">Not Connecting</a>
+	-  <a href="#credentials">Save your credentials</a>
 -  [How Do I See My GPA][GPA]
 	-  Change Your Grades
 -  [See Your Semester Calendar][cal]
@@ -25,24 +25,32 @@ image: /JceManager/assets/images/help.jpg
 
 ---
 ## <a name="connect"></a><i class="fa fa-sign-in"></i> How Do I Log in?
-once you have opened *JCE Manager* You will see 2 text fields.
-Enter your JCE Username & Password, click "*Login*"...
-The connection icon should turn from Red to Orange and finally Green. If you see a Green circle at the status bar, you are indeed connected.
+<br/>
+![][pictureLogin1]
+<br/>
+1. Enter your JCE Username & Password
+2. Save your <a href="#credentials">credentials</a> (optionally).
+3. click "Login" and wait (~2-3 sec)
+The connection icon should turn from Red to Green.
+<br/>
+![][pictureLogin2]
+<br/>
+If you see a Green circle at the status bar, you are logged in.
 
-#### <i class="fa fa-chain-broken"></i> Not Connecting?
+####<a name="notConnecting"/><i class="fa fa-chain-broken"></i>Not connecting?
 
  - Please make sure you have a stable internet connection.
  - Make sure you have entered the right username and password.
 
-#### <i class="fa fa-floppy-o"></i> Save Your Credentials
+####<a name="credentials"/><i class="fa fa-floppy-o"></i> Save Your Credentials
 At the login tab there is a checkbox, make sure that you are connected and *Check* it.
 The username and password will now appear automaticly every time you launch *JCE Manager*.
 
->**Note:** The password is encrypted.
+>**Note:** <b>The password is encrypted.</b>
 
 ---
 
-## <a name="GPA"></a><i class="fa fa-file"></i> How Do I See My GPA?
+## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA
 Want to just see your GPA Really fast without: 
 
  - Opening the browser
@@ -109,5 +117,19 @@ Please make sure the bug is not already opened. Please add as much information a
 [loco]: #loco
 [fork]: #fork
 [git]: https://github.com/liranbg/JceManager
-[gitbug]: https://github.com/liranbg/JceManager/issues
+[gitbug]: https://github.com/liranbg/JceManager/issues/new
 [jce]: http://www.jce.ac.il/
+[pictureLogin1]: ./assets/images/helpEnd/login1.png
+[pictureLogin2]: ./assets/images/helpEnd/login2.png
+[pictureGPA1]: ./assets/images/helpEnd/gpa1.png
+[pictureGPA2]: ./assets/images/helpEnd/gpa2.png
+[pictureGPA3]: ./assets/images/helpEnd/gpa3.png
+[pictureLang1]: ./assets/images/helpEnd/langchange1.png
+[pictureLang2]: ./assets/images/helpEnd/langchange2.png
+[pictureLang3]: ./assets/images/helpEnd/langchange3.png
+[pictureCal1]: ./assets/images/helpEnd/cal1.png
+[pictureCal2]: ./assets/images/helpEnd/cal2.png
+[pictureCalExpo1]: ./assets/images/helpEnd/calexpo1.png
+[pictureCalExpo2]: ./assets/images/helpEnd/calexpo2.png
+[pictureHowTo]: ./assets/images/helpEnd/howto.png
+[pictureAbout]: ./assets/images/helpEnd/about.png
