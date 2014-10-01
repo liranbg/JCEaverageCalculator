@@ -38,12 +38,12 @@ The connection icon should turn from Red to Green.
 ![2][pictureLogin2]
 >Green circle at the status bar means you are logged in.
 
-####<a name="notConnecting"/><i class="fa fa-chain-broken"></i>Not connecting?
+####<a name="notConnecting"></a><i class="fa fa-chain-broken"></i>Not connecting?
 
  - Please make sure you have a stable internet connection.
  - Make sure you have entered the right username and password.
 
-####<a name="credentials"/><i class="fa fa-floppy-o"></i> Save Your Credentials
+####<a name="credentials"></a><i class="fa fa-floppy-o"></i> Save Your Credentials
 At the login tab there is a checkbox, make sure that you are connected and *Check* it.
 The username and password will now appear automaticly every time you launch *JCE Manager*.
 
@@ -51,7 +51,7 @@ The username and password will now appear automaticly every time you launch *JCE
 
 ---
 
-## <a name="GPA"/><i class="fa fa-file"></i> How do i get my GPA?
+## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA?
 <br/>
 Login with [JCE Manager][connect]
 <br/>
@@ -70,7 +70,7 @@ click on the GPA tab
 >No problem just adjust the time frame you want to see at the top of the GPA tab. clear the table with the
 >"Clear" button and click "Add" again.
 
-#### <a name="GPAchange"/><i class="fa fa-search"></i>Change your grades
+#### <a name="GPAchange"></a><i class="fa fa-search"></i>Change your grades
 
 Want to see if another exam is worth your time? how much dose it affect your GPA?
 ![2][pictureGPA2]
