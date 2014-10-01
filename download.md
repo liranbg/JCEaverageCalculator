@@ -7,10 +7,10 @@ image: /JceManager/assets/images/download.jpg
 
 
 ###***Please select your operating system & CPU Architecture***
-<br/>
+<br>
 
 ####<i class="fa fa-download"></i>JCE Manager version 1.0.0
-<br/>
+<br>
 
  - <i class="fa fa-windows"></i>Windows XP/7/8
  	- [32bit][win32]

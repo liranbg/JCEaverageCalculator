@@ -26,7 +26,7 @@ The next part of the program…okay, this part we will leave open for the future
 Our team consists of two Software Engineering students from the Jerusalem College of Engineering.
 
 Project Manager: [Liran Ben Gida][liran]
-<br/>
+<br>
 Co-developer: [Sagi Dayan][sagi]
 
 This open source application was developed in our spare time and is available for and meant to be shared with other students attending our college.
@@ -39,9 +39,9 @@ Have you used the application? Do you think there is room for improvement?
 Do you have ideas on how we can improve? We would love to hear them!
 
 For all issues, suggestions and ideas, please contact us at:
-<br/>
+<br>
 [Liran Ben-Gida][liran]
-<br/>
+<br>
 [Sagi Dayan][sagi]
 
 If you have some spare time, you know how to code (C++ / QT),

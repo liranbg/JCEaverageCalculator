@@ -16,9 +16,9 @@ image: /JceManager/assets/images/help.jpg
 -  [How Do I See My GPA][GPA]
 	-  <a href="#GPAchange" style="text-decoration: none">Change your grades</a>
 -  [See Your Semester Calendar][cal]
-	-  Export to Google calendar/iCal/Outlook
+	-  <a href="#calexpo" style="text-decoration: none">Export to Google calendar/iCal/Outlook</a>
 -  [Language Selection][loco]
-	-  Selecting A Different Language
+	-  <a href="#langchange" style="text-decoration: none">Selecting A Different Language</a>
 -  [I Want To Help & Code][fork]
 
 
@@ -89,28 +89,48 @@ Now you can easily see if you really should take the next test or not...
 
 ---
 
-##<a name="cal"></a> <i class="fa fa-calendar"></i> See Your Semester Calendar
-After you login, head over to the "Calendar" Tab.
-There you can choose the semester you want to see, and click "Get Calendar".
-Easy right?
+##<a name="cal"></a> <i class="fa fa-calendar"></i>See your schedule
+<br>
+Login with [JCE Manager][connect]
+<br>
+Click on the Calendar tab
+<br>
+![1][pictureCal1]
+1. Select the relevant dates interval
+<br>
+2. Hit the "Get Calendar" button and voila!
+<br>
+![2][pictureCal2]
 
-#### <i class="fa fa-share"></i> Export to Google calendar/iCal/Outlook
-Ever wanted an easy way to put your Semeser into your favorit calendar service?
-Now you can do it easily with *JCE Manager*!
-After you got your Semester that you want to export. Click on the "Export to CSV" button. You will then be prompted with a dialog window.
-select the date witch the semester starts and when it ends (This data is available each year by [JCE][jce]). Now click "OK" button. Save the CSV file at a memorable place in you Hard Drive. Wait for *JCE Manager* to do its magic.
+####<a name="calexpo"></a> <i class="fa fa-share"></i> Export to Google Calendar/iCal/Outlook
+
+
+<br>
+1. Make sure you got schedule through the previous step [(here)][cal]
+<br>
+2. Click on the "Export to CSV" button, a promote dialog window will pop up.
+<br>
+![1][pictureCalExpo1]
+<br>
+3. Select the date interval witch the semester starts and when it ends (This data is available each year by [JCE][jce]).
+<br>
+4. Now click "OK" button. Save the CSV file at a memorable place in you Hard Drive.
+<br>
+![2][pictureCalExpo2]
+<br>
+
 Now head over to your favorit Calendar service and create a new calendar (Optional, but recommended).
-Select import and give the service the CSV file.
+Select import and select the CSV file from before.
 Enjoy.
 
 ---
 
-##<a name="loco"></a> <i class="fa fa-globe"></i> Language Selection
+##<a name="lang"></a> <i class="fa fa-globe"></i> Language Selection
 By Default *JCE Manager* will choose your language according to your OS. 
 If you are running your OS in Hebrew, *JCE Manager* will be in Hebrew as well... 
 > Same thing goes to English
 
-#### <i class="fa fa-globe"></i> Selecting A Different Language
+####<a name="langchange"></a><i class="fa fa-globe"></i> Selecting A Different Language
 Goto menu <i class="fa fa-arrow-right"></i> Language <i class="fa fa-arrow-right"></i> "Your Language of choice"
 >Next time you launch *JCE Manager* the language will change.
 
@@ -127,7 +147,7 @@ Please make sure the bug is not already opened. Please add as much information a
 [connect]: #connect
 [GPA]: #GPA
 [cal]: #cal 
-[loco]: #loco
+[loco]: #lang
 [fork]: #fork
 [git]: https://github.com/liranbg/JceManager
 [gitbug]: https://github.com/liranbg/JceManager/issues/new
