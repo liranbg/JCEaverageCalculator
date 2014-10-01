@@ -132,7 +132,7 @@ File <i class="fa fa-arrow-right"></i> Language <i class="fa fa-arrow-right"></i
 ![2][pictureLang2]
 <br>
 >**Note:**
-By Default *JCE Manager* will choose your language according to your OS. 
+By Default JCE Manager will choose your language according to your OS. 
 
 ####<a name="langmistake"></a><i class="fa fa-globe"></i>Language misspelling
 since we are all human  ...
