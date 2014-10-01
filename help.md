@@ -25,19 +25,19 @@ image: /JceManager/assets/images/help.jpg
 
 ---
 ##<a name="connect"></a><i class="fa fa-sign-in"></i> How Do I Log in?
-<br/>
+<br>
 ![1][pictureLogin1]
-<br/>
 1. Enter your JCE Username & Password
-<br/>
-2. Save your <a href="#credentials">credentials</a> (optionally).
-<br/>
+<br>
+2. Save your <a href="#credentials">credentials</a> (optionally)
+<br>
 3. click "Login" and wait (~2-3 sec)
-<br/>
+<br>
 The connection icon should turn from Red to Green.
 ![2][pictureLogin2]
 >Green circle at the status bar means you are logged in.
 
+<br>
 ####<a name="notConnecting"></a><i class="fa fa-chain-broken"></i>Not connecting?
 
  - Please make sure you have a stable internet connection.
@@ -52,18 +52,18 @@ The username and password will now appear automaticly every time you launch *JCE
 ---
 
 ## <a name="GPA"></a><i class="fa fa-file"></i> How do i get my GPA?
-<br/>
+<br>
 Login with [JCE Manager][connect]
-<br/>
+<br>
 click on the GPA tab
-<br/>
+<br>
 ![1][pictureGPA1]
 1. Select the relevant dates interval
-<br/>
+<br>
 2. Want to see only (>0) courses grade point?
-<br/>
+<br>
 3. Hit the "Add" button and voila!
-<br/>
+<br>
 
 >Want to Select a spesific semester? 
 
@@ -72,13 +72,13 @@ click on the GPA tab
 
 #### <a name="GPAchange"></a><i class="fa fa-search"></i>Change your grades
 
-Want to see if another exam is worth your time? how much dose it affect your GPA?
+Want to see if another exam worth your time? how much dose it affect your GPA?
 ![2][pictureGPA2]
 
 1. Add your <a href="#GPA">GPA</a> table to JCE Manager.
-<br/>
+<br>
 2. Change the grade of each course by clicking on the grade and type the grade you think you can get next time.
-<br/>
+<br>
 ![3][pictureGPA3]
 3. The GPA average display will change accordingly.
 Now you can easily see if you really should take the next test or not...
