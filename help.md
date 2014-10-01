@@ -12,9 +12,9 @@ image: /JceManager/assets/images/help.jpg
 
 -  [How Do I Log in?][connect]
 	-  <a href="#notConnecting" style="text-decoration: none">Not Connecting</a>
-	-  <a href="#credentials">Save your credentials</a>
+	-  <a href="#credentials" style="text-decoration: none">Save your credentials</a>
 -  [How Do I See My GPA][GPA]
-	-  <a href="#GPAchange">Change your grades</a>
+	-  <a href="#GPAchange" style="text-decoration: none">Change your grades</a>
 -  [See Your Semester Calendar][cal]
 	-  Export to Google calendar/iCal/Outlook
 -  [Language Selection][loco]
@@ -24,7 +24,7 @@ image: /JceManager/assets/images/help.jpg
 
 
 ---
-## <a name="connect"></a><i class="fa fa-sign-in"></i> How Do I Log in?
+##<a name="connect"/><i class="fa fa-sign-in"></i> How Do I Log in?
 <br/>
 ![1][pictureLogin1]
 <br/>
@@ -35,10 +35,8 @@ image: /JceManager/assets/images/help.jpg
 3. click "Login" and wait (~2-3 sec)
 <br/>
 The connection icon should turn from Red to Green.
-<br/>
 ![2][pictureLogin2]
-<br/>
-If you see a Green circle at the status bar, you are logged in.
+>Green circle at the status bar means you are logged in.
 
 ####<a name="notConnecting"/><i class="fa fa-chain-broken"></i>Not connecting?
 
