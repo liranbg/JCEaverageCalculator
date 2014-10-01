@@ -24,7 +24,7 @@ image: /JceManager/assets/images/help.jpg
 
 
 ---
-##<a name="connect"/><i class="fa fa-sign-in"></i> How Do I Log in?
+##<a name="connect"></a><i class="fa fa-sign-in"></i> How Do I Log in?
 <br/>
 ![1][pictureLogin1]
 <br/>
