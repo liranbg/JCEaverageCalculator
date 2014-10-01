@@ -11,7 +11,7 @@ image: /JceManager/assets/images/help.jpg
 
 
 -  [How Do I Log in?][connect]
-	-  <a href="#notConnecting">Not Connecting</a>
+	-  <a href="#notConnecting" style="text-decoration: none">Not Connecting</a>
 	-  <a href="#credentials">Save your credentials</a>
 -  [How Do I See My GPA][GPA]
 	-  <a href="#GPAchange">Change your grades</a>
