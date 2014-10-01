@@ -18,7 +18,7 @@ image: /JceManager/assets/images/help.jpg
 -  [See Your Semester Calendar][cal]
 	-  <a href="#calexpo" style="text-decoration: none">Export to Google calendar/iCal/Outlook</a>
 -  [Language Selection][loco]
-	-  <a href="#langchange" style="text-decoration: none">Selecting A Different Language</a>
+	-  <a href="#langmistake" style="text-decoration: none">Noticed any misspelling?</a>
 -  [I Want To Help & Code][fork]
 
 
@@ -84,7 +84,6 @@ Want to see if another exam worth your time? how much dose it affect your GPA?
 Now you can easily see if you really should take the next test or not...
 
 >**Note:**
-
 >The grades are stored locally. therefore, it does NOT change your real grade.
 
 ---
@@ -125,24 +124,32 @@ Enjoy.
 
 ---
 
-##<a name="lang"></a> <i class="fa fa-globe"></i> Language Selection
+##<a name="lang"></a> <i class="fa fa-globe"></i>Language selection
+Select your language via
+![1][pictureLang1]
+File <i class="fa fa-arrow-right"></i> Language <i class="fa fa-arrow-right"></i> Check your desired language
+<br>
+![2][pictureLang2]
+<br>
+>**Note:**
 By Default *JCE Manager* will choose your language according to your OS. 
-If you are running your OS in Hebrew, *JCE Manager* will be in Hebrew as well... 
-> Same thing goes to English
 
-####<a name="langchange"></a><i class="fa fa-globe"></i> Selecting A Different Language
-Goto menu <i class="fa fa-arrow-right"></i> Language <i class="fa fa-arrow-right"></i> "Your Language of choice"
->Next time you launch *JCE Manager* the language will change.
+####<a name="langmistake"></a><i class="fa fa-globe"></i>Language misspelling
+since we are all human  ...
+<br>
+if you have noticed a misspelling error, we would like you to form an issue and [<i class="fa fa-github"></i>report us][gitbug]
+just write in the message body the mistake and location. thanks!
 
 ---
 
 ##<a name="fork"></a> <i class="fa fa-github"></i> I Want To Help & Code
-*JCE Manager* is an open-source project. And we always need help and ideas...
+JCE Manager is an open-source project. And we always need help and ideas...
 Just [<i class="fa fa-code-fork"></i>Fork Us On Github][git], Or open a feature request!
 
 #### <i class="fa fa-bug"></i> Found Bugs? Having Issues?
-The easiest way to report a *bug* is on our [<i class="fa fa-github"></i> Github issues page][gitbug].
-Please make sure the bug is not already opened. Please add as much information about the bug, so we can easily reproduce it. that way we can fix it fast.
+The easiest way to report a bug is on our [<i class="fa fa-github"></i> Github issues page][gitbug].
+Please make sure the bug is not already opened.
+Please add as much information about the bug, so we can easily reproduce it.
 
 [connect]: #connect
 [GPA]: #GPA
@@ -164,5 +171,3 @@ Please make sure the bug is not already opened. Please add as much information a
 [pictureCal2]: ../assets/images/helpEng/cal2.png
 [pictureCalExpo1]: ../assets/images/helpEng/calexpo1.png
 [pictureCalExpo2]: ../assets/images/helpEng/calexpo2.png
-[pictureHowTo]: ../assets/images/helpEng/howto.png
-[pictureAbout]: ../assets/images/helpEng/about.png
