@@ -24,7 +24,7 @@ image: /JceManager/assets/images/download.jpg
 
 
 [winInstaller]: ../assets/bin/windows/setup.exe
-[winArch]: ../JceManager/assets/bin/windows/jceManager.rar
+[winArch]: ../assets/bin/windows/jceManager.rar
 [mac32]: /assets/images/os-icons/windows.jpg
 [mac64]: /assets/images/os-icons/windows.jpg
 [linux32]: /assets/images/os-icons/windows.jpg
