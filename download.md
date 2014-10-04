@@ -26,7 +26,7 @@ image: /JceManager/assets/images/download.jpg
  	---
 
  - <i class="fa fa-linux"></i> Linux
- 	- <i class="fa fa-wrench"></i> [Installer][linux] - 
+ 	- <i class="fa fa-wrench"></i> [Installer][linux] 
 
  	to install (make the file executable):
  	{% highlight bash %}
