@@ -9,10 +9,17 @@ QT       += core gui network widgets
 CONFIG += qt c++11
 
 TARGET = jceManager
-TEMPLATE = app
 VERSION = 1.0.0
+TEMPLATE = app
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
-RC_FILE = appConfigure.rc
+win32 {
+RC_FILE += winConf.rc
+}
+unix {
+RC_FILE += appConfigure.rc
+}
+
 TRANSLATIONS = jce_en.ts \
                 jce_he.ts
 

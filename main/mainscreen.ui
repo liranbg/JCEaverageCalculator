@@ -29,6 +29,9 @@
 background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 rgba(195, 231, 224, 218), stop:1 rgba(255, 255, 255, 255));
 }</string>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <property name="iconSize">
    <size>
     <width>48</width>
@@ -680,7 +683,7 @@ background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop:
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">

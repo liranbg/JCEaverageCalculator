@@ -5,7 +5,6 @@
 #include "../src/appDatabase/savedata.h"
 #include "../src/appDatabase/jce_logger.h"
 
-
 int main(int argc, char *argv[])
 {
 #ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal
@@ -36,6 +35,7 @@ int main(int argc, char *argv[])
         qDebug() << Q_FUNC_INFO << "Local : English Local Loaded";
     }
     a.installTranslator(&translator); //Setting local
+    a.setApplicationVersion(APP_VERSION);
     MainScreen w;
     w.show();
 
