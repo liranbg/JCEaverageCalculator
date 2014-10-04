@@ -26,7 +26,7 @@ image: /JceManager/assets/images/download.jpg
  	---
 
  - <i class="fa fa-linux"></i> Linux
- 	- [Installer][linux] - 
+ 	- <i class="fa fa-wrench"></i> [Installer][linux] - 
 
  	Make sure you have qt > 4.8 on your system. 
  	to install:
