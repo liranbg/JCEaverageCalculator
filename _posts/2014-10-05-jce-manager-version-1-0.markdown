@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "JCE Manager Version 1.0 Released!"
-date:   2014-10-04 20:34:25
+date:   2014-10-05 20:34:25
 categories: Releases
 tags: featured
 image: /JceManager/assets/article_images/first-release/desktop.JPG

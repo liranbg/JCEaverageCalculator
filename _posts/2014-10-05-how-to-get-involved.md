@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How You Can Get Involved"
-date:   2014-10-04 22:34:25
+date:   2014-10-05 22:34:25
 categories: Help Git
 
 image: /JceManager/assets/images/posts/big-data.jpg
