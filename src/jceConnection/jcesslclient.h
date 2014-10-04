@@ -8,6 +8,8 @@
 #include <QMessageBox>
 #include <QNetworkConfigurationManager>
 #include <QtNetwork/QNetworkInterface>
+#include <QTimer>
+#include <QProgressBar>
 
 #define milisTimeOut 4000
 
@@ -15,7 +17,7 @@ class jceSSLClient : public QSslSocket
 {
     Q_OBJECT
 public:
-    jceSSLClient();
+    jceSSLClient(QProgressBar *progressbarPtr);
 
     bool makeConnect(QString server = "yedion.jce.ac.il", int port = 443);
     bool makeDiconnect();
@@ -28,6 +30,7 @@ signals:
     void serverDisconnectedbyRemote();
     void noInternetLink();
     void socketDisconnected();
+    void packetHasData();
 
 private slots:
     void checkErrors(QAbstractSocket::SocketError a);
@@ -35,6 +38,7 @@ private slots:
     void setEncrypted();
     void setDisconnected();
     void readIt();
+    void readItAll();
     void setOnlineState(bool isOnline);
 
 private:
@@ -42,8 +46,12 @@ private:
     bool flag;
     QString packet;
     QEventLoop loop; //handle the connection as thread
+    QEventLoop readerLoop;
+    QTimer timer;
     QNetworkConfigurationManager networkConf; //checking if online
     bool reConnection; //used for remote host disconnecting
+
+            QProgressBar *progressBar; //
 
 };
 
