@@ -28,14 +28,16 @@ image: /JceManager/assets/images/download.jpg
  - <i class="fa fa-linux"></i> Linux
  	- <i class="fa fa-wrench"></i> [Installer][linux] - 
 
- 	Make sure you have qt > 4.8 on your system. 
- 	to install:
+ 	to install (make the file executable):
  	{% highlight bash %}
-#go to the directory of the installer
-~$ cd Downloads
-~/Downloads$ chmod +x ./JceManager-1.0-linux-x64.run
-# now you can run the setup file
-{% endhighlight %}
+	#go to the directory of the installer
+	~$ cd Downloads
+	~/Downloads$ chmod +x ./JceManager-1.0-linux-x64.run
+	# now you can run the setup file
+	~/Downloads$ ./JceManager-1.0-linux-x64.run
+	{% endhighlight %}
+	Make sure you have qt > 4.8 on your machine.<br> 
+	if you have problems running *JCE Manager* please contact us.
 
 
 [winInstaller]: ../assets/bin/windows/setup.exe
