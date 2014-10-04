@@ -205,11 +205,10 @@ void jceSSLClient::readItAll()
         p = read(bytesAvailable());
         if (p.contains("</tbody>") == true)
         {
-            qDebug() << "we have the end!";
+            //we recieved the end of table. we can stop recieving
             timer.setInterval(1000);
         }
         this->progressBar->setValue(this->progressBar->value() + 6);
-//        qDebug() << "p lenght" << p.length();
         packet.append(p);
     }while (p.size() > 0);
 }
