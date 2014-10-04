@@ -24,9 +24,11 @@ image: /JceManager/assets/images/download.jpg
  	- 64bit	~Coming soon~
 
  	---
- 	
+
  - <i class="fa fa-linux"></i> Linux
- 	- [Installer][linux] - Make sure you have qt > 4.8 on your system
+ 	- [Installer][linux] - 
+
+ 	Make sure you have qt > 4.8 on your system. 
  	to install:
  	{% highlight bash %}
 #go to the directory of the installer
