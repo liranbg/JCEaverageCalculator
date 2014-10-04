@@ -36,6 +36,7 @@ image: /JceManager/assets/images/download.jpg
 	# now you can run the setup file
 	~/Downloads$ ./JceManager-1.0-linux-x64.run
 	{% endhighlight %}
+	
 	Make sure you have qt > 4.8 on your machine.<br> 
 	if you have problems running *JCE Manager* please contact us.
 
