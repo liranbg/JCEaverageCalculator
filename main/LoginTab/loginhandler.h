@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QPixmap>
 #include <QStatusBar>
+#include <QProgressBar>
 #include <QPushButton>
 
 #include "./src/jceSettings/jcelogin.h"
@@ -17,7 +18,7 @@ class loginHandler : public QObject
 {
     Q_OBJECT
 public:
-    loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *loginButtonPtr);
+    loginHandler(user *ptr, QStatusBar *statusBarPtr, QPushButton *loginButtonPtr, QProgressBar *progressbarPtr);
     ~loginHandler()
     {
         delete iconButtomStatusLabel;
@@ -51,6 +52,7 @@ private:
     QStatusBar *statusBar;
     QLabel *iconButtomStatusLabel;
     QPushButton *loginButtonPtr;
+    QProgressBar *progressBar;
 
 };
 

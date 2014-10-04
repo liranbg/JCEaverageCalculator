@@ -4,11 +4,12 @@
  * @brief jceLogin::jceLogin
  * @param username pointer to allocated user settings
  */
-jceLogin::jceLogin(user* username)
+jceLogin::jceLogin(user* username, QProgressBar *progressbarPtr)
 {
+        this->progressBar = progressbarPtr;
     this->recieverPage = new QString();
     this->jceA = username;
-    this->JceConnector = new jceSSLClient();
+    this->JceConnector = new jceSSLClient(progressBar);
     QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
     QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
 }
@@ -133,7 +134,7 @@ void jceLogin::reMakeConnection()
     recieverPage = NULL;
     JceConnector = NULL;
     this->recieverPage = new QString();
-    this->JceConnector = new jceSSLClient();
+    this->JceConnector = new jceSSLClient(progressBar);
     QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
     QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
     emit connectionReadyAfterDisconnection();
@@ -297,6 +298,7 @@ QString jceLogin::getPage()
 void jceLogin::reValidation()
 {
     qDebug() << Q_FUNC_INFO << "Revalidating user";
+
     if (makeFirstVisit() == true)
     {
         if (checkValidation())

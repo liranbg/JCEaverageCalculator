@@ -1,19 +1,26 @@
 #include "loginhandler.h"
 
-loginHandler::loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *loginButtonPtr): logggedInFlag(false)
+loginHandler::loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *loginButtonPtr,QProgressBar *progressbarPtr): logggedInFlag(false)
 {
     this->loginButtonPtr = loginButtonPtr;
+    this->progressBar = progressbarPtr;
 
     //statusBar
     statusBar = statusBarPtr;
-    iconButtomStatusLabel = new QLabel();
+    iconButtomStatusLabel = new QLabel(statusBarPtr);
+    iconButtomStatusLabel->setAlignment(Qt::AlignHCenter);
+
+    //display progressbar and then ball icon.
+    statusBar->addPermanentWidget(progressBar,0);
     statusBar->addPermanentWidget(iconButtomStatusLabel,0);
+
     setIconConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
 
     //user settings
     userPtr = ptr;
-    this->jceLog = new jceLogin(userPtr);
+    this->jceLog = new jceLogin(userPtr,progressBar);
     QObject::connect(this->jceLog,SIGNAL(connectionReadyAfterDisconnection()),this,SLOT(readyAfterConnectionLost()));
+
 }
 bool loginHandler::login(QString username,QString password)
 {

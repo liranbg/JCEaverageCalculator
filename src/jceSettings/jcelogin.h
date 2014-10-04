@@ -6,6 +6,7 @@
 #include "jceLoginHtmlScripts.h"
 
 #include <QObject>
+#include <QProgressBar>
 #include <QString>
 
 
@@ -13,8 +14,8 @@ class jceLogin : public QObject
 {
      Q_OBJECT
 public:
-    jceLogin() {}
-    jceLogin(user* username);
+
+    jceLogin(user* username,QProgressBar *progressbarPtr);
     ~jceLogin();
 
     enum jceStatus {
@@ -61,6 +62,7 @@ private:
     QString * recieverPage;
     user * jceA;
     jceSSLClient * JceConnector;
+        QProgressBar *progressBar;
 
 
 };
