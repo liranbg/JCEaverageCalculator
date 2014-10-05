@@ -37,8 +37,8 @@ calendarSchedule::calendarSchedule()
 void calendarSchedule::setPage(QString html)
 {
     CalendarPage::setPage(html);
-
-    insertCourseIntoTable();
+    qDebug() << Q_FUNC_INFO << "inserting into table";
+//    insertCourseIntoTable();
 }
 
 void calendarSchedule::clearTableItems()
@@ -57,15 +57,17 @@ void calendarSchedule::insertCourseIntoTable()
 
     QTableWidgetItem *item;
     QString courseString;
-    int currentHour,currentDay,blocksNumer;
+    int currentHour,currentDay,blocksNumber;
     int row,col;
     for (calendarCourse *coursePtr: *getCourses())
     {
+        qDebug() << coursePtr->getSerialNum();
         courseString = "";
         currentHour = coursePtr->getHourBegin();
         currentDay = coursePtr->getDay();
-        blocksNumer = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
-        while (blocksNumer >= 0)
+        blocksNumber = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
+        qDebug() << blocksNumber;
+        while (blocksNumber >= 0)
         {
             row = currentHour - HOURS_BEGIN;
             col = currentDay-1;
@@ -88,7 +90,7 @@ void calendarSchedule::insertCourseIntoTable()
             this->setItem(row,col,item);
 
             currentHour++;
-            --blocksNumer;
+            --blocksNumber;
         }
         horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
         verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

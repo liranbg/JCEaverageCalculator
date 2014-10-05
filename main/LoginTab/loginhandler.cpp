@@ -125,13 +125,13 @@ void loginHandler::setLoginFlag(bool flag)
 }
 QString loginHandler::getCurrentPageContect()
 {
-    QTextEdit phrase;
+    QTextEdit parse;
     if (isLoggedInFlag())
-        phrase.setText(jceLog->getPage());
+        parse.setText(jceLog->getPage());
     else
         throw jceLogin::ERROR_ON_GETTING_INFO;
 
-    return phrase.toPlainText();
+    return parse.toPlainText();
 }
 int loginHandler::makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester)
 {

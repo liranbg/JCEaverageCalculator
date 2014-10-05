@@ -8,10 +8,13 @@ QString CalendarPage::htmlToString()
 void CalendarPage::setPage(QString html)
 {
 
+    qDebug() << "parsing calendar";
     courses = new std::list<calendarCourse*>();
     tempHtml = getString(html);
     tempHtml = tokenToLines(tempHtml);
+    qDebug() << "creating courses list";
     calendarListInit(tempHtml);
+        qDebug() << "done";
 
 }
 
@@ -114,6 +117,7 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
     else
         room = ROOM_DEFAULT_STRING;
 
+    qDebug() << serial << name << type << lecturer << points << semesterHours << dayAndHour << room;
     tempC = new calendarCourse(serial,name,type,lecturer,points,semesterHours,dayAndHour,room);
 
     return tempC;

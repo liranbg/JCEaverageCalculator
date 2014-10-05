@@ -36,7 +36,8 @@ void Page::manageTableContent(QString &html, int index)
             QString tableTag = html.mid(i, 4); //legth of "tr/td"
             if (tableTag == "<tr>")
             {
-                temp += dateHeader;
+                if (!dateHeader.isEmpty())
+                    temp += dateHeader;
                 i = stitchText(html, temp, i+4);
                 if (i == -1) //EOF
                     break;
@@ -49,7 +50,8 @@ void Page::manageTableContent(QString &html, int index)
             }
             else if (tableTag == "<td>" || tableTag == "<th>")
             {
-                temp += "\t"; // new cell -> tab between data
+                if (!dateHeader.isEmpty())
+                    temp += "\t"; // new cell -> tab between data
                 if (html.mid(i, 6) == "<td><a") //link to lecturer portal, need to be deleted
                 {
                     i += 6;
@@ -58,19 +60,28 @@ void Page::manageTableContent(QString &html, int index)
                 }
                 else
                     i = stitchText(html, temp, i+4);
+
+                if (dateHeader.isEmpty())
+                    temp += "\t";
+
                 if (i == -1) //EOF
                     break;
             }
             else if (tableTag == "<td ") // a Year title (in grades table)
             {
+                if (!dateHeader.isEmpty())
                 if (!temp.isEmpty())
                     if (temp.lastIndexOf(dateHeader) == temp.length()-dateHeader.length())
                     {
                         temp.chop(dateHeader.length()+1);
                         temp += "\t";
                     }
-                while (html.mid(i,3) != "<b>")
+                while ((html.mid(i,3) != "<b>") && (i < (int)html.length()))
+                {
+                    if (html.mid(i,5) == "</td>")
+                        break;
                     i++;
+                }
                 i = stitchText(html, temp, i);
 
             }

@@ -64,7 +64,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -583,6 +583,1145 @@ font-size: 15px;
                 </property>
                 <property name="value">
                  <number>2015</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPlainTextEdit" name="plainTextEdit">
+                <property name="plainText">
+                 <string>class=&quot;menuheader expandable&quot;&gt;קבצים להורדה&lt;/h3&gt;
+	&lt;ul class=&quot;categoryitems&quot;&gt;
+
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0134,','_self');&quot;&gt;
+					מינהל סטודנטים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0138,','_self');&quot;&gt;
+					ועדת הוראה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0125,','_self');&quot;&gt;
+					דיקנאט הסטודנטים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0123,','_self');&quot;&gt;
+					מדור שכ&quot;ל
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;/ul&gt;
+	&lt;h3 class=&quot;menuheader expandable&quot;&gt;שאלות נפוצות&lt;/h3&gt;
+	&lt;ul class=&quot;categoryitems&quot;&gt;
+
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0151,','_self');&quot;&gt;
+					מינהל סטודנטים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0152,','_self');&quot;&gt;
+					מדור בחינות
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0153,','_self');&quot;&gt;
+					ועדת הוראה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0154,','_self');&quot;&gt;
+					מדור סיוע
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0155,','_self');&quot;&gt;
+					שכ&quot;ל
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;/ul&gt;
+	&lt;h3 class=&quot;menuheader expandable&quot;&gt;שנת הלימודים תשע&quot;ה&lt;/h3&gt;
+	&lt;ul class=&quot;categoryitems&quot;&gt;
+
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0139,','_self');&quot;&gt;
+					לוחות תאריכים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0140,','_self');&quot;&gt;
+					פתיחת שנה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;/ul&gt;
+	&lt;h3 class=&quot;menuheader expandable&quot;&gt;תוכניות לימודים&lt;/h3&gt;
+	&lt;ul class=&quot;categoryitems&quot;&gt;
+
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0126,','_self');&quot;&gt;
+					תעשייה וניהול
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0127,','_self');&quot;&gt;
+					אלקטרוניקה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0128,','_self');&quot;&gt;
+					תוכנה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0129,','_self');&quot;&gt;
+					חומרים מתקדמים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0130,','_self');&quot;&gt;
+					פרמצבטית
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0132,','_self');&quot;&gt;
+					מכונות
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;/ul&gt;
+	&lt;h3 class=&quot;menuheader expandable&quot;&gt;מלגות&lt;/h3&gt;
+	&lt;ul class=&quot;categoryitems&quot;&gt;
+
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0008,','_self');&quot;&gt;
+					הגשת בקשה למלגה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0026,','_self');&quot;&gt;
+					צירוף קבצים למלגה
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+
+	&lt;li&gt;
+	 &lt;a href=&quot;javascript:send_form('Menu','-N,-A,-N,-N0012,','_self');&quot;&gt;
+					עדכון פרטים אישיים
+			&lt;/a&gt;
+	&lt;/li&gt;
+ 
+&lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;/td&gt;
+									&lt;/tr&gt;
+								 &lt;/tbody&gt;
+							&lt;/table&gt;&lt;/td&gt;
+						 &lt;/tr&gt;
+						&lt;/tbody&gt;
+					 &lt;/table&gt;&lt;/td&gt;
+				 &lt;/tr&gt;
+
+				&lt;/tbody&gt;
+			&lt;/table&gt;&lt;/td&gt;
+		 &lt;/tr&gt;
+	 &lt;/tbody&gt;
+	&lt;/table&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td class=&quot;bottomCornerBG&quot;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt; &lt;!--FileName : Menu_Full_4.htm--&gt;HTTP/1.1 200 OK
+Date: Sun, 05 Oct 2014 11:29:00 GMT
+Server: Microsoft-IIS/6.0
+X-Powered-By: ASP.NET
+X-AspNet-Version: 2.0.50727
+Set-Cookie: ASP.NET_SessionId=j0hjp245bbmffs55nvais255; path=/; HttpOnly
+Cache-Control: private
+Content-Type: text/html; charset=utf-8
+Content-Length: 28103
+
+ &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;he&quot;&gt;
+&lt;head&gt;
+ 	&lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;noscript&gt;&lt;meta http-equiv=&quot;X-Frame-Options&quot; content=&quot;SameOrigin&quot;&gt;&lt;/noscript&gt;
+
+	&lt;title&gt;תחנת מידע לסטודנט עזריאלי, מכללה אקדמית להנדסה ירושלים&lt;/title&gt;
+	&lt;link href=&quot;/info/MagicStyles_Type_2.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/info/sort/jquery-ui-custom.css&quot; type=&quot;text/css&quot;&gt;
+	&lt;link rel=&quot;shortcut icon&quot; href=&quot;/info/images/Favicon.ico&quot;&gt;
+	&lt;link rel=&quot;icon&quot; href=&quot;/info/images/Favicon.ico&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/info/sort/jquery.ui.timepicker.css&quot; /&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;/info/sort/select2A.css&quot;&gt;
+
+ &lt;style type=&quot;text/css&quot;&gt;
+	textarea,input[type='text'], input[type='email'], input[type='password']
+	{
+	border:1px solid #ccc;
+	padding:5px;
+	font-size:120%;
+	font-family:Arial,sans-serif;
+	}
+ #shadow {
+	background-image:url(/info/images/shade1x1.png);
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	z-index:4999;
+}
+.cke_skin_kama td {
+	background-color: inherit !important;
+}
+body {
+        padding-right: 10px;
+	padding-left: 10px;
+}
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	font-size: 8pt;
+	width: 97%;
+	text-align: right;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter tfoot td {
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(/info/images/bgTitle.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(/info/images/asc.gif);
+	background-position: left;
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/info/images/desc.gif);
+	background-position: left;
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+#preview{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:5px;
+	display:none;
+	color:#fff;
+	}
+
+
+
+.buttonA, .buttonTOP {
+                padding: 4px 10px 3px 25px;
+                border: 1px solid #DE5D51;
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                background-image: url( '/info/images/buttonJumpBackground_red.png' );
+                background-repeat: repeat-x;
+                font-size: 11px;
+                text-decoration: none;
+                color: #9D271E;
+                -moz-border-radius-bottomleft: 5px;
+                -moz-border-radius-bottomright: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                font-family: Arial, Helvetica, sans-serif;
+        }
+        .buttonA img,.buttonTOP img {
+            position: absolute;
+            top: -4px;
+            left: -12px;
+            border: none;
+        }
+        .buttonA:hover {
+                color: #DE5D51;
+                border: 1px solid #FFB3AA;
+        }
+        .buttonA:disabled {
+            visibility: hidden;		
+        }
+
+
+.buttonA_Big {
+                padding: 4px 10px 3px 25px;
+                border: 1px solid #DE5D51;
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                background-image: url( '/info/images/buttonJumpBackground_red.png' );
+                background-repeat: repeat-x;
+            font-size: 13px;
+	    font-weight: bold;
+                text-decoration: none;
+                color: #9D271E;
+                -moz-border-radius-bottomleft: 5px;
+                -moz-border-radius-bottomright: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                font-family: Arial, Helvetica, sans-serif;
+        }
+        .buttonA_Big img {
+            position: absolute;
+            top: -4px;
+            left: -12px;
+            border: none;
+        }
+        .buttonA_Big:hover {
+                color: #DE5D51;
+                border: 1px solid #FFB3AA;
+        }
+        .buttonA_Big:disabled {
+            visibility: hidden;		
+        }
+
+
+
+
+
+&lt;/style&gt;
+&lt;/head&gt;
+	 &lt;body	OnLoad=&quot;AutoExec()&quot; class= text 	 style=&quot;margin: 0; direction: rtl;font-size:12px;&quot;
+&gt;
+
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery-migrate.js&quot;&gt;&lt;/script&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+		var SessionMesIdStr,SessionResIdStr;
+		SessionMesIdStr = &quot;,&quot;;
+		SessionResIdStr = &quot;,&quot;;
+
+		function ShowHideContent(id,type){
+			if (type == &quot;msg&quot;) {
+				if (SessionMesIdStr.indexOf(&quot;,&quot;+id+&quot;,&quot;) == -1){
+					SessionMesIdStr = SessionMesIdStr +	id + &quot;,&quot;;
+				}
+			}
+			else {
+				if (SessionResIdStr.indexOf(&quot;,&quot;+id+&quot;,&quot;) == -1){
+
+					SessionResIdStr = SessionResIdStr +	id + &quot;,&quot;;
+				}
+			}
+			div = document.getElementById(&quot;div&quot; + type + id);
+			img = document.getElementById(&quot;IMG&quot; + id);
+			if (div.style.display == &quot;none&quot;)
+				{
+					div.style.display = 'block';
+					img.src = '/info/images/box_open.png';
+				}
+			else
+				{
+				div.style.display='none';
+				img.src ='/info/images/box_closed.png';
+				}
+			window.focus()
+		}
+
+	&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery.tooltipster.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/select2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+if(!($.browser.msie &amp;&amp; ($.browser.version==&quot;6.0&quot; || $.browser.version==&quot;7.0&quot; || $.browser.version==&quot;8.0&quot;)))
+{
+	$(document).ready(function() {
+		$('#bigger, #smaller, #ConB, #ConL, #ConW, #Excel, #Outlook,.AboutOpen').tooltipster();
+				$(&quot;select&quot;).select2();
+			});
+}
+&lt;/script&gt;
+
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery.tablesorter.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/info/sort/jquery.ui.timepicker.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/info/sort/jquery.ui.timepicker-he.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;/info/sort/jquery.lazyload.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      $(function() {
+          $(&quot;img&quot;).lazyload();
+      });
+  &lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery.cookie.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var min=10;
+	var max=20;
+	var fontsize=12;
+	var fontsizeTitles=17;
+	var fs_elements = 'div,td,th,#Yedion a,select,p,span';
+	var fs_elementsTitles = 'h1,h2,.white';
+$(document).ready(function(e){
+	if ($.cookie(&quot;fs_styles&quot;)!=null) {
+		if ($.cookie(&quot;fs_styles&quot;)!='white') {
+		change_style($.cookie(&quot;fs_styles&quot;));
+		}
+	}
+	if (($.cookie(&quot;fs_elements&quot;)!=null)&amp;&amp;($.cookie(&quot;fs_elementsTitles&quot;)!=null)) {
+	  fontsize=parseInt($.cookie(&quot;fs_elements&quot;));
+	  fontsizeTitles=parseInt($.cookie(&quot;fs_elementsTitles&quot;));
+	  $.cookie(&quot;fs_elements&quot;, fontsize, { expires: 30 });
+	  $.cookie(&quot;fs_elementsTitles&quot;, fontsizeTitles, { expires: 30 });
+	  set_fontsizes();
+	}
+});
+function set_fontsizes() {
+	$(fs_elements).css('fontSize',fontsize+'px');
+	$(fs_elementsTitles).css('fontSize',fontsizeTitles+'px');
+	$.cookie(&quot;fs_elements&quot;, fontsize, { expires: 30 });
+	$.cookie(&quot;fs_elementsTitles&quot;, fontsizeTitles, { expires: 30 });
+}
+function enlarge() {
+	if (fontsize&lt;max) {
+	  fontsize+=2;
+	  fontsizeTitles+=2;
+	  set_fontsizes();
+	}
+}
+function change_style(styletype) {
+	switch(styletype) {
+		case 'black': $('body').css('backgroundColor','black');
+	                      $('.text').css('color','white');
+	                      $('body').css('backgroundImage','');
+			      $('.tablesorter').css('backgroundColor','#35B3DC');
+	                      $(fs_elements).css('backgroundColor','black');
+	                      $(fs_elements).css('color','yellow');
+	                      $(fs_elementsTitles).css('color','yellow');
+			      break;
+		case 'blue':  $('body').css('backgroundColor','rgb(194, 211, 252)');
+	                      $('.text').css('color','white');
+	                      $('body').css('backgroundImage','');
+			      $('.tablesorter').css('backgroundColor','#35B3DC');
+	                      $(fs_elements).css('backgroundColor','rgb(194, 211, 252)');
+	                      $(fs_elements).css('color','black');
+	                      $(fs_elementsTitles).css('color','black');
+			      break;
+		default:      $('body').css('backgroundColor','white');
+	                      $('.text').css('color','white');
+	                      $('body').css('backgroundImage','url(/info/images/tile.gif)');
+			      $('.tablesorter').css('backgroundColor','#CDCDCD');
+	                      $(fs_elements).css('backgroundColor','');
+	                      $(fs_elements).css('color','black');
+	                      $(fs_elementsTitles).css('color','black');
+			      $('th').css('color','white');
+			      break;
+	}
+	$.cookie(&quot;fs_styles&quot;, styletype, { expires: 30 });
+}
+function shrink() {
+	if (fontsize&gt;min) {
+   	  fontsize-=2;
+	  fontsizeTitles-=2;
+	  set_fontsizes();
+	}
+}
+&lt;/script&gt;
+
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;הגדלה והקטנה של מלל&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+this.imagePreview = function(){
+	/* CONFIG */
+
+		xOffset = 10;
+		yOffset = -300;
+
+		// these 2 variable determine popup's distance from the cursor
+		// you might want to adjust to get the right result
+
+	/* END CONFIG */
+	$(&quot;a.preview&quot;).hover(function(e){
+		this.t = this.title;
+		this.title = &quot;&quot;;
+		var c = (this.t != &quot;&quot;) ? &quot;&lt;br/&gt;&quot; + this.t : &quot;&quot;;
+		$(&quot;body&quot;).append(&quot;&lt;p id='preview'&gt;&lt;img src='&quot;+ this.href +&quot;' alt='Image preview'&gt;&quot;+ c +&quot;&lt;\/p&gt;&quot;);
+		$(&quot;#preview&quot;)
+			.css(&quot;top&quot;,(e.pageY - xOffset) + &quot;px&quot;)
+			.css(&quot;left&quot;,(e.pageX + yOffset) + &quot;px&quot;)
+			.fadeIn(&quot;fast&quot;);
+    },
+	function(){
+		this.title = this.t;
+		$(&quot;#preview&quot;).remove();
+    });
+	$(&quot;a.preview&quot;).mousemove(function(e){
+		$(&quot;#preview&quot;)
+			.css(&quot;top&quot;,(e.pageY - xOffset) + &quot;px&quot;)
+			.css(&quot;left&quot;,(e.pageX + yOffset) + &quot;px&quot;);
+	});
+};
+
+
+// starting the script on page load
+$(document).ready(function(){
+	imagePreview();
+});
+&lt;/script&gt;
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;הגדלה של תמונה כאשר עוברים עליה&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+
+		&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery-ui.custom.min.js&quot;&gt;&lt;/script&gt;
+		
+		&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/jquery.ui.datepicker-he.js&quot;&gt;&lt;/script&gt;
+
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;תאריכון&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+&lt;!-- script src=&quot;/info/Scripts/AC_RunActiveContent.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+function AutoExec()
+{
+	if (typeof(document.form) != 'undefined') {
+		if (typeof(document.form.R1C1) != 'undefined')
+			document.form.R1C1.focus();
+
+		document.form.onsubmit = OnSubmit;
+	}
+	return;
+}
+
+function OnSubmit ()
+{
+	if (typeof(document.form) != 'undefined') {
+		if (document.form.APPNAME.value == &quot;&quot;)
+		{
+			 return false;
+		}
+	}
+	return true;
+}
+
+
+
+function SubmitFormConfirm(Obj,app, prg, arg, trg, confirmQuestion)
+{
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+	var conf = confirm(confirmQuestion);
+	if (conf) {
+		SubmitForm(Obj,app, prg, arg, trg);
+	}
+}
+
+function SubmitForm(Obj,app, prg, arg, trg)
+{
+	if(Obj==null)
+		Obj=event.srcElement;
+	if(Obj==null)
+		return;
+
+	bConfirm=Obj.getAttribute(&quot;Confirm&quot;);
+	if (bConfirm==&quot;true&quot;)
+	{
+		confirmQuestion = Obj.getAttribute(&quot;ConfirmQuestion&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		confirmQuestion  = confirmQuestion.replace(&quot;\\n&quot;,&quot;\n&quot;);
+		result = confirm (confirmQuestion);
+		if (!result)
+		{
+			return;
+		}
+	}
+
+	if((trg!=&quot;_blank&quot;)&amp;&amp;(trg!=&quot;jq_float&quot;)) trg=&quot;&quot;;
+
+	document.form.APPNAME.value=app;
+	document.form.PRGNAME.value=prg;
+	document.form.ARGUMENTS.value=arg;
+	document.form.target=trg;
+
+	document.form.submit();
+}
+&lt;/script&gt;
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;הפעלת כפתורים&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function(){
+            $(&quot;.buttonJump&quot;).hover(function(){
+                $(&quot;.buttonJump img&quot;)
+                .animate({top:&quot;-10px&quot;}, 200).animate({top:&quot;-4px&quot;}, 200) // first jump
+                .animate({top:&quot;-7px&quot;}, 100).animate({top:&quot;-4px&quot;}, 100) // second jump
+                .animate({top:&quot;-6px&quot;}, 100).animate({top:&quot;-4px&quot;}, 100); // the last jump
+            });
+        });
+    &lt;/script&gt;
+
+
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;עיצוב של כפתור&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+
+
+
+&lt;!-- Text area --&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/ckeditor/ckeditor.js&quot;&gt;&lt;/script&gt;
+
+&lt;noscript&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;הגדרות בעת הפעלת עורך מלל&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;!-- &lt;p&gt;&lt;br /&gt;הגדרות ראשוניות בעת אתחול עורך מלל&lt;br /&gt;&lt;/p&gt; --&gt;
+&lt;/noscript&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+if(!($.browser.msie))
+		{		
+		CKEDITOR.on( 'dialogDefinition', function( ev )
+						{
+										var dialogName = ev.data.name;
+										var dialogDefinition = ev.data.definition;
+										if ( dialogName == 'link' )
+										{
+														var targetTab = dialogDefinition.getContents( 'target' );
+														var targetField = targetTab.get( 'linkTargetType' );
+														targetField[ 'default' ] = '_blank';
+		 
+										}
+						});
+		CKEDITOR.on('instanceReady', function(ev) {
+		ev.editor.on('paste', function(evt) {
+		evt.data.dataValue = evt.data.dataValue.replace(/target=&quot;.*?&quot;/g, '' );
+		evt.data.dataValue = evt.data.dataValue.replace(/href/g, 'target=&quot;_blank&quot; href' );
+		console.log(evt.data.dataValue);
+		}, null, null, 9);
+		});
+	}
+&lt;/script&gt;
+&lt;!-- End of Text area --&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;/info/sort/RowColor.js&quot;&gt;&lt;/script&gt;
+
+     &lt;div style=&quot;width: 100%;&quot;&gt;
+		&lt;span class=&quot;white&quot; style=&quot;float:right;&quot;&gt;תחנת מידע לסטודנט&lt;/span&gt;
+
+        	&lt;span style=&quot;float:left;&quot;&gt;05/10/2014
+ 14:29
+
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;window.print()&quot; accesskey=&quot;P&quot;&gt;&lt;img src=&quot;/info/images/Printer.PNG&quot; style=&quot;top: 2px; left: 8px;&quot; alt=&quot;&quot;&gt;הדפס&lt;/a&gt;
+
+
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;enlarge();&quot; accesskey=&quot;+&quot;&gt;&lt;img  src=&quot;/info/images/zoom_in.PNG&quot; style=&quot;top: 2px; left: 8px;&quot; alt=&quot;הגדלת פונט &quot;&gt;הגדל&lt;/a&gt;
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;shrink();&quot; accesskey=&quot;-&quot;&gt;&lt;img  src=&quot;/info/images/zoom_out.PNG&quot; style=&quot;top: 2px; left: 8px;&quot; alt=&quot;הקטנת פונט &quot;&gt;הקטן&lt;/a&gt;
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;change_style('black');&quot; accesskey=&quot;B&quot;&gt;&lt;img  src=&quot;/info/images/black.gif&quot; style=&quot;top: 1px; left: 10px;&quot; alt=&quot;קונטרסט גבוה&quot;&gt;&amp;nbsp;&lt;/a&gt;
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;change_style('blue');&quot; accesskey=&quot;L&quot;&gt;&lt;img  src=&quot;/info/images/blue.gif&quot; style=&quot;top: 1px; left: 10px;&quot; alt=&quot;קונטרסט עדין&quot;&gt;&amp;nbsp;&lt;/a&gt;
+&lt;a class=&quot;buttonTOP&quot; onClick=&quot;change_style('white');&quot; accesskey=&quot;W&quot;&gt;&lt;img  src=&quot;/info/images/white.gif&quot; style=&quot;top: 1px; left: 10px;&quot; alt=&quot;קונטרסט ברירת מחדל&quot;&gt;&amp;nbsp;&lt;/a&gt;
+
+
+
+			&lt;a class=&quot;buttonTOP&quot; onClick=&quot;javascript:EXCEL()&quot; accesskey=&quot;E&quot;&gt;&lt;img  src=&quot;/info/images/xls.PNG&quot; style=&quot;top: 2px; left: 8px;&quot; alt=&quot;&quot;&gt;אקסל&lt;/a&gt;
+	 &lt;script type=&quot;text/javascript&quot;&gt;
+		function EXCEL()
+			{
+			window.open(&quot;fireflyweb.aspx?prgname=GetFile&amp;Arguments=-N7&quot;,&quot;Grade_To_Excel&quot;, &quot;menubar=yes,toolbar=no,resizable=yes,scrollbars=yes,width=700,height=500, top=100,left=100&quot;);
+			}
+	&lt;/script&gt;
+
+
+				
+	
+
+
+		
+              &lt;/span&gt;&lt;/div&gt;
+
+&lt;table style=&quot;width:100%;height:100%;border:0&quot;&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;text-align:left&quot;&gt;
+				&lt;/table&gt;
+&lt;br&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	function send_form(prgname,arguments,target)
+	{
+		var input = '&lt;input type=&quot;hidden&quot; name=&quot;prgname&quot; value=&quot;'+prgname+'&quot;&gt;';
+		var input = input+'&lt;input type=&quot;hidden&quot; name=&quot;arguments&quot; value=&quot;'+arguments+'&quot;&gt;';
+		$('&lt;form method=&quot;post&quot; action=&quot;fireflyweb.aspx&quot; target=&quot;'+target+'&quot;&gt;'+input+'&lt;/form&gt;').appendTo('body').submit();
+	}
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	function load_img(img_id,arg)
+	{
+		$.post('fireflyweb.aspx',
+		{
+			prgname: 'GetFile',
+			Arguments: arg,
+			IsItPost: 'Y'
+		},function(e){
+			$('#'+img_id).html('&lt;img src=&quot;data:image/jpg;base64,'+e+'&quot; style=&quot;border:0;margin:2;&quot; alt=&quot;תמונה ממסד הנתונים&quot;&gt;');
+		});
+	}
+&lt;/script&gt;
+ &lt;!--FileName : Header_Of_HTML_Type_3.HTM--&gt;
+
+
+			 &lt;table style=&quot;text-align:right;width:98%;margin:auto;&quot; class=&quot;text&quot;&gt;
+	 		 	&lt;tr&gt;
+								&lt;td&gt;שם סטודנט
+						&lt;/td&gt;
+
+						&lt;td&gt;
+
+						&lt;b&gt;בן גידה לירן
+						&lt;/b&gt;
+						&lt;/td&gt;
+
+						&lt;td&gt;
+						ת.ז.
+						&lt;/td&gt;
+						&lt;td&gt; 302539556
+						&lt;/td&gt;
+				&lt;/tr&gt;
+
+	 		 	&lt;tr&gt;
+								&lt;td&gt;כתובת
+						&lt;/td&gt;
+						&lt;td&gt; הסוללים 7 א' דירה 1
+						&lt;/td&gt;
+
+						&lt;td&gt;
+
+					 	תאריך
+						&lt;/td&gt;
+						&lt;td&gt;05/10/2014
+						&lt;/td&gt;
+
+				&lt;/tr&gt;
+
+	 		&lt;tr&gt;
+								&lt;td&gt;עיר
+						&lt;/td&gt;
+						&lt;td&gt;ירושלים
+						&lt;/td&gt;
+
+								&lt;td&gt;מיקוד
+						&lt;/td&gt;
+						&lt;td&gt;9371648
+						&lt;/td&gt;
+				&lt;/tr&gt;
+
+	&lt;TR style=&quot;text-align:right&quot;&gt;&lt;td&gt;חוג : &lt;/td&gt;&lt;td&gt;הנדסת תוכנה&lt;/td&gt;&lt;td&gt;התמחות&lt;/td&gt;&lt;td&gt;תוכנה&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;h1 style=&quot;text-align:center&quot;&gt;רשימת מערכת שעות שנה : 2015 סמסטר : 1 תשע&quot;ה&lt;/h1&gt;
+
+
+
+
+
+	&lt;script type=&quot;text/javascript&quot;&gt;
+	$(function() {
+		$(&quot;#myTable0&quot;).tablesorter();
+//		$(&quot;#options&quot;).tablesorter({sortList: [[0,0]], headers: { 3:{sorter: false}, 4:{sorter: false}}});
+	});
+	&lt;/script&gt;
+
+
+&lt;table style=&quot;text-align:right;width:98%;margin:auto;&quot; class=&quot;tablesorter Mtable&quot; ID=&quot;myTable0&quot; summary=&quot;רשימת הקורסים&quot;&gt;
+&lt;thead&gt;
+ &lt;Tr&gt;
+	&lt;th style=&quot;width:50px&quot;&gt;סמסטר&lt;/th&gt;
+	&lt;th&gt;קוד קורס &lt;/th&gt;
+	&lt;th&gt;שם הקורס &lt;/th&gt;
+	&lt;th&gt;סוג מקצוע &lt;/th&gt;
+	&lt;th&gt;שם המרצה &lt;/th&gt;
+	&lt;th style=&quot;width:30&quot;&gt;נ&quot;ז &lt;/th&gt;
+	&lt;th style=&quot;width:30&quot;&gt;ש&quot;ס&lt;/th&gt;
+	&lt;th style=&quot;width:90&quot;&gt;יום ושעות &lt;/th&gt;
+	&lt;th&gt;חדר &lt;/th&gt;
+	&lt;th&gt;קוד קבוצה&lt;/th&gt;
+	&lt;th&gt;חוג&lt;/th&gt;
+	&lt;th&gt;אתר&lt;/th&gt;
+
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10001&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;אותות ומערכות&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;ד&quot;ר גור ערן&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  4.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  4.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+א'&amp;nbsp;14:00&amp;nbsp;-&amp;nbsp;15:45
+&lt;/td&gt;
+	&lt;td&gt;כתה- L208&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100015101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10001&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;אותות ומערכות&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;ד&quot;ר גור ערן&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ב'&amp;nbsp;12:00&amp;nbsp;-&amp;nbsp;13:45
+&lt;/td&gt;
+	&lt;td&gt;כיתה-A102&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100015101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10001&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;אותות ומערכות&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;ד&quot;ר גור ערן&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ג'&amp;nbsp;13:00&amp;nbsp;-&amp;nbsp;13:45
+&lt;/td&gt;
+	&lt;td&gt;כתה-L201&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100015103&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10016&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הסתברות וסטטיסטיקה 2&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N77,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר ביגון בוריס&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+א'&amp;nbsp;12:00&amp;nbsp;-&amp;nbsp;13:45
+&lt;/td&gt;
+	&lt;td&gt;כתה- L204&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100165101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10016&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הסתברות וסטטיסטיקה 2&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N589,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;גב' שטיינבוך ביאנה&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ב'&amp;nbsp;09:00&amp;nbsp;-&amp;nbsp;09:45
+&lt;/td&gt;
+	&lt;td&gt;כתה- L206&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100165103&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10039&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;יישומי תקשורת מחשבים&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N284,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר צור-דוד שמרית&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ב'&amp;nbsp;10:00&amp;nbsp;-&amp;nbsp;11:45
+&lt;/td&gt;
+	&lt;td&gt;כיתה-A102&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100395101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10039&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;יישומי תקשורת מחשבים&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;מעבדה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N284,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר צור-דוד שמרית&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ד'&amp;nbsp;12:00&amp;nbsp;-&amp;nbsp;12:45
+&lt;/td&gt;
+	&lt;td&gt;כיתת מחשבים-מ326&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100395103&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10061&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תקשורת מחשבים&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N47,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר אקסמן יעקב&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  3.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  3.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ג'&amp;nbsp;09:00&amp;nbsp;-&amp;nbsp;11:45
+&lt;/td&gt;
+	&lt;td&gt;כיתה A106&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100615101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10061&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תקשורת מחשבים&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N742,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;גב' נתנזון מרים&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ג'&amp;nbsp;12:00&amp;nbsp;-&amp;nbsp;12:45
+&lt;/td&gt;
+	&lt;td&gt;כיתת מחשבים A114&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100615102&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10077&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;מבוא לתכנות מדעי&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N135,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר חסין יהודה&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  3.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  3.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ד'&amp;nbsp;08:00&amp;nbsp;-&amp;nbsp;10:45
+&lt;/td&gt;
+	&lt;td&gt;אודיטוריום-001&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100775101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10077&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;מבוא לתכנות מדעי&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N172,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;מר הראלי שלמה&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ד'&amp;nbsp;11:00&amp;nbsp;-&amp;nbsp;11:45
+&lt;/td&gt;
+	&lt;td&gt;כיתת מחשבים-מ150&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100775102&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10087&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;אוטומטים ושפות פורמליות&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N233,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;ד&quot;ר רודה יואב&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ד'&amp;nbsp;14:00&amp;nbsp;-&amp;nbsp;15:45
+&lt;/td&gt;
+	&lt;td&gt;כיתה A103&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100875101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10087&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;אוטומטים ושפות פורמליות&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;מר ידגר הראל עוז&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ג'&amp;nbsp;14:00&amp;nbsp;-&amp;nbsp;14:45
+&lt;/td&gt;
+	&lt;td&gt;כתה-L201&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100875103&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10091&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תכנות בסביבת אינטרנט&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;הרצאה&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N282,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;מר תבור שי&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.50&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  2.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+א'&amp;nbsp;10:00&amp;nbsp;-&amp;nbsp;11:45
+&lt;/td&gt;
+	&lt;td&gt;אודיטוריום-201&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100915101&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+ &lt;tr&gt;
+	&lt;td&gt;א&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  10091&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תכנות בסביבת אינטרנט&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תרגיל&amp;nbsp;
+			&lt;/td&gt;
+	&lt;td&gt;&lt;a HREF=&quot;fireflyweb.aspx?prgname=Show_Teacher_Card&amp;amp;arguments=-N282,-A&quot; title=&quot;פתיחה בעמוד חדש של אתר המרצה&quot; target=&quot;_blank&quot;&gt;מר תבור שי&lt;/a&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;  1.00&amp;nbsp; &lt;/td&gt;
+	&lt;td style=&quot;width:direction:rtl;width:90&quot;&gt;
+ב'&amp;nbsp;08:00&amp;nbsp;-&amp;nbsp;08:45
+&lt;/td&gt;
+	&lt;td&gt;כיתת מחשבים A114&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;100915102&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;תוכנה&amp;nbsp; &lt;/td&gt;
+	&lt;td&gt;&amp;nbsp; &lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+ &lt;tr&gt;
+	&lt;td colspan=5&gt;סה&quot;כ נקודות זכות לסמסטר זה
+(
+ קורס שנתי יחושב כמחצית בכל סמסטר
+) &lt;/td&gt;
+	&lt;td&gt;&lt;b&gt;21.50&lt;/b&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;b&gt;25.00&lt;/b&gt;&lt;/td&gt;
+	&lt;td colspan=5&gt;&amp;nbsp; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;div style=&quot;text-align:right&quot; class=&quot;text&quot;&gt;
+
+&lt;br&gt;
+ט.ל.ח
+&lt;br&gt;
+רשימת מערכת שעות שנה : 2015 סמסטר : 1 מותנה בעמידה בתנאי הקדם לקורסים
+&lt;br&gt;
+
+רשימת מערכת שעות שנה : 2015 סמסטר : 1 זו אינה מהווה אישור רשמי של עזריאלי, מכללה אקדמית להנדסה ירושלים 
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;  propagateEventHandler(document.getElementById(&quot;myTable0&quot;), &quot;onmouseover&quot;, &quot;TR&quot;, highlightTableRow, &quot;lightblue&quot;);&lt;/script&gt;
+ &lt;/body&gt;&lt;/html&gt;
+ &lt;!--FileName : TimeTable_List_For_Student.htm--&gt;&quot;</string>
                 </property>
                </widget>
               </item>

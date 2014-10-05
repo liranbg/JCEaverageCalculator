@@ -233,39 +233,47 @@ void MainScreen::on_graphButton_clicked()
 {
     courseTableMgr->showGraph();
 }
+
 //EVENTS ON CALENDAR TAB
 void MainScreen::on_getCalendarBtn_clicked()
 {
-    ui->progressBar->setValue(0);
-    qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
-    int status = 0;
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    if (loginHandel->isLoggedInFlag())
-    {
-        ui->statusBar->showMessage(tr("Getting schedule..."));
-        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
-        {
+    QString page;
+    calendar->resetTable();
+    page = ui->plainTextEdit->toPlainText();
+    calendar->setCalendar(page);
+    //    ui->progressBar->setValue(0);
+    //    qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
+    //    int status = 0;
+    //                QString page;
+    //    QApplication::setOverrideCursor(Qt::WaitCursor);
+    //    if (loginHandel->isLoggedInFlag())
+    //    {
+    //        ui->statusBar->showMessage(tr("Getting schedule..."));
+    //        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
+    //        {
 
-            //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
-            //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
-            calendar->resetTable();
-            ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
-            calendar->setCalendar(loginHandel->getCurrentPageContect());
-            ui->progressBar->setValue(100);
-            qDebug() << Q_FUNC_INFO <<  "calendar is loaded";
-            ui->statusBar->showMessage(tr("Done"));
-        }
+    //            //Use it for debug. add plain text and change the object name to 'plainTextEdit' so you will get the html request
+    //            //ui->plainTextEdit->setPlainText(loginHandel->getCurrentPageContect());
+    //            calendar->resetTable();
+    //            ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
 
-        else if (status == jceLogin::JCE_NOT_CONNECTED)
-        {
-            qWarning() << Q_FUNC_INFO <<  "not connected";
-            QApplication::restoreOverrideCursor();
-            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
-        }
-        else
-            qCritical() << Q_FUNC_INFO << "calendar get ended with" << status;
-    }
-    QApplication::restoreOverrideCursor();
+    //            page = loginHandel->getCurrentPageContect();
+    //            calendar->setCalendar(page);
+    //            ui->progressBar->setValue(100);
+    //            qDebug() << Q_FUNC_INFO <<  "calendar is loaded";
+    //            ui->statusBar->showMessage(tr("Done"));
+    //        }
+
+    //        else if (status == jceLogin::JCE_NOT_CONNECTED)
+    //        {
+    //            qWarning() << Q_FUNC_INFO <<  "not connected";
+    //            QApplication::restoreOverrideCursor();
+    //            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+    //        }
+    //        else
+    //            qCritical() << Q_FUNC_INFO << "calendar get ended with" << status;
+    //    }
+    //    QApplication::restoreOverrideCursor();
 }
 void MainScreen::on_exportToCVSBtn_clicked()
 {
