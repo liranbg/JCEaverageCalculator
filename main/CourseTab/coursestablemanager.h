@@ -13,6 +13,7 @@
 
 #include <list>
 
+#include "./src/jceData/Grades/graph/gradegraph.h"
 #include "./src/jceData/Grades/gradePage.h"
 #include "./src/jceSettings/user.h"
 
@@ -27,10 +28,13 @@ public:
     void addRow(const gradeCourse * courseToAdd = 0);
     double getAvg();
 
+    void showGraph();
+
     void influnceCourseChanged(bool status);
     void clearTable();
 
 private:
+    gradegraph *graph;
     QTableWidget *courseTBL;
     GradePage *gp;
     user *us;

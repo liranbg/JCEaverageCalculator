@@ -67,6 +67,8 @@ private slots:
 
     void on_labelMadeBy_linkActivated(const QString &link);
 
+    void on_graphButton_clicked();
+
 private:
 
     void checkLocale();

@@ -12,12 +12,17 @@ coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
     courseTBL->setRowCount(0);
     courseTBL->setColumnCount(COURSE_FIELDS);
     QStringList mz;
-    mz << QObject::tr("Code") << QObject::tr("Name") << QObject::tr("Type") << QObject::tr("Points") << QObject::tr("Hours") << QObject::tr("Grade") << QObject::tr("Additions");
+    mz << QObject::tr("Number") << QObject::tr("Year") << QObject::tr("Semester") << QObject::tr("Serial") << QObject::tr("Name") << QObject::tr("Type") << QObject::tr("Points") << QObject::tr("Hours") << QObject::tr("Grade") << QObject::tr("Additions");
     courseTBL->setHorizontalHeaderLabels(mz);
-    courseTBL->verticalHeader()->setVisible(true);
+    courseTBL->verticalHeader()->setVisible(false);
     courseTBL->setSelectionMode(QAbstractItemView::SingleSelection);
     courseTBL->setShowGrid(true);
     courseTBL->setStyleSheet("QTableView {selection-background-color: red;}");
+
+    /*
+     *
+    */
+    graph = new gradegraph(NULL,gp);
 }
 
 coursesTableManager::~coursesTableManager()
@@ -61,6 +66,8 @@ bool coursesTableManager::changes(QString change, int row, int col)
 {
 
     bool isNumFlag = true;
+    if (courseTBL->item(row,gradeCourse::CourseScheme::SERIAL) == NULL)
+        return true;
 
     int serialCourse = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text().toInt();
     for (gradeCourse *c: *gp->getCourses())
@@ -69,6 +76,15 @@ bool coursesTableManager::changes(QString change, int row, int col)
         {
             switch (col)
             {
+            case (gradeCourse::CourseScheme::COURSE_NUMBER_IN_LIST):
+                c->setCourseNumInList(change.toInt());
+                break;
+            case (gradeCourse::CourseScheme::YEAR):
+                c->setYear(change.toInt());
+                break;
+            case (gradeCourse::CourseScheme::SEMESTER):
+                c->setSemester(change.toInt());
+                break;
             case (gradeCourse::CourseScheme::NAME):
                 c->setName(change);
                 break;
@@ -132,30 +148,40 @@ bool coursesTableManager::changes(QString change, int row, int col)
  */
 void coursesTableManager::addRow(const gradeCourse *courseToAdd)
 {
-    int i,j;
-    i = courseTBL->rowCount();
+    int i=1,j=1;
+
     j = 0;
-    QTableWidgetItem *serial,*name,*type,*points,*hours,*grade,*addition;
+    QTableWidgetItem *number,*year,*semester,*serial,*name,*type,*points,*hours,*grade,*addition;
     const gradeCourse * c;
     if (courseToAdd != NULL)
     {
         c = courseToAdd;
         if (!isCourseAlreadyInserted(c->getSerialNum()))
         {
-            courseTBL->setRowCount(courseTBL->rowCount()+1);
+            courseTBL->setRowCount(courseTBL->rowCount() + 1);
+            i = courseTBL->rowCount()-1;
+
+            number = new QTableWidgetItem(QString::number(c->getCourseNumInList()));
+            number->setFlags(number->flags() & ~Qt::ItemIsEditable);
+            year = new QTableWidgetItem(QString::number(c->getYear()));
+            year->setFlags(year->flags() & ~Qt::ItemIsEditable);
+            semester = new QTableWidgetItem(QString::number(c->getSemester()));
+            semester->setFlags(semester->flags() & ~Qt::ItemIsEditable);
             serial = new QTableWidgetItem(QString::number(c->getSerialNum()));
             serial->setFlags(serial->flags() & ~Qt::ItemIsEditable);
             points = new QTableWidgetItem(QString::number(c->getPoints()));
-            points->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+            points->setFlags(points->flags() & ~Qt::ItemIsEditable);
             hours = new QTableWidgetItem(QString::number(c->getHours()));
-            hours->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+            hours->setFlags(hours->flags() & ~Qt::ItemIsEditable);
             grade = new QTableWidgetItem(QString::number(c->getGrade()));
             name = new QTableWidgetItem(c->getName());
-            name->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+            name->setFlags(name->flags() & ~Qt::ItemIsEditable);
             type = new QTableWidgetItem(c->getType());
-            type->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+            type->setFlags(type->flags() & ~Qt::ItemIsEditable);
             addition = new QTableWidgetItem(c->getAddidtions());
-
+            courseTBL->setItem(i,j++,number);
+            courseTBL->setItem(i,j++,year);
+            courseTBL->setItem(i,j++,semester);
             courseTBL->setItem(i,j++,serial);
             courseTBL->setItem(i,j++,name);
             courseTBL->setItem(i,j++,type);
@@ -164,10 +190,12 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
             courseTBL->setItem(i,j++,grade);
             courseTBL->setItem(i,j,addition);
 
+
         }
     }
     else
     {
+        qCritical() << Q_FUNC_INFO << "no course to load!";
     }
     courseTBL->resizeColumnsToContents();
 
@@ -177,6 +205,12 @@ double coursesTableManager::getAvg()
     if (this->gp != NULL)
         return gp->getAvg();
     return 0;
+}
+
+void coursesTableManager::showGraph()
+{
+    if (gp != NULL)
+        this->graph->show();
 }
 
 
@@ -232,12 +266,15 @@ gradeCourse *coursesTableManager::getCourseByRow(int row)
 
 bool coursesTableManager::isCourseAlreadyInserted(double courseID)
 {
-    int i=0;
-    for (i = 0; i < courseTBL->rowCount(); ++i)
+    int i;
+    for (i = courseTBL->rowCount(); i >= 0; --i)
     {
-        QString courseSerial = courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text();
-        if (QString::number(courseID) == courseSerial)
-            return true;
+        if (courseTBL->item(i,gradeCourse::CourseScheme::SERIAL) != NULL)
+        {
+            QString courseSerial = courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text();
+            if (QString::number(courseID) == courseSerial)
+                return true;
+        }
     }
     return false;
 }

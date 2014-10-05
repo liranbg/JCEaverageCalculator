@@ -12,7 +12,7 @@
 #include <iostream>
 #include <list>
 
-#define	COURSE_FIELDS	7
+#define	COURSE_FIELDS	10
 #define NO_GRADE_YET 101;
 
 
@@ -21,6 +21,9 @@ class gradeCourse : public Course {
 public:
     enum CourseScheme
     {
+        YEAR,
+        SEMESTER,
+        COURSE_NUMBER_IN_LIST,
         SERIAL,
         NAME,
         TYPE,
@@ -30,22 +33,32 @@ public:
         ADDITION
     };
 
-    gradeCourse(int serial, QString name, QString type, double points,double hours, double grade, QString additions);
+    gradeCourse(int year, int semester, int courseNumInList, int serial, QString name, QString type, double points,double hours, double grade, QString additions);
     ~gradeCourse();
 
+    int getYear() const { return this->year; }
+    int getSemester() const { return this->semester; }
     double getHours() const {return this->hours;}
-    double getGrade() const ;
+    double getGrade() const;
     QString getAddidtions() const {return this->additions;}
 
     void setHours(double hours);
     void setGrade(double grade);
     void setAdditions(QString additions);
+    void setYear(int year);
+    void setSemester(int semester);
+
+    int getCourseNumInList() const;
+    void setCourseNumInList(int value);
 
 private:
 
-	double hours;
-	double grade;
+    double hours;
+    double grade;
     QString additions;
+    int year;
+    int semester;
+    int courseNumInList;
 };
 
 

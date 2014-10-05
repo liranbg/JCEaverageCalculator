@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
-    <height>517</height>
+    <width>1133</width>
+    <height>623</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -64,7 +64,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -386,6 +386,13 @@ font-size: 15px;
             <item>
              <layout class="QHBoxLayout" name="AvghorizontalLayout">
               <item>
+               <widget class="QPushButton" name="graphButton">
+                <property name="text">
+                 <string>Graph View</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QLabel" name="labelAverage">
                 <property name="text">
                  <string>Average:</string>
@@ -630,6 +637,13 @@ font-size: 15px;
      </widget>
     </item>
     <item>
+     <widget class="QLabel" name="labelMadeBy">
+      <property name="text">
+       <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QProgressBar" name="progressBar">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -641,7 +655,7 @@ font-size: 15px;
        <string notr="true">#progressBar::horizontal {
 border: 1px solid gray;
 border-radius: 3px;
-background: white;
+background: transparent;
 padding: 1px;
 }
 #progressBar::chunk:horizontal {
@@ -652,7 +666,7 @@ background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop:
        <number>0</number>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignCenter</set>
       </property>
       <property name="textVisible">
        <bool>true</bool>
@@ -668,13 +682,6 @@ background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop:
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QLabel" name="labelMadeBy">
-      <property name="text">
-       <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -682,8 +689,8 @@ background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop:
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>855</width>
-     <height>21</height>
+     <width>1133</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">

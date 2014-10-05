@@ -229,6 +229,10 @@ void MainScreen::on_clearTableButton_clicked()
     courseTableMgr->clearTable();
     ui->avgLCD->display(courseTableMgr->getAvg());
 }
+void MainScreen::on_graphButton_clicked()
+{
+    courseTableMgr->showGraph();
+}
 //EVENTS ON CALENDAR TAB
 void MainScreen::on_getCalendarBtn_clicked()
 {

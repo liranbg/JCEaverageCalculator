@@ -33,6 +33,7 @@ private:
 	bool endOfString(int index, int length);
 
     QString text;
+    QString dateHeader;
     QString title;
 
 };

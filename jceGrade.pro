@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network widgets
+QT       += core gui network widgets printsupport
 
 CONFIG += qt c++11
 
@@ -25,7 +25,8 @@ TRANSLATIONS = jce_en.ts \
 
 FORMS    += \
     main/mainscreen.ui \
-    src/jceData/Calendar/calendarDialog.ui
+    src/jceData/Calendar/calendarDialog.ui \
+    src/jceData/Grades/graph/gradegraph.ui
 
 RESOURCES += \
     resources/connectionstatus.qrc
@@ -50,7 +51,9 @@ HEADERS += \
     src/jceData/CSV/csv_exporter.h \
     src/appDatabase/simplecrypt.h \
     src/jceData/Calendar/calendarDialog.h \
-    src/appDatabase/jce_logger.h
+    src/appDatabase/jce_logger.h \
+    src/jceData/Grades/graph/qcustomplot.h \
+    src/jceData/Grades/graph/gradegraph.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -71,4 +74,6 @@ SOURCES += \
     src/jceData/CSV/csv_exporter.cpp \
     src/appDatabase/simplecrypt.cpp \
     src/jceData/Calendar/calendarDialog.cpp \
-    src/appDatabase/jce_logger.cpp
+    src/appDatabase/jce_logger.cpp \
+    src/jceData/Grades/graph/qcustomplot.cpp \
+    src/jceData/Grades/graph/gradegraph.cpp

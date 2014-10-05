@@ -1,10 +1,13 @@
 #include "gradeCourse.h"
 
-gradeCourse::gradeCourse(int serial, QString name, QString type, double points, double hours, double grade, QString additions) :  Course(serial,name,type,points)
+gradeCourse::gradeCourse(int year, int semester, int courseNumInList, int serial, QString name, QString type, double points,double hours, double grade, QString additions) :  Course(serial,name,type,points)
 {
     this->hours = hours;
     this->grade = grade;
     this->additions = additions;
+    this->year = year;
+    this->semester = semester;
+    this->courseNumInList = courseNumInList;
 }
 
 gradeCourse::~gradeCourse()
@@ -34,3 +37,23 @@ void gradeCourse::setAdditions(QString additions)
 {
     this->additions = additions;
 }
+
+void gradeCourse::setYear(int year)
+{
+    this->year = year;
+
+}
+void gradeCourse::setSemester(int semester)
+{
+    this->semester = semester;
+}
+int gradeCourse::getCourseNumInList() const
+{
+    return courseNumInList;
+}
+
+void gradeCourse::setCourseNumInList(int value)
+{
+    courseNumInList = value;
+}
+

@@ -36,13 +36,13 @@ void GradePage::coursesListInit(QString &linesTokinzedString)
     char* tok;
     char* textToTok = strdup(linesTokinzedString.toStdString().c_str());
     tok = strtok(textToTok,"\n");
-    while (tok != NULL)
+    while (tok != NULL) //putting every line in a string holder before parsing it
     {
         temp = tok;
         stringHolder.push_back(temp);
         tok = strtok(NULL, "\n");
     }
-    for(QString temp: stringHolder)
+    for (QString temp: stringHolder)
     {
         cTemp = lineToCourse(temp);
         if (cTemp != NULL)
@@ -52,7 +52,6 @@ void GradePage::coursesListInit(QString &linesTokinzedString)
 
 QString GradePage::tokenToLines(QString &textToPhrase)
 {
-    int ctr = 0;
     QString temp = "";
     char *tok;
     char* textToTok = strdup(textToPhrase.toStdString().c_str());
@@ -65,7 +64,6 @@ QString GradePage::tokenToLines(QString &textToPhrase)
             temp += tok;
             temp += "\n";
         }
-        ctr++;
         tok = strtok(NULL, "\n");
     }
     return temp;
@@ -75,7 +73,7 @@ gradeCourse* GradePage::lineToCourse(QString line)
 {
     gradeCourse *tempC = NULL;
     QString templinearray[COURSE_FIELDS];//[serial,name,type,points,hours,grade,additions]
-    int serial;
+    int serial,year,semester,courseNumInList;
     double points,hours,grade;
     QString name,type, additions;
     QString tempS = "";
@@ -85,35 +83,44 @@ gradeCourse* GradePage::lineToCourse(QString line)
     tok = strtok(cLine, "\t");
     while(tok != NULL)
     {
-
         tempS = tok;
-        if (i == 1) //skip the tokenizing loop just once
+
+        if (i == gradeCourse::CourseScheme::SERIAL) //we need to extract the serial manually
         {
             tempS = "";
             char *tokTemp;
             tokTemp = tok;
-            while (!(isdigit((int)*tokTemp)))
+            while (!(isdigit((int)*tokTemp))) //getting to serial number starting pointer
                 tokTemp++;
 
-            while (isdigit((int)*tokTemp))
+            while (isdigit((int)*tokTemp)) //serial number
             {
                 tempS += QString(*tokTemp);
                 tokTemp++;
             }
-            templinearray[i-1] = tempS.trimmed();
-            templinearray[i] = QString(tokTemp).trimmed();
-
+            templinearray[i] = tempS.trimmed();
+            templinearray[i+1] = QString(tokTemp).trimmed();
+            i +=2; //skipping on serial and course name
         }
-        else if (i > 1)
+        else
         {
-            templinearray[i] = tempS;
+            templinearray[i] = tempS.trimmed();
+            i++;
         }
-        i++;
+
+        if (i == COURSE_FIELDS)
+            break;
         tok=strtok(NULL, "\t");
     }
-    if (templinearray[0] == "") //empty phrasing
+    if (templinearray[0] == "") //empty parsing
+    {
+        qCritical() << Q_FUNC_INFO << "empty parsing";
         return NULL;
+    }
 
+    year = templinearray[gradeCourse::CourseScheme::YEAR].toInt();
+    semester = templinearray[gradeCourse::CourseScheme::SEMESTER].toInt();
+    courseNumInList = templinearray[gradeCourse::CourseScheme::COURSE_NUMBER_IN_LIST].toInt();
     serial = templinearray[gradeCourse::CourseScheme::SERIAL].toInt();
 
     name = templinearray[gradeCourse::CourseScheme::NAME];
@@ -129,7 +136,7 @@ gradeCourse* GradePage::lineToCourse(QString line)
 
     additions = templinearray[gradeCourse::CourseScheme::ADDITION];
 
-    tempC = new gradeCourse(serial,name,type,points,hours,grade,additions);
+    tempC = new gradeCourse(year,semester,courseNumInList,serial,name,type,points,hours,grade,additions);
     return tempC;
 }
 

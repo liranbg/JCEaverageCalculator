@@ -1,6 +1,6 @@
 #include "page.h"
 
-Page::Page() {}
+Page::Page() { dateHeader = "";}
 /**
  * @brief Page::getString
  * @param htmlToPhrased
@@ -29,17 +29,23 @@ void Page::manageTableContent(QString &html, int index)
     QString temp;
     for (int i = index; i < html.length(); i++)
     {
-        if(html.at(i) == '<')
+        if (html.at(i) == '<')
         {
             //<tr> / <td> / <th>
             QString endofTable = "</tbody>";
             QString tableTag = html.mid(i, 4); //legth of "tr/td"
             if (tableTag == "<tr>")
             {
-                temp += "\n"; //new row -> new line
+                temp += dateHeader;
                 i = stitchText(html, temp, i+4);
-                if(i == -1) //EOF
+                if (i == -1) //EOF
                     break;
+
+            }
+            else if (tableTag == "</tr")
+            {
+                temp += "\n"; //end row -> new line
+                i+=5;
             }
             else if (tableTag == "<td>" || tableTag == "<th>")
             {
@@ -55,14 +61,20 @@ void Page::manageTableContent(QString &html, int index)
                 if (i == -1) //EOF
                     break;
             }
-            else if(tableTag == "<td ") // a Year title (in grades table)
+            else if (tableTag == "<td ") // a Year title (in grades table)
             {
-                temp += "\t";
-                while(html.at(i) != '>')
+                if (!temp.isEmpty())
+                    if (temp.lastIndexOf(dateHeader) == temp.length()-dateHeader.length())
+                    {
+                        temp.chop(dateHeader.length()+1);
+                        temp += "\t";
+                    }
+                while (html.mid(i,3) != "<b>")
                     i++;
-                i = stitchText(html, temp, i+1);
+                i = stitchText(html, temp, i);
+
             }
-            else if (html.mid(i,(endofTable).length()) == endofTable) //is end of table
+            if (html.mid(i,(endofTable).length()) == endofTable) //is end of table
             {
                 break;
             }
@@ -78,9 +90,32 @@ int Page::stitchText(QString &from, QString &to, int index)
     if (from.at(index) == '<')
     {
         QString bTag = from.mid(index, 3);
+        QString dateline = from.mid(index,from.indexOf("</b>",index+4)-index);
+        QString temp;
+        QString date;
+        char* tok;
+        int i =  0;
+        char* textToTok = strdup(dateline.toStdString().c_str());
+        tok = strtok(textToTok,"<>&nbsp;:");
+        while (tok != NULL)
+        {
+            if (i == 1)
+            {
+                temp = tok;
+                date += temp + "\t";
+            }
+            else if (i == 3)
+            {
+                temp = tok;
+                date += temp;
+            }
+            i++;
+            tok = strtok(NULL, "<>&nbsp;:");
+        }
+        dateHeader = date;
         if (bTag != "<b>")
             return index-1; //go back one step - for the main function to inc i
-        index += 3;
+        index += dateline.length();
     }
 
     while (from.at(index) != '<' && index < (int)from.length())
@@ -103,7 +138,7 @@ int Page::stitchText(QString &from, QString &to, int index)
         else if (from.at(index) == '<')
             return index - 1; //go back one step - for the main function to inc i
 
-        if (from.at(index) != '\n') //check the actuall data before continue
+        if ((from.at(index) != '\n') && (from.at(index) != '\t')) //check the actuall data before continue
             to += from.at(index);
         index++;
     }
