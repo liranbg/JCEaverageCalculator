@@ -6,21 +6,21 @@
  */
 jceLogin::jceLogin(user* username, QProgressBar *progressbarPtr)
 {
-        this->progressBar = progressbarPtr;
-    this->recieverPage = new QString();
-    this->jceA = username;
-    this->JceConnector = new jceSSLClient(progressBar);
-    QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
-    QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
+  this->progressBar = progressbarPtr;
+  this->recieverPage = new QString();
+  this->jceA = username;
+  this->JceConnector = new jceSSLClient(progressBar);
+  QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
+  QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
 }
 
 jceLogin::~jceLogin()
 {
-    this->jceA = NULL;
-    delete recieverPage;
-    delete JceConnector;
-    JceConnector = NULL;
-    recieverPage = NULL;
+  this->jceA = NULL;
+  delete recieverPage;
+  delete JceConnector;
+  JceConnector = NULL;
+  recieverPage = NULL;
 }
 /**
  * @brief jceLogin::makeConnection  Connecting to JCE student web site with JceA (username object) and validate it.
@@ -28,74 +28,74 @@ jceLogin::~jceLogin()
  */
 int jceLogin::makeConnection()
 {
-    qDebug() << "jceLogin::makeConnection(); connection to be make";
+  qDebug() << "jceLogin::makeConnection(); connection to be make";
 
-    if (this->recieverPage == NULL)
-        this->recieverPage = new QString();
+  if (this->recieverPage == NULL)
+    this->recieverPage = new QString();
 
-    int returnMode; //gets status according to called function of validation step
-    jceStatus status = jceStatus::JCE_NOT_CONNECTED;
+  int returnMode; //gets status according to called function of validation step
+  jceStatus status = jceStatus::JCE_NOT_CONNECTED;
 
-    returnMode = checkConnection(); //checking socket status. is connected?
+  returnMode = checkConnection(); //checking socket status. is connected?
 
-    if (returnMode == false)
+  if (returnMode == false)
     {
-        if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
-            return jceStatus::ERROR_ON_OPEN_SOCKET;
-        else
-            returnMode = true;
+      if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
+        return jceStatus::ERROR_ON_OPEN_SOCKET;
+      else
+        returnMode = true;
     }
 
-    if (returnMode == true) //connected to host
+  if (returnMode == true) //connected to host
     {
-        returnMode = makeFirstVisit();
-        if (returnMode == true) //requst and send first validation
+      returnMode = makeFirstVisit();
+      if (returnMode == true) //requst and send first validation
         {
-            status = jceStatus::JCE_START_VALIDATING_PROGRESS;
-            returnMode = checkValidation();
-            if (returnMode == true) //check if username and password are matching
+          status = jceStatus::JCE_START_VALIDATING_PROGRESS;
+          returnMode = checkValidation();
+          if (returnMode == true) //check if username and password are matching
             {
-                status = jceStatus::JCE_VALIDATION_PASSED;
-                returnMode = makeSecondVisit();
-                if (returnMode == true) //siging in the website
+              status = jceStatus::JCE_VALIDATION_PASSED;
+              returnMode = makeSecondVisit();
+              if (returnMode == true) //siging in the website
                 {
-                    qDebug() << "jceLogin::makeConnection(); Signed in succeesfully";
-                    status = jceStatus::JCE_YOU_ARE_IN;
-                    setLoginFlag(true);
+                  qDebug() << "jceLogin::makeConnection(); Signed in succeesfully";
+                  status = jceStatus::JCE_YOU_ARE_IN;
+                  setLoginFlag(true);
                 }
-                else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
+              else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
                 {
-                    status = jceLogin::ERROR_ON_GETTING_INFO;
+                  status = jceLogin::ERROR_ON_GETTING_INFO;
                 }
-                else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
+              else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
                 {
-                    status = jceLogin::ERROR_ON_SEND_REQUEST;
+                  status = jceLogin::ERROR_ON_SEND_REQUEST;
                 }
-                else
-                    status = jceStatus::ERROR_ON_VALIDATION;
-            }
-            else
+              else
                 status = jceStatus::ERROR_ON_VALIDATION;
+            }
+          else
+            status = jceStatus::ERROR_ON_VALIDATION;
 
         }
-        else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
+      else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
         {
-            status = jceLogin::ERROR_ON_GETTING_INFO;
+          status = jceLogin::ERROR_ON_GETTING_INFO;
         }
-        else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
+      else if (returnMode == jceLogin::ERROR_ON_SEND_REQUEST)
         {
-            status = jceLogin::ERROR_ON_SEND_REQUEST;
+          status = jceLogin::ERROR_ON_SEND_REQUEST;
         }
-        else
-            status = jceStatus::ERROR_ON_VALIDATION_USER_BLOCKED;
+      else
+        status = jceStatus::ERROR_ON_VALIDATION_USER_BLOCKED;
 
     }
-    else
-        status = jceStatus::JCE_NOT_CONNECTED;
+  else
+    status = jceStatus::JCE_NOT_CONNECTED;
 
-    //we throw status even if we are IN!
-    qDebug() << "jceLogin::makeConnection(); return status: " << status;
-    return status;
+  //we throw status even if we are IN!
+  qDebug() << "jceLogin::makeConnection(); return status: " << status;
+  return status;
 
 }
 /**
@@ -104,21 +104,21 @@ int jceLogin::makeConnection()
  */
 bool jceLogin::checkConnection() const
 {
-    if (JceConnector->isConnected())
-        return true;
+  if (JceConnector->isConnected())
+    return true;
 
-    return false;
+  return false;
 }
 /**
  * @brief jceLogin::closeAll
  */
 void jceLogin::closeAll()
 {
-    this->JceConnector->makeDiconnect();
-    if ((this->recieverPage != NULL) && (!this->recieverPage->isEmpty()))
+  this->JceConnector->makeDiconnect();
+  if ((this->recieverPage != NULL) && (!this->recieverPage->isEmpty()))
     {
-        delete recieverPage;
-        recieverPage = NULL;
+      delete recieverPage;
+      recieverPage = NULL;
     }
 
 }
@@ -127,17 +127,17 @@ void jceLogin::closeAll()
  */
 void jceLogin::reMakeConnection()
 {
-    if (this->JceConnector != NULL)
-        delete JceConnector;
-    if (this->recieverPage != NULL)
-        delete recieverPage;
-    recieverPage = NULL;
-    JceConnector = NULL;
-    this->recieverPage = new QString();
-    this->JceConnector = new jceSSLClient(progressBar);
-    QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
-    QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
-    emit connectionReadyAfterDisconnection();
+  if (this->JceConnector != NULL)
+    delete JceConnector;
+  if (this->recieverPage != NULL)
+    delete recieverPage;
+  recieverPage = NULL;
+  JceConnector = NULL;
+  this->recieverPage = new QString();
+  this->JceConnector = new jceSSLClient(progressBar);
+  QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
+  QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
+  emit connectionReadyAfterDisconnection();
 
 }
 /**
@@ -146,17 +146,17 @@ void jceLogin::reMakeConnection()
  */
 int jceLogin::makeFirstVisit()
 {
-    QString usr = jceA->getUsername();
-    QString psw = jceA->getPassword();
-    if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
+  QString usr = jceA->getUsername();
+  QString psw = jceA->getPassword();
+  if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
-        if (!JceConnector->recieveData(*recieverPage,true))
-            return jceLogin::ERROR_ON_GETTING_INFO;
+      if (!JceConnector->recieveData(*recieverPage,true))
+        return jceLogin::ERROR_ON_GETTING_INFO;
     }
-    else
-        return jceLogin::ERROR_ON_SEND_REQUEST;
+  else
+    return jceLogin::ERROR_ON_SEND_REQUEST;
 
-    return true;
+  return true;
 }
 /**
  * @brief jceLogin::makeSecondVisit making the second validation step of jce student portal login
@@ -164,19 +164,19 @@ int jceLogin::makeFirstVisit()
  */
 int jceLogin::makeSecondVisit()
 {
-    QString usrid=jceA->getUserID();
-    QString pswid=jceA->getHashedPassword();
-    if ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getSecondValidationStep(*jceA)))))
+  QString usrid=jceA->getUserID();
+  QString pswid=jceA->getHashedPassword();
+  if ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getSecondValidationStep(*jceA)))))
     {
-        if (!(JceConnector->recieveData(*recieverPage,true)))
-            return jceLogin::ERROR_ON_GETTING_INFO;
+      if (!(JceConnector->recieveData(*recieverPage,true)))
+        return jceLogin::ERROR_ON_GETTING_INFO;
 
-        return true;
+      return true;
     }
-    else
-        return jceLogin::ERROR_ON_SEND_REQUEST;
+  else
+    return jceLogin::ERROR_ON_SEND_REQUEST;
 
-    return true;
+  return true;
 }
 /**
  * @brief jceLogin::getCalendar according to parameters, we make an HTML request and send it over socket to server
@@ -186,17 +186,17 @@ int jceLogin::makeSecondVisit()
  */
 int jceLogin::getCalendar(int year, int semester)
 {
-    if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getCalendar(*jceA,year,semester)))))
+  if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getCalendar(*jceA,year,semester)))))
     {
-        if (!(JceConnector->recieveData(*recieverPage,false)))
-            return jceLogin::ERROR_ON_GETTING_PAGE;
-        else
-            return jceLogin::JCE_PAGE_PASSED;
+      if (!(JceConnector->recieveData(*recieverPage,false)))
+        return jceLogin::ERROR_ON_GETTING_PAGE;
+      else
+        return jceLogin::JCE_PAGE_PASSED;
     }
-    else
-        return jceLogin::ERROR_ON_SEND_REQUEST;
+  else
+    return jceLogin::ERROR_ON_SEND_REQUEST;
 
-    return true;
+  return true;
 
 }
 /**
@@ -209,17 +209,17 @@ int jceLogin::getCalendar(int year, int semester)
  */
 int jceLogin::getGrades(int fromYear, int toYear, int fromSemester, int toSemester)
 {
-    if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA,fromYear, toYear, fromSemester, toSemester)))))
+  if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA,fromYear, toYear, fromSemester, toSemester)))))
     {
-        if (!(JceConnector->recieveData(*recieverPage,false)))
-            return jceLogin::ERROR_ON_GETTING_PAGE;
-        else
-            return jceLogin::JCE_PAGE_PASSED;
+      if (!(JceConnector->recieveData(*recieverPage,false)))
+        return jceLogin::ERROR_ON_GETTING_PAGE;
+      else
+        return jceLogin::JCE_PAGE_PASSED;
     }
-    else
-        return jceLogin::ERROR_ON_SEND_REQUEST;
+  else
+    return jceLogin::ERROR_ON_SEND_REQUEST;
 
-    return true;
+  return true;
 
 }
 /**
@@ -229,43 +229,43 @@ int jceLogin::getGrades(int fromYear, int toYear, int fromSemester, int toSemest
 bool jceLogin::checkValidation()
 {
 
-    //finds the hashed password
-    QString constUserID_TAG = "value=\"-N";
-    QString constHassID_TAG = "-A,-N";
-    QString hasspass,hassid;
-    std::size_t hasspass_position1,hasspass_position2;
-    std::size_t id_position1,id_position2;
+  //finds the hashed password
+  QString constUserID_TAG = "value=\"-N";
+  QString constHassID_TAG = "-A,-N";
+  QString hasspass,hassid;
+  std::size_t hasspass_position1,hasspass_position2;
+  std::size_t id_position1,id_position2;
 
-    hasspass_position1 = this->recieverPage->toStdString().find(constHassID_TAG.toStdString()); //looking for hasspass index
-    if (hasspass_position1 == std::string::npos) //didnt find the tag
-        return false;
-    else
-        hasspass_position1 += constHassID_TAG.length(); //skip the index of tag
-    hasspass_position2 = this->recieverPage->toStdString().find(",-A,-A", hasspass_position1);
-    //finds the hass pass
-    if (hasspass_position2 != std::string::npos) //found the hasspass! storing it
-        hasspass = recieverPage->mid(hasspass_position1,hasspass_position2-hasspass_position1);
-    else
-        return false;
-    //finds the user id
-    id_position1 = this->recieverPage->toStdString().find(constUserID_TAG.toStdString(), 0); //looking for hassid index
-    if (id_position1 == std::string::npos) //didnt find the tag
-        return false;
-    else
-        id_position1 += constUserID_TAG.length(); //skip the index of tag
-    id_position2 = this->recieverPage->toStdString().find(",-A", id_position1);
-    if (id_position2 != std::string::npos) //found the hassid! storing it
-        hassid = recieverPage->mid(id_position1,id_position2-id_position1);
-    else
-        return false;
+  hasspass_position1 = this->recieverPage->toStdString().find(constHassID_TAG.toStdString()); //looking for hasspass index
+  if (hasspass_position1 == std::string::npos) //didnt find the tag
+    return false;
+  else
+    hasspass_position1 += constHassID_TAG.length(); //skip the index of tag
+  hasspass_position2 = this->recieverPage->toStdString().find(",-A,-A", hasspass_position1);
+  //finds the hass pass
+  if (hasspass_position2 != std::string::npos) //found the hasspass! storing it
+    hasspass = recieverPage->mid(hasspass_position1,hasspass_position2-hasspass_position1);
+  else
+    return false;
+  //finds the user id
+  id_position1 = this->recieverPage->toStdString().find(constUserID_TAG.toStdString(), 0); //looking for hassid index
+  if (id_position1 == std::string::npos) //didnt find the tag
+    return false;
+  else
+    id_position1 += constUserID_TAG.length(); //skip the index of tag
+  id_position2 = this->recieverPage->toStdString().find(",-A", id_position1);
+  if (id_position2 != std::string::npos) //found the hassid! storing it
+    hassid = recieverPage->mid(id_position1,id_position2-id_position1);
+  else
+    return false;
 
-    //setting user information with given data hassid and hasspass
-    jceA->setHashedPassword(hasspass);
-    jceA->setUserID(hassid);
+  //setting user information with given data hassid and hasspass
+  jceA->setHashedPassword(hasspass);
+  jceA->setUserID(hassid);
 
-    qDebug() << "jceLogin::checkValidation(); Found Hashed: " << hasspass << "And ID: " << hassid;
+  qDebug() << "jceLogin::checkValidation(); Found Hashed: " << hasspass << "And ID: " << hassid;
 
-    return true;
+  return true;
 }
 /**
  * @brief jceLogin::setLoginFlag
@@ -273,7 +273,7 @@ bool jceLogin::checkValidation()
  */
 void jceLogin::setLoginFlag(bool x)
 {
-    this->loginFlag = x;
+  this->loginFlag = x;
 }
 /**
  * @brief jceLogin::isLoginFlag checking if there is a connection, if true - > return if we signed in. otherwise, return not (not connected dough)
@@ -281,9 +281,9 @@ void jceLogin::setLoginFlag(bool x)
  */
 bool jceLogin::isLoginFlag() const
 {
-    if (checkConnection())
-        return this->loginFlag;
-    return false;
+  if (checkConnection())
+    return this->loginFlag;
+  return false;
 
 }
 /**
@@ -292,27 +292,27 @@ bool jceLogin::isLoginFlag() const
  */
 QString jceLogin::getPage()
 {
-    return *recieverPage;
+  return *recieverPage;
 }
 
 void jceLogin::reValidation()
 {
-    qDebug() << Q_FUNC_INFO << "Revalidating user";
+  qDebug() << Q_FUNC_INFO << "Revalidating user";
 
-    if (makeFirstVisit() == true)
+  if (makeFirstVisit() == true)
     {
-        if (checkValidation())
+      if (checkValidation())
         {
-            if (makeSecondVisit() == true)
-                qDebug() << Q_FUNC_INFO << "Validated";
-            else
-                qWarning() << Q_FUNC_INFO << "Second visit finished with an error";
+          if (makeSecondVisit() == true)
+            qDebug() << Q_FUNC_INFO << "Validated";
+          else
+            qWarning() << Q_FUNC_INFO << "Second visit finished with an error";
         }
-        else
-            qDebug() << Q_FUNC_INFO << "checking validation ended with an error";
+      else
+        qDebug() << Q_FUNC_INFO << "checking validation ended with an error";
     }
-    else
+  else
     {
-        qDebug() << Q_FUNC_INFO << "Couldnt Validate User";
+      qDebug() << Q_FUNC_INFO << "Couldnt Validate User";
     }
 }

@@ -85,8 +85,6 @@ private:
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
 
-    bool busyFlag;
-
 };
 
 #endif // MAINSCREEN_H

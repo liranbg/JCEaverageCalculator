@@ -27,7 +27,6 @@ public:
 
 private:
 
-    QString tokenToLines(QString &textToPhrase);
     void coursesListInit(QString &linesTokinzedString);
     gradeCourse* lineToCourse(QString line);
 

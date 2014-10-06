@@ -38,7 +38,7 @@ void calendarSchedule::setPage(QString html)
 {
     CalendarPage::setPage(html);
     qDebug() << Q_FUNC_INFO << "inserting into table";
-//    insertCourseIntoTable();
+    insertCourseIntoTable();
 }
 
 void calendarSchedule::clearTableItems()
@@ -61,12 +61,10 @@ void calendarSchedule::insertCourseIntoTable()
     int row,col;
     for (calendarCourse *coursePtr: *getCourses())
     {
-        qDebug() << coursePtr->getSerialNum();
         courseString = "";
         currentHour = coursePtr->getHourBegin();
         currentDay = coursePtr->getDay();
         blocksNumber = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
-        qDebug() << blocksNumber;
         while (blocksNumber >= 0)
         {
             row = currentHour - HOURS_BEGIN;

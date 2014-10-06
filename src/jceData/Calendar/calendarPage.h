@@ -22,7 +22,6 @@ protected:
 
 
 private:
-    QString tokenToLines(QString &textToParse);
     void calendarListInit(QString &linesTokinzedString);
     calendarCourse* lineToCourse(QString line);
 

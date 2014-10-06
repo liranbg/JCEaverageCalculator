@@ -61,7 +61,7 @@ void CalendarDialog::on_calStart_selectionChanged()
 void CalendarDialog::on_buttonBox_accepted()
 {
     if(this->isOK)
-      qDebug() << "CalendarDialog: Valid input";
+      qDebug() << Q_FUNC_INFO << "CalendarDialog: Valid input";
 }
 
 void CalendarDialog::on_calEnd_selectionChanged()

@@ -4,7 +4,6 @@ GradePage::GradePage(QString html) : Page()
 {
     courses = new std::list<gradeCourse*>();
     tempHtml = getString(html);
-    tempHtml = tokenToLines(tempHtml);
     coursesListInit(tempHtml);
 
 }
@@ -48,26 +47,6 @@ void GradePage::coursesListInit(QString &linesTokinzedString)
         if (cTemp != NULL)
             courses->push_back(cTemp);
     }
-}
-
-QString GradePage::tokenToLines(QString &textToPhrase)
-{
-    QString temp = "";
-    char *tok;
-    char* textToTok = strdup(textToPhrase.toStdString().c_str());
-    tok = strtok(textToTok, "\n");
-    while(tok != NULL)
-    {
-        //amount of data before the actual needed data and no empty lines
-        if (strcmp(tok," \t ") != 0)
-        {
-            temp += tok;
-            temp += "\n";
-        }
-        tok = strtok(NULL, "\n");
-    }
-    return temp;
-
 }
 gradeCourse* GradePage::lineToCourse(QString line)
 {
