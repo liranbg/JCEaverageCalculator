@@ -24,13 +24,15 @@ The next part of the program…okay, this part we will leave open for the future
 
 ## <i class="fa fa-users"></i> The Team
 Our team consists of two Software Engineering students from the Jerusalem College of Engineering.
-
-Project Manager: [Liran Ben Gida][liran]
 <br>
-Co-developer: [Sagi Dayan][sagi]
+
+{% include members.html %}
+
+<br>
 
 This open source application was developed in our spare time and is available for and meant to be shared with other students attending our college.
 The project is private and free to use \ change and was not done in collaboration with the college
+
 
 ---
 

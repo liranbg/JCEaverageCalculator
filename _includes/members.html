@@ -1,0 +1,36 @@
+
+<div class="mm">
+    <table style="border-collapse:collapse;border-spacing:0;border:none;width=100%">
+        {% for member in site.members %}
+        <tr>
+            <th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal" rowspan="2">
+                <div class="mmbox" style="background:url({{ "/assets/img/members/" | prepend: site.baseurl }}{{ member.img }}); background-size:cover">
+                    <div class="mmoverlay">
+                        <div class="mmplus">
+                            <h3>Contact Me: </h3><br><br>
+                            {% for entry in member.social %}
+                            <a href="{{ entry.url }}" target="_blank" title="{{ entry.tooltip }}"><i class="fa fa-{{ entry.title }} fa-fw fa-border" style='color: #FFFFFF;'></i></a>&nbsp;
+                            {% endfor %}   
+                        </div>
+                    </div>  
+                </div>
+            </th>
+            <th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal">
+                <h3>{{ member.name }}</h3>
+                <b><i>{{ member.position }}</i></b><br>
+            </th>
+        </tr>
+        <tr>
+            <td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal">
+                <center>
+                    <i class="fa fa-quote-right fa-flip-horizontal"></i>
+                    <br>
+                    {{ member.text }}
+                    <br>
+                    <i class="fa fa-quote-right"></i>
+                </center>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
