@@ -150,6 +150,6 @@ void gradegraph::setVisualization()
 
 void gradegraph::on_pushButton_clicked()
 {
-    qDebug() << "Closed Graph Dialog";
+    qDebug() << Q_FUNC_INFO << " Closed Graph Dialog";
     this->done(0);
 }
