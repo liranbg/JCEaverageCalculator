@@ -1,5 +1,5 @@
 #include "calendarDialog.h"
-#include "ui_calendardialog.h"
+#include "ui_calendarDialog.h"
 
 
 CalendarDialog::CalendarDialog(QWidget *parent) :
