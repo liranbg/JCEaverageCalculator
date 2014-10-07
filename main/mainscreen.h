@@ -69,6 +69,8 @@ private slots:
 
     void on_graphButton_clicked();
 
+    void on_progressBar_valueChanged(int value);
+
 private:
 
     void checkLocale();

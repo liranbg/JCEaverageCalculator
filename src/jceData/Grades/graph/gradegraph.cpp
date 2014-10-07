@@ -148,3 +148,9 @@ void gradegraph::setVisualization()
 
   ui->graphwidget->legend->setVisible(true); //show graph name on top right
 }
+
+void gradegraph::on_pushButton_clicked()
+{
+    qDebug() << "Closed Graph Dialog";
+    this->done(0);
+}

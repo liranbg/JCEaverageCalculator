@@ -18,6 +18,9 @@ public:
     void showGraph(GradePage *gpPTR);
     ~gradegraph();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
 
     GradePage *gp;

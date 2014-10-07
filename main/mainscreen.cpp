@@ -49,6 +49,9 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
     ui->statusBar->repaint();
     qDebug() << Q_FUNC_INFO << "Ready.";
 
+    //set the progress bar to be invisible (It will show only if value !=0 or !=100)
+    ui->progressBar->setVisible(false);
+
 }
 MainScreen::~MainScreen()
 {
@@ -238,6 +241,7 @@ void MainScreen::on_clearTableButton_clicked()
 
 void MainScreen::on_graphButton_clicked()
 {
+    qDebug() << "Show Graph button clicked";
     courseTableMgr->showGraph();
 }
 
@@ -387,4 +391,16 @@ void MainScreen::on_labelMadeBy_linkActivated(const QString &link)
     qDebug() << Q_FUNC_INFO << "link: " << link;
 
 
+}
+
+/**
+ * @brief Every time the value changes this method will be called
+ * @param value = the value of the progress Bar
+ */
+void MainScreen::on_progressBar_valueChanged(int value)
+{
+    if(value == 0 || value == 100)
+        ui->progressBar->setVisible(false);
+    else
+        ui->progressBar->setVisible(true);
 }

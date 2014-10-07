@@ -229,7 +229,8 @@ void coursesTableManager::showGraph()
 {
     if (gp != NULL)
     {
-        this->graph->showGraph(gp);
+      qDebug() << "Graph Dialog Opened. gp != NULL";
+      this->graph->showGraph(gp);
     }
 }
 
