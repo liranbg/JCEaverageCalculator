@@ -2,44 +2,44 @@
 
 coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
 {
-    this->gp = NULL;
-    this->us = usrPtr;
-    this->courseTBL = ptr;
+  this->gp = NULL;
+  this->us = usrPtr;
+  this->courseTBL = ptr;
 
-    /*
+  /*
      *  Initilizing Table
     */
-    courseTBL->setRowCount(0);
-    courseTBL->setColumnCount(COURSE_FIELDS);
-    QStringList mz;
-    mz << QObject::tr("Code") << QObject::tr("Name") << QObject::tr("Type") << QObject::tr("Points") << QObject::tr("Hours") << QObject::tr("Grade") << QObject::tr("Additions");
-    courseTBL->setHorizontalHeaderLabels(mz);
-    courseTBL->verticalHeader()->setVisible(true);
-    courseTBL->setSelectionMode(QAbstractItemView::SingleSelection);
-    courseTBL->setShowGrid(true);
-    courseTBL->setStyleSheet("QTableView {selection-background-color: red;}");
+  courseTBL->setRowCount(0);
+  courseTBL->setColumnCount(COURSE_FIELDS);
+  QStringList mz;
+  mz << QObject::tr("Code") << QObject::tr("Name") << QObject::tr("Type") << QObject::tr("Points") << QObject::tr("Hours") << QObject::tr("Grade") << QObject::tr("Additions");
+  courseTBL->setHorizontalHeaderLabels(mz);
+  courseTBL->verticalHeader()->setVisible(true);
+  courseTBL->setSelectionMode(QAbstractItemView::SingleSelection);
+  courseTBL->setShowGrid(true);
+  courseTBL->setStyleSheet("QTableView {selection-background-color: red;}");
 }
 
 coursesTableManager::~coursesTableManager()
 {
-    courseTBL = NULL;
-    delete gp;
-    gp = NULL;
+  courseTBL = NULL;
+  delete gp;
+  gp = NULL;
 }
 /**
  * @brief coursesTableManager::insertJceCoursesIntoTable    phrasing the course list to rows in table
  */
 void coursesTableManager::insertJceCoursesIntoTable()
 {
-    for (gradeCourse *c: *gp->getCourses())
+  for (gradeCourse *c: *gp->getCourses())
     {
-        if (us->getInfluenceCourseOnly())
+      if (us->getInfluenceCourseOnly())
         {
-            if (isCourseInfluence(c))
-                addRow(c);
-        }
-        else
+          if (isCourseInfluence(c))
             addRow(c);
+        }
+      else
+        addRow(c);
     }
 }
 /**
@@ -48,7 +48,7 @@ void coursesTableManager::insertJceCoursesIntoTable()
  */
 void coursesTableManager::setCoursesList(QString &html)
 {
-    gp = new GradePage(html);
+  gp = new GradePage(html);
 }
 /**
  * @brief coursesTableManager::changes  when user changes the table manually it updates it
@@ -60,70 +60,70 @@ void coursesTableManager::setCoursesList(QString &html)
 bool coursesTableManager::changes(QString change, int row, int col)
 {
 
-    bool isNumFlag = true;
+  bool isNumFlag = true;
 
-    int serialCourse = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text().toInt();
-    for (gradeCourse *c: *gp->getCourses())
+  int serialCourse = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text().toInt();
+  for (gradeCourse *c: *gp->getCourses())
     {
-        if (c->getSerialNum() == serialCourse)
+      if (c->getSerialNum() == serialCourse)
         {
-            switch (col)
+          switch (col)
             {
             case (gradeCourse::CourseScheme::NAME):
-                c->setName(change);
-                break;
+              c->setName(change);
+              break;
             case (gradeCourse::CourseScheme::TYPE):
-                c->setType(change);
-                break;
+              c->setType(change);
+              break;
             case (gradeCourse::CourseScheme::POINTS):
-            {
+              {
                 change.toDouble(&isNumFlag);
 
                 if (!isNumFlag)
-                {
+                  {
                     courseTBL->item(row,col)->setText(QString::number(c->getPoints()));
-                }
+                  }
                 else
-                    c->setPoints(change.toDouble());
+                  c->setPoints(change.toDouble());
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::HOURS):
-            {
+              {
                 change.toDouble(&isNumFlag);
 
                 if (!isNumFlag)
-                {
+                  {
                     courseTBL->item(row,col)->setText(QString::number(c->getHours()));
-                }
+                  }
                 else
-                    c->setHours(change.toDouble());
+                  c->setHours(change.toDouble());
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::GRADE):
-            {
+              {
                 change.toDouble(&isNumFlag);
 
                 if (!isNumFlag)
-                {
+                  {
                     courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
-                }
+                  }
                 else
-                {
+                  {
                     if ((change.toDouble() >= 0) && (change.toDouble() <= 100))
-                        c->setGrade(change.toDouble());
+                      c->setGrade(change.toDouble());
                     else
-                        courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
-                }
+                      courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
+                  }
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::ADDITION):
-                c->setAdditions(change);
-                break;
+              c->setAdditions(change);
+              break;
             }
-            break;
+          break;
         }
     }
-    return isNumFlag;
+  return isNumFlag;
 
 }
 /**
@@ -132,120 +132,121 @@ bool coursesTableManager::changes(QString change, int row, int col)
  */
 void coursesTableManager::addRow(const gradeCourse *courseToAdd)
 {
-    int i,j;
-    i = courseTBL->rowCount();
-    j = 0;
-    QTableWidgetItem *serial,*name,*type,*points,*hours,*grade,*addition;
-    const gradeCourse * c;
-    if (courseToAdd != NULL)
+  int i,j;
+  i = courseTBL->rowCount();
+  j = 0;
+  QTableWidgetItem *serial,*name,*type,*points,*hours,*grade,*addition;
+  const gradeCourse * c;
+  if (courseToAdd != NULL)
     {
-        c = courseToAdd;
-        if (!isCourseAlreadyInserted(c->getSerialNum()))
+      c = courseToAdd;
+      if (!isCourseAlreadyInserted(c->getSerialNum()))
         {
-            courseTBL->setRowCount(courseTBL->rowCount()+1);
-            serial = new QTableWidgetItem(QString::number(c->getSerialNum()));
-            serial->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            points = new QTableWidgetItem(QString::number(c->getPoints()));
-            points->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            hours = new QTableWidgetItem(QString::number(c->getHours()));
-            hours->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            grade = new QTableWidgetItem(QString::number(c->getGrade()));
-            name = new QTableWidgetItem(c->getName());
-            name->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            type = new QTableWidgetItem(c->getType());
-            type->setFlags(serial->flags() & ~Qt::ItemIsEditable);
-            addition = new QTableWidgetItem(c->getAddidtions());
+          courseTBL->setRowCount(courseTBL->rowCount()+1);
+          serial = new QTableWidgetItem(QString::number(c->getSerialNum()));
+          serial->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+          points = new QTableWidgetItem(QString::number(c->getPoints()));
+          points->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+          hours = new QTableWidgetItem(QString::number(c->getHours()));
+          hours->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+          grade = new QTableWidgetItem(QString::number(c->getGrade()));
+          name = new QTableWidgetItem(c->getName());
+          name->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+          type = new QTableWidgetItem(c->getType());
+          type->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+          addition = new QTableWidgetItem(c->getAddidtions());
 
-            courseTBL->setItem(i,j++,serial);
-            courseTBL->setItem(i,j++,name);
-            courseTBL->setItem(i,j++,type);
-            courseTBL->setItem(i,j++,points);
-            courseTBL->setItem(i,j++,hours);
-            courseTBL->setItem(i,j++,grade);
-            courseTBL->setItem(i,j,addition);
+          courseTBL->setItem(i,j++,serial);
+          courseTBL->setItem(i,j++,name);
+          courseTBL->setItem(i,j++,type);
+          courseTBL->setItem(i,j++,points);
+          courseTBL->setItem(i,j++,hours);
+          courseTBL->setItem(i,j++,grade);
+          courseTBL->setItem(i,j,addition);
 
         }
     }
-    else
+  else
     {
     }
-    courseTBL->resizeColumnsToContents();
+  courseTBL->resizeColumnsToContents();
 
 }
 double coursesTableManager::getAvg()
 {
-    if (this->gp != NULL)
-        return gp->getAvg();
-    return 0;
+  if (this->gp != NULL)
+    return gp->getAvg();
+  return 0;
 }
 
 
 void coursesTableManager::influnceCourseChanged(bool ignoreCourseStatus)
 {
-    if (ignoreCourseStatus)
+  if (ignoreCourseStatus)
     {
-        int i = 0;
-        while (i < courseTBL->rowCount())
+      int i = 0;
+      while (i < courseTBL->rowCount())
         {
-            if (courseTBL->item(i,gradeCourse::CourseScheme::POINTS)->text().compare("0") == 0)
-                courseTBL->removeRow(i--);
-            i++;
+          if (courseTBL->item(i,gradeCourse::CourseScheme::POINTS)->text().compare("0") == 0)
+            courseTBL->removeRow(i--);
+          i++;
         }
     }
-    else
+  else
     {
+      if (gp != NULL)
         for (gradeCourse *c: *gp->getCourses())
-        {
+          {
             if (!(isCourseAlreadyInserted(c->getSerialNum())))
-                if (c->getPoints() == 0)
-                    addRow(c);
-        }
+              if (c->getPoints() == 0)
+                addRow(c);
+          }
     }
 
 }
 
 void coursesTableManager::clearTable()
 {
-    if (courseTBL->rowCount() == 0)
-        return;
+  if (courseTBL->rowCount() == 0)
+    return;
 
-    int i = 0; //starting point
-    while (courseTBL->rowCount() > i)
+  int i = 0; //starting point
+  while (courseTBL->rowCount() > i)
     {
-        gp->removeCourse(courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text());
-        courseTBL->removeRow(i);
+      gp->removeCourse(courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text());
+      courseTBL->removeRow(i);
     }
-    gp = NULL;
-    courseTBL->repaint();
+  gp = NULL;
+  courseTBL->repaint();
 }
 
 gradeCourse *coursesTableManager::getCourseByRow(int row)
 {
-    QString courseSerial = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text();
-    for (gradeCourse *c: *gp->getCourses())
+  QString courseSerial = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text();
+  for (gradeCourse *c: *gp->getCourses())
     {
-        if (c->getSerialNum() == courseSerial.toDouble())
-            return c;
+      if (c->getSerialNum() == courseSerial.toDouble())
+        return c;
     }
-    return NULL;
+  return NULL;
 }
 
 bool coursesTableManager::isCourseAlreadyInserted(double courseID)
 {
-    int i=0;
-    for (i = 0; i < courseTBL->rowCount(); ++i)
+  int i=0;
+  for (i = 0; i < courseTBL->rowCount(); ++i)
     {
-        QString courseSerial = courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text();
-        if (QString::number(courseID) == courseSerial)
-            return true;
+      QString courseSerial = courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text();
+      if (QString::number(courseID) == courseSerial)
+        return true;
     }
-    return false;
+  return false;
 }
 
 bool coursesTableManager::isCourseInfluence(const gradeCourse *courseToCheck)
 {
-    if (courseToCheck->getPoints() > 0)
-        return true;
-    return false;
+  if (courseToCheck->getPoints() > 0)
+    return true;
+  return false;
 
 }
