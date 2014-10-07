@@ -2,48 +2,55 @@
 
 calendarCourse::calendarCourse(int serial, QString name, QString type, QString lecturer, double points,
                                double semesterHours, QString dayAndHour,
-                               QString room) : Course(serial,name, type,points)
+                               QString room, calendarCourse::CourseCalendarType type)  : Course(serial,name, type,points)
 {
     this->lecturer = lecturer;
     this->semesterHours = semesterHours;
     this->room = room;
-    setDayAndHour(dayAndHour);
+    setDayAndHour(dayAndHour.type);
 }
 /**
  * @brief calendarCourse::setDayAndHour
  * given a string of time and day - parsing it into day, hour it begins and hour it ends seperated
  * @param parse -
  */
-void calendarCourse::setDayAndHour(QString parse)
+void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendarType type)
 {
-    int ctr = 0;
-    QString temp = "";
-    QTime timetemp;
-    char *tok;
-    char* textToTok = strdup(parse.toStdString().c_str());
-    tok = strtok(textToTok, " -");
-    while(tok != NULL)
+    if (type == calendarCourse::CourseCalendarType::CoursesSchedule)
     {
-        temp = tok;
-        switch (ctr)
+        int ctr = 0;
+        QString temp = "";
+        QTime timetemp;
+        char *tok;
+        char* textToTok = strdup(parse.toStdString().c_str());
+        tok = strtok(textToTok, " -");
+        while(tok != NULL)
         {
-        case 0: //day
-            setDay(temp);
-            break;
-        case 1: //hour it begins
-            timetemp = QTime::fromString(temp,"hh:mm");
-            setHourBegin(timetemp.hour());
-            setMinutesBegin(timetemp.minute());
-            break;
-        case 2: //hour it ends
-            timetemp = QTime::fromString(temp,"hh:mm");
-            setHourEnd(timetemp.hour());
-            setMinutesEnd(timetemp.minute());
-            break;
-        }
+            temp = tok;
+            switch (ctr)
+            {
+            case 0: //day
+                setDay(temp);
+                break;
+            case 1: //hour it begins
+                timetemp = QTime::fromString(temp,"hh:mm");
+                setHourBegin(timetemp.hour());
+                setMinutesBegin(timetemp.minute());
+                break;
+            case 2: //hour it ends
+                timetemp = QTime::fromString(temp,"hh:mm");
+                setHourEnd(timetemp.hour());
+                setMinutesEnd(timetemp.minute());
+                break;
+            }
 
-        ctr++;
-        tok = strtok(NULL, " -");
+            ctr++;
+            tok = strtok(NULL, " -");
+        }
+    }
+    if (type == calendarCourse::CourseCalendarType::ExamSchedule)
+    {
+
     }
 }
 

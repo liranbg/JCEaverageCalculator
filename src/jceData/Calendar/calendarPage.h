@@ -28,7 +28,6 @@ private:
     QString tempHtml;
     std::list<calendarCourse*>* courses;
 
-
 };
 
 #endif // CALENDARPAGE_H

@@ -14,7 +14,7 @@ class gradegraph : public QDialog
     Q_OBJECT
 
 public:
-    gradegraph(QWidget *parent = 0, GradePage *gpPTR = 0);
+    gradegraph(QWidget *parent = 0);
     void showGraph(GradePage *gpPTR);
     ~gradegraph();
 

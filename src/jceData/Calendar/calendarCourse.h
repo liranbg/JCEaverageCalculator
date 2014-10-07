@@ -9,6 +9,12 @@
 class calendarCourse : public Course
 {
 public:
+    enum CourseCalendarType
+    {
+        ExamSchedule,
+        CoursesSchedule
+    };
+
     enum CourseScheme
     {
         SERIAL,
@@ -21,7 +27,8 @@ public:
         ROOM
     };
     calendarCourse(int serial, QString name, QString type, QString lecturer,
-                   double points, double semesterHours, QString dayAndHour, QString room);
+                   double points, double semesterHours, QString dayAndHour,
+                   QString room, calendarCourse::CourseCalendarType type = calendarCourse::CourseCalendarType::CoursesSchedule);
     ~calendarCourse(){}
 
     int getDay() const;
@@ -47,7 +54,7 @@ public:
 
 private:
 
-    void setDayAndHour(QString parse);
+    void setDayAndHour(QString parse, CourseCalendarType type);
 
     QString lecturer;
     double semesterHours;

@@ -53,7 +53,8 @@ HEADERS += \
     src/jceData/Calendar/calendarDialog.h \
     src/appDatabase/jce_logger.h \
     src/jceData/Grades/graph/qcustomplot.h \
-    src/jceData/Grades/graph/gradegraph.h
+    src/jceData/Grades/graph/gradegraph.h \
+    src/jceData/Calendar/calendarExam.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -76,4 +77,5 @@ SOURCES += \
     src/jceData/Calendar/calendarDialog.cpp \
     src/appDatabase/jce_logger.cpp \
     src/jceData/Grades/graph/qcustomplot.cpp \
-    src/jceData/Grades/graph/gradegraph.cpp
+    src/jceData/Grades/graph/gradegraph.cpp \
+    src/jceData/Calendar/calendarExam.cpp

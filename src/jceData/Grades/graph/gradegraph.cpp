@@ -1,12 +1,12 @@
 #include "gradegraph.h"
 #include "ui_gradegraph.h"
 
-gradegraph::gradegraph(QWidget *parent, GradePage *gpPTR) :
+gradegraph::gradegraph(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::gradegraph)
 {
   ui->setupUi(this);
-  this->gp = gpPTR;
+  this->gp = NULL;
 
 }
 
@@ -16,6 +16,7 @@ void gradegraph::showGraph(GradePage *gpPTR)
   setVisualization();
   setGraphsData();
   this->show();
+
 }
 
 gradegraph::~gradegraph()
@@ -25,12 +26,12 @@ gradegraph::~gradegraph()
 
 void gradegraph::setGraphsData()
 {
-  int minYearInList = gp->getMinYearInList(); //2012
-  int maxYearInList = gp->getMaxYearInList()+1; //2016
-  int xRangeForYear = (maxYearInList - minYearInList+2)*3; //6*3=18
+  int minYearInList = gp->getMinYearInList();
+  int maxYearInList = gp->getMaxYearInList()+1;
+  int xRangeForYear = (maxYearInList - minYearInList+2)*3;
   QVector<double> SemesterialAvg(xRangeForYear),yearlyAvg(xRangeForYear),sem(xRangeForYear);
 
-  for (int yearCount=0,i=1; i<xRangeForYear; ++i)
+  for (int yearCount=0,i=1; i<xRangeForYear; ++i) //filling data
     {
       double lastAvg = 0;
       sem[i] = i;
@@ -137,12 +138,12 @@ void gradegraph::setVisualization()
 
   ui->graphwidget->xAxis->setLabel(tr("Years"));
   ui->graphwidget->xAxis->setAutoTickLabels(false);
-  ui->graphwidget->xAxis->setTickVectorLabels(xStrings);
   ui->graphwidget->xAxis->setTickLabelFont(QFont(QFont().family(), 7));
   ui->graphwidget->xAxis->setAutoTickStep(false);
   ui->graphwidget->xAxis->setTickStep(1);
   ui->graphwidget->xAxis->setAutoSubTicks(false);
   ui->graphwidget->xAxis->setSubTickCount(1);
+    ui->graphwidget->xAxis->setTickVectorLabels(xStrings);
   ui->graphwidget->xAxis->setRange(1,xRangeForYear);
 
   ui->graphwidget->legend->setVisible(true); //show graph name on top right
