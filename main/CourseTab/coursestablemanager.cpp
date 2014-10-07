@@ -209,7 +209,24 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
           courseTBL->setItem(i,j++,type);
           courseTBL->setItem(i,j++,points);
           courseTBL->setItem(i,j++,hours);
-          courseTBL->setItem(i,j++,grade);
+          courseTBL->setItem(i,j,grade);
+          if(c->getGrade() < 55 && c->getGrade() != 0)
+          {
+              courseTBL->item(i, j)->setBackground(Qt::darkRed);
+              courseTBL->item(i,j)->setTextColor(Qt::white);
+          }
+          else if(55 <= c->getGrade() && c->getGrade() < 70 )
+          {
+              courseTBL->item(i, j)->setBackground(Qt::darkYellow);
+              courseTBL->item(i,j)->setTextColor(Qt::white);
+          }
+//          else if(70 < c->getGrade() && c->getGrade() <= 80 )
+//              courseTBL->item(i, j)->setBackground(Qt::darkGreen);  //They Look Bad!!
+//          else if(c->getGrade() > 80)
+//              courseTBL->item(i, j)->setBackground(Qt::green);
+
+          j++;
+
           courseTBL->setItem(i,j,addition);
 
         }
