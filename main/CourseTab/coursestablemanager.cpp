@@ -53,6 +53,8 @@ void coursesTableManager::insertJceCoursesIntoTable()
  */
 void coursesTableManager::setCoursesList(QString &html)
 {
+  if (gp != NULL)
+    gp->~GradePage();
   gp = new GradePage(html);
 }
 /**
@@ -229,7 +231,9 @@ double coursesTableManager::getAvg()
 void coursesTableManager::showGraph()
 {
   if (gp != NULL)
-    this->graph->show();
+    {
+      this->graph->showGraph(gp);
+    }
 }
 
 
@@ -247,12 +251,13 @@ void coursesTableManager::influnceCourseChanged(bool ignoreCourseStatus)
     }
   else
     {
-      for (gradeCourse *c: *gp->getCourses())
-        {
-          if (!(isCourseAlreadyInserted(c->getSerialNum())))
-            if (c->getPoints() == 0)
-              addRow(c);
-        }
+      if (this->gp != NULL)
+        for (gradeCourse *c: *gp->getCourses())
+          {
+            if (!(isCourseAlreadyInserted(c->getSerialNum())))
+              if (c->getPoints() == 0)
+                addRow(c);
+          }
     }
 
 }

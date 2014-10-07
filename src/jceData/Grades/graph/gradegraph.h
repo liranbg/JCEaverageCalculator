@@ -15,11 +15,15 @@ class gradegraph : public QDialog
 
 public:
     gradegraph(QWidget *parent = 0, GradePage *gpPTR = 0);
+    void showGraph(GradePage *gpPTR);
     ~gradegraph();
 
 private:
 
     GradePage *gp;
+
+    void setVisualization();
+    void setGraphsData();
     Ui::gradegraph *ui;
 };
 

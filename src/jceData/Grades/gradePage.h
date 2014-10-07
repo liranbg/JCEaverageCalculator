@@ -15,25 +15,32 @@
 
 class GradePage : public Page
 {
-	
+
 public:
-    GradePage(QString html);
-	~GradePage();
+  GradePage(QString html);
+  ~GradePage();
 
-    void removeCourse(QString courseSerialID);
-	double getAvg();
+  void removeCourse(QString courseSerialID);
+  double getAvg();
+  double getAvg(int year);
+  double getAvg(int year, int semester);
 
-    std::list<gradeCourse*>* getCourses() { return courses; }
+  int getMinYearInList();
+  int getMaxYearInList();
+
+
+  std::list<gradeCourse*>* getCourses() { return courses; }
 
 private:
 
-    void coursesListInit(QString &linesTokinzedString);
-    gradeCourse* lineToCourse(QString line);
+  void coursesListInit(QString &linesTokinzedString);
+  gradeCourse* lineToCourse(QString line);
 
-    bool isGradedYet(QString grade);
+  bool isGradedYet(QString grade);
 
-    std::list<gradeCourse*>* courses;
-    QString tempHtml;
+  std::list<gradeCourse*>* courses;
+
+  QString tempHtml;
 
 };
 

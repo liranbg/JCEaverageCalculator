@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
-    <height>461</height>
+    <width>624</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QLabel" name="label">
      <property name="sizePolicy">
@@ -34,7 +34,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QCustomPlot" name="graphwidget" native="true"/>
+    <widget class="QCustomPlot" name="graphwidget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+     <zorder></zorder>
+    </widget>
    </item>
   </layout>
  </widget>

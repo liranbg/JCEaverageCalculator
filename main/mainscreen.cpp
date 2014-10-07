@@ -172,6 +172,7 @@ void MainScreen::on_ratesButton_clicked()
     }
     QApplication::restoreOverrideCursor();
 }
+
 bool MainScreen::checkIfValidDates()
 {
     bool flag = false;
@@ -188,29 +189,35 @@ bool MainScreen::checkIfValidDates()
     }
     return flag;
 }
+
 void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
 {
     qDebug() << Q_FUNC_INFO <<  "only main courses toggeled" << checked;
     this->userLoginSetting->setInfluenceCourseOnly(checked);
     this->courseTableMgr->influnceCourseChanged(checked);
 }
+
 void MainScreen::on_spinBoxCoursesFromYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesFromYear->setValue(arg1);
 }
+
 void MainScreen::on_spinBoxCoursesToYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesToYear->setValue(arg1);
 
 }
+
 void MainScreen::on_spinBoxCoursesFromSemester_valueChanged(int arg1)
 {
     ui->spinBoxCoursesFromSemester->setValue(arg1%4);
 }
+
 void MainScreen::on_spinBoxCoursesToSemester_valueChanged(int arg1)
 {
     ui->spinBoxCoursesToSemester->setValue(arg1%4);
 }
+
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
     if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
@@ -221,16 +228,19 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
         QMessageBox::critical(this,tr("Error"),tr("Missmatching data"));
     }
 }
+
 void MainScreen::on_clearTableButton_clicked()
 {
     qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
     courseTableMgr->clearTable();
     ui->avgLCD->display(courseTableMgr->getAvg());
 }
+
 void MainScreen::on_graphButton_clicked()
 {
     courseTableMgr->showGraph();
 }
+
 
 //EVENTS ON CALENDAR TAB
 void MainScreen::on_getCalendarBtn_clicked()
