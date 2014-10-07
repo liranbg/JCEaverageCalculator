@@ -38,7 +38,7 @@ The connection icon should turn from Red to Green.
 >Green circle at the status bar means you are logged in.
 
 <br>
-####<a name="notConnecting"></a><i class="fa fa-chain-broken"></i>Not connecting?
+####<a name="notConnecting"></a><i class="fa fa-chain-broken"></i> Not connecting?
 
  - Please make sure you have a stable internet connection.
  - Make sure you have entered the right username and password.
@@ -70,7 +70,7 @@ click on the GPA tab
 >No problem just adjust the time frame you want to see at the top of the GPA tab. clear the table with the
 >"Clear" button and click "Add" again.
 
-#### <a name="GPAchange"></a><i class="fa fa-search"></i>Change your grades
+#### <a name="GPAchange"></a><i class="fa fa-search"></i> Change your grades
 
 Want to see if another exam worth your time? how much dose it affect your GPA?
 ![2][pictureGPA2]
@@ -88,7 +88,7 @@ Now you can easily see if you really should take the next test or not...
 
 ---
 
-##<a name="cal"></a> <i class="fa fa-calendar"></i>See your schedule
+##<a name="cal"></a> <i class="fa fa-calendar"></i> See your schedule
 <br>
 Login with [JCE Manager][connect]
 <br>
@@ -124,7 +124,7 @@ Enjoy.
 
 ---
 
-##<a name="lang"></a> <i class="fa fa-globe"></i>Language selection
+##<a name="lang"></a> <i class="fa fa-globe"></i> Language selection
 Select your language via
 ![1][pictureLang1]
 File <i class="fa fa-arrow-right"></i> Language <i class="fa fa-arrow-right"></i> Check your desired language
