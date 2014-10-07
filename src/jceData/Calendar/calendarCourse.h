@@ -28,7 +28,7 @@ public:
     };
     calendarCourse(int serial, QString name, QString type, QString lecturer,
                    double points, double semesterHours, QString dayAndHour,
-                   QString room, calendarCourse::CourseCalendarType type = calendarCourse::CourseCalendarType::CoursesSchedule);
+                   QString room, calendarCourse::CourseCalendarType courseType = calendarCourse::CourseCalendarType::CoursesSchedule);
     ~calendarCourse(){}
 
     int getDay() const;
@@ -54,7 +54,7 @@ public:
 
 private:
 
-    void setDayAndHour(QString parse, CourseCalendarType type);
+    void setDayAndHour(QString parse, CourseCalendarType courseType);
 
     QString lecturer;
     double semesterHours;

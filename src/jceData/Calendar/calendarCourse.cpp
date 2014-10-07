@@ -2,21 +2,21 @@
 
 calendarCourse::calendarCourse(int serial, QString name, QString type, QString lecturer, double points,
                                double semesterHours, QString dayAndHour,
-                               QString room, calendarCourse::CourseCalendarType type)  : Course(serial,name, type,points)
+                               QString room, calendarCourse::CourseCalendarType courseType)  : Course(serial,name, type,points)
 {
     this->lecturer = lecturer;
     this->semesterHours = semesterHours;
     this->room = room;
-    setDayAndHour(dayAndHour.type);
+    setDayAndHour(dayAndHour,courseType);
 }
 /**
  * @brief calendarCourse::setDayAndHour
  * given a string of time and day - parsing it into day, hour it begins and hour it ends seperated
  * @param parse -
  */
-void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendarType type)
+void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendarType courseType)
 {
-    if (type == calendarCourse::CourseCalendarType::CoursesSchedule)
+    if (courseType == calendarCourse::CourseCalendarType::CoursesSchedule)
     {
         int ctr = 0;
         QString temp = "";
@@ -48,7 +48,7 @@ void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendar
             tok = strtok(NULL, " -");
         }
     }
-    if (type == calendarCourse::CourseCalendarType::ExamSchedule)
+    if (courseType == calendarCourse::CourseCalendarType::ExamSchedule)
     {
 
     }
