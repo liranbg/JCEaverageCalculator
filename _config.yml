@@ -59,7 +59,7 @@ social:
 members:
   - name: Liran Ben Gida
     position: Project Manager
-    text: "After two semesters and 12 courses, I was thinking why can't I see my AVG on each single semester? Why do I need to calculate 12 different courses to know if I have to take another exam to raise my average. These thoughts translated into code in a month,And after Sagi joined me, with his driven, I turned my though into a real project."
+    text: "After two semester and 12 courses, I was thinking why can’t I see my AVG on each single semester? Why do I need to calculate 12 different courses to know if I have to take another exam to raise my average?  These thoughts translated into code in a month.  After Sagi joined me with his drive, I turned my thought into a real project."
     img: liran.jpg
     social:
       - title: envelope #use for email address
@@ -72,8 +72,8 @@ members:
         url: http://www.github.com/liranbg
         tooltip: github Profile
   - name: Sagi Dayan
-    position: Developer And Website Maintainer
-    text: "I just wanted to get my Semester into my Google account in one click. After a 10 min break between classes Liran & I thought it might be cool to join forces. After tow mothes we got a CLI program, and it got us evan hungriear. This Project will be our little baby, And Baybies need to grow..." 
+    position: Developer And Content Manager
+    text: "I just wanted to get my Semester into my Google account in one click. After a 10 minute break between class Liran and I thought it would be cool to join forces.  After two months we got a CLI program and it got us even hungrier.  This project will be our little baby, and babies need to grow." 
     img: sagi.jpg
     social:
       - title: envelope #use for email address

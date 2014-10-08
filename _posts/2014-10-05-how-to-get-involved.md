@@ -8,13 +8,12 @@ image: /JceManager/assets/images/posts/big-data.jpg
 img: big-data.jpg
 ---
 
-# <i class="fa fa-hand-o-up"></i> Ok, You want to get involved...
+# <i class="fa fa-hand-o-up"></i> Okay, You want to get involved...
 ######*There are a few ways you can help*
 
 First of all, thank you for using our software, And even more thanks for your willing to help! Lest start from the top. 
 
-**No** you dont need to know how to code in order to help us out! Yes, Ill say it again in a different way... Help is not always contributing by code. 
-There are several ways of doing so...
+No, you don’t need to know how to code in order to help us out! Yes, I’ll say it again in a different way…Help is not always contributing by code.  There are several ways of doing so:
 
  - [Asking for new features][ask]
  - [Posting bug reports][bugs]
@@ -39,7 +38,7 @@ Now just create a new issue with the title <br>**"feature request - (a short des
 <br>
 At the body please write as much as you can, so we would understand and get to work.
 
->**Note:** we might won't accept all features, some might not be as important as the others, and just need to manage our time...
+>**Note:** We might not accept all features, some might not be as important as the others and we simply need to manage our time. 
 
 [<i class="fa fa-arrow-up"></i> Back To The Top][top]
 
@@ -48,15 +47,15 @@ At the body please write as much as you can, so we would understand and get to w
 #<a name="bugs"></a><i class="fa fa-bug"></i> Posting Bug Reports
 ######*JCE Manager Crashed? Something wen wrong?*
 
-Okay, sorry if something went wrong... we really test the software like **CrAzY** before we upload a new release. But if you are here, then something unecpected happend.
+Okay, sorry if something went wrong... we really test the software like **CrAzY** before we upload a new release. But if you are here, then something unacceptable happend.
 
-For bugs, please do not send us e-mails. it will get inbox lost...
+For bugs, please do not send us e-mail.  It will get lost in our inbox.
 
 Go to our [<i class="fa fa-github"></i> github issues page][githubissue] 
-and browse though the issues. try to see if someone has the same issue. If so, Click on that issue and post your experience. Plus paste the content of your log file.
+and browse through the issues. try to see if someone has the same issue. If so, Click on that issue and post your experience. Also, paste the content of your log file.
 
-If your issue is new, you are more then welcome to open an issue. Make sure that the title is short and informative.
-At the body, try to provide steps to reproduce + The problem + log file. for an example:
+If your issue is new, you are more than welcome to open an issue post. Make sure that the title is short and informative.
+In the body, try to provide steps to reproduce + The problem + log file. <br>For example:
 
 ```
 1. login
@@ -95,15 +94,15 @@ Please make sure that you have the following:
 2. [git][git]
 3. [a github account][github]
 
->**Note:** if you want to program under Windows you might come though some issues.
+>**Note:** If you want to program under Windows, you might come to some issues.
 Just Google it. 
 UNIX and UNIX like systems are most recomended (Linux / Mac OSX)
 
-**Install [qt creator][qt]**. Download the installer... (I dont need to explain how right?).
+**Install [qt creator][qt]**. Download the installer... (I don't need to explain how right?).
 
 **Install <i class="fa fa-code-fork"></i>[git][git]:**<br>
-Under linux just use your package manager, apt-get, yum , pacman...
-for an example :
+Under linux just use your package manager, apt-get, yum , pacman...<br>
+For example:
 {% highlight bash %}
 #Under Ubuntu
 $ sudo apt-get install git-core
@@ -118,16 +117,14 @@ $ brew install git
 {% endhighlight %}
 If not, download the installer...
 
-Under Windows: Download the Git installer from the website, at the installer wizzard, make shure you
-use git Bash.
-Now Cross your fingers and hope that it went well...
+Under Windows: Download the Git installer from the website, at the Installer Wizard, make sure you use git Bash.  Now cross your fingers and hope that it goes well…
 
 
 **Create A <i class="fa fa-github"></i> Github account**<br>
 Go to [github.com][github] and sign up.
 
 
-Okay, Now we have every thing we need to get started. well, one more thing...<br>
+Okay, Now we have everything we need to get started. well, one more thing...<br>
 If it is the first time you installed <i class="fa fa-code-fork"></i>[git][git] we need to set it up.
 
 >**Note:** We are not going to learn about  <i class="fa fa-code-fork"></i> git, If you dont know
@@ -154,7 +151,7 @@ that will create a copy of the software on your account.
 Then You will want to pull the source code to your computer.
 copy the URL address of the copy you've just created (should be some thing like: https://github.com/yourusername/JceManager.git)
 
-Lets call that URL **repoPath** from now on.
+Let's call that URL **repoPath** from now on.
 
 Now navigate to your working directory, in my case Dev folder.
 You will then f
@@ -169,7 +166,7 @@ You will then f
 {% endhighlight %}
 
 
-At this point you can do what ever you want with the code and push to your github account.
+At this point you can do whatever you want with the code and push to your github account.
 If you want us to pull code from you, it could be a bug fix, a new feature you coded or whatnot just send us a pull request at github!
 
 

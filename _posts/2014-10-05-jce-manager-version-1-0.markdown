@@ -31,8 +31,8 @@ happy with the resault. And the project is now avalible to the public.
 
  >**Note:**
  >
- >Changing your grades will **not** effect the records at JCE.
- >It is only to see if you realy want or should take a second attempt...
+ >Changing your grades will **not** affect the records at JCE.
+ >It is only to see if you realy want or should make a second attempt...
 
 ---
  >Head over to the [**Download Page**][download] to get a fresh copy.
