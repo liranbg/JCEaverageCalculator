@@ -1,23 +1,22 @@
-#include "calendarCourse.h"
+#include "calendarPageCourse.h"
 
 calendarCourse::calendarCourse(int serial, QString name, QString type, QString lecturer, double points,
                                double semesterHours, QString dayAndHour,
-                               QString room, calendarCourse::CourseCalendarType courseType)  : Course(serial,name, type,points)
+                               QString room)  : Course(serial,name, type)
 {
+    this->points = points;
     this->lecturer = lecturer;
     this->semesterHours = semesterHours;
     this->room = room;
-    setDayAndHour(dayAndHour,courseType);
+    setDayAndHour(dayAndHour);
 }
 /**
  * @brief calendarCourse::setDayAndHour
  * given a string of time and day - parsing it into day, hour it begins and hour it ends seperated
  * @param parse -
  */
-void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendarType courseType)
+void calendarCourse::setDayAndHour(QString parse)
 {
-    if (courseType == calendarCourse::CourseCalendarType::CoursesSchedule)
-    {
         int ctr = 0;
         QString temp = "";
         QTime timetemp;
@@ -47,11 +46,6 @@ void calendarCourse::setDayAndHour(QString parse, calendarCourse::CourseCalendar
             ctr++;
             tok = strtok(NULL, " -");
         }
-    }
-    if (courseType == calendarCourse::CourseCalendarType::ExamSchedule)
-    {
-
-    }
 }
 
 QString calendarCourse::getLecturer() const
@@ -108,26 +102,6 @@ void calendarCourse::setMinutesEnd(int value)
 {
     minutesEnd = value;
 }
-/**
- * @brief calendarCourse::courseToString
- * @return prints the course into string pattern
- */
-QString calendarCourse::courseToString()
-{
-    QString courseText = "";
-    courseText += " " + QString::number(this->getSerialNum());
-    courseText += " " + this->getName();
-    courseText += " " + this->getType();
-    courseText += " " + this->lecturer;
-    courseText += " " + QString::number(this->getPoints());
-    courseText += " " + QString::number(this->semesterHours);
-    courseText += " " + QString::number(this->day);
-    courseText += " " + QString::number(this->hourBegin) + ":" + QString::number(this->minutesBegin) + "-" + QString::number(this->hourEnd) + ":" + QString::number(this->minutesEnd);
-    courseText += " " + this->room;
-    courseText += "\n";
-    return courseText;
-
-}
 int calendarCourse::getDay() const
 {
     return day;
@@ -171,3 +145,13 @@ void calendarCourse::setRoom(const QString &value)
 
 
 
+
+double calendarCourse::getPoints() const
+{
+    return points;
+}
+
+void calendarCourse::setPoints(double value)
+{
+    points = value;
+}

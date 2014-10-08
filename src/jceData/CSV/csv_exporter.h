@@ -16,8 +16,8 @@
 #include <QDebug>
 #include <QMessageBox>
 
-#include "../Calendar/calendarSchedule.h"
-#include "../Calendar/calendarDialog.h"
+#include "../Calendar/coursesSchedule/calendarSchedule.h"
+#include "../Calendar/coursesSchedule/calendarDialog.h"
 
 
 #define CSV_CALENDAR_HEADER "Subject,Start Date,Start Time,End Date,End Time,Description,Location"

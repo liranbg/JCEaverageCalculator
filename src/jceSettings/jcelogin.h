@@ -40,6 +40,7 @@ public:
   bool checkConnection() const;
   bool isLoginFlag() const;
 
+  int getExams(int year, int semester);
   int getCalendar(int year, int semester);
   int getGrades(int fromYear, int toYear, int fromSemester, int toSemester);
 

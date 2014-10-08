@@ -41,18 +41,20 @@ public:
     double getHours() const {return this->hours;}
     double getGrade() const;
     QString getAddidtions() const {return this->additions;}
+    int getCourseNumInList() const;
+    double getPoints() const;
 
     void setHours(double hours);
     void setGrade(double grade);
     void setAdditions(QString additions);
     void setYear(int year);
     void setSemester(int semester);
-
-    int getCourseNumInList() const;
     void setCourseNumInList(int value);
+    void setPoints(double value);
 
 private:
 
+    double points;
     double hours;
     double grade;
     QString additions;

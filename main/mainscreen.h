@@ -71,6 +71,8 @@ private slots:
 
     void on_progressBar_valueChanged(int value);
 
+    void on_examsBtn_clicked();
+
 private:
 
     void checkLocale();

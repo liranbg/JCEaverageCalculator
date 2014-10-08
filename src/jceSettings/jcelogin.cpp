@@ -199,6 +199,20 @@ int jceLogin::getCalendar(int year, int semester)
   return true;
 
 }
+int jceLogin::getExams(int year, int semester)
+{
+    if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getExamSchedule(*jceA,year,semester)))))
+      {
+        if (!(JceConnector->recieveData(*recieverPage,false)))
+          return jceLogin::ERROR_ON_GETTING_PAGE;
+        else
+          return jceLogin::JCE_PAGE_PASSED;
+      }
+    else
+      return jceLogin::ERROR_ON_SEND_REQUEST;
+
+    return true;
+}
 /**
  * @brief jceLogin::getGrades according to parameters, we make an HTML request and send it over socket to server
  * @param fromYear  -   from year

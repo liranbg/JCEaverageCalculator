@@ -84,6 +84,17 @@ public:
         parameters += "R1C2=" + QString::number(semester) + "&";
         return parameters;
     }
+    const static QString getExamSchedule(const user &usr,int year, int semester)
+    {
+        QString parameters;
+        parameters = "PRGNAME=HADPASAT_TOCHNIT_BEHINOT&ARGUMENTS=TZ,UNIQ,R1C1,R1C2,R1C3&";
+        parameters += "TZ=" + usr.getUserID() + "&";
+        parameters += "UNIQ=" + usr.getHashedPassword() + "&";
+        parameters += "R1C1=" + QString::number(year) + "&";
+        parameters += "R1C2=" + QString::number(semester) + "&";
+        parameters += "R1C3=0";
+        return parameters;
+    }
 
 
 };

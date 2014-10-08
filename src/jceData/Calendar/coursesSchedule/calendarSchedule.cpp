@@ -1,6 +1,6 @@
 #include "calendarSchedule.h"
 
-calendarSchedule::calendarSchedule()
+calendarSchedule::calendarSchedule(QWidget *parent) : QTableWidget(parent)
 {
     QStringList days,hours;
     QTextStream hourString;
@@ -22,7 +22,7 @@ calendarSchedule::calendarSchedule()
     days << QObject::tr("Sunday") << QObject::tr("Monday") << QObject::tr("Tuesday") << QObject::tr("Wednesday") << QObject::tr("Thursday") << QObject::tr("Friday");
 
     setRowCount(endingHour - startingHour + 1);
-    setColumnCount(6);
+    setColumnCount(6); //number of days not including saturday ofcourse :)
 
     setLayoutDirection(Qt::LayoutDirection::RightToLeft);\
 

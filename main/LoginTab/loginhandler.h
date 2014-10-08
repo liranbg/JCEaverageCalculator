@@ -37,6 +37,7 @@ public:
 
     int makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester);
     int makeCalendarRequest(int year,int semester);
+    int makeExamsScheduleRequest(int year, int semester);
 
 private slots:
     void readyAfterConnectionLost();

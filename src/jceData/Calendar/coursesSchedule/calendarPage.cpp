@@ -1,10 +1,9 @@
 #include "calendarPage.h"
 
-QString CalendarPage::htmlToString()
-{
-  return tempHtml;
-}
-
+/**
+ * @brief CalendarPage::setPage getting the html and stripping it into a courses schedule in a list
+ * @param html
+ */
 void CalendarPage::setPage(QString html)
 {
 
@@ -13,7 +12,10 @@ void CalendarPage::setPage(QString html)
   calendarListInit(tempHtml);
 
 }
-
+/**
+ * @brief CalendarPage::calendarListInit - make an object from each line of course
+ * @param linesTokinzedString - string contain lines of coureses. each string contain single course information
+ */
 void CalendarPage::calendarListInit(QString &linesTokinzedString)
 {
   std::list<QString> stringHolder;
@@ -36,6 +38,11 @@ void CalendarPage::calendarListInit(QString &linesTokinzedString)
     }
 }
 
+/**
+ * @brief CalendarPage::lineToCourse
+ * @param line -    line of course contain its data and information
+ * @return calendarcourse object with its information
+ */
 calendarCourse *CalendarPage::lineToCourse(QString line)
 {
 

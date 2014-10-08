@@ -1,15 +1,25 @@
 #include "CalendarManager.h"
 
-CalendarManager::CalendarManager(QGridLayout *ptr)
+CalendarManager::CalendarManager(QWidget *parent, QGridLayout *ptr) : QWidget(parent)
 {
-    caliSchedPtr = new calendarSchedule();
+    caliSchedPtr = new calendarSchedule(this);
+    examSchePtr = new calendarExam();
     ptr->addWidget(caliSchedPtr);
-    caliDialog = new CalendarDialog();
+    caliDialog = new CalendarDialog(this);
+    examDialogPtr = new examDialog(this,examSchePtr);
 }
 
 void CalendarManager::setCalendar(QString html)
 {
     caliSchedPtr->setPage(html);
+
+}
+
+void CalendarManager::setExamsSchedule(QString html)
+{
+    examSchePtr->setPage(html);
+    examDialogPtr->initializingDataIntoTable();
+    examDialogPtr->show();
 }
 void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
 {

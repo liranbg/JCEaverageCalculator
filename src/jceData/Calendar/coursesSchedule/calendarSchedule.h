@@ -16,7 +16,7 @@ class calendarSchedule : public QTableWidget, public CalendarPage
 {
     Q_OBJECT
 public:
-    calendarSchedule();
+    calendarSchedule(QWidget *parent = 0);
     ~calendarSchedule() { clearTableItems(); }
     void setPage(QString html);
     void clearTableItems();

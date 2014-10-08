@@ -16,6 +16,7 @@ void gradegraph::showGraph(GradePage *gpPTR)
   setVisualization();
   setGraphsData();
   this->show();
+  this->setModal(true); //makes it on top of application
 
 }
 

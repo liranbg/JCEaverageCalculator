@@ -146,6 +146,14 @@ int loginHandler::makeCalendarRequest(int year, int semester)
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }
+
+int loginHandler::makeExamsScheduleRequest(int year, int semester)
+{
+    if (isLoggedInFlag())
+        return jceLog->getExams(year,semester);
+    else
+        return jceLogin::JCE_NOT_CONNECTED;
+}
 void loginHandler::setIconConnectionStatus(jceLogin::jceStatus statusDescription)
 {
     QPixmap iconPix;

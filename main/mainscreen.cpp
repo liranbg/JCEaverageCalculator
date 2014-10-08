@@ -31,7 +31,7 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
     this->userLoginSetting = new user("","");
     this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
     this->loginHandel = new loginHandler(userLoginSetting,ui->statusBar,ui->loginButton,ui->progressBar);
-    this->calendar = new CalendarManager(ui->calendarGridLayoutMain);
+    this->calendar = new CalendarManager(this,ui->calendarGridLayoutMain);
     this->data = new SaveData();
 
     //check login File
@@ -247,12 +247,42 @@ void MainScreen::on_graphButton_clicked()
 
 
 //EVENTS ON CALENDAR TAB
+void MainScreen::on_examsBtn_clicked()
+{
+    ui->progressBar->setValue(0);
+    qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
+    int status = 0;
+    QString page;
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    if (loginHandel->isLoggedInFlag())
+    {
+        ui->statusBar->showMessage(tr("Getting exams..."));
+        if ((status = loginHandel->makeExamsScheduleRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
+        {
+            ui->statusBar->showMessage(tr("Done."),1000);
+            page = loginHandel->getCurrentPageContect();
+            calendar->setExamsSchedule(page);
+            ui->progressBar->setValue(100);
+            qDebug() << Q_FUNC_INFO <<  "exams schedule is loaded";
+            ui->statusBar->showMessage(tr("Done"));
+        }
+        else if (status == jceLogin::JCE_NOT_CONNECTED)
+        {
+            qWarning() << Q_FUNC_INFO <<  "not connected";
+            QApplication::restoreOverrideCursor();
+            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+        }
+        else
+            qCritical() << Q_FUNC_INFO << "exams request get ended with" << status;
+    }
+    QApplication::restoreOverrideCursor();
+}
 void MainScreen::on_getCalendarBtn_clicked()
 {
         ui->progressBar->setValue(0);
         qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
         int status = 0;
-                    QString page;
+        QString page;
         QApplication::setOverrideCursor(Qt::WaitCursor);
         if (loginHandel->isLoggedInFlag())
         {
@@ -404,3 +434,5 @@ void MainScreen::on_progressBar_valueChanged(int value)
     else
         ui->progressBar->setVisible(true);
 }
+
+
