@@ -230,7 +230,7 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
     }
     else
     {
-        qCritical() << Q_FUNC_INFO << "no course to load!";
+      qCritical() << Q_FUNC_INFO << " no course to load!";
     }
     courseTBL->resizeColumnsToContents();
 
@@ -246,7 +246,7 @@ void coursesTableManager::showGraph()
 {
     if (gp != NULL)
     {
-      qDebug() << "Graph Dialog Opened. gp != NULL";
+      qDebug() << Q_FUNC_INFO << " Graph Dialog Opened. gp != NULL";
       this->graph->showGraph(gp);
     }
 }
