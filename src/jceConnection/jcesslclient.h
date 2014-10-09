@@ -11,6 +11,7 @@
 #include <QTimer>
 #include <QProgressBar>
 
+#define packetSize 10000
 #define milisTimeOut 4000
 
 class jceSSLClient : public QSslSocket

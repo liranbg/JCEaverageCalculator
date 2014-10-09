@@ -258,7 +258,7 @@ void jceSSLClient::setDisconnected()
 void jceSSLClient::setEncrypted()
 {
     qDebug() << Q_FUNC_INFO << "connection has been ENCRYPTED";
-    setReadBufferSize(10000);
+    setReadBufferSize(packetSize);
     setSocketOption(QAbstractSocket::KeepAliveOption,true);
     flag = true;
     if (!isConnected())
