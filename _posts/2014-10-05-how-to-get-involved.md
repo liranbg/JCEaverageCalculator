@@ -9,15 +9,16 @@ img: big-data.jpg
 ---
 
 # <i class="fa fa-hand-o-up"></i> Okay, You want to get involved...
-######*There are a few ways you can help*
+######*There are few ways you can help*
 
-First of all, thank you for using our software, And even more thanks for your willing to help! Lest start from the top. 
+First of all, thank you for using our software, And even more thanks for your willing to help!
 
-No, you don’t need to know how to code in order to help us out! Yes, I’ll say it again in a different way…Help is not always contributing by code.  There are several ways of doing so:
+You do not need to know how to program in order to help us out!
+Help is not always contributing by code;  There are several ways to do so:
 
  - [Asking for new features][ask]
  - [Posting bug reports][bugs]
- - [Code][code]
+ - [Develope][code]
 
 In this post we will cover all methods in great detail.<br>
 Note that all these methods are welcome in all Open-Source software and

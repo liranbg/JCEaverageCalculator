@@ -14,25 +14,24 @@ img: v1.png
 
 
 After **hard** development, hacking and some *Moadey beit* , we are finaly
-happy with the resault. And the project is now avalible to the public.
+happy with the result. The project is now avalible.
 
->You can read more about *JCE Manager*, and the team at the [About Page][about].
+>You can read more about *JCE Manager*, and its team at [About Page][about].
 
 ####V1.0 Release Notes:
- - Hack into the [JCE Student web site][jce] ("Yedion")
- - Fetch your grade sheet
- - Change your grades to see how it affects your GPA
+ - Login into [JCE Student web site][jce] ("Yedion")
+ - Extract your GPA
+ - Edit your grades to see how it affects your GPA
  - Save your *username* and *password* for easy access (Password is encrypted)
  - Fetch your Semester Schedule
  - Export your Semester Schedule to CSV file to import to GoogleCalendar/iCal/Outlook
  - Translated to Hebrew and English
 
-*JCE Manager* is avalible for Windows, OSX and Linux.
+*JCE Manager* is avalible for Windows, OS X and Linux.
 
  >**Note:**
  >
  >Changing your grades will **not** affect the records at JCE.
- >It is only to see if you realy want or should make a second attempt...
 
 ---
  >Head over to the [**Download Page**][download] to get a fresh copy.
