@@ -210,6 +210,7 @@ void jceSSLClient::readItAll()
         }
         this->progressBar->setValue(this->progressBar->value() + 6);
         packet.append(p);
+        packet.append("\0");
     }while (p.size() > 0);
 }
 
