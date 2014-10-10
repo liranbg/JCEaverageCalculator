@@ -5,54 +5,66 @@
 #include <QSslSocket>
 #include <QThread>
 #include <QEventLoop>
+#include <QTimer>
+#include <QMutex>
 #include <QMessageBox>
 #include <QNetworkConfigurationManager>
 #include <QtNetwork/QNetworkInterface>
-#include <QTimer>
+
 #include <QProgressBar>
 
-#define packetSize 10000
-#define milisTimeOut 4000
+#define packetSize 4096 //4k
+#define milisTimeOut 5000 //4 seconds
 
 class jceSSLClient : public QSslSocket
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    jceSSLClient(QProgressBar *progressbarPtr);
+  jceSSLClient(QProgressBar *progressbarPtr);
 
-    bool makeConnect(QString server = "yedion.jce.ac.il", int port = 443);
-    bool makeDiconnect();
-    bool isConnected();
-    bool sendData(QString str);
-    bool recieveData(QString &str, bool fast);
-    void showIfErrorMsg();
+  bool makeConnect(QString server = "yedion.jce.ac.il", int port = 443);
+  bool makeDiconnect();
+  bool isConnected();
+  bool sendData(QString str);
+  bool recieveData(QString *str);
+  void showIfErrorMsg();
 
 signals:
-    void serverDisconnectedbyRemote();
-    void noInternetLink();
-    void socketDisconnected();
-    void packetHasData();
+  void serverDisconnectedbyRemote();
+  void noInternetLink();
+  void socketDisconnected();
 
 private slots:
-    void checkErrors(QAbstractSocket::SocketError a);
-    void setConnected();
-    void setEncrypted();
-    void setDisconnected();
-    void readIt();
-    void readItAll();
-    void setOnlineState(bool isOnline);
+  void checkErrors(QAbstractSocket::SocketError a);
+  void setConnected();
+  void setEncrypted();
+  void setDisconnected();
+  void readIt();
+  void setOnlineState(bool isOnline);
 
 private:
-    bool isConnectedToNetwork(); //checking if online
-    bool flag;
-    QString packet;
-    QEventLoop loop; //handle the connection as thread
-    QEventLoop readerLoop;
-    QTimer timer;
-    QNetworkConfigurationManager networkConf; //checking if online
-    bool reConnection; //used for remote host disconnecting
 
-            QProgressBar *progressBar; //
+  bool isConnectedToNetwork(); //checking if online
+
+  bool loggedIAndConnectedFlag;
+  bool readingFlag;
+  bool reConnectionFlag; //used for remote host disconnecting
+
+  QNetworkConfigurationManager networkConf; //checking if online
+
+  QString packet;
+  bool recieveLastPacket;
+  int packetSizeRecieved;
+
+  QEventLoop loginThreadLoop; //handle the connection as thread
+  QEventLoop readerLoop;
+
+  QMutex readerAppendingLocker; //locking packet when appending
+  QTimer timer; //uses to check if reading has reached its timeout
+
+
+
+  QProgressBar *progressBar; //progressbar pointer
 
 };
 

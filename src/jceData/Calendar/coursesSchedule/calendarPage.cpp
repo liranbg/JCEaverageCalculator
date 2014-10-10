@@ -9,6 +9,7 @@ void CalendarPage::setPage(QString html)
 
   courses = new std::list<calendarCourse*>();
   tempHtml = getString(html);
+  qDebug() << "starting ..";
   calendarListInit(tempHtml);
 
 }
@@ -18,23 +19,19 @@ void CalendarPage::setPage(QString html)
  */
 void CalendarPage::calendarListInit(QString &linesTokinzedString)
 {
-  std::list<QString> stringHolder;
-  QString temp;
-  calendarCourse * cTemp = NULL;
-  char* tok;
-  char* textToTok = strdup(linesTokinzedString.toStdString().c_str());
-  tok = strtok(textToTok,"\n");
-  while (tok != NULL)
+    QString tempToken;
+
+    QStringList holder = linesTokinzedString.split("\n");
+    QStringList::iterator iterator;
+    for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
     {
-      temp = tok;
-      stringHolder.push_back(temp);
-      tok = strtok(NULL, "\n");
-    }
-  for (QString temp: stringHolder)
-    {
-      cTemp = lineToCourse(temp);
-      if (cTemp != NULL)
-        courses->push_back(cTemp);
+        tempToken = (*iterator);
+        if (!tempToken.isEmpty())
+        {
+            calendarCourse *cTemp = lineToCourse(tempToken);
+            if (cTemp != NULL)
+                this->courses->push_back(cTemp);
+        }
     }
 }
 
@@ -51,27 +48,27 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
   int serial;
   double points,semesterHours;
   QString name,type, lecturer,dayAndHour,room;
-  QString tempS = "";
-  int i = 0;
-  char* tok;
-  char* cLine = strdup(line.toStdString().c_str());
-  tok = strtok(cLine, "\t");
-  while(tok != NULL)
-    {
-      tempS = QString(tok);
 
+  QString tempToken;
+  int i = 0;
+  QStringList holder = line.split("\t");
+  QStringList::iterator iterator;
+  for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
+  {
+
+      tempToken = (*iterator);
       if (i >= 1) //skips on semester character
         {
-          templinearray[i-1] = tempS.trimmed();
+            templinearray[i] = tempToken.trimmed();
         }
-
       i++;
-      if (i > 8)
-        break;
-      tok=strtok(NULL, "\t");
-    }
+      if (i >= CALENDAR_COURSE_FIELDS)
+          break;
+  }
+
   if (templinearray[0] == "") //empty parsing
-    return NULL;
+      return NULL;
+
 
   serial = templinearray[calendarCourse::CourseScheme::SERIAL].toInt();
   name = templinearray[calendarCourse::CourseScheme::NAME];
@@ -101,16 +98,16 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
 
 
   tempC = new calendarCourse(serial,name,type,lecturer,points,semesterHours,dayAndHour,room);
-//  qDebug() << "serial is: " << tempC->getSerialNum();
-//  qDebug() << tempC->getName();
-//  qDebug() << tempC->getType();
-//  qDebug() << tempC->getLecturer();
-//  qDebug() << tempC->getPoints();
-//  qDebug() << tempC->getHourBegin() << ":" <<  tempC->getMinutesBegin();
-//  qDebug() << tempC->getHourEnd() << ":" <<  tempC->getMinutesEnd();
+  qDebug() << "serial is: " << tempC->getSerialNum();
+  qDebug() << tempC->getName();
+  qDebug() << tempC->getType();
+  qDebug() << tempC->getLecturer();
+  qDebug() << tempC->getPoints();
+  qDebug() << tempC->getHourBegin() << ":" <<  tempC->getMinutesBegin();
+  qDebug() << tempC->getHourEnd() << ":" <<  tempC->getMinutesEnd();
 
-//  qDebug() << tempC->getDay();
-//  qDebug() << tempC->getRoom();
+  qDebug() << tempC->getDay();
+  qDebug() << tempC->getRoom();
 
   return tempC;
 }

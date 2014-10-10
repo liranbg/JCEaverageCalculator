@@ -3,7 +3,8 @@
 /**
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
-jceSSLClient::jceSSLClient(QProgressBar *progressbarPtr) : flag(false), packet(""),networkConf(), reConnection(false)
+jceSSLClient::jceSSLClient(QProgressBar *progressbarPtr) : loggedIAndConnectedFlag(false), readingFlag(false),
+        reConnectionFlag(false), networkConf(), packet(""), recieveLastPacket(false), packetSizeRecieved(0)
 {
     this->progressBar = progressbarPtr;
     //setting signals
@@ -14,8 +15,8 @@ jceSSLClient::jceSSLClient(QProgressBar *progressbarPtr) : flag(false), packet("
     connect(&networkConf,SIGNAL(onlineStateChanged(bool)),this,SLOT(setOnlineState(bool)));
 
     //loop event will connect the server, and when it is connected, it will quit - but connection will be open
-    connect(this, SIGNAL(encrypted()), &loop, SLOT(quit()));
-    connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loop,SLOT(quit()));
+    connect(this, SIGNAL(encrypted()), &loginThreadLoop, SLOT(quit()));
+    connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loginThreadLoop,SLOT(quit()));
 
 }
 /**
@@ -43,7 +44,7 @@ bool jceSSLClient::makeConnect(QString server, int port)
         qDebug() << Q_FUNC_INFO << "we're online";
 
 
-    if (reConnection) //reset reconnectiong flag
+    if (reConnectionFlag) //reset reconnectiong flag
     {
         qDebug() << Q_FUNC_INFO <<  "Making Reconnection";
     }
@@ -59,12 +60,12 @@ bool jceSSLClient::makeConnect(QString server, int port)
     qDebug() << Q_FUNC_INFO <<  "Connection to: " << server << "On Port: " << port;
     connectToHostEncrypted(server.toStdString().c_str(), port);
 
-    loop.exec(); //starting connection, waiting to encryption and then it ends
+    loginThreadLoop.exec(); //starting connection, waiting to encryption and then it ends
 
     qDebug() << Q_FUNC_INFO <<  "returning the connection status: " << isConnected();
-    if (reConnection)
+    if (reConnectionFlag)
     {
-        reConnection = false;
+        reConnectionFlag = false;
         emit serverDisconnectedbyRemote();
     }
     return isConnected();
@@ -76,10 +77,10 @@ bool jceSSLClient::makeConnect(QString server, int port)
  */
 bool jceSSLClient::makeDiconnect()
 {
-    if (loop.isRunning())
+    if (loginThreadLoop.isRunning())
     {
         qWarning() << Q_FUNC_INFO << "Killing connection thread";
-        loop.exit();
+        loginThreadLoop.exit();
     }
     qDebug() << Q_FUNC_INFO << "disconnecting from host and emitting disconnected()";
     this->disconnectFromHost(); //emits disconnected > setDisconnected
@@ -117,7 +118,7 @@ bool jceSSLClient::isConnected()
     }
     if (!isConnectedToNetwork()) //no link, ethernet\wifi
         tempFlag = false;
-    return ((flag) && (tempFlag));
+    return ((loggedIAndConnectedFlag) && (tempFlag));
 }
 /**
  * @brief jceSSLClient::sendData  - given string, send it to server
@@ -127,11 +128,17 @@ bool jceSSLClient::isConnected()
 bool jceSSLClient::sendData(QString str)
 {
     bool sendDataFlag = false;
-
+    int amount = 0;
     if (isConnected()) //if connected
     {
-        write(str.toStdString().c_str(),str.length());
-        if (waitForBytesWritten())
+        amount = write(str.toStdString().c_str(),str.length());
+        qDebug() << Q_FUNC_INFO << "lenght send: " << str.length() << "lenght recieved: " << amount;
+        if (amount == -1)
+        {
+            qCritical() << Q_FUNC_INFO << "SendData ended with -1";
+            sendDataFlag = false;
+        }
+        else if (waitForBytesWritten())
             sendDataFlag = true;
     }
     qDebug() << Q_FUNC_INFO <<  "Sending Data status is: " << sendDataFlag;
@@ -143,42 +150,35 @@ bool jceSSLClient::sendData(QString str)
  * @param fast  true for LOGIN ONLY, false to retrieve all data
  * @return  true if recieved data bigger than zero
  */
-bool jceSSLClient::recieveData(QString &str, bool fast)
+bool jceSSLClient::recieveData(QString *str)
 {
     qDebug() << Q_FUNC_INFO <<  "Data receiving!";
+    bool sflag = false; //success on recieving flag
+    str->clear();
     packet = "";
-    bool sflag = false;
+    recieveLastPacket = false;
+    packetSizeRecieved = 0; //counting packet size
+    readingFlag = true; //to ignore timeout socket error
 
-    if (fast) //fast mode connection, good only for login step!!!!
-    {
-        qDebug() << Q_FUNC_INFO << "login step receiving";
-        //loop will exit after first read packet.
-        //meanwhile packet will gain data. good for small amount of data - fast connection!
-        connect(this, SIGNAL(readyRead()), &readerLoop, SLOT(quit()));
-        connect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
-        readerLoop.exec();
-        disconnect(this, SIGNAL(readyRead()), &readerLoop, SLOT(quit()));
-        disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
-    }
-    else
-    {
-        qDebug() << Q_FUNC_INFO << "normal receiving";
-        //loop will exit after timeout \ full data
-        connect(this, SIGNAL(packetHasData()), &readerLoop, SLOT(quit()));
+    timer.setSingleShot(true);
+    timer.start(milisTimeOut); //if timer is timeout -> it means the connection takes long time
 
-        timer.setSingleShot(true);
-        connect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit()));
-        connect(this, SIGNAL(readyRead()), this, SLOT(readItAll()));
-        timer.start(5000);
-        readerLoop.exec();
+    connect(this, SIGNAL(readyRead()), this, SLOT(readIt())); //we have something to read
+    connect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit())); //if timer timeout > exiting event
 
-    }
-    str = packet;
-    qDebug() << Q_FUNC_INFO <<  "received bytes: " << str.length() ;
-    if (str.length() > 0)
+    readerLoop.exec();
+
+    disconnect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit()));
+    disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
+
+    str->append(packet);
+        qDebug() << *str;
+
+    qDebug() << Q_FUNC_INFO << "packet size: " << packetSizeRecieved << "received data lenght: " << str->length();
+    if (str->length() > 0)
         sflag = true;
     qDebug() << Q_FUNC_INFO <<  "return with flag: " << sflag;
-    disconnect(this, SIGNAL(readyRead()), this, SLOT(readItAll()));
+    readingFlag = false;
     return sflag;
 
 }
@@ -187,33 +187,41 @@ bool jceSSLClient::recieveData(QString &str, bool fast)
  */
 void jceSSLClient::readIt()
 {
-    QString p;
-    do
-    {
-        p = readAll();
-        packet.append(p);
-        this->progressBar->setValue(this->progressBar->value() + 6);
-    }while (p.size() > 0);
+    int packSize = bytesAvailable();
+    int doTimes=0;
+    QByteArray tempPacket;
 
-}
-void jceSSLClient::readItAll()
-{
-    QString p;
     do
     {
-        p = "";
-        p = read(bytesAvailable());
-        if (p.contains("</tbody>") == true)
-        {
-            //we recieved the end of table. we can stop recieving
-            timer.setInterval(1000);
-        }
-        this->progressBar->setValue(this->progressBar->value() + 6);
-        packet.append(p);
+        qDebug() << Q_FUNC_INFO << "packet size" << packSize;
+
+        if (doTimes++ > 0) //for debbuging, checking thread looping times
+            qDebug() << Q_FUNC_INFO << "do loop" << doTimes;
+
+        waitForReadyRead(100);
+        tempPacket = read(packSize);
+
+        readerAppendingLocker.lock();
+        packetSizeRecieved += packSize;
+        packet.append(tempPacket);
         packet.append("\0");
-    }while (p.size() > 0);
-}
+        readerAppendingLocker.unlock();
 
+        progressBar->setValue(this->progressBar->value() + 6);
+
+        if (tempPacket.contains("Go_To_system_After_Login.htm") || tempPacket.contains("</html>"))
+        {
+            //we have the last packet. (uses only in login first step
+            recieveLastPacket = true;
+            timer.setInterval(200);
+        }
+        else
+        {
+            //just a packet with data
+        }
+
+    }while ((packSize = bytesAvailable()) > 0);
+}
 void jceSSLClient::setOnlineState(bool isOnline)
 {
     qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
@@ -246,8 +254,8 @@ void jceSSLClient::setDisconnected()
     qDebug() << Q_FUNC_INFO << "connection has been DISCONNECTED";
     this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
     packet.clear();
-    flag = false;
-    if (reConnection)
+    loggedIAndConnectedFlag = false;
+    if (reConnectionFlag)
         makeConnect();
 
 
@@ -260,11 +268,11 @@ void jceSSLClient::setEncrypted()
     qDebug() << Q_FUNC_INFO << "connection has been ENCRYPTED";
     setReadBufferSize(packetSize);
     setSocketOption(QAbstractSocket::KeepAliveOption,true);
-    flag = true;
+    loggedIAndConnectedFlag = true;
     if (!isConnected())
     {
         qWarning() << Q_FUNC_INFO <<  "Connection status didnt change! reseting flag to false";
-        flag = false;
+        loggedIAndConnectedFlag = false;
     }
 
 }
@@ -291,7 +299,7 @@ void jceSSLClient::showIfErrorMsg()
         //The remote host closed the connection
         if (isConnectedToNetwork()) //we can reconnect
         {
-            reConnection = true;
+            reConnectionFlag = true;
         }
         else
             relevantError = true;
@@ -402,19 +410,23 @@ void jceSSLClient::checkErrors(QAbstractSocket::SocketError a)
         qWarning() << Q_FUNC_INFO << "Var Error: " << a;
         qWarning() << Q_FUNC_INFO << "Error: " << errorString();
     }
+    else if (!readingFlag)
+    {
+        qWarning() << Q_FUNC_INFO << "isConnected?: " << isConnected() << "is timeout?" << timeout;
+        qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork()  << "state is: " << state();
+        qWarning() << Q_FUNC_INFO << "Error: " << errorString();
+
+    }
     else
     {
-        qDebug() << Q_FUNC_INFO << "isConnected?: " << isConnected() << "is timeout?" << timeout;
-        qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork();
-        qWarning() << Q_FUNC_INFO << "state is: " << state();
-        qWarning() << Q_FUNC_INFO << "Var Error: " << a;
-        qWarning() << Q_FUNC_INFO << "Error: " << errorString();
+        //timeout when reading
     }
     showIfErrorMsg();
 }
 
 /** written by KARAN BALKAR
  * @brief jceSSLClient::isConnectedToNetwork
+ *
  * @return
  */
 bool jceSSLClient::isConnectedToNetwork(){

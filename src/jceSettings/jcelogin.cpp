@@ -59,7 +59,7 @@ int jceLogin::makeConnection()
               returnMode = makeSecondVisit();
               if (returnMode == true) //siging in the website
                 {
-                  qDebug() << "jceLogin::makeConnection(); Signed in succeesfully";
+                  qDebug() << Q_FUNC_INFO << "Signed in succeesfully";
                   status = jceStatus::JCE_YOU_ARE_IN;
                   setLoginFlag(true);
                 }
@@ -94,7 +94,7 @@ int jceLogin::makeConnection()
     status = jceStatus::JCE_NOT_CONNECTED;
 
   //we throw status even if we are IN!
-  qDebug() << "jceLogin::makeConnection(); return status: " << status;
+  qDebug() << Q_FUNC_INFO << "return status: " << status;
   return status;
 
 }
@@ -150,7 +150,7 @@ int jceLogin::makeFirstVisit()
   QString psw = jceA->getPassword();
   if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
-      if (!JceConnector->recieveData(*recieverPage,true))
+      if (!JceConnector->recieveData(recieverPage))
         return jceLogin::ERROR_ON_GETTING_INFO;
     }
   else
@@ -168,7 +168,7 @@ int jceLogin::makeSecondVisit()
   QString pswid=jceA->getHashedPassword();
   if ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getSecondValidationStep(*jceA)))))
     {
-      if (!(JceConnector->recieveData(*recieverPage,true)))
+      if (!(JceConnector->recieveData(recieverPage)))
         return jceLogin::ERROR_ON_GETTING_INFO;
 
       return true;
@@ -188,7 +188,7 @@ int jceLogin::getCalendar(int year, int semester)
 {
   if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getCalendar(*jceA,year,semester)))))
     {
-      if (!(JceConnector->recieveData(*recieverPage,false)))
+      if (!(JceConnector->recieveData(recieverPage)))
         return jceLogin::ERROR_ON_GETTING_PAGE;
       else
         return jceLogin::JCE_PAGE_PASSED;
@@ -203,7 +203,7 @@ int jceLogin::getExams(int year, int semester)
 {
     if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getExamSchedule(*jceA,year,semester)))))
       {
-        if (!(JceConnector->recieveData(*recieverPage,false)))
+        if (!(JceConnector->recieveData(recieverPage)))
           return jceLogin::ERROR_ON_GETTING_PAGE;
         else
           return jceLogin::JCE_PAGE_PASSED;
@@ -225,7 +225,7 @@ int jceLogin::getGrades(int fromYear, int toYear, int fromSemester, int toSemest
 {
   if  ((JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getGradesPath(*jceA,fromYear, toYear, fromSemester, toSemester)))))
     {
-      if (!(JceConnector->recieveData(*recieverPage,false)))
+      if (!(JceConnector->recieveData(recieverPage)))
         return jceLogin::ERROR_ON_GETTING_PAGE;
       else
         return jceLogin::JCE_PAGE_PASSED;
