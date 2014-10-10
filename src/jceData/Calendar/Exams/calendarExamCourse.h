@@ -17,7 +17,7 @@
  * @brief The calendarExamCourse class
  *
  * This class holds each exam course
- * the course scheme can be found below, inside the enum ExamScheme
+ * the course scheme can be found below, inside the enum CourseScheme
  *
  * The class's constructor gets the data and manipulate it into an object
  * with its relevant information.
@@ -29,7 +29,7 @@ class calendarExamCourse  : public Course
 
 public:
 
-    enum ExamScheme
+    enum CourseScheme
     {
         SERIAL,
         NAME,

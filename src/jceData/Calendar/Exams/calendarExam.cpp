@@ -71,24 +71,24 @@ calendarExamCourse *calendarExam::lineToCourse(QString line)
         return NULL;
 
 
-    serial = templinearray[calendarExamCourse::ExamScheme::SERIAL].toInt();
-    name = templinearray[calendarExamCourse::ExamScheme::NAME];
+    serial = templinearray[calendarExamCourse::CourseScheme::SERIAL].toInt();
+    name = templinearray[calendarExamCourse::CourseScheme::NAME];
 
-    lecturer = templinearray[calendarExamCourse::ExamScheme::LECTURER];
+    lecturer = templinearray[calendarExamCourse::CourseScheme::LECTURER];
     if (lecturer.isEmpty())
         lecturer = LECTURER_DEFAULT_STRING;
 
-    field = templinearray[calendarExamCourse::ExamScheme::FIELD];
-    type = templinearray[calendarExamCourse::ExamScheme::TYPE];
+    field = templinearray[calendarExamCourse::CourseScheme::FIELD];
+    type = templinearray[calendarExamCourse::CourseScheme::TYPE];
 
-    firstDate = templinearray[calendarExamCourse::ExamScheme::FIRST_DATE];
+    firstDate = templinearray[calendarExamCourse::CourseScheme::FIRST_DATE];
     if (firstDate.isEmpty())
         return NULL; //can't set a default date to an exam. must be an error
 
-    firstHourbegin = templinearray[calendarExamCourse::ExamScheme::FIRST_HOUR_BEGIN];
+    firstHourbegin = templinearray[calendarExamCourse::CourseScheme::FIRST_HOUR_BEGIN];
     if (firstHourbegin.isEmpty())
         firstHourbegin = HOUR_DEFAULT_STRING;
-    secondDate = templinearray[calendarExamCourse::ExamScheme::SECOND_DATE];
+    secondDate = templinearray[calendarExamCourse::CourseScheme::SECOND_DATE];
     if (secondDate.isEmpty())
     {
         secondDate = SECOND_DATE_DEFAULT_STRING;
@@ -96,7 +96,7 @@ calendarExamCourse *calendarExam::lineToCourse(QString line)
     }
     else
     {
-        secondHourbegin = templinearray[calendarExamCourse::ExamScheme::SECOND_HOUR_BEGIN];
+        secondHourbegin = templinearray[calendarExamCourse::CourseScheme::SECOND_HOUR_BEGIN];
         if (secondHourbegin.isEmpty())
             secondHourbegin = HOUR_DEFAULT_STRING;
     }

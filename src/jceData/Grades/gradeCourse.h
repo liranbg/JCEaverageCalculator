@@ -1,18 +1,25 @@
 #ifndef GRADE_COURSE_H
 #define GRADE_COURSE_H
 
-/*  This Code Made By Sagi Dayan
- *  SagiDayan@gmail.com
- *
- *  Minor changes  has been made by Liran Ben Gida
- *  LiranBG@gmail.com
-*/
 #include "../course.h"
 
-#define	COURSE_FIELDS	10
+#define	COURSE_FIELDS 10
 #define NO_GRADE_YET 101;
 
-
+/**
+ * @brief The gradeCourse class
+ *
+ * This class holds a list of course in GPA
+ * the course scheme can be found below, inside the enum CourseScheme
+ *
+ * The class's constructor gets the data and manipulate it into an object
+ * with its relevant information.
+ *
+ * Made By:
+ *      Sagi Dayan,  SagiDayan@gmail.com
+ *      Liran Ben Gida, LiranBG@gmail.com
+ * On 31/8/2014
+ */
 class gradeCourse : public Course {
 
 public:

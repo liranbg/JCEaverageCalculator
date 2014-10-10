@@ -15,6 +15,7 @@ gradeCourse::~gradeCourse()
 {
 
 }
+
 double gradeCourse::getGrade() const
 {
     double noGrade = NO_GRADE_YET;

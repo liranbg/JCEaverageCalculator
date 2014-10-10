@@ -150,7 +150,7 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     QString start;
     start.append(QString::number(startH));
     start.append(":00");
-//    start.append(QString::number(startM));
+    //    start.append(QString::number(startM));
     start.append(":00");
 
     QString end;
@@ -172,7 +172,7 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
         description.append("טרם נקבע מיקום");
     else
     {
-            description.append(" ב");
+        description.append(" ב");
         description.append(room);
     }
 
