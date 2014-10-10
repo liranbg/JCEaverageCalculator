@@ -23,7 +23,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
     if ((cal == NULL) || (calSched == NULL)) //pointers checking!
         return false;
 
-    if (calSched->getCourses() == NULL)
+    if (calSched->getCourses().isEmpty())
         return false;
 
     qDebug() << Q_FUNC_INFO << "Getting path for csv file from user...";
@@ -53,7 +53,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
 
     out << CSV_CALENDAR_HEADER << "\n"; // macro in header file
 
-    for (calendarCourse *coursePtr: *(calSched->getCourses())) //main loop - running though all courses
+    for (calendarCourse *coursePtr: (calSched->getCourses())) //main loop - running though all courses
     {
         // Getting course info - store in vars for easy access
         int day = coursePtr->getDay();

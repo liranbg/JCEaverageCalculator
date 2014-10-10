@@ -59,7 +59,7 @@ void calendarSchedule::insertCourseIntoTable()
     QString courseString;
     int currentHour,currentDay,blocksNumber;
     int row,col;
-    for (calendarCourse *coursePtr: *getCourses())
+    for (calendarCourse *coursePtr: getCourses())
     {
         courseString = "";
         currentHour = coursePtr->getHourBegin();

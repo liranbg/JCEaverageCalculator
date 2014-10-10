@@ -6,6 +6,17 @@
 
 #define	CALENDAR_COURSE_FIELDS	8
 
+/**
+ * @brief The calendarCourse class
+ *
+ * This class holds each scheduled course
+ * the course scheme can be found below, inside the enum CourseScheme
+ *
+ * The class's constructor gets the data and manipulate it into an object
+ * with its relevant information.
+ *
+ * Made By liran ben gida, LiranBG@gmail.com On 31/8/2014
+ */
 class calendarCourse : public Course
 {
 public:

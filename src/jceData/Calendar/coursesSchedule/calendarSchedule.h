@@ -12,6 +12,14 @@
 #define HOURS_END 20
 #define ACADEMIN_HOUR 45
 
+/**
+ * @brief The calendarSchedule class
+ *
+ * This class combining the courses schedule with each course into a table
+ * setpage -> insertingIntoTable -> showing data
+ *
+ * Made By liran ben gida, LiranBG@gmail.com On 31/8/2014
+ */
 class calendarSchedule : public QTableWidget, public CalendarPage
 {
     Q_OBJECT

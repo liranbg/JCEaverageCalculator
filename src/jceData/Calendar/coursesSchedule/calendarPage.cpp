@@ -6,11 +6,7 @@
  */
 void CalendarPage::setPage(QString html)
 {
-    if (courses == NULL)
-        courses = new QList<calendarCourse*>();
-    else
-        courses->clear();
-
+   courses.clear();
   tempHtml = getString(html);
   calendarListInit(tempHtml);
 
@@ -33,7 +29,7 @@ void CalendarPage::calendarListInit(QString &linesTokinzedString)
         {
             calendarCourse *cTemp = lineToCourse(tempToken);
             if (cTemp != NULL)
-                this->courses->push_back(cTemp);
+                this->courses.push_back(cTemp);
         }
     }
 }

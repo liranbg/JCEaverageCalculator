@@ -11,6 +11,8 @@ examDialog::examDialog(QWidget *parent, calendarExam *calSchedPtr) : QDialog(par
 
     headLine << tr("Serial") << tr("Course") << tr("Lecturer") << tr("Field") << tr("Type") << tr("First")  << tr("Begin") << tr("Second") << tr("Begin");
 
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->setColumnCount(EXAM_SCHEDULE_FIELDS);
     ui->tableWidget->setHorizontalHeaderLabels(headLine);
     ui->tableWidget->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
@@ -29,7 +31,6 @@ void examDialog::initializingDataIntoTable()
     QTimeEdit *firstHourbegin;
     QDateEdit *secondDate;
     QTimeEdit *secondHourbegin;
-
     for (calendarExamCourse * tempExam: *exams->getExams())
     {
         j=0;
@@ -44,8 +45,10 @@ void examDialog::initializingDataIntoTable()
         field = new QTableWidgetItem();
         field->setData(Qt::EditRole, tempExam->getField());
         firstDate = new QDateEdit();
+        firstDate->setDisplayFormat("d/M/yy");
         firstDate->setDate(tempExam->getFirstDate());
         secondDate = new QDateEdit();
+        secondDate->setDisplayFormat("d/M/yy");
         secondDate->setDate(tempExam->getSecondDate());
         firstHourbegin = new QTimeEdit();
         firstHourbegin->setTime(tempExam->getFirstHourbegin());
@@ -66,6 +69,8 @@ void examDialog::initializingDataIntoTable()
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    this->setMinimumHeight(ui->tableWidget->height());
+    this->setMinimumWidth(ui->tableWidget->width());
 
 }
 examDialog::~examDialog()

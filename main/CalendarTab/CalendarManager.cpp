@@ -21,9 +21,9 @@ void CalendarManager::setExamsSchedule(QString html)
     examDialogPtr->initializingDataIntoTable();
     examDialogPtr->show();
 }
-void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
+void CalendarManager::exportCalendarCSV()
 {
-    if (this->caliSchedPtr->getCourses() == NULL)
+    if (this->caliSchedPtr->getCourses().isEmpty())
         return;
     QMessageBox msgBox;
     int buttonClicked = caliDialog->exec();

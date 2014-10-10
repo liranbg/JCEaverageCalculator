@@ -18,6 +18,17 @@ namespace Ui {
 class CalendarDialog;
 }
 
+/**
+ * @brief The CalendarDialog class
+ *
+ * This class preseting a Dialog with selection of dates
+ * The user has to choose between a starting point of semester to the end.
+ *
+ * This dialog main goal is to let the user an option to export his CSV
+ * containing data of his schedule.
+ *
+ * Made By Sagi Dayan, sagidayan@gmail.com On 22/09/2014
+ */
 class CalendarDialog : public QDialog
 {
     Q_OBJECT
