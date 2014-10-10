@@ -147,3 +147,22 @@ void calendarCourse::setPoints(double value)
 {
     points = value;
 }
+
+double points;
+QString lecturer;
+double semesterHours;
+int day;
+int hourBegin;
+int minutesBegin;
+int hourEnd;
+int minutesEnd;
+QString room;
+
+QString calendarCourse::toString()
+{
+    QTime begin,end;
+    begin.setHMS(hourBegin,minutesBegin,0);
+    end.setHMS(hourEnd,minutesEnd,0);
+    return QString("%1 %2 %3\n%4 %5\n%6 - %7").arg(QString::number(this->getSerialNum()),this->getName(),QString::number(this->points),this->getLecturer(),this->getRoom(),
+                              begin.toString("hh:mm"),end.toString(("hh:mm")));
+}

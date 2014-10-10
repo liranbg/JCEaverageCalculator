@@ -47,7 +47,7 @@ public:
     int getMinutesBegin() const;
     int getHourEnd() const;
     int getMinutesEnd() const;
-        double getPoints() const;
+    double getPoints() const;
 
     void setDay(const QString &value);
     void setLecturer(const QString &value);
@@ -58,6 +58,8 @@ public:
     void setHourEnd(int value);
     void setMinutesEnd(int value);
     void setPoints(double value);
+
+    QString toString();
 
 private:
 

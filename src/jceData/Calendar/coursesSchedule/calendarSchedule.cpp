@@ -83,6 +83,7 @@ void calendarSchedule::insertCourseIntoTable()
 
 
             item = new QTableWidgetItem(courseString);
+            item->setToolTip(coursePtr->toString());
             if (this->takeItem(row,col) != NULL)
                 delete this->takeItem(row,col);
             this->setItem(row,col,item);
