@@ -10,7 +10,16 @@
 #include <QString>
 #include <list>
 
-
+/**
+ * @brief The Course class
+ *
+ * This class is a prototype of a basic course structure
+ *
+ * Made By:
+ *      Sagi Dayan,  SagiDayan@gmail.com
+ *      Liran Ben Gida, LiranBG@gmail.com
+ * On 31/8/2014
+ */
 class Course {
 
 public:
