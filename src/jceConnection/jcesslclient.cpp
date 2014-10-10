@@ -194,7 +194,7 @@ void jceSSLClient::readIt()
 
     do
     {
-        qDebug() << Q_FUNC_INFO << "packet size" << packSize;
+//        qDebug() << Q_FUNC_INFO << "packet size" << packSize;
 
         if (doTimes++ > 0) //for debbuging, checking thread looping times
             qDebug() << Q_FUNC_INFO << "do loop" << doTimes;
