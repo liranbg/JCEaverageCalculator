@@ -3,7 +3,7 @@
 
 #include "../../page.h"
 #include "calendarPageCourse.h"
-#include <list>
+#include <QList>
 
 #define ROOM_DEFAULT_STRING "nullRoom"
 #define LECTURER_DEFAULT_STRING "nullLecturer"
@@ -12,7 +12,7 @@ class CalendarPage : public Page
 {
 public:
 
-    std::list<calendarCourse*>* getCourses() { return courses; }
+    QList<calendarCourse*> *getCourses() { return courses; }
 
 
 protected:
@@ -27,7 +27,7 @@ private:
     calendarCourse * lineToCourse(QString line);
 
     QString tempHtml;
-    std::list<calendarCourse*>* courses;
+    QList<calendarCourse*> *courses;
 
 };
 

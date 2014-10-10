@@ -138,14 +138,6 @@ void calendarCourse::setRoom(const QString &value)
 {
     room = value;
 }
-
-
-
-
-
-
-
-
 double calendarCourse::getPoints() const
 {
     return points;

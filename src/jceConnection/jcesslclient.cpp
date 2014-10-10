@@ -145,22 +145,20 @@ bool jceSSLClient::sendData(QString str)
     return sendDataFlag;
 }
 /**
- * @brief jceSSLClient::recieveData
- * @param str   this variable will store the recieved data
- * @param fast  true for LOGIN ONLY, false to retrieve all data
- * @return  true if recieved data bigger than zero
+ * @brief jceSSLClient::recieveData - recieving data through threaded reading and mutex
+ * @param str - string to fill with data.
+ * @return true if packet has recieced the last packet -> true, otherwise ->false
  */
 bool jceSSLClient::recieveData(QString *str)
 {
     qDebug() << Q_FUNC_INFO <<  "Data receiving!";
-    bool sflag = false; //success on recieving flag
     str->clear();
     packet = "";
     recieveLastPacket = false;
     packetSizeRecieved = 0; //counting packet size
     readingFlag = true; //to ignore timeout socket error
 
-    timer.setSingleShot(true);
+    timer.setSingleShot(true); //counting just once.
     timer.start(milisTimeOut); //if timer is timeout -> it means the connection takes long time
 
     connect(this, SIGNAL(readyRead()), this, SLOT(readIt())); //we have something to read
@@ -172,18 +170,21 @@ bool jceSSLClient::recieveData(QString *str)
     disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
 
     str->append(packet);
-        qDebug() << *str;
+    //qDebug() << *str; //if you want to see the whole packet, unmark me
 
     qDebug() << Q_FUNC_INFO << "packet size: " << packetSizeRecieved << "received data lenght: " << str->length();
-    if (str->length() > 0)
-        sflag = true;
-    qDebug() << Q_FUNC_INFO <<  "return with flag: " << sflag;
-    readingFlag = false;
-    return sflag;
+    qDebug() << Q_FUNC_INFO <<  "return with flag: " << recieveLastPacket;
+
+    readingFlag = false; //finished reading session
+    return recieveLastPacket; //we have the last packet
 
 }
 /**
- * @brief jceSSLClient::readIt function to read for fast mode in recieved data
+ * @brief jceSSLClient::readIt
+ * this method, called by a thread to read the bytes avilable by the remote server
+ * each packet we append into the class private var 'packet' (mutexed)
+ * if we recieve the last packet (see tags below) we set the timer of the calling function to 100msc
+ *
  */
 void jceSSLClient::readIt()
 {

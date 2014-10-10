@@ -6,10 +6,12 @@
  */
 void CalendarPage::setPage(QString html)
 {
+    if (courses == NULL)
+        courses = new QList<calendarCourse*>();
+    else
+        courses->clear();
 
-  courses = new std::list<calendarCourse*>();
   tempHtml = getString(html);
-  qDebug() << "starting ..";
   calendarListInit(tempHtml);
 
 }
@@ -26,6 +28,7 @@ void CalendarPage::calendarListInit(QString &linesTokinzedString)
     for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
     {
         tempToken = (*iterator);
+
         if (!tempToken.isEmpty())
         {
             calendarCourse *cTemp = lineToCourse(tempToken);
@@ -55,14 +58,14 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
   QStringList::iterator iterator;
   for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
   {
-
       tempToken = (*iterator);
+
       if (i >= 1) //skips on semester character
         {
-            templinearray[i] = tempToken.trimmed();
+            templinearray[i-1] = tempToken.trimmed();
         }
       i++;
-      if (i >= CALENDAR_COURSE_FIELDS)
+      if (i > CALENDAR_COURSE_FIELDS)
           break;
   }
 
@@ -98,16 +101,16 @@ calendarCourse *CalendarPage::lineToCourse(QString line)
 
 
   tempC = new calendarCourse(serial,name,type,lecturer,points,semesterHours,dayAndHour,room);
-  qDebug() << "serial is: " << tempC->getSerialNum();
-  qDebug() << tempC->getName();
-  qDebug() << tempC->getType();
-  qDebug() << tempC->getLecturer();
-  qDebug() << tempC->getPoints();
-  qDebug() << tempC->getHourBegin() << ":" <<  tempC->getMinutesBegin();
-  qDebug() << tempC->getHourEnd() << ":" <<  tempC->getMinutesEnd();
+//  qDebug() << "serial is: " << tempC->getSerialNum();
+//  qDebug() << tempC->getName();
+//  qDebug() << tempC->getType();
+//  qDebug() << tempC->getLecturer();
+//  qDebug() << tempC->getPoints();
+//  qDebug() << tempC->getHourBegin() << ":" <<  tempC->getMinutesBegin();
+//  qDebug() << tempC->getHourEnd() << ":" <<  tempC->getMinutesEnd();
 
-  qDebug() << tempC->getDay();
-  qDebug() << tempC->getRoom();
+//  qDebug() << tempC->getDay();
+//  qDebug() << tempC->getRoom();
 
   return tempC;
 }
