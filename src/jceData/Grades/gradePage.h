@@ -11,7 +11,7 @@
 #include "../page.h"
 #include "../Grades/gradeCourse.h"
 
-#include <list>
+#include <QList>
 
 class GradePage : public Page
 {
@@ -21,6 +21,7 @@ public:
   ~GradePage();
 
   void removeCourse(QString courseSerialID);
+
   double getAvg();
   double getAvg(int year);
   double getAvg(int year, int semester);
@@ -29,7 +30,7 @@ public:
   int getMaxYearInList();
 
 
-  std::list<gradeCourse*>* getCourses() { return courses; }
+  QList<gradeCourse*> getCourses() { return courses; }
 
 private:
 
@@ -38,7 +39,7 @@ private:
 
   bool isGradedYet(QString grade);
 
-  std::list<gradeCourse*>* courses;
+  QList<gradeCourse*> courses;
 
   QString tempHtml;
 

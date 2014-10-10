@@ -2,7 +2,6 @@
 
 calendarExam::calendarExam()
 {
-    exams = NULL;
     htmlDataHolderParsed = "";
 }
 
@@ -13,10 +12,7 @@ calendarExam::calendarExam()
 void calendarExam::setPage(QString html)
 {
     examsCounter = 0;
-    if (exams == NULL)
-        exams = new QList<calendarExamCourse*>();
-    else
-        exams->clear();
+    exams.clear();
     this->htmlDataHolderParsed = getString(html);
     examListInit(htmlDataHolderParsed);
 }
@@ -38,15 +34,15 @@ void calendarExam::examListInit(QString &linesTokinzedString)
         {
             calendarExamCourse *cTemp = lineToCourse(tempToken);
             if (cTemp != NULL)
-                this->exams->push_back(cTemp);
+                this->exams.push_back(cTemp);
         }
     }
 }
 
 /**
  * @brief calendarExam::lineToCourse getting line of exam with data and make it an object containing data (date, time, course name and etc)
- * @param line
- * @return
+ * @param line - parsed line with tabs between each relevant data
+ * @return object of examcourse with its data
  */
 calendarExamCourse *calendarExam::lineToCourse(QString line)
 {

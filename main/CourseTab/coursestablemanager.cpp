@@ -33,7 +33,7 @@ coursesTableManager::~coursesTableManager()
  */
 void coursesTableManager::insertJceCoursesIntoTable()
 {
-    for (gradeCourse *c: *gp->getCourses())
+    for (gradeCourse *c: gp->getCourses())
     {
         if (us->getInfluenceCourseOnly())
         {
@@ -69,7 +69,7 @@ bool coursesTableManager::changes(QString change, int row, int col)
         return true;
 
     int serialCourse = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text().toInt();
-    for (gradeCourse *c: *gp->getCourses())
+    for (gradeCourse *c: gp->getCourses())
     {
         if (c->getSerialNum() == serialCourse)
         {
@@ -267,7 +267,7 @@ void coursesTableManager::influnceCourseChanged(bool ignoreCourseStatus)
     else
     {
         if (this->gp != NULL)
-            for (gradeCourse *c: *gp->getCourses())
+            for (gradeCourse *c: gp->getCourses())
             {
                 if (!(isCourseAlreadyInserted(c->getSerialNum())))
                     if (c->getPoints() == 0)
@@ -295,7 +295,7 @@ void coursesTableManager::clearTable()
 gradeCourse *coursesTableManager::getCourseByRow(int row)
 {
     QString courseSerial = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text();
-    for (gradeCourse *c: *gp->getCourses())
+    for (gradeCourse *c: gp->getCourses())
     {
         if (c->getSerialNum() == courseSerial.toDouble())
             return c;

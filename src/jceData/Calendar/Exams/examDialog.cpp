@@ -1,6 +1,10 @@
 #include "examDialog.h"
 #include "ui_examDialog.h"
-
+/**
+ * @brief examDialog::examDialog
+ * @param parent
+ * @param calSchedPtr - list of courses with information about each exam
+ */
 examDialog::examDialog(QWidget *parent, calendarExam *calSchedPtr) : QDialog(parent),
     ui(new Ui::examDialog)
 {
@@ -20,6 +24,11 @@ examDialog::examDialog(QWidget *parent, calendarExam *calSchedPtr) : QDialog(par
     this->setModal(true);
 }
 
+/**
+ * @brief examDialog::initializingDataIntoTable
+ *
+ *  Inserting each object of exam into the table
+ */
 void examDialog::initializingDataIntoTable()
 {
     ui->tableWidget->setRowCount(exams->getExamsCounter());
@@ -31,7 +40,7 @@ void examDialog::initializingDataIntoTable()
     QTimeEdit *firstHourbegin;
     QDateEdit *secondDate;
     QTimeEdit *secondHourbegin;
-    for (calendarExamCourse * tempExam: *exams->getExams())
+    for (calendarExamCourse * tempExam: exams->getExams())
     {
         j=0;
         lecturer = new QTableWidgetItem();

@@ -13,6 +13,17 @@
 #define HOUR_DEFAULT_STRING "00:00"
 #define SECOND_DATE_DEFAULT_STRING "nullSECOND_DATE"
 
+/**
+ * @brief The calendarExamCourse class
+ *
+ * This class holds each exam course
+ * the course scheme can be found below, inside the enum ExamScheme
+ *
+ * The class's constructor gets the data and manipulate it into an object
+ * with its relevant information.
+ *
+ * Made By liran ben gida, LiranBG@gmail.com On 08/10/2014
+ */
 class calendarExamCourse  : public Course
 {
 

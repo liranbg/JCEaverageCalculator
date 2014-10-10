@@ -8,9 +8,6 @@
  *  LiranBG@gmail.com
 */
 #include "../course.h"
-#include <string>
-#include <iostream>
-#include <list>
 
 #define	COURSE_FIELDS	10
 #define NO_GRADE_YET 101;
