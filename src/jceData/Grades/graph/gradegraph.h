@@ -9,6 +9,9 @@ namespace Ui {
 class gradegraph;
 }
 
+#define MIN_GRADE 50
+#define MAX_GRADE 100
+
 class gradegraph : public QDialog
 {
     Q_OBJECT
@@ -27,6 +30,8 @@ private:
 
     void setVisualization();
     void setGraphsData();
+    void clearGraph();
+
     Ui::gradegraph *ui;
 };
 
