@@ -3,8 +3,7 @@
 jceStatusBar::jceStatusBar(QWidget *parent) :
   QStatusBar(parent)
 {
-
-  this->setStyleSheet("QStatusBar::item { border: 0px solid black };");
+  this->setStyleSheet("QStatusBar { border: 0px solid black };");
   this->setFixedHeight(STATUS_ICON_HEIGH+5);
   this->showMessage(tr("Ready"));
 
@@ -20,20 +19,21 @@ jceStatusBar::jceStatusBar(QWidget *parent) :
 
   progressBar->setFixedWidth(120);
   progressBar->setFixedHeight(STATUS_ICON_HEIGH);
-  progressBar->setStyleSheet("#progressBar::horizontal {"
+  progressBar->setStyleSheet("QProgressBar {"
                              "border: 1px solid gray;"
                              "border-radius: 3px;"
                              "background: transparent;"
                              "padding: 1px;"
                              "}"
-                             "#progressBar::chunk:horizontal {"
-                             "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 green, stop: 1 white);"
+                             "QProgressBar::chunk {"
+                             "background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 #b4e391 , stop: 1 #61c419);"
                              "}");
   progressBar->setRange(0,100);
   progressBar->setValue(0);
-  progressBar->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+  progressBar->setAlignment(Qt::AlignHCenter  | Qt::AlignVCenter);
   progressBar->setTextVisible(true);
   progressBar->setFormat("%p%");
+  progressBar->setOrientation(Qt::Horizontal);
 
 
   addPermanentWidget(progressBar,0);
@@ -46,39 +46,50 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
   QPixmap iconPix;
   switch (update)
     {
+    case jceProgressStatus::ERROR:
+      setProgressValue(0);
+      iconPix.load(":/icons/redStatusIcon.png");
+      showMessage(tr("Error"));
+      break;
     case jceProgressStatus::Disconnected:
+      setProgressValue(0);
       iconPix.load(":/icons/redStatusIcon.png");
       showMessage(tr("Disconnected"));
       break;
     case jceProgressStatus::Ready:
+      setProgressValue(100);
       iconPix.load(":/icons/redStatusIcon.png");
-      showMessage(tr("Ready."));
+      showMessage(tr("Ready"));
       break;
     case jceProgressStatus::Connecting:
+      setProgressValue(5);
       iconPix.load(":/icons/blueStatusIcon.png");
       showMessage(tr("Connecting..."));
       break;
     case jceProgressStatus::Sending:
+      setProgressValue(10);
       iconPix.load(":/icons/blueStatusIcon.png");
-      showMessage(tr("Sending."));
+      showMessage(tr("Sending..."));
       break;
     case jceProgressStatus::Recieving:
+      setProgressValue(15);
       iconPix.load(":/icons/blueStatusIcon.png");
-      showMessage(tr("Recieving."));
+      showMessage(tr("Recieving..."));
       break;
     case jceProgressStatus::Inserting:
+      setProgressValue(80);
       iconPix.load(":/icons/blueStatusIcon.png");
-      showMessage(tr("Inserting."));
+      showMessage(tr("Inserting"));
       break;
     case jceProgressStatus::LoggedIn:
       setProgressValue(100);
       iconPix.load(":/icons/greenStatusIcon.png");
-      showMessage(tr("LoggedIn."));
+      showMessage(tr("Logged In."));
       break;
     case jceProgressStatus::Done:
       setProgressValue(100);
       iconPix.load(":/icons/greenStatusIcon.png");
-      showMessage(tr("Done."));
+      showMessage(tr("Done"));
       break;
     case jceProgressStatus::Connected:
       setProgressValue(100);
@@ -97,7 +108,6 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
 */
 void jceStatusBar::setProgressValue(int value)
 {
-
   if (value == 0)
     {
       progressBar->setVisible(false);

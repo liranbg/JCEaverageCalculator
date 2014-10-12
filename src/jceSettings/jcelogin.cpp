@@ -4,12 +4,12 @@
  * @brief jceLogin::jceLogin
  * @param username pointer to allocated user settings
  */
-jceLogin::jceLogin(user* username, jceStatusBar *progressbarPtr)
+jceLogin::jceLogin(user* username, jceStatusBar *statusBar)
 {
-  this->progressBar = progressbarPtr;
+  this->statusBar = statusBar;
   this->recieverPage = new QString();
   this->jceA = username;
-  this->JceConnector = new jceSSLClient(progressBar);
+  this->JceConnector = new jceSSLClient(statusBar);
   QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
   QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
 }
@@ -28,7 +28,7 @@ jceLogin::~jceLogin()
  */
 int jceLogin::makeConnection()
 {
-  qDebug() << "jceLogin::makeConnection(); connection to be make";
+  qDebug() << Q_FUNC_INFO <<  "connection to be make";
 
   if (this->recieverPage == NULL)
     this->recieverPage = new QString();
@@ -40,6 +40,7 @@ int jceLogin::makeConnection()
 
   if (returnMode == false)
     {
+      statusBar->setIconConnectionStatus(jceStatusBar::Connecting);
       if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
         return jceStatus::ERROR_ON_OPEN_SOCKET;
       else
@@ -48,6 +49,7 @@ int jceLogin::makeConnection()
 
   if (returnMode == true) //connected to host
     {
+      statusBar->setIconConnectionStatus(jceStatusBar::Connected);
       returnMode = makeFirstVisit();
       if (returnMode == true) //requst and send first validation
         {
@@ -62,6 +64,7 @@ int jceLogin::makeConnection()
                   qDebug() << Q_FUNC_INFO << "Signed in succeesfully";
                   status = jceStatus::JCE_YOU_ARE_IN;
                   setLoginFlag(true);
+                  statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
                 }
               else if (returnMode == jceLogin::ERROR_ON_GETTING_INFO)
                 {
@@ -93,6 +96,8 @@ int jceLogin::makeConnection()
   else
     status = jceStatus::JCE_NOT_CONNECTED;
 
+  if (status != jceStatus::JCE_YOU_ARE_IN)
+      statusBar->setIconConnectionStatus(jceStatusBar::ERROR);
   //we throw status even if we are IN!
   qDebug() << Q_FUNC_INFO << "return status: " << status;
   return status;
@@ -114,6 +119,7 @@ bool jceLogin::checkConnection() const
  */
 void jceLogin::closeAll()
 {
+    statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
   this->JceConnector->makeDiconnect();
   if ((this->recieverPage != NULL) && (!this->recieverPage->isEmpty()))
     {
@@ -134,7 +140,7 @@ void jceLogin::reMakeConnection()
   recieverPage = NULL;
   JceConnector = NULL;
   this->recieverPage = new QString();
-  this->JceConnector = new jceSSLClient(progressBar);
+  this->JceConnector = new jceSSLClient(statusBar);
   QObject::connect(JceConnector,SIGNAL(serverDisconnectedbyRemote()),this,SLOT(reValidation()));
   QObject::connect(JceConnector,SIGNAL(noInternetLink()),this,SLOT(reMakeConnection()));
   emit connectionReadyAfterDisconnection();
@@ -148,6 +154,7 @@ int jceLogin::makeFirstVisit()
 {
   QString usr = jceA->getUsername();
   QString psw = jceA->getPassword();
+
   if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
       if (!JceConnector->recieveData(recieverPage))

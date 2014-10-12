@@ -20,7 +20,7 @@ class jceSSLClient : public QSslSocket
 {
   Q_OBJECT
 public:
-  jceSSLClient(jceStatusBar *progressbarPtr);
+  jceSSLClient(jceStatusBar *statusBar);
 
   bool makeConnect(QString server = "yedion.jce.ac.il", int port = 443);
   bool makeDiconnect();
@@ -64,7 +64,7 @@ private:
 
 
 
-  jceStatusBar *progressBar; //progressbar pointer
+  jceStatusBar *statusBar; //progressbar pointer
 
 };
 

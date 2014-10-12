@@ -6,10 +6,6 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
 {
   ui->setupUi(this);
 
-
-
-  ui->labelMadeBy->setOpenExternalLinks(true);
-
   //Login Tab
   iconPix.load(":/icons/iconX.png");
   ui->pswdLineEdit->setEchoMode((QLineEdit::Password));
@@ -129,8 +125,6 @@ void MainScreen::on_usrnmLineEdit_editingFinished()
 //EVENTS ON GPA TAB
 void MainScreen::on_ratesButton_clicked()
 {
-
-//  ui->progressBar->setValue(0);
   qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
   if (!checkIfValidDates())
     {
@@ -143,27 +137,28 @@ void MainScreen::on_ratesButton_clicked()
   QApplication::setOverrideCursor(Qt::WaitCursor);
   if (loginHandel->isLoggedInFlag())
     {
-//      ui->statusBar->showMessage(tr("Getting grades..."));
+      statusBar->setIconConnectionStatus(jceStatusBar::Ready);
       if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),
                                                   ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),
                                                   ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_PAGE_PASSED)
         {
           qDebug() << Q_FUNC_INFO <<  "grade page is ready";
-//          ui->statusBar->showMessage(tr("Done. Inserting data into table..."),1000);
+          statusBar->setIconConnectionStatus(jceStatusBar::Inserting);
           pageString = loginHandel->getCurrentPageContect();
           courseTableMgr->setCoursesList(pageString);
           courseTableMgr->insertJceCoursesIntoTable();
-//          ui->progressBar->setValue(100);
-//          ui->statusBar->showMessage(tr("Done"));
+          statusBar->setIconConnectionStatus(jceStatusBar::Done);
         }
       else if (status == jceLogin::JCE_NOT_CONNECTED)
         {
           qWarning() << Q_FUNC_INFO << "not connected";
           QApplication::restoreOverrideCursor();
           QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+          statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
         }
       else
         {
+          statusBar->setIconConnectionStatus(jceStatusBar::ERROR);
           qCritical() << Q_FUNC_INFO << "grade get ended with" << status;
         }
     }
@@ -241,18 +236,16 @@ void MainScreen::on_examsBtn_clicked()
 }
 void MainScreen::on_getCalendarBtn_clicked()
 {
-//  ui->progressBar->setValue(0);
   qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
   int status = 0;
   QString page;
   QApplication::setOverrideCursor(Qt::WaitCursor);
   if (loginHandel->isLoggedInFlag())
     {
-//      ui->statusBar->showMessage(tr("Getting schedule..."));
       if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
         {
+          statusBar->setIconConnectionStatus(jceStatusBar::Inserting);
           calendar->resetTable();
-//          ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
           page = loginHandel->getCurrentPageContect();
           calendar->setCalendar(page);
 
@@ -261,32 +254,29 @@ void MainScreen::on_getCalendarBtn_clicked()
           //auto getting exam
           if (loginHandel->isLoggedInFlag())
             {
-//              ui->statusBar->showMessage(tr("Getting exams..."));
               if ((status = loginHandel->makeExamsScheduleRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
                 {
-//                  ui->statusBar->showMessage(tr("Done."),1000);
                   page = loginHandel->getCurrentPageContect();
                   calendar->setExamsSchedule(page);
                   qDebug() << Q_FUNC_INFO <<  "exams schedule is loaded";
+                  statusBar->setIconConnectionStatus(jceStatusBar::Done);
                 }
               else if (status == jceLogin::JCE_NOT_CONNECTED)
                 {
                   qWarning() << Q_FUNC_INFO <<  "not connected";
                   QApplication::restoreOverrideCursor();
                   QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+                  statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
                 }
               else
                 qCritical() << Q_FUNC_INFO << "exams request get ended with" << status;
-
-
-//              ui->progressBar->setValue(100);
-//              ui->statusBar->showMessage(tr("Done"));
             }
           else if (status == jceLogin::JCE_NOT_CONNECTED)
             {
               qWarning() << Q_FUNC_INFO <<  "not connected";
               QApplication::restoreOverrideCursor();
               QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+              statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
             }
           else
             qCritical() << Q_FUNC_INFO << "calendar get ended with" << status;
@@ -405,8 +395,6 @@ void MainScreen::checkLocale()
 void MainScreen::on_labelMadeBy_linkActivated(const QString &link)
 {
   qDebug() << Q_FUNC_INFO << "link: " << link;
-
-
 }
 
 

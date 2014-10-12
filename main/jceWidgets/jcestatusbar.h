@@ -2,7 +2,7 @@
 #define JCESTATUSBAR_H
 
 
-
+#include <QDebug>
 #include <QStatusBar>
 #include <QProgressBar>
 #include <QLabel>
@@ -24,7 +24,8 @@ public:
     Sending,
     Recieving,
     Inserting,
-    Done
+    Done,
+    ERROR
   };
 
   jceStatusBar(QWidget *parent = 0);

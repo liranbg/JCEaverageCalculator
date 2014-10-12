@@ -49,6 +49,16 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
     <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_13">
+    <item row="1" column="0">
+     <widget class="QLabel" name="labelMadeBy">
+      <property name="text">
+       <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -899,13 +909,6 @@ font-size: 15px;
       </widget>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labelMadeBy">
-      <property name="text">
-       <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -914,7 +917,7 @@ font-size: 15px;
      <x>0</x>
      <y>0</y>
      <width>1133</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuA_about">

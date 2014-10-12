@@ -16,7 +16,7 @@ class jceLogin : public QObject
   Q_OBJECT
 public:
 
-  jceLogin(user* username,jceStatusBar *progressbarPtr);
+  jceLogin(user* username, jceStatusBar *statusBar);
   ~jceLogin();
 
   enum jceStatus {
@@ -65,7 +65,7 @@ private:
   QString * recieverPage;
   user * jceA;
   jceSSLClient * JceConnector;
-  jceStatusBar *progressBar;
+  jceStatusBar *statusBar;
 
 
 };

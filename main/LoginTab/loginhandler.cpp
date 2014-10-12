@@ -24,19 +24,18 @@ bool loginHandler::login(QString username,QString password)
         logout();
         return false;
     }
-    statusBar->setIconConnectionStatus(jceStatusBar::Connecting);
 
     userPtr->setUsername(username);
     userPtr->setPassword(password);
 
     if (makeConnection() == true)
     {
-        statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
         loginButtonPtr->setText(QObject::tr("Logout"));
         return isLoggedInFlag();
     }
     else
     {
+
         logout();
         return false;
     }
@@ -101,6 +100,7 @@ void loginHandler::readyAfterConnectionLost()
 {
     qWarning() << Q_FUNC_INFO;
     setLoginFlag(false);
+    statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
     login(userPtr->getUsername(),userPtr->getPassword());
 
 }
@@ -128,22 +128,32 @@ QString loginHandler::getCurrentPageContect()
 int loginHandler::makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester)
 {
     if (isLoggedInFlag())
+    {
+        statusBar->setIconConnectionStatus(jceStatusBar::Sending);
         return jceLog->getGrades(fromYear, toYear, fromSemester, toSemester);
+    }
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }
 int loginHandler::makeCalendarRequest(int year, int semester)
 {
     if (isLoggedInFlag())
+    {
+        statusBar->setIconConnectionStatus(jceStatusBar::Sending);
         return jceLog->getCalendar(year,semester);
+    }
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }
 
 int loginHandler::makeExamsScheduleRequest(int year, int semester)
 {
+
     if (isLoggedInFlag())
+    {
+        statusBar->setIconConnectionStatus(jceStatusBar::Sending);
         return jceLog->getExams(year,semester);
+    }
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }

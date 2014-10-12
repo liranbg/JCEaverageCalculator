@@ -3,10 +3,10 @@
 /**
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
-jceSSLClient::jceSSLClient(jceStatusBar *progressbarPtr) : loggedIAndConnectedFlag(false), readingFlag(false),
+jceSSLClient::jceSSLClient(jceStatusBar *statusBar) : loggedIAndConnectedFlag(false), readingFlag(false),
         reConnectionFlag(false), networkConf(), packet(""), recieveLastPacket(false), packetSizeRecieved(0)
 {
-    this->progressBar = progressbarPtr;
+    this->statusBar = statusBar;
     //setting signals
     connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
     connect(this,SIGNAL(connected()),this,SLOT(setConnected()));
@@ -131,6 +131,7 @@ bool jceSSLClient::sendData(QString str)
     int amount = 0;
     if (isConnected()) //if connected
     {
+          statusBar->setIconConnectionStatus(jceStatusBar::Sending);
         amount = write(str.toStdString().c_str(),str.length());
         qDebug() << Q_FUNC_INFO << "lenght send: " << str.length() << "lenght recieved: " << amount;
         if (amount == -1)
@@ -151,6 +152,7 @@ bool jceSSLClient::sendData(QString str)
  */
 bool jceSSLClient::recieveData(QString *str)
 {
+      statusBar->setIconConnectionStatus(jceStatusBar::Recieving);
     qDebug() << Q_FUNC_INFO <<  "Data receiving!";
     str->clear();
     packet = "";
@@ -208,7 +210,7 @@ void jceSSLClient::readIt()
         packet.append("\0");
         readerAppendingLocker.unlock();
 
-        emit progressBar->progressHasPacket(6);
+        emit statusBar->progressHasPacket(10);
 
         if (tempPacket.contains("Go_To_system_After_Login.htm") || tempPacket.contains("</html>"))
         {
