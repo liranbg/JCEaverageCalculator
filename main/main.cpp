@@ -5,6 +5,8 @@
 #include "../src/appDatabase/savedata.h"
 #include "../src/appDatabase/jce_logger.h"
 
+//TODO: Project todo list
+//update translation, update site spelling, release notes, update help
 int main(int argc, char *argv[])
 {
 #ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal

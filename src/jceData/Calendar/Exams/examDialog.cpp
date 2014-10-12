@@ -1,5 +1,8 @@
 #include "examDialog.h"
 #include "ui_examDialog.h"
+/*
+ *TODO: exam revert, add to csv exportation, dialog size
+ */
 /**
  * @brief examDialog::examDialog
  * @param parent

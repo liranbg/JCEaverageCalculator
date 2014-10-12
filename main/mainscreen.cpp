@@ -1,6 +1,6 @@
 #include "mainscreen.h"
 #include "ui_mainscreen.h"
-
+//TODO: busy flag to aboid overload request
 
 MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainScreen)
 {

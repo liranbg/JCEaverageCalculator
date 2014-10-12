@@ -1,5 +1,8 @@
 #include "coursestablemanager.h"
-
+/*
+ *  TODO: revert gpa to origin
+ *
+ */
 coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
 {
     this->gp = NULL;

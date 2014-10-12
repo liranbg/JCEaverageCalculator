@@ -8,7 +8,7 @@
  * Message types cam be:
  *
  *      - DEBUG
- *      - WARNING
+ *      - WARNINGS
  *      - CRITICAL
  *      - FATAL
  *
