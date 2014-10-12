@@ -66,7 +66,13 @@ private:
     void checkLocale();
     bool checkIfValidDates();
 
+    bool isBusy();
+    void lock();
+    void unlock();
+
     Ui::MainScreen *ui;
+
+    bool isBlocked;
 
     QPixmap iconPix;
     user *userLoginSetting;
