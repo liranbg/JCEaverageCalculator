@@ -110,11 +110,11 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
  */
 QString CSV_Exporter::getFileFath()
 {
-    QString fileName = QFileDialog::getSaveFileName();
+    QString fileName = QFileDialog::getSaveFileName(NULL,
+                                                    QObject::tr("JceManager Save Schedule Dialog"), "",
+                                                    QObject::tr("CSV Files (*.csv);;All Files (*)"));
     if (fileName == "")
         return NULL;
-    if (!fileName.contains(".csv", Qt::CaseInsensitive))
-        fileName.append(".csv");
     return fileName;
 }
 

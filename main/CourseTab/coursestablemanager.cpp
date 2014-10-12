@@ -196,7 +196,9 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
           hours->setFlags(hours->flags() & ~Qt::ItemIsEditable);
 
           grade = new QTableWidgetItem();
-          //            grade->setData(Qt::EditRole,c->getGrade()); //BUG good for sorting, the problem is when you edit -> the cell indicator disappear
+          //grade->setData(Qt::EditRole,c->getGrade());
+          //BUG  QT bug
+          //good for sorting, the problem is when you edit -> the cell indicator disappear
           grade->setText(QString::number(c->getGrade()));
 
           addition = new QTableWidgetItem();

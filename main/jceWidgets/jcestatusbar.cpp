@@ -57,7 +57,7 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
       showMessage(tr("Disconnected"));
       break;
     case jceProgressStatus::Ready:
-      setProgressValue(100);
+      setProgressValue(0);
       iconPix.load(":/icons/redStatusIcon.png");
       showMessage(tr("Ready"));
       break;
@@ -67,12 +67,14 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
       showMessage(tr("Connecting..."));
       break;
     case jceProgressStatus::Sending:
-      setProgressValue(10);
+      if (progressBar->value() < 10)
+        setProgressValue(10);
       iconPix.load(":/icons/blueStatusIcon.png");
       showMessage(tr("Sending..."));
       break;
     case jceProgressStatus::Recieving:
-      setProgressValue(15);
+      if (progressBar->value() < 15)
+            setProgressValue(15);
       iconPix.load(":/icons/blueStatusIcon.png");
       showMessage(tr("Recieving..."));
       break;

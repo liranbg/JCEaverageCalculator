@@ -1,6 +1,5 @@
 #include "mainscreen.h"
 #include "ui_mainscreen.h"
-//TODO: busy flag to avoid overload request
 
 MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainScreen)
 {
@@ -251,6 +250,7 @@ void MainScreen::on_getCalendarBtn_clicked()
         QString page;
         if (loginHandel->isLoggedInFlag())
         {
+            statusBar->setIconConnectionStatus(jceStatusBar::Ready);
             if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
             {
                 statusBar->setIconConnectionStatus(jceStatusBar::Inserting);
