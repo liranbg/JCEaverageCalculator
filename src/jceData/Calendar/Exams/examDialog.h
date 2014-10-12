@@ -2,8 +2,10 @@
 #define EXAMDIALOG_H
 
 #include <QDialog>
-#include <QDateEdit>
-
+#include <QTime>
+#include <QTableWidgetItem>
+#include <QMessageBox>
+#include <QScrollBar>
 #include "calendarExam.h"
 
 namespace Ui {
@@ -29,7 +31,14 @@ public:
     void initializingDataIntoTable();
     ~examDialog();
 
+private slots:
+
+    bool upgradeExamsTime(QTableWidgetItem* item);
+
 private:
+
+    void resetGeo();
+
     Ui::examDialog *ui;
     calendarExam * exams;
 };

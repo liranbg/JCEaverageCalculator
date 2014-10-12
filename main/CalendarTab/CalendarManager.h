@@ -28,7 +28,7 @@ public:
     void exportCalendarCSV();
     void setCalendar(QString html);
     void setExamsSchedule(QString html);
-
+    void showExamDialog();
     void resetTable() { if (caliSchedPtr != NULL) caliSchedPtr->clearTableItems(); }
 
 private:

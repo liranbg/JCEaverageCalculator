@@ -175,7 +175,6 @@ void MainScreen::on_ratesButton_clicked()
     }
     QApplication::restoreOverrideCursor();
 }
-
 bool MainScreen::checkIfValidDates()
 {
     bool flag = false;
@@ -199,28 +198,23 @@ void MainScreen::on_checkBoxCoursesInfluence_toggled(bool checked)
     this->userLoginSetting->setInfluenceCourseOnly(checked);
     this->courseTableMgr->influnceCourseChanged(checked);
 }
-
 void MainScreen::on_spinBoxCoursesFromYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesFromYear->setValue(arg1);
 }
-
 void MainScreen::on_spinBoxCoursesToYear_valueChanged(int arg1)
 {
     ui->spinBoxCoursesToYear->setValue(arg1);
 
 }
-
 void MainScreen::on_spinBoxCoursesFromSemester_valueChanged(int arg1)
 {
     ui->spinBoxCoursesFromSemester->setValue(arg1%4);
 }
-
 void MainScreen::on_spinBoxCoursesToSemester_valueChanged(int arg1)
 {
     ui->spinBoxCoursesToSemester->setValue(arg1%4);
 }
-
 void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
 {
     if (this->courseTableMgr->changes(item->text(),item->row(),item->column()))
@@ -231,7 +225,6 @@ void MainScreen::on_coursesTable_itemChanged(QTableWidgetItem *item)
         QMessageBox::critical(this,tr("Error"),tr("Missmatching data"));
     }
 }
-
 void MainScreen::on_clearTableButton_clicked()
 {
     qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
@@ -249,6 +242,11 @@ void MainScreen::on_graphButton_clicked()
 //EVENTS ON CALENDAR TAB
 void MainScreen::on_examsBtn_clicked()
 {
+    calendar->showExamDialog();
+
+}
+void MainScreen::on_getCalendarBtn_clicked()
+{
     ui->progressBar->setValue(0);
     qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
     int status = 0;
@@ -256,45 +254,38 @@ void MainScreen::on_examsBtn_clicked()
     QApplication::setOverrideCursor(Qt::WaitCursor);
     if (loginHandel->isLoggedInFlag())
     {
-        ui->statusBar->showMessage(tr("Getting exams..."));
-        if ((status = loginHandel->makeExamsScheduleRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
+        ui->statusBar->showMessage(tr("Getting schedule..."));
+        if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
         {
-            ui->statusBar->showMessage(tr("Done."),1000);
+            calendar->resetTable();
+            ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
             page = loginHandel->getCurrentPageContect();
-            calendar->setExamsSchedule(page);
-            ui->progressBar->setValue(100);
-            qDebug() << Q_FUNC_INFO <<  "exams schedule is loaded";
-            ui->statusBar->showMessage(tr("Done"));
-        }
-        else if (status == jceLogin::JCE_NOT_CONNECTED)
-        {
-            qWarning() << Q_FUNC_INFO <<  "not connected";
-            QApplication::restoreOverrideCursor();
-            QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
-        }
-        else
-            qCritical() << Q_FUNC_INFO << "exams request get ended with" << status;
-    }
-    QApplication::restoreOverrideCursor();
-}
-void MainScreen::on_getCalendarBtn_clicked()
-{
-        ui->progressBar->setValue(0);
-        qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
-        int status = 0;
-        QString page;
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        if (loginHandel->isLoggedInFlag())
-        {
-            ui->statusBar->showMessage(tr("Getting schedule..."));
-            if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
+            calendar->setCalendar(page);
+
+            qDebug() << Q_FUNC_INFO <<  "calendar is loaded";
+
+            //auto getting exam
+            if (loginHandel->isLoggedInFlag())
             {
-                calendar->resetTable();
-                ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
-                page = loginHandel->getCurrentPageContect();
-                calendar->setCalendar(page);
+                ui->statusBar->showMessage(tr("Getting exams..."));
+                if ((status = loginHandel->makeExamsScheduleRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
+                {
+                    ui->statusBar->showMessage(tr("Done."),1000);
+                    page = loginHandel->getCurrentPageContect();
+                    calendar->setExamsSchedule(page);
+                    qDebug() << Q_FUNC_INFO <<  "exams schedule is loaded";
+                }
+                else if (status == jceLogin::JCE_NOT_CONNECTED)
+                {
+                    qWarning() << Q_FUNC_INFO <<  "not connected";
+                    QApplication::restoreOverrideCursor();
+                    QMessageBox::critical(this,tr("Error"),tr("Not Connected"));
+                }
+                else
+                    qCritical() << Q_FUNC_INFO << "exams request get ended with" << status;
+
+
                 ui->progressBar->setValue(100);
-                qDebug() << Q_FUNC_INFO <<  "calendar is loaded";
                 ui->statusBar->showMessage(tr("Done"));
             }
             else if (status == jceLogin::JCE_NOT_CONNECTED)
@@ -306,7 +297,8 @@ void MainScreen::on_getCalendarBtn_clicked()
             else
                 qCritical() << Q_FUNC_INFO << "calendar get ended with" << status;
         }
-        QApplication::restoreOverrideCursor();
+    }
+    QApplication::restoreOverrideCursor();
 }
 void MainScreen::on_exportToCVSBtn_clicked()
 {

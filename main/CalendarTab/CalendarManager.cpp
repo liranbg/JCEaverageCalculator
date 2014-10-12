@@ -19,6 +19,10 @@ void CalendarManager::setExamsSchedule(QString html)
 {
     examSchePtr->setPage(html);
     examDialogPtr->initializingDataIntoTable();
+}
+
+void CalendarManager::showExamDialog()
+{
     examDialogPtr->show();
 }
 void CalendarManager::exportCalendarCSV()

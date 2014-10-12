@@ -157,82 +157,84 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
         c = courseToAdd;
         if (!isCourseAlreadyInserted(c->getSerialNum()))
         {
-          courseTBL->setRowCount(courseTBL->rowCount() + 1);
-          i = courseTBL->rowCount()-1;
+            courseTBL->setRowCount(courseTBL->rowCount() + 1);
+            i = courseTBL->rowCount()-1;
 
-          number = new QTableWidgetItem();
-          number->setData(Qt::EditRole, c->getCourseNumInList());
-          number->setFlags(number->flags() & ~Qt::ItemIsEditable);
+            number = new QTableWidgetItem();
+            number->setData(Qt::EditRole, c->getCourseNumInList());
+            number->setFlags(number->flags() & ~Qt::ItemIsEditable);
 
-          year = new QTableWidgetItem();
-          year->setData(Qt::EditRole,c->getYear());
-          year->setFlags(year->flags() & ~Qt::ItemIsEditable);
+            year = new QTableWidgetItem();
+            year->setData(Qt::EditRole,c->getYear());
+            year->setFlags(year->flags() & ~Qt::ItemIsEditable);
 
-          semester = new QTableWidgetItem();
-          semester->setData(Qt::EditRole,c->getSemester());
-          semester->setFlags(semester->flags() & ~Qt::ItemIsEditable);
+            semester = new QTableWidgetItem();
+            semester->setData(Qt::EditRole,c->getSemester());
+            semester->setFlags(semester->flags() & ~Qt::ItemIsEditable);
 
-          serial = new QTableWidgetItem();
-          serial->setData(Qt::EditRole,c->getSerialNum());
-          serial->setFlags(serial->flags() & ~Qt::ItemIsEditable);
+            serial = new QTableWidgetItem();
+            serial->setData(Qt::EditRole,c->getSerialNum());
+            serial->setFlags(serial->flags() & ~Qt::ItemIsEditable);
 
-          name = new QTableWidgetItem();
-          name->setData(Qt::EditRole,c->getName());
-          name->setFlags(name->flags() & ~Qt::ItemIsEditable);
+            name = new QTableWidgetItem();
+            name->setData(Qt::EditRole,c->getName());
+            name->setFlags(name->flags() & ~Qt::ItemIsEditable);
 
-          type = new QTableWidgetItem();
-          type->setData(Qt::EditRole, c->getType());
-          type->setFlags(type->flags() & ~Qt::ItemIsEditable);
+            type = new QTableWidgetItem();
+            type->setData(Qt::EditRole, c->getType());
+            type->setFlags(type->flags() & ~Qt::ItemIsEditable);
 
-          points = new QTableWidgetItem();
-          points->setData(Qt::EditRole, c->getPoints());
-          points->setFlags(points->flags() & ~Qt::ItemIsEditable);
+            points = new QTableWidgetItem();
+            points->setData(Qt::EditRole, c->getPoints());
+            points->setFlags(points->flags() & ~Qt::ItemIsEditable);
 
-          hours = new QTableWidgetItem();
-          hours->setData(Qt::EditRole, c->getHours());
-          hours->setFlags(hours->flags() & ~Qt::ItemIsEditable);
+            hours = new QTableWidgetItem();
+            hours->setData(Qt::EditRole, c->getHours());
+            hours->setFlags(hours->flags() & ~Qt::ItemIsEditable);
 
-          grade = new QTableWidgetItem();
-          grade->setData(Qt::EditRole,c->getGrade());
+            grade = new QTableWidgetItem();
+            grade->setData(Qt::EditRole,c->getGrade());
 
-          addition = new QTableWidgetItem();
-          addition->setData(Qt::EditRole,c->getAddidtions());
+            addition = new QTableWidgetItem();
+            addition->setData(Qt::EditRole,c->getAddidtions());
 
-          courseTBL->setItem(i,j++,number);
-          courseTBL->setItem(i,j++,year);
-          courseTBL->setItem(i,j++,semester);
-          courseTBL->setItem(i,j++,serial);
-          courseTBL->setItem(i,j++,name);
-          courseTBL->setItem(i,j++,type);
-          courseTBL->setItem(i,j++,points);
-          courseTBL->setItem(i,j++,hours);
-          courseTBL->setItem(i,j,grade);
-          if(c->getGrade() < 55 && c->getGrade() != 0)
-          {
-              courseTBL->item(i, j)->setBackground(Qt::darkRed);
-              courseTBL->item(i,j)->setTextColor(Qt::white);
-          }
-          else if(55 <= c->getGrade() && c->getGrade() < 70 )
-          {
-              courseTBL->item(i, j)->setBackground(Qt::darkYellow);
-              courseTBL->item(i,j)->setTextColor(Qt::white);
-          }
-//          else if(70 < c->getGrade() && c->getGrade() <= 80 )
-//              courseTBL->item(i, j)->setBackground(Qt::darkGreen);  //They Look Bad!!
-//          else if(c->getGrade() > 80)
-//              courseTBL->item(i, j)->setBackground(Qt::green);
+            courseTBL->setItem(i,j++,number);
+            courseTBL->setItem(i,j++,year);
+            courseTBL->setItem(i,j++,semester);
+            courseTBL->setItem(i,j++,serial);
+            courseTBL->setItem(i,j++,name);
+            courseTBL->setItem(i,j++,type);
+            courseTBL->setItem(i,j++,points);
+            courseTBL->setItem(i,j++,hours);
+            courseTBL->setItem(i,j,grade);
+            if(c->getGrade() < 55 && c->getGrade() != 0)
+            {
+                courseTBL->item(i, j)->setBackground(Qt::darkRed);
+                courseTBL->item(i,j)->setTextColor(Qt::white);
+            }
+            else if(55 <= c->getGrade() && c->getGrade() < 70 )
+            {
+                courseTBL->item(i, j)->setBackground(Qt::darkYellow);
+                courseTBL->item(i,j)->setTextColor(Qt::white);
+            }
+            //          else if(70 < c->getGrade() && c->getGrade() <= 80 )
+            //              courseTBL->item(i, j)->setBackground(Qt::darkGreen);  //They Look Bad!!
+            //          else if(c->getGrade() > 80)
+            //              courseTBL->item(i, j)->setBackground(Qt::green);
 
-          j++;
+            j++;
 
-          courseTBL->setItem(i,j,addition);
+            courseTBL->setItem(i,j,addition);
 
         }
     }
     else
     {
-      qCritical() << Q_FUNC_INFO << " no course to load!";
+        qCritical() << Q_FUNC_INFO << " no course to load!";
     }
+
     courseTBL->resizeColumnsToContents();
+    courseTBL->resizeRowsToContents();
 
 }
 double coursesTableManager::getAvg()
@@ -246,8 +248,8 @@ void coursesTableManager::showGraph()
 {
     if (gp != NULL)
     {
-      qDebug() << Q_FUNC_INFO << " Graph Dialog Opened. gp != NULL";
-      this->graph->showGraph(gp);
+        qDebug() << Q_FUNC_INFO << " Graph Dialog Opened. gp != NULL";
+        this->graph->showGraph(gp);
     }
 }
 

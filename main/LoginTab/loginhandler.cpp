@@ -129,7 +129,7 @@ QString loginHandler::getCurrentPageContect()
     if (isLoggedInFlag())
         parse.setText(jceLog->getPage());
     else
-        throw jceLogin::ERROR_ON_GETTING_INFO;
+        return "";
     return parse.toPlainText();
 }
 int loginHandler::makeGradeRequest(int fromYear, int toYear, int fromSemester, int toSemester)

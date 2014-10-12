@@ -70,6 +70,7 @@ void CalendarDialog::on_calEnd_selectionChanged()
     {
         changeLabeStatusIcon(false);
         ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
+
         this->isOK = false;
     }
     else

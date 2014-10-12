@@ -170,7 +170,7 @@ bool jceSSLClient::recieveData(QString *str)
     disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
 
     str->append(packet);
-    //qDebug() << *str; //if you want to see the whole packet, unmark me
+//    qDebug() << *str; //if you want to see the whole packet, unmark me
 
     qDebug() << Q_FUNC_INFO << "packet size: " << packetSizeRecieved << "received data lenght: " << str->length();
     qDebug() << Q_FUNC_INFO <<  "return with flag: " << recieveLastPacket;

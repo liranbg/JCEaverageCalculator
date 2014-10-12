@@ -27,56 +27,42 @@ public:
 
 private slots:
 
-    void on_ratesButton_clicked();
-
+    //Login Tab slots
     void on_loginButton_clicked();
-
+    void on_keepLogin_clicked();
     void on_usrnmLineEdit_editingFinished();
 
-    void on_actionCredits_triggered();
-
+    //GPA Tab slots
+    void on_ratesButton_clicked();
+    void on_graphButton_clicked();
     void on_clearTableButton_clicked();
-
-    void on_actionExit_triggered();
-
     void on_coursesTable_itemChanged(QTableWidgetItem *item);
-
-    void on_keepLogin_clicked();
-
-    void on_actionHow_To_triggered();
-
-    void on_getCalendarBtn_clicked();
-
     void on_checkBoxCoursesInfluence_toggled(bool checked);
 
+    //Schedule Tab slots
+    void on_getCalendarBtn_clicked();
+    void on_examsBtn_clicked();
     void on_exportToCVSBtn_clicked();
 
+    //Menubar slots
+    void on_actionCredits_triggered();
+    void on_actionExit_triggered();
+    void on_actionHow_To_triggered();
     void on_actionHebrew_triggered();
-
     void on_actionEnglish_triggered();
-
     void on_actionOS_Default_triggered();
 
+    //Main screen general slots
     void on_spinBoxCoursesFromSemester_valueChanged(int arg1);
-
     void on_spinBoxCoursesFromYear_valueChanged(int arg1);
-
     void on_spinBoxCoursesToYear_valueChanged(int arg1);
-
     void on_spinBoxCoursesToSemester_valueChanged(int arg1);
-
     void on_labelMadeBy_linkActivated(const QString &link);
-
-    void on_graphButton_clicked();
-
     void on_progressBar_valueChanged(int value);
-
-    void on_examsBtn_clicked();
 
 private:
 
     void checkLocale();
-
     bool checkIfValidDates();
 
     Ui::MainScreen *ui;
