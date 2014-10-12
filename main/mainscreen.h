@@ -10,9 +10,10 @@
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"
+#include "./jceWidgets/jceStatusBar.h"
 
 
-#define STATUS_ICON_HEIGH 35
+
 namespace Ui {
 class MainScreen;
 }
@@ -58,7 +59,7 @@ private slots:
     void on_spinBoxCoursesToYear_valueChanged(int arg1);
     void on_spinBoxCoursesToSemester_valueChanged(int arg1);
     void on_labelMadeBy_linkActivated(const QString &link);
-    void on_progressBar_valueChanged(int value);
+//    void on_progressBar_valueChanged(int value);
 
 private:
 
@@ -74,6 +75,8 @@ private:
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
+
+    jceStatusBar *statusBar;
 
 };
 

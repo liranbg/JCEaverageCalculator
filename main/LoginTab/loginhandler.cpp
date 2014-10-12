@@ -1,24 +1,17 @@
 #include "loginhandler.h"
 
-loginHandler::loginHandler(user *ptr, QStatusBar *statusBarPtr,QPushButton *loginButtonPtr,QProgressBar *progressbarPtr): logggedInFlag(false)
+loginHandler::loginHandler(user *ptr, QPushButton *loginButtonPtr, jceStatusBar *progressbarPtr): logggedInFlag(false)
 {
     this->loginButtonPtr = loginButtonPtr;
-    this->progressBar = progressbarPtr;
+    this->statusBar = progressbarPtr;
 
-    //statusBar
-    statusBar = statusBarPtr;
-    iconButtomStatusLabel = new QLabel(statusBarPtr);
-    iconButtomStatusLabel->setAlignment(Qt::AlignHCenter);
 
-    //display progressbar and then ball icon.
-    statusBar->addPermanentWidget(progressBar,0);
-    statusBar->addPermanentWidget(iconButtomStatusLabel,0);
 
-    setIconConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
+    statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
 
     //user settings
     userPtr = ptr;
-    this->jceLog = new jceLogin(userPtr,progressBar);
+    this->jceLog = new jceLogin(userPtr,statusBar);
     QObject::connect(this->jceLog,SIGNAL(connectionReadyAfterDisconnection()),this,SLOT(readyAfterConnectionLost()));
 
 }
@@ -31,14 +24,14 @@ bool loginHandler::login(QString username,QString password)
         logout();
         return false;
     }
-    setIconConnectionStatus(jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS);
+    statusBar->setIconConnectionStatus(jceStatusBar::Connecting);
 
     userPtr->setUsername(username);
     userPtr->setPassword(password);
 
     if (makeConnection() == true)
     {
-        setIconConnectionStatus(jceLogin::jceStatus::JCE_YOU_ARE_IN);
+        statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
         loginButtonPtr->setText(QObject::tr("Logout"));
         return isLoggedInFlag();
     }
@@ -52,7 +45,7 @@ bool loginHandler::login(QString username,QString password)
 void loginHandler::logout()
 {
     loginButtonPtr->setText(QObject::tr("Login"));
-    setIconConnectionStatus(jceLogin::jceStatus::JCE_NOT_CONNECTED);
+    statusBar->setIconConnectionStatus(jceStatusBar::Disconnected);
     jceLog->closeAll();
     logggedInFlag = false;
 }
@@ -154,32 +147,7 @@ int loginHandler::makeExamsScheduleRequest(int year, int semester)
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }
-void loginHandler::setIconConnectionStatus(jceLogin::jceStatus statusDescription)
-{
-    QPixmap iconPix;
-    switch (statusDescription)
-    {
-    case jceLogin::jceStatus::JCE_START_VALIDATING_PROGRESS:
-        iconPix.load(":/icons/blueStatusIcon.png");
-        statusBar->showMessage(tr("Connecting..."));
-        break;
-    case jceLogin::jceStatus::JCE_YOU_ARE_IN:
-        iconPix.load(":/icons/greenStatusIcon.png");
-        statusBar->showMessage(tr("Connected"));
-        break;
-    case jceLogin::jceStatus::JCE_NOT_CONNECTED:
-        iconPix.load(":/icons/redStatusIcon.png");
-        statusBar->showMessage(tr("Disconnected"));
-        break;
-    default:
-        iconPix.load(":/icons/redStatusIcon.png");
-        statusBar->showMessage(tr("Ready."));
-        break;
-    }
-    iconButtomStatusLabel->setPixmap(iconPix);
 
-    this->statusBar->repaint();
-}
 void loginHandler::popMessage(QString message,bool addInfo)
 {
     if (addInfo)

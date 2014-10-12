@@ -3,7 +3,7 @@
 /**
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
-jceSSLClient::jceSSLClient(QProgressBar *progressbarPtr) : loggedIAndConnectedFlag(false), readingFlag(false),
+jceSSLClient::jceSSLClient(jceStatusBar *progressbarPtr) : loggedIAndConnectedFlag(false), readingFlag(false),
         reConnectionFlag(false), networkConf(), packet(""), recieveLastPacket(false), packetSizeRecieved(0)
 {
     this->progressBar = progressbarPtr;
@@ -208,7 +208,7 @@ void jceSSLClient::readIt()
         packet.append("\0");
         readerAppendingLocker.unlock();
 
-        progressBar->setValue(this->progressBar->value() + 6);
+        emit progressBar->progressHasPacket(6);
 
         if (tempPacket.contains("Go_To_system_After_Login.htm") || tempPacket.contains("</html>"))
         {

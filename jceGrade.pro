@@ -58,7 +58,8 @@ HEADERS += \
     src/jceData/Calendar/coursesSchedule/calendarDialog.h \
     src/jceData/Calendar/coursesSchedule/calendarPage.h \
     src/jceData/Calendar/coursesSchedule/calendarPageCourse.h \
-    src/jceData/Calendar/coursesSchedule/calendarSchedule.h
+    src/jceData/Calendar/coursesSchedule/calendarSchedule.h \
+    main/jceWidgets/jcestatusbar.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -84,4 +85,5 @@ SOURCES += \
     src/jceData/Calendar/coursesSchedule/calendarDialog.cpp \
     src/jceData/Calendar/coursesSchedule/calendarPage.cpp \
     src/jceData/Calendar/coursesSchedule/calendarPageCourse.cpp \
-    src/jceData/Calendar/coursesSchedule/calendarSchedule.cpp
+    src/jceData/Calendar/coursesSchedule/calendarSchedule.cpp \
+    main/jceWidgets/jcestatusbar.cpp

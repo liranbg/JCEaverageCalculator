@@ -4,7 +4,7 @@
  * @brief jceLogin::jceLogin
  * @param username pointer to allocated user settings
  */
-jceLogin::jceLogin(user* username, QProgressBar *progressbarPtr)
+jceLogin::jceLogin(user* username, jceStatusBar *progressbarPtr)
 {
   this->progressBar = progressbarPtr;
   this->recieverPage = new QString();

@@ -6,28 +6,25 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QPixmap>
-#include <QStatusBar>
-#include <QProgressBar>
 #include <QPushButton>
 
 #include "./src/jceSettings/jcelogin.h"
 #include "./src/appDatabase/savedata.h"
+#include "./main/jceWidgets/jcestatusbar.h"
 
 
 class loginHandler : public QObject
 {
     Q_OBJECT
 public:
-    loginHandler(user *ptr, QStatusBar *statusBarPtr, QPushButton *loginButtonPtr, QProgressBar *progressbarPtr);
+    loginHandler(user *ptr, QPushButton *loginButtonPtr, jceStatusBar *progressbarPtr);
     ~loginHandler()
     {
-        delete iconButtomStatusLabel;
         delete jceLog;
     }
 
     bool login(QString username,QString password);
     void logout();
-    void setIconConnectionStatus(jceLogin::jceStatus statusDescription);
 
     bool makeConnection();
 
@@ -50,10 +47,9 @@ private:
     jceLogin * jceLog;
     user * userPtr;
 
-    QStatusBar *statusBar;
-    QLabel *iconButtomStatusLabel;
+    jceStatusBar *statusBar;
+
     QPushButton *loginButtonPtr;
-    QProgressBar *progressBar;
 
 };
 

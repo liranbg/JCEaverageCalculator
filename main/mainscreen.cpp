@@ -6,6 +6,8 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
 {
   ui->setupUi(this);
 
+
+
   ui->labelMadeBy->setOpenExternalLinks(true);
 
   //Login Tab
@@ -16,12 +18,9 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
   ui->labelUsrInputStatus->setPixmap(iconPix);
   ui->labelPswInputStatus->setPixmap(iconPix);
 
-
-  //StatusBar & progressbar
-  ui->progressBar->setFixedHeight(STATUS_ICON_HEIGH);
-  ui->statusBar->setStyleSheet("QStatusBar::item { border: 0px solid black };");
-  ui->statusBar->setFixedHeight(STATUS_ICON_HEIGH+5);
-  ui->statusBar->showMessage(tr("Ready"));
+  //StatusBar
+  statusBar = new jceStatusBar(this);
+  this->setStatusBar(statusBar);
 
   //GPA Tab
   ui->avgLCD->setPalette(QPalette(QPalette::WindowText,Qt::blue));
@@ -30,7 +29,7 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
   qDebug() << Q_FUNC_INFO << "Allocating pointers";
   this->userLoginSetting = new user("","");
   this->courseTableMgr = new coursesTableManager(ui->coursesTable,userLoginSetting);
-  this->loginHandel = new loginHandler(userLoginSetting,ui->statusBar,ui->loginButton,ui->progressBar);
+  this->loginHandel = new loginHandler(userLoginSetting, ui->loginButton, statusBar);
   this->calendar = new CalendarManager(this,ui->calendarGridLayoutMain);
   this->data = new SaveData();
 
@@ -46,11 +45,7 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
   //language
   qDebug() << Q_FUNC_INFO << "Checking locale";
   checkLocale();
-  ui->statusBar->repaint();
   qDebug() << Q_FUNC_INFO << "Ready.";
-
-  //set the progress bar to be invisible (It will show only if value !=0 or !=100)
-  ui->progressBar->setVisible(false);
 
 }
 MainScreen::~MainScreen()
@@ -66,7 +61,6 @@ MainScreen::~MainScreen()
 //EVENTS ON LOGIN TAB
 void MainScreen::on_loginButton_clicked()
 {
-  ui->progressBar->setValue(0);
   qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
   if ((ui->usrnmLineEdit->text().isEmpty()) || (ui->pswdLineEdit->text().isEmpty()))
     {
@@ -95,7 +89,6 @@ void MainScreen::on_loginButton_clicked()
   QApplication::setOverrideCursor(Qt::WaitCursor);
   if (this->loginHandel->login(ui->usrnmLineEdit->text(),ui->pswdLineEdit->text()) == true)
     {
-      ui->progressBar->setValue(100);
       qDebug() << Q_FUNC_INFO <<  "login session end with true";
       ui->pswdLineEdit->setDisabled(true);
       ui->usrnmLineEdit->setDisabled(true);
@@ -137,7 +130,7 @@ void MainScreen::on_usrnmLineEdit_editingFinished()
 void MainScreen::on_ratesButton_clicked()
 {
 
-  ui->progressBar->setValue(0);
+//  ui->progressBar->setValue(0);
   qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
   if (!checkIfValidDates())
     {
@@ -150,18 +143,18 @@ void MainScreen::on_ratesButton_clicked()
   QApplication::setOverrideCursor(Qt::WaitCursor);
   if (loginHandel->isLoggedInFlag())
     {
-      ui->statusBar->showMessage(tr("Getting grades..."));
+//      ui->statusBar->showMessage(tr("Getting grades..."));
       if ((status = loginHandel->makeGradeRequest(ui->spinBoxCoursesFromYear->value(),
                                                   ui->spinBoxCoursesToYear->value(),ui->spinBoxCoursesFromSemester->value(),
                                                   ui->spinBoxCoursesToSemester->value())) == jceLogin::JCE_PAGE_PASSED)
         {
           qDebug() << Q_FUNC_INFO <<  "grade page is ready";
-          ui->statusBar->showMessage(tr("Done. Inserting data into table..."),1000);
+//          ui->statusBar->showMessage(tr("Done. Inserting data into table..."),1000);
           pageString = loginHandel->getCurrentPageContect();
           courseTableMgr->setCoursesList(pageString);
           courseTableMgr->insertJceCoursesIntoTable();
-          ui->progressBar->setValue(100);
-          ui->statusBar->showMessage(tr("Done"));
+//          ui->progressBar->setValue(100);
+//          ui->statusBar->showMessage(tr("Done"));
         }
       else if (status == jceLogin::JCE_NOT_CONNECTED)
         {
@@ -248,18 +241,18 @@ void MainScreen::on_examsBtn_clicked()
 }
 void MainScreen::on_getCalendarBtn_clicked()
 {
-  ui->progressBar->setValue(0);
+//  ui->progressBar->setValue(0);
   qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
   int status = 0;
   QString page;
   QApplication::setOverrideCursor(Qt::WaitCursor);
   if (loginHandel->isLoggedInFlag())
     {
-      ui->statusBar->showMessage(tr("Getting schedule..."));
+//      ui->statusBar->showMessage(tr("Getting schedule..."));
       if ((status = loginHandel->makeCalendarRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
         {
           calendar->resetTable();
-          ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
+//          ui->statusBar->showMessage(tr("Done. Inserting schdule into table..."),1000);
           page = loginHandel->getCurrentPageContect();
           calendar->setCalendar(page);
 
@@ -268,10 +261,10 @@ void MainScreen::on_getCalendarBtn_clicked()
           //auto getting exam
           if (loginHandel->isLoggedInFlag())
             {
-              ui->statusBar->showMessage(tr("Getting exams..."));
+//              ui->statusBar->showMessage(tr("Getting exams..."));
               if ((status = loginHandel->makeExamsScheduleRequest(ui->spinBoxYear->value(),ui->spinBoxSemester->value())) == jceLogin::JCE_PAGE_PASSED)
                 {
-                  ui->statusBar->showMessage(tr("Done."),1000);
+//                  ui->statusBar->showMessage(tr("Done."),1000);
                   page = loginHandel->getCurrentPageContect();
                   calendar->setExamsSchedule(page);
                   qDebug() << Q_FUNC_INFO <<  "exams schedule is loaded";
@@ -286,8 +279,8 @@ void MainScreen::on_getCalendarBtn_clicked()
                 qCritical() << Q_FUNC_INFO << "exams request get ended with" << status;
 
 
-              ui->progressBar->setValue(100);
-              ui->statusBar->showMessage(tr("Done"));
+//              ui->progressBar->setValue(100);
+//              ui->statusBar->showMessage(tr("Done"));
             }
           else if (status == jceLogin::JCE_NOT_CONNECTED)
             {
@@ -414,18 +407,6 @@ void MainScreen::on_labelMadeBy_linkActivated(const QString &link)
   qDebug() << Q_FUNC_INFO << "link: " << link;
 
 
-}
-
-/**
- * @brief Every time the value changes this method will be called
- * @param value = the value of the progress Bar
- */
-void MainScreen::on_progressBar_valueChanged(int value)
-{
-  if(value == 0 || value == 100)
-    ui->progressBar->setVisible(false);
-  else
-    ui->progressBar->setVisible(true);
 }
 
 

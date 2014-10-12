@@ -11,7 +11,7 @@
 #include <QNetworkConfigurationManager>
 #include <QtNetwork/QNetworkInterface>
 
-#include <QProgressBar>
+#include "./main/jceWidgets/jcestatusbar.h"
 
 #define packetSize 4096 //4k
 #define milisTimeOut 5000 //4 seconds
@@ -20,7 +20,7 @@ class jceSSLClient : public QSslSocket
 {
   Q_OBJECT
 public:
-  jceSSLClient(QProgressBar *progressbarPtr);
+  jceSSLClient(jceStatusBar *progressbarPtr);
 
   bool makeConnect(QString server = "yedion.jce.ac.il", int port = 443);
   bool makeDiconnect();
@@ -64,7 +64,7 @@ private:
 
 
 
-  QProgressBar *progressBar; //progressbar pointer
+  jceStatusBar *progressBar; //progressbar pointer
 
 };
 

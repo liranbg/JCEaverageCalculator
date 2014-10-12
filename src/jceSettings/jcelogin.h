@@ -1,12 +1,13 @@
 #ifndef JCELOGIN_H
 #define JCELOGIN_H
 
+
 #include "./src/jceConnection/jcesslclient.h"
 #include "./src/jceSettings/user.h"
 #include "jceLoginHtmlScripts.h"
 
+
 #include <QObject>
-#include <QProgressBar>
 #include <QString>
 
 
@@ -15,7 +16,7 @@ class jceLogin : public QObject
   Q_OBJECT
 public:
 
-  jceLogin(user* username,QProgressBar *progressbarPtr);
+  jceLogin(user* username,jceStatusBar *progressbarPtr);
   ~jceLogin();
 
   enum jceStatus {
@@ -64,7 +65,7 @@ private:
   QString * recieverPage;
   user * jceA;
   jceSSLClient * JceConnector;
-  QProgressBar *progressBar;
+  jceStatusBar *progressBar;
 
 
 };
