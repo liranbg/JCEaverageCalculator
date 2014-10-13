@@ -59,7 +59,6 @@ bool loginHandler::makeConnection()
     {
     case jceLogin::JCE_YOU_ARE_IN:
     {
-        statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
         logggedInFlag = true;
         return logggedInFlag;
     }
