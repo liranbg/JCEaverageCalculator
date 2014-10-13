@@ -45,6 +45,7 @@ public:
     calendarExamCourse(int serial, QString name, QString lecturer, QString field,
                        QString type, QString firstDate, QString firstHourbegin,
                        QString secondDate, QString secondHourbegin);
+    calendarExamCourse(calendarExamCourse &other);
 
 
     QString getLecturer() const;

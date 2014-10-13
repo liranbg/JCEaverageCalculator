@@ -4,6 +4,21 @@ calendarExam::calendarExam()
 {
     htmlDataHolderParsed = "";
 }
+/**
+ * @brief calendarExam::calendarExam
+ * copy constructor
+ * @param other
+ */
+calendarExam::calendarExam(calendarExam &other)
+{
+    examsCounter = 0;
+    exams.clear();
+    for (calendarExamCourse * tempExam: other.getExams())
+    {
+        this->exams.push_back(new calendarExamCourse(*tempExam));
+        examsCounter++;
+    }
+}
 
 /**
  * @brief calendarExam::setPage -   getting a html page and stripping it into a exams schedule in a list

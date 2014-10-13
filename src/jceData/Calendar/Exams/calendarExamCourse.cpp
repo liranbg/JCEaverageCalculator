@@ -13,6 +13,19 @@ calendarExamCourse::calendarExamCourse(int serial, QString name, QString lecture
     setTime(secondHourbegin,false);
 
 }
+
+calendarExamCourse::calendarExamCourse(calendarExamCourse &other)
+    :Course (other.getSerialNum(),other.getName(),other.getType())
+{
+    this->lecturer = other.lecturer;
+    this->field = other.field;
+    this->firstDate = other.getFirstDate();
+    this->firstHourbegin = other.firstHourbegin;
+    this->secondDate = other.secondDate;
+    this->secondHourbegin = other.secondHourbegin;
+
+
+}
 /**
  * @brief calendarExamCourse::setDate
  * @param date

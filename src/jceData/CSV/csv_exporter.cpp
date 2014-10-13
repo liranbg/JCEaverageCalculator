@@ -2,8 +2,8 @@
 
 /*
  *
- * Class doc can be bound in csv_exporter.h
- *
+ * Class doc can be found in csv_exporter.h
+ *  TODO: add exam exportation
  */
 CSV_Exporter::CSV_Exporter()
 {

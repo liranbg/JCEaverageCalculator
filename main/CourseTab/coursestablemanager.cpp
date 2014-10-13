@@ -1,8 +1,4 @@
 #include "coursestablemanager.h"
-/*
- *  TODO: revert gpa to origin
- *
- */
 coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
 {
     this->gp = NULL;
@@ -322,7 +318,7 @@ void coursesTableManager::revertChanges()
                 (temp->getSerialNum() == notChangedCourse->getSerialNum()))
         {
             courseTBL->item(i,gradeCourse::CourseScheme::GRADE)->setText(QString::number(notChangedCourse->getGrade()));
-
+            break;
         }
         }
     }

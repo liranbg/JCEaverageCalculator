@@ -1,18 +1,17 @@
 #include "examDialog.h"
 #include "ui_examDialog.h"
-/*
- *TODO: exam revert, add to csv exportation, dialog size
- */
 /**
  * @brief examDialog::examDialog
  * @param parent
  * @param calSchedPtr - list of courses with information about each exam
  */
-examDialog::examDialog(QWidget *parent, calendarExam *calSchedPtr) : QDialog(parent),
+examDialog::examDialog(QWidget *parent, calendarExam *calExamPtr) : QDialog(parent),
     ui(new Ui::examDialog)
 {
     ui->setupUi(this);
-    exams = calSchedPtr;
+    exams = calExamPtr;
+    this->examsCpy = NULL;
+
     QStringList headLine;
     //SERIAL, NAME, LECTURER, FIELD, TYPE, FIRST_DATE, FIRST_HOUR_BEGIN, SECOND_DATE, SECOND_HOUR_BEGIN
 
@@ -42,6 +41,8 @@ void examDialog::initializingDataIntoTable()
 {
     disconnect(ui->tableWidget,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(upgradeExamsTime(QTableWidgetItem*)));
     ui->tableWidget->setRowCount(exams->getExamsCounter());
+    this->examsCpy = new calendarExam(*exams);
+
     int i=0,j=0;
     int year,month,day; //for constructin qdate by setdate
     QTableWidgetItem *lecturer,*name,*type;
@@ -180,11 +181,65 @@ void examDialog::resetGeo()
         mHeight += ui->tableWidget->rowHeight(i) + 4;
 
     }
-    mHeight += ui->buttonBox->height() + 4;
+    mHeight += ui->frameBtns->height() + 30;
     mHeight += ui->labelHeader->height() + 4;
 
 
     this->setMinimumHeight(mHeight);
-//    this->setMaximumHeight(mHeight);
 
+}
+
+void examDialog::on_pushButtonOk_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+    this->hide();
+}
+
+void examDialog::on_pushButtonRevert_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+
+    if (ui->tableWidget->rowCount() <= 0)
+        return;
+    if (this->exams == NULL)
+        return;
+    if (this->examsCpy == NULL)
+        return;
+    for (int i = 0; i < ui->tableWidget->rowCount(); ++i)
+    {
+        calendarExamCourse * temp = getExamByRow(i);
+        for (calendarExamCourse * notChangedCourse: examsCpy->getExams())
+        {
+            if (temp->getSerialNum() == notChangedCourse->getSerialNum())
+            {
+                if (temp->getFirstHourbegin() != notChangedCourse->getFirstHourbegin())
+                {
+                    ui->tableWidget->item(i,calendarExamCourse::CourseScheme::FIRST_HOUR_BEGIN)->setData(Qt::EditRole, QTime(notChangedCourse->getFirstHourbegin().hour(),notChangedCourse->getFirstHourbegin().minute()).toString("hh:mm"));
+                }
+                if (temp->getSecondHourbegin() != notChangedCourse->getSecondHourbegin())
+                {
+                    ui->tableWidget->item(i,calendarExamCourse::CourseScheme::SECOND_HOUR_BEGIN)->setData(Qt::EditRole, QTime(notChangedCourse->getSecondHourbegin().hour(),notChangedCourse->getSecondHourbegin().minute()).toString("hh:mm"));
+                }
+                break; //done with course. go to next row
+            }
+        }
+    }
+
+}
+
+calendarExamCourse *examDialog::getExamByRow(int row)
+{
+    int serialNum = ui->tableWidget->item(row,calendarExamCourse::CourseScheme::SERIAL)->text().toInt();
+    for (calendarExamCourse * temp : exams->getExams())
+    {
+        if (serialNum == temp->getSerialNum())
+            return temp;
+    }
+    return NULL;
+}
+
+void examDialog::on_pushButtonCancel_clicked()
+{
+    on_pushButtonRevert_clicked(); //make revert to discard all changes
+    this->hide();
 }

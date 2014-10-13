@@ -20,6 +20,7 @@ class calendarExam : public Page
 {
 public:
     calendarExam();
+    calendarExam(calendarExam &other);
     void setPage(QString html);
 
     QList<calendarExamCourse*> getExams() { return exams; }

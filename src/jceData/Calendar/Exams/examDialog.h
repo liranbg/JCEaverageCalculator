@@ -27,7 +27,7 @@ class examDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit examDialog(QWidget *parent,calendarExam * calSchedPtr);
+    explicit examDialog(QWidget *parent, calendarExam * calExamPtr);
     void initializingDataIntoTable();
     ~examDialog();
 
@@ -35,12 +35,20 @@ private slots:
 
     bool upgradeExamsTime(QTableWidgetItem* item);
 
+    void on_pushButtonOk_clicked();
+
+    void on_pushButtonRevert_clicked();
+
+    void on_pushButtonCancel_clicked();
+
 private:
 
+    calendarExamCourse *getExamByRow(int row);
     void resetGeo();
 
     Ui::examDialog *ui;
     calendarExam * exams;
+    calendarExam * examsCpy;
 };
 
 #endif // EXAMDIALOG_H
