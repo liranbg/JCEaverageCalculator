@@ -259,7 +259,7 @@ Make Sure everything is correct and try again</source>
     <message>
         <location filename="main/mainscreen.cpp" line="329"/>
         <source>Developed By</source>
-        <translation></translation>
+        <translation>פותח ע&quot;י</translation>
     </message>
     <message>
         <location filename="main/mainscreen.cpp" line="345"/>
@@ -471,7 +471,7 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="296"/>
         <source>ConnectionRefusedError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="301"/>
@@ -481,7 +481,7 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="311"/>
         <source>HostNotFoundError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="316"/>
@@ -496,7 +496,7 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="327"/>
         <source>NetworkError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="336"/>
@@ -516,17 +516,17 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="348"/>
         <source>DatagramTooLargeError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="353"/>
         <source>OperationError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="356"/>
         <source>AddressInUseError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="359"/>
@@ -541,12 +541,12 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="365"/>
         <source>ProxyAuthenticationRequiredError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="368"/>
         <source>ProxyConnectionRefusedError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="371"/>
@@ -556,17 +556,17 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="374"/>
         <source>ProxyConnectionClosedError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="377"/>
         <source>ProxyConnectionTimeoutError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="380"/>
         <source>ProxyNotFoundError</source>
-        <translation></translation>
+        <translation type="unfinished">הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="383"/>
