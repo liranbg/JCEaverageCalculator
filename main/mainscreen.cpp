@@ -45,6 +45,7 @@ MainScreen::MainScreen(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainSc
 }
 MainScreen::~MainScreen()
 {
+    delete statusBar;
     delete calendar;
     delete courseTableMgr;
     delete userLoginSetting;
@@ -122,7 +123,6 @@ void MainScreen::on_keepLogin_clicked()
 }
 void MainScreen::on_usrnmLineEdit_editingFinished()
 {
-    qDebug() << Q_FUNC_INFO <<  "in: " << ui->tabWidget->currentWidget()->objectName();
     ui->usrnmLineEdit->setText(ui->usrnmLineEdit->text().toLower());
 }
 
@@ -244,7 +244,6 @@ void MainScreen::on_revertBtn_clicked()
     }
 }
 
-
 //EVENTS ON CALENDAR TAB
 void MainScreen::on_examsBtn_clicked()
 {
@@ -314,104 +313,48 @@ void MainScreen::on_exportToCVSBtn_clicked()
     }
 }
 //EVENTS ON MENU BAR
-void MainScreen::on_actionCredits_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    QMessageBox::about(this, "About",
-                       "<a href='http://liranbg.github.io/JceManager/'>Jce Manager</a> v1.0.0<br><br>"
-                       +tr("License:")+
-                       "<br>GNU LESSER GENERAL PUBLIC LICENSE V2.1<br>"
-                       +"<br>"+
-                       "<a href='https://github.com/liranbg/JceManager'>JceManager Repository</a>"+
-                       "<br><br>"
-                       +tr("Powered By: ")+
-                       "<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
-                       +tr("Developed By")+
-                       ":<ul>"+
-                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"+
-                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li></ul>"
-                       );
-}
-void MainScreen::on_actionExit_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    exit(0);
-}
-void MainScreen::on_actionHow_To_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    QMessageBox::information(this,"How To",
-                             "<b>"
-                             +tr("Help Guide")+
-                             "</b><ul>"
-                             +tr("<br><li>Login: <ul><li>Type your username and password and click Login.</li><li>Once you are connected, you will see a green ball in the right buttom panel.</li></ul></li>")
-                             +tr("<br><li>Getting GPA sheet<ul><li>Click on GPA Tab</li><li> Select your dates and click on Add</li></ul></li>")
-                             +tr("<br><li>Average Changing<ul><li>Change one of your grade and see the average in the buttom panel changing.</li></ul></li>")
-                             +tr("<br><li>Getting Calendar<ul><li>Click on Calendar Tab</li><li> Select your dates and click on Get Calendar</li></ul></li>")
-                             +tr("<br><li>For exporting your calendar to a .CSV file:<ul><li>Do previous step and continue to next step</li><li> Click on Export to CSV</li><li>Select your dates and click OK</li><li>Once you're Done, go on your calendar and import your csv file</li></li>")+
-                             "<br><br>"
-                             +tr("<b>For more information, please visit us at: <a href='http://liranbg.github.io/JceManager/'>Jce Manager site</a></b>"));
-}
-void MainScreen::on_actionHebrew_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    if (ui->actionEnglish->isChecked() || ui->actionOS_Default->isChecked())
-    {
-        ui->actionEnglish->setChecked(false);
-        ui->actionOS_Default->setChecked(false);
-        qDebug() << Q_FUNC_INFO << "Changed Language to hebrew";
-        data->setLocal("he");
-        QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
-    }
-    else
-        ui->actionHebrew->setChecked(true);
-}
-void MainScreen::on_actionEnglish_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    if (ui->actionHebrew->isChecked() || ui->actionOS_Default->isChecked())
-    {
-        ui->actionHebrew->setChecked(false);
-        ui->actionOS_Default->setChecked(false);
-        qDebug() << Q_FUNC_INFO << "Changed Language to English";
-        data->setLocal("en");
-        QMessageBox::information(this,"Settings",tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
-    }
-    else
-        ui->actionEnglish->setChecked(true);
-}
-void MainScreen::on_actionOS_Default_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-    if (ui->actionHebrew->isChecked() || ui->actionEnglish->isChecked())
-    {
-        ui->actionHebrew->setChecked(false);
-        ui->actionEnglish->setChecked(false);
-        qDebug() << Q_FUNC_INFO << "Changed Language to OS Default";
-        data->setLocal("default");
-        QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
-    }
-    else
-        ui->actionOS_Default->setChecked(true);
-}
-void MainScreen::checkLocale()
-{
-    if(data->getLocal() == "en")
-    {
-        ui->actionHebrew->setChecked(false);
-        ui->actionOS_Default->setChecked(false);
-        ui->actionEnglish->setChecked(true);
-    }else if(data->getLocal() == "he"){
-        ui->actionHebrew->setChecked(true);
-        ui->actionOS_Default->setChecked(false);
-        ui->actionEnglish->setChecked(false);
-    }else{
-        ui->actionHebrew->setChecked(false);
-        ui->actionOS_Default->setChecked(true);
-        ui->actionEnglish->setChecked(false);
-    }
-}
-
+//void MainScreen::on_actionHebrew_triggered()
+//{
+//    qDebug() << Q_FUNC_INFO;
+//    if (ui->actionEnglish->isChecked() || ui->actionOS_Default->isChecked())
+//    {
+//        ui->actionEnglish->setChecked(false);
+//        ui->actionOS_Default->setChecked(false);
+//        qDebug() << Q_FUNC_INFO << "Changed Language to hebrew";
+//        data->setLocal("he");
+//        QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
+//    }
+//    else
+//        ui->actionHebrew->setChecked(true);
+//}
+//void MainScreen::on_actionEnglish_triggered()
+//{
+//    qDebug() << Q_FUNC_INFO;
+//    if (ui->actionHebrew->isChecked() || ui->actionOS_Default->isChecked())
+//    {
+//        ui->actionHebrew->setChecked(false);
+//        ui->actionOS_Default->setChecked(false);
+//        qDebug() << Q_FUNC_INFO << "Changed Language to English";
+//        data->setLocal("en");
+//        QMessageBox::information(this,"Settings",tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
+//    }
+//    else
+//        ui->actionEnglish->setChecked(true);
+//}
+//void MainScreen::on_actionOS_Default_triggered()
+//{
+//    qDebug() << Q_FUNC_INFO;
+//    if (ui->actionHebrew->isChecked() || ui->actionEnglish->isChecked())
+//    {
+//        ui->actionHebrew->setChecked(false);
+//        ui->actionEnglish->setChecked(false);
+//        qDebug() << Q_FUNC_INFO << "Changed Language to OS Default";
+//        data->setLocal("default");
+//
+//    }
+//    else
+//        ui->actionOS_Default->setChecked(true);
+//}
 //MAIN SCREEN
 void MainScreen::on_labelMadeBy_linkActivated(const QString &link)
 {
@@ -436,3 +379,78 @@ bool MainScreen::isBusy()
     return this->isBlocked;
 }
 
+
+void MainScreen::on_langButton_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (data->getLocale() == "en")
+    {
+        qDebug() << Q_FUNC_INFO << "Changed lang to he";
+        data->setLocale("he");
+
+    }else if(data->getLocale() == "he"){
+        qDebug() << Q_FUNC_INFO << "Changed lang to en";
+        data->setLocale("en");
+    }else{
+        qCritical() << Q_FUNC_INFO << "currupted data. reset to en";
+        data->reset();
+        data->setLocale("en");
+    }
+    checkLocale();
+
+
+    QMessageBox::information(this,tr("Settings"),tr("Your settings will take effect next time you start the program"),QMessageBox::Ok);
+
+}
+
+void MainScreen::on_creditButton_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+    QMessageBox::about(this, "About",
+                       "<a href='http://liranbg.github.io/JceManager/'>Jce Manager</a> v1.0.0<br><br>"
+                       +tr("License:")+
+                       "<br>GNU LESSER GENERAL PUBLIC LICENSE V2.1<br>"
+                       +"<br>"+
+                       "<a href='https://github.com/liranbg/JceManager'>JceManager Repository</a>"+
+                       "<br><br>"
+                       +tr("Powered By: ")+
+                       "<a href='https://github.com/liranbg/jceConnection'> Jce Connection</a><br><br>"
+                       +tr("Developed By")+
+                       ":<ul>"+
+                       "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran")+"</a></li>"+
+                       "<li><a href='mailto:sagidayan@gmail.com'>"+tr("Sagi")+"</a></li></ul>"
+                       );
+}
+
+void MainScreen::on_howtoButton_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+    QMessageBox::information(this,"How To",
+                             "<b>"
+                             +tr("Help Guide")+
+                             "</b><ul>"
+                             +tr("<br><li>Login: <ul><li>Type your username and password and click Login.</li><li>Once you are connected, you will see a green ball in the right buttom panel.</li></ul></li>")
+                             +tr("<br><li>Getting GPA sheet<ul><li>Click on GPA Tab</li><li> Select your dates and click on Add</li></ul></li>")
+                             +tr("<br><li>Average Changing<ul><li>Change one of your grade and see the average in the buttom panel changing.</li></ul></li>")
+                             +tr("<br><li>Getting Calendar<ul><li>Click on Calendar Tab</li><li> Select your dates and click on Get Calendar</li></ul></li>")
+                             +tr("<br><li>For exporting your calendar to a .CSV file:<ul><li>Do previous step and continue to next step</li><li> Click on Export to CSV</li><li>Select your dates and click OK</li><li>Once you're Done, go on your calendar and import your csv file</li></li>")+
+                             "<br><br>"
+                             +tr("<b>For more information, please visit us at: <a href='http://liranbg.github.io/JceManager/'>Jce Manager site</a></b>"));
+}
+
+void MainScreen::checkLocale()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (data->getLocale() == "en")
+    {
+        ui->langButton->setIcon(QIcon(":/icons/us.png"));
+
+    }else if(data->getLocale() == "he"){
+        ui->langButton->setIcon(QIcon(":/icons/il.png"));
+    }else{
+        qCritical() << Q_FUNC_INFO << "currupted data. reset eng";
+        data->reset();
+        ui->langButton->setIcon(QIcon(":/icons/us.png"));
+
+    }
+}

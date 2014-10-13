@@ -20,16 +20,14 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     QTranslator translator;
-    QString loco;
     SaveData data;
-    loco = data.getLocal();
     //Loading Local (From Settings file (SaveData.cpp)
-    if(loco == "en")
+    if(data.getLocale() == "en")
     {
-        translator.load("jce_" + loco , a.applicationDirPath());
+        translator.load("jce_" + data.getLocale() , a.applicationDirPath());
         qDebug() << Q_FUNC_INFO << "Locale : English Local Loaded";
-    }else if(loco == "he"){
-        translator.load("jce_" + loco , a.applicationDirPath());
+    }else if(data.getLocale() == "he"){
+        translator.load("jce_" + data.getLocale() , a.applicationDirPath());
         qDebug() << Q_FUNC_INFO << "Local : Hebrew Local Loaded";
     }else{
         translator.load("jce_en" , a.applicationDirPath());

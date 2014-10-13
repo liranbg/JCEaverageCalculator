@@ -12,7 +12,7 @@
  * Keys:
  * "username"
  * "password"
- * "local"
+ * "locale"
  * "calendar"
  *
  * Note that the password will be encrypted using the SimpleCrypt class!
@@ -40,11 +40,11 @@ public:
     void setUsername(QString username);
     void setPassword(QString password);
     void setCal(QString cal);
-    void setLocal(QString local);
+    void setLocale(QString locale);
     QString getUsername();
     QString getPassword();
     QString getCal();
-    QString getLocal();
+    QString getLocale();
 
 private:
     QMap<QString, QString> DB;

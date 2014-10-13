@@ -36,6 +36,7 @@ private slots:
     //GPA Tab slots
     void on_ratesButton_clicked();
     void on_graphButton_clicked();
+    void on_revertBtn_clicked();
     void on_clearTableButton_clicked();
     void on_coursesTable_itemChanged(QTableWidgetItem *item);
     void on_checkBoxCoursesInfluence_toggled(bool checked);
@@ -45,26 +46,21 @@ private slots:
     void on_examsBtn_clicked();
     void on_exportToCVSBtn_clicked();
 
-    //Menubar slots
-    void on_actionCredits_triggered();
-    void on_actionExit_triggered();
-    void on_actionHow_To_triggered();
-    void on_actionHebrew_triggered();
-    void on_actionEnglish_triggered();
-    void on_actionOS_Default_triggered();
-
     //Main screen general slots
     void on_spinBoxCoursesFromSemester_valueChanged(int arg1);
     void on_spinBoxCoursesFromYear_valueChanged(int arg1);
     void on_spinBoxCoursesToYear_valueChanged(int arg1);
     void on_spinBoxCoursesToSemester_valueChanged(int arg1);
     void on_labelMadeBy_linkActivated(const QString &link);
-//    void on_progressBar_valueChanged(int value);
 
-    void on_revertBtn_clicked();
+    //Setting dock
+    void on_langButton_clicked();
+
+    void on_creditButton_clicked();
+
+    void on_howtoButton_clicked();
 
 private:
-
     void checkLocale();
     bool checkIfValidDates();
 

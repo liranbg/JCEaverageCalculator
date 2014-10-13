@@ -87,3 +87,4 @@ SOURCES += \
     src/jceData/Calendar/coursesSchedule/calendarPageCourse.cpp \
     src/jceData/Calendar/coursesSchedule/calendarSchedule.cpp \
     main/jceWidgets/jcestatusbar.cpp
+

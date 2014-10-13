@@ -39,7 +39,7 @@ bool SaveData::isSaved()
  *   # username
  *   # password
  *   # calendar
- *   # local
+ *   # locale
  */
 void SaveData::reset()
 {
@@ -82,11 +82,11 @@ void SaveData::setCal(QString cal)
 }
 
 /**
- * @brief gest a local and saves it into the QMap.
+ * @brief gest a locale and saves it into the QMap.
  * QMap then is saved to the file.
- * @param local - QString (he, en, default)
+ * @param locale - QString (he, en)
  */
-void SaveData::setLocal(QString local)
+void SaveData::setLocale(QString local)
 {
     DB.insert("locale", local);
     save();
@@ -112,9 +112,9 @@ QString SaveData::getPassword()
 
 /**
  * @brief read from file
- * @return local
+ * @return locale
  */
-QString SaveData::getLocal()
+QString SaveData::getLocale()
 {
     return DB.value("locale");
 }

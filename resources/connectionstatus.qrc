@@ -6,5 +6,9 @@
         <file>icon.ico</file>
         <file>iconX.png</file>
         <file>iconV.png</file>
+        <file>il.png</file>
+        <file>us.png</file>
+        <file>help.png</file>
+        <file>team.png</file>
     </qresource>
 </RCC>
