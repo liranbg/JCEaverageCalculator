@@ -7,6 +7,7 @@
 
 //TODO: Project todo list
 //update translation, update site spelling, release notes, update help
+//BUG: fix locale on windows
 int main(int argc, char *argv[])
 {
 #ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal
@@ -24,17 +25,17 @@ int main(int argc, char *argv[])
     SaveData data;
     loco = data.getLocal();
     //Loading Local (From Settings file (SaveData.cpp)
-    if(loco == "default")
+    if(loco == "en")
     {
-        QString locale = QLocale::system().name();
-        translator.load("jce_"+locale , a.applicationDirPath());
-        qDebug() << Q_FUNC_INFO << "Local : Default Local Loaded";
+        translator.load("jce_" + loco , a.applicationDirPath());
+        qDebug() << Q_FUNC_INFO << "Locale : English Local Loaded";
     }else if(loco == "he"){
-        translator.load("jce_he" , a.applicationDirPath());
+        translator.load("jce_" + loco , a.applicationDirPath());
         qDebug() << Q_FUNC_INFO << "Local : Hebrew Local Loaded";
     }else{
         translator.load("jce_en" , a.applicationDirPath());
-        qDebug() << Q_FUNC_INFO << "Local : English Local Loaded";
+        data.reset();
+        qCritical() << Q_FUNC_INFO << "save data corrupted, rested file.";
     }
     a.installTranslator(&translator); //Setting local
     a.setApplicationVersion(APP_VERSION);

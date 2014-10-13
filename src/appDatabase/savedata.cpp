@@ -88,7 +88,7 @@ void SaveData::setCal(QString cal)
  */
 void SaveData::setLocal(QString local)
 {
-    DB.insert("local", local);
+    DB.insert("locale", local);
     save();
 }
 
@@ -116,7 +116,7 @@ QString SaveData::getPassword()
  */
 QString SaveData::getLocal()
 {
-    return DB.value("local");
+    return DB.value("locale");
 }
 
 /**
@@ -160,7 +160,7 @@ void SaveData::createDB()
 {
     DB.insert("username", "");
     DB.insert("password", "");
-    DB.insert("local", "default");
+    DB.insert("locale", "en");
     DB.insert("calendar", "");
 }
 

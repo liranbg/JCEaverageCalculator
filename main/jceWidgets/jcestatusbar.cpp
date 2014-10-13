@@ -111,7 +111,7 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
 */
 void jceStatusBar::setProgressValue(int value)
 {
-    if (value == 0)
+    if (value == 0 || value == 100)
     {
         progressBar->setVisible(false);
         progressBar->setValue(0);

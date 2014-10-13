@@ -152,9 +152,6 @@ void jceLogin::reMakeConnection()
  */
 int jceLogin::makeFirstVisit()
 {
-  QString usr = jceA->getUsername();
-  QString psw = jceA->getPassword();
-
   if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
       if (!JceConnector->recieveData(recieverPage))
