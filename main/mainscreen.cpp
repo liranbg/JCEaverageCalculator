@@ -163,7 +163,7 @@ void MainScreen::on_ratesButton_clicked()
             }
             else
             {
-                statusBar->setIconConnectionStatus(jceStatusBar::ERROR);
+                statusBar->setIconConnectionStatus(jceStatusBar::Error);
                 qCritical() << Q_FUNC_INFO << "grade get ended with" << status;
             }
         }

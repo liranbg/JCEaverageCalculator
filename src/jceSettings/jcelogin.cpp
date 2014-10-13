@@ -97,7 +97,7 @@ int jceLogin::makeConnection()
     status = jceStatus::JCE_NOT_CONNECTED;
 
   if (status != jceStatus::JCE_YOU_ARE_IN)
-      statusBar->setIconConnectionStatus(jceStatusBar::ERROR);
+      statusBar->setIconConnectionStatus(jceStatusBar::Error);
   //we throw status even if we are IN!
   qDebug() << Q_FUNC_INFO << "return status: " << status;
   return status;

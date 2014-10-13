@@ -46,7 +46,7 @@ void jceStatusBar::setIconConnectionStatus(jceProgressStatus update)
     QPixmap iconPix;
     switch (update)
     {
-    case jceProgressStatus::ERROR:
+    case jceProgressStatus::Error:
         setProgressValue(0);
         iconPix.load(":/icons/redStatusIcon.png");
         showMessage(tr("Error"));

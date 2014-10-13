@@ -12,6 +12,7 @@
 class jceStatusBar : public QStatusBar
 {
   Q_OBJECT
+
 public:
 
   enum jceProgressStatus
@@ -25,7 +26,7 @@ public:
     Recieving,
     Inserting,
     Done,
-    ERROR
+    Error
   };
 
   jceStatusBar(QWidget *parent = 0);
@@ -45,8 +46,8 @@ private slots:
 private:
 
 
-    QProgressBar * progressBar;
-    QLabel *iconButtomStatusLabel;
+  QProgressBar * progressBar;
+  QLabel *iconButtomStatusLabel;
 };
 
 #endif // JCESTATUSBAR_H
