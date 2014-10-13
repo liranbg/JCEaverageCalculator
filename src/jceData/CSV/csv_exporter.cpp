@@ -103,7 +103,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         {
             QTime startH = exam->getFirstHourbegin();
             QTime endH = startH.addSecs(60*60*3);//add 3 hours
-            QString type = "מבחן א";
+            QString type = "מועד א";
             QString name = exam->getName();
             QDate date = exam->getFirstDate();
             QString line = makeLine(name, &date, startH.hour(), startH.minute(), endH.hour(), endH.minute(), "", "", type);
@@ -117,7 +117,7 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
             startH = exam->getSecondHourbegin();
             endH = startH.addSecs(60*60*3);//add 3 hours
             date = exam->getSecondDate();
-            type = "מבחן ב";
+            type = "מועד ב";
             line = makeLine(name, &date, startH.hour(), startH.minute(), endH.hour(), endH.minute(), "", "", type);
             if(line != NULL)
                 out << line << char(0x0A);
@@ -157,7 +157,7 @@ QString CSV_Exporter::getFileFath()
  * @param name
  * @param date
  * @param startH
- * @param startM - Not used at the moment.
+ * @param startM
  * @param endH
  * @param endM
  * @param lecturer
