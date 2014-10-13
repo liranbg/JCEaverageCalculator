@@ -1,7 +1,4 @@
 #include "calendarSchedule.h"
-/*
- * BUG: fix resizing when showing error on dates validation
- */
 calendarSchedule::calendarSchedule(QWidget *parent) : QTableWidget(parent)
 {
     QStringList days,hours;
