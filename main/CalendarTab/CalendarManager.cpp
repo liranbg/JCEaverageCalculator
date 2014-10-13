@@ -36,7 +36,7 @@ void CalendarManager::exportCalendarCSV()
     //calDialog.getStartDate(),calDialog.getEndDate()
     if (caliDialog->ok())
     {
-        if (CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog))
+        if (CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog, examSchePtr))
         {
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setText(QObject::tr("Exported Successfuly!"));

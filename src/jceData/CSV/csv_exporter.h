@@ -18,6 +18,7 @@
 
 #include "../Calendar/coursesSchedule/calendarSchedule.h"
 #include "../Calendar/coursesSchedule/calendarDialog.h"
+#include "../Calendar/Exams/calendarExam.h"
 
 
 #define CSV_CALENDAR_HEADER "Subject,Start Date,Start Time,End Date,End Time,Description,Location"
@@ -26,7 +27,7 @@ class CSV_Exporter
 {
 public:
     CSV_Exporter();
-    static bool exportCalendar(calendarSchedule* calSched, CalendarDialog *cal);
+    static bool exportCalendar(calendarSchedule* calSched, CalendarDialog *cal, calendarExam* exams);
 
 
 private:

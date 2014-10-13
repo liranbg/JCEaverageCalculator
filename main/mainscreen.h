@@ -10,7 +10,7 @@
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"
-#include "./jceWidgets/jceStatusBar.h"
+#include "./jceWidgets/jcestatusbar.h"
 
 
 

@@ -30,6 +30,7 @@ public:
     QDate getStartDate();
     QDate getEndDate();
     bool ok();
+    bool isExams();
 
 private slots:
     void on_calStart_selectionChanged();

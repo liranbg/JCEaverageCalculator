@@ -96,3 +96,7 @@ void CalendarDialog::changeLabeStatusIcon(bool goodOrBad)
         iconPixStatus.load(":/icons/iconX.png");
     this->ui->labelIconStatus->setPixmap(iconPixStatus);
 }
+
+bool CalendarDialog::isExams(){
+    return ui->isExam->isChecked();
+}

@@ -3,7 +3,6 @@
 /*
  *
  * Class doc can be found in csv_exporter.h
- *  TODO: add exam exportation
  */
 CSV_Exporter::CSV_Exporter()
 {
@@ -18,7 +17,7 @@ CSV_Exporter::CSV_Exporter()
  * @param cal       - The Calendar dialog witch holdes the starting date and the eand date.
  * @return          - True if *all* went well, false if something on the way went wrong.
  */
-bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal)
+bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *cal, calendarExam *exams)
 {
     if ((cal == NULL) || (calSched == NULL)) //pointers checking!
         return false;
@@ -97,6 +96,36 @@ bool CSV_Exporter::exportCalendar(calendarSchedule *calSched, CalendarDialog *ca
         out.flush();
     }
 
+    if(cal->isExams()) //Export Exams as well
+    {
+        qDebug() << "Exporting Exams!";
+        for(calendarExamCourse* exam:exams->getExams())
+        {
+            QTime startH = exam->getFirstHourbegin();
+            QTime endH = startH.addSecs(60*60*3);//add 3 hours
+            QString type = "מבחן א";
+            QString name = exam->getName();
+            QDate date = exam->getFirstDate();
+            QString line = makeLine(name, &date, startH.hour(), startH.minute(), endH.hour(), endH.minute(), "", "", type);
+            if(line != NULL)
+                out << line << char(0x0A);
+            else
+                qWarning() << Q_FUNC_INFO << "CSV : Got A NULL in Line! in function: " << Q_FUNC_INFO;
+            //===============
+            // Second Date
+            //===============
+            startH = exam->getSecondHourbegin();
+            endH = startH.addSecs(60*60*3);//add 3 hours
+            date = exam->getSecondDate();
+            type = "מבחן ב";
+            line = makeLine(name, &date, startH.hour(), startH.minute(), endH.hour(), endH.minute(), "", "", type);
+            if(line != NULL)
+                out << line << char(0x0A);
+            else
+                qWarning() << Q_FUNC_INFO << "CSV : Got A NULL in Line! in function: " << Q_FUNC_INFO;
+        }
+        out.flush();
+    }
 
     file.close();
     qDebug() << Q_FUNC_INFO << "CSV : Exported Successfully";
@@ -115,6 +144,10 @@ QString CSV_Exporter::getFileFath()
                                                     QObject::tr("CSV Files (*.csv);;All Files (*)"));
     if (fileName == "")
         return NULL;
+
+    //IMPORTENT! ADD CSV EXTENTION
+    if(!fileName.contains(".csv") && !fileName.contains(".CSV"))
+        fileName.append(".csv");
     return fileName;
 }
 
@@ -149,20 +182,32 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
 
     QString start;
     start.append(QString::number(startH));
-    start.append(":00");
-    //    start.append(QString::number(startM));
+    if(startM != 0)
+    {
+        start.append(":");
+        start.append(QString::number(startM));
+    }
+    else
+        start.append(":00");
     start.append(":00");
 
     QString end;
     end.append(QString::number(endH));
-    end.append(":");
-    end.append(QString::number(endM));
+    if(endM != 0)
+    {
+        end.append(":");
+        end.append(QString::number(endM));
+    }
+    else
+        end.append(":00");
     end.append(":00");
 
     QString description = "\"מרצה ";
 
     if (lecturer == LECTURER_DEFAULT_STRING)
         description.append("טרם נקבע מרצה או מתרגל");
+    else if(lecturer == "")
+        description = "";
     else
         description.append(lecturer);
 
@@ -175,6 +220,9 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
         description.append(" ב");
         description.append(room);
     }
+
+    if(room == "")
+        description = "\"\Good Luck!\n";
 
     description.append("\n Created with JCE Manager.\"");
 
@@ -237,3 +285,4 @@ void CSV_Exporter::changeDayNumberFromQtToNormal(int *QtDay)
     }
     return; //Done.
 }
+
