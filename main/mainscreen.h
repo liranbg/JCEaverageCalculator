@@ -61,6 +61,8 @@ private slots:
     void on_labelMadeBy_linkActivated(const QString &link);
 //    void on_progressBar_valueChanged(int value);
 
+    void on_revertBtn_clicked();
+
 private:
 
     void checkLocale();

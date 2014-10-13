@@ -233,6 +233,16 @@ void MainScreen::on_graphButton_clicked()
     if (!courseTableMgr->showGraph())
         QMessageBox::critical(this,tr("Error"),tr("You must to load GPA first\nClick on  'Get GPA'"));
 }
+void MainScreen::on_revertBtn_clicked()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (!isBusy())
+    {
+        lock();
+        courseTableMgr->revertChanges();
+        unlock();
+    }
+}
 
 
 //EVENTS ON CALENDAR TAB
@@ -425,3 +435,4 @@ bool MainScreen::isBusy()
 {
     return this->isBlocked;
 }
+

@@ -29,6 +29,7 @@ class GradePage : public Page
 
 public:
     GradePage(QString html);
+    GradePage(GradePage &other);
     ~GradePage();
 
     void removeCourse(QString courseSerialID);

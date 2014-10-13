@@ -8,6 +8,14 @@ GradePage::GradePage(QString html) : Page()
     tempHtml = getString(html);
     coursesListInit(tempHtml);
 }
+
+GradePage::GradePage(GradePage &other)
+{
+    for(gradeCourse* c : other.getCourses())
+    {
+        courses.push_back(new gradeCourse(*c));
+    }
+}
 GradePage::~GradePage()
 {
     for (Course* c : courses)

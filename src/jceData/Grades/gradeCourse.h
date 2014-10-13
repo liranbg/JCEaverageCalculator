@@ -38,6 +38,7 @@ public:
     };
 
     gradeCourse(int year, int semester, int courseNumInList, int serial, QString name, QString type, double points,double hours, double grade, QString additions);
+    gradeCourse(gradeCourse &other);
     ~gradeCourse();
 
     int getYear() const { return this->year; }

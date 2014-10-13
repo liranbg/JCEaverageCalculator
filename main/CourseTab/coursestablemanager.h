@@ -29,10 +29,13 @@ public:
     void influnceCourseChanged(bool status);
     void clearTable();
 
+    void revertChanges();
+
 private:
     gradegraph *graph;
     QTableWidget *courseTBL;
     GradePage *gp;
+    GradePage *gpCpy;
     user *us;
 
     gradeCourse * getCourseByRow(int row);

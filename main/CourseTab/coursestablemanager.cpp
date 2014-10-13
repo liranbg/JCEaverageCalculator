@@ -6,6 +6,7 @@
 coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
 {
     this->gp = NULL;
+    this->gpCpy = NULL;
     this->us = usrPtr;
     this->courseTBL = ptr;
 
@@ -29,6 +30,8 @@ coursesTableManager::~coursesTableManager()
 {
     courseTBL = NULL;
     delete gp;
+    delete gpCpy;
+    gpCpy = NULL;
     gp = NULL;
 }
 /**
@@ -55,6 +58,7 @@ void coursesTableManager::setCoursesList(QString &html)
 {
     clearTable();
     gp = new GradePage(html);
+    this->gpCpy = new GradePage(*gp);
     insertJceCoursesIntoTable();
 }
 /**
@@ -293,6 +297,36 @@ void coursesTableManager::clearTable()
         delete gp;
     gp = NULL;
     courseTBL->repaint();
+}
+/**
+ * @brief coursesTableManager::revertChanges
+ *
+ * restored data from the copy of grade page
+ * TODO: revert-> make it efficient
+ */
+void coursesTableManager::revertChanges()
+{
+    if (courseTBL->rowCount() <= 0)
+        return;
+    if (this->gpCpy == NULL)
+        return;
+    if (this->gp == NULL)
+        return;
+
+    for (int i = 0; i < courseTBL->rowCount(); ++i)
+    {
+        gradeCourse * temp = getCourseByRow(i);
+        for (gradeCourse * notChangedCourse: gpCpy->getCourses())
+        {
+        if ((temp->getGrade() != notChangedCourse->getGrade()) &&
+                (temp->getSerialNum() == notChangedCourse->getSerialNum()))
+        {
+            courseTBL->item(i,gradeCourse::CourseScheme::GRADE)->setText(QString::number(notChangedCourse->getGrade()));
+
+        }
+        }
+    }
+
 }
 
 gradeCourse *coursesTableManager::getCourseByRow(int row)

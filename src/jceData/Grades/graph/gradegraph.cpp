@@ -1,9 +1,5 @@
 #include "gradegraph.h"
 #include "ui_gradegraph.h"
-/*
- * TODO: make graph understandable
- * BUG: graph bug when theres small range of years
- */
 gradegraph::gradegraph(QWidget *parent) : QDialog(parent), ui(new Ui::gradegraph)
 {
   ui->setupUi(this);

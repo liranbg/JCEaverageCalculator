@@ -11,6 +11,17 @@ gradeCourse::gradeCourse(int year, int semester, int courseNumInList, int serial
     this->courseNumInList = courseNumInList;
 }
 
+gradeCourse::gradeCourse(gradeCourse &other) :  Course(other.getSerialNum(),other.getName(),other.getType())
+{
+    this->points = other.points;
+    this->hours = other.hours;
+    this->grade = other.grade;
+    this->additions = other.additions;
+    this->year = other.year;
+    this->semester = other.semester;
+    this->courseNumInList = other.courseNumInList;
+}
+
 gradeCourse::~gradeCourse()
 {
 
