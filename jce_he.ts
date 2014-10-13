@@ -476,7 +476,7 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="301"/>
         <source>RemoteHostClosedError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="311"/>
@@ -486,12 +486,12 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="316"/>
         <source>SocketAccessError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="320"/>
         <source>SocketTimeoutError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="327"/>
@@ -501,17 +501,17 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="336"/>
         <source>SslHandshakeFailedError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="340"/>
         <source>SslInternalError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="344"/>
         <source>SslInvalidUserDataError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="348"/>
@@ -531,12 +531,12 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="359"/>
         <source>SocketAddressNotAvailableError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="362"/>
         <source>UnsupportedSocketOperationError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="365"/>
@@ -551,7 +551,7 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="371"/>
         <source>UnfinishedSocketOperationError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="374"/>
@@ -566,22 +566,22 @@ If this message appear without reason, please contact me at liranbg@gmail.com</s
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="380"/>
         <source>ProxyNotFoundError</source>
-        <translation type="unfinished">הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="383"/>
         <source>ProxyProtocolError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="386"/>
         <source>TemporaryError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceConnection/jcesslclient.cpp" line="389"/>
         <source>UnknownSocketError</source>
-        <translation></translation>
+        <translation>הטעות הזאת הינה קריטית. אנא שלח אלינו (מייל בקובץ &gt; אודות) את קובץ  J_M_Log על מנת שנבין טוב יותר את הבעייה (קובץ זה איננו מכיל את סיסמתך)</translation>
     </message>
     <message>
         <location filename="src/jceData/CSV/csv_exporter.cpp" line="45"/>
