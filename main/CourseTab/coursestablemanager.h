@@ -2,16 +2,12 @@
 #define COURSESTABLEMANAGER_H
 
 
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QtCore/QCoreApplication>
+#include <QtGlobal>
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QString>
 #include <QMessageBox>
-
-#include <list>
 
 #include "./src/jceData/Grades/graph/gradegraph.h"
 #include "./src/jceData/Grades/gradePage.h"
@@ -28,7 +24,7 @@ public:
     void addRow(const gradeCourse * courseToAdd = 0);
     double getAvg();
 
-    void showGraph();
+    bool showGraph();
 
     void influnceCourseChanged(bool status);
     void clearTable();
@@ -42,6 +38,8 @@ private:
     gradeCourse * getCourseByRow(int row);
     bool isCourseAlreadyInserted(double courseID);
     bool isCourseInfluence(const gradeCourse *courseToCheck);
+
+    void colorTheGrade(int rowIndex);
 };
 
 #endif // COURSESTABLEMANAGER_H

@@ -59,6 +59,7 @@ bool loginHandler::makeConnection()
     {
     case jceLogin::JCE_YOU_ARE_IN:
     {
+        statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
         logggedInFlag = true;
         return logggedInFlag;
     }
@@ -145,7 +146,6 @@ int loginHandler::makeCalendarRequest(int year, int semester)
     else
         return jceLogin::JCE_NOT_CONNECTED;
 }
-
 int loginHandler::makeExamsScheduleRequest(int year, int semester)
 {
 

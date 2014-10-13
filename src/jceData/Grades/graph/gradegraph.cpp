@@ -17,7 +17,8 @@ void gradegraph::showGraph(GradePage *gpPTR)
   qDebug() << Q_FUNC_INFO;
   this->gp = gpPTR;
 
-  clearGraph();
+  if (ui->graphwidget->graphCount() > 0)
+    clearGraph();
 
   setVisualization();
   setGraphsData();
@@ -34,7 +35,7 @@ gradegraph::~gradegraph()
 
 void gradegraph::setGraphsData()
 {
-  int minYearInList = gp->getMinYearInList();
+  int minYearInList = gp->getMinYearInList()-1;
   int maxYearInList = gp->getMaxYearInList()+1;
   int xRangeForYear = (maxYearInList - minYearInList+2)*3;
   QVector<double> SemesterialAvg(xRangeForYear),yearlyAvg(xRangeForYear),indicatorX(xRangeForYear);
@@ -134,8 +135,7 @@ void gradegraph::setVisualization()
   ui->graphwidget->graph(1)->setPen(QPen( QColor(Qt::GlobalColor::red)));
   ui->graphwidget->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::red, Qt::red, 7));
 
-
-  int minYearInList = gp->getMinYearInList();
+  int minYearInList = gp->getMinYearInList()-1;
   int maxYearInList = gp->getMaxYearInList()+1;
   int xRangeForYear = (maxYearInList - minYearInList+2)*3;
 

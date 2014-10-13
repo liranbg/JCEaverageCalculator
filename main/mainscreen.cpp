@@ -152,7 +152,6 @@ void MainScreen::on_ratesButton_clicked()
                 statusBar->setIconConnectionStatus(jceStatusBar::Inserting);
                 pageString = loginHandel->getCurrentPageContect();
                 courseTableMgr->setCoursesList(pageString);
-                courseTableMgr->insertJceCoursesIntoTable();
                 statusBar->setIconConnectionStatus(jceStatusBar::Done);
             }
             else if (status == jceLogin::JCE_NOT_CONNECTED)
@@ -231,7 +230,8 @@ void MainScreen::on_clearTableButton_clicked()
 void MainScreen::on_graphButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
-    courseTableMgr->showGraph();
+    if (!courseTableMgr->showGraph())
+        QMessageBox::critical(this,tr("Error"),tr("You must to load GPA first\nClick on  'Get GPA'"));
 }
 
 

@@ -325,7 +325,10 @@ void jceLogin::reValidation()
       if (checkValidation())
         {
           if (makeSecondVisit() == true)
+          {
+              statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
             qDebug() << Q_FUNC_INFO << "Validated";
+          }
           else
             qWarning() << Q_FUNC_INFO << "Second visit finished with an error";
         }

@@ -135,8 +135,10 @@ gradeCourse* GradePage::lineToCourse(QString line)
     if (year >= maxYear)
         maxYear = year;
 
-    if (year <= minYear)
+    if ((year <= minYear) && (points > 0)) //not graded yet isnt influced year!
+    {
         minYear = year;
+    }
 
     tempC = new gradeCourse(year,semester,courseNumInList,serial,name,type,points,hours,grade,additions);
     return tempC;
@@ -152,11 +154,12 @@ bool GradePage::isGradedYet(QString grade)
     if (strlen(grade.toStdString().c_str()) <= 1)
         return false;
 
-    for (char c: grade.toStdString())
+    for (QChar c: grade)
     {
         if (c == '\0')
             break;
-        if (((!isdigit((int)c))  && (!isspace((int)c)))) //48 = 0, 57 = 9
+
+        if (((!c.isDigit())  && (!c.isSpace()))) //48 = 0, 57 = 9
             return false;
 
     }
