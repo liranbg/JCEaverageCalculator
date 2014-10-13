@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>810</width>
-    <height>273</height>
+    <height>306</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,7 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Exam Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../../resources/connectionstatus.qrc">
+    <normaloff>:/icons/icon.ico</normaloff>:/icons/icon.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
@@ -99,7 +103,6 @@
           </spacer>
          </item>
         </layout>
-        <zorder>pushButtonRevert</zorder>
         <zorder></zorder>
         <zorder>horizontalSpacer</zorder>
        </widget>
@@ -132,6 +135,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../resources/connectionstatus.qrc"/>
+ </resources>
  <connections/>
 </ui>
