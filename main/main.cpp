@@ -7,7 +7,6 @@
 
 //TODO: Project todo list
 //update translation, update site spelling, release notes, update help
-//BUG: fix locale on windows
 int main(int argc, char *argv[])
 {
 #ifdef QT_DEBUG // Incase QtCreator is in Debug mode all qDebug messages will go to terminal
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
     }else{
         translator.load("jce_en" , a.applicationDirPath());
         data.reset();
-        qCritical() << Q_FUNC_INFO << "save data corrupted, rested file.";
+        qCritical() << Q_FUNC_INFO << "save data corrupted, reset file.";
     }
     a.installTranslator(&translator); //Setting local
     a.setApplicationVersion(APP_VERSION);
