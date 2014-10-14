@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>blueStatusIcon.png</file>
-        <file>greenStatusIcon.png</file>
-        <file>redStatusIcon.png</file>
         <file>icon.ico</file>
         <file>iconX.png</file>
         <file>iconV.png</file>
@@ -10,5 +7,8 @@
         <file>us.png</file>
         <file>help.png</file>
         <file>team.png</file>
+        <file>busy.png</file>
+        <file>connected.png</file>
+        <file>disconnected.png</file>
     </qresource>
 </RCC>

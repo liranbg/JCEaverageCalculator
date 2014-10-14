@@ -7,6 +7,7 @@
 QT       += core gui network widgets printsupport
 
 CONFIG += qt c++11
+#CONFIG-=app_bundle
 
 TARGET = jceManager
 VERSION = 1.0.0
@@ -51,7 +52,6 @@ HEADERS += \
     src/appDatabase/jce_logger.h \
     src/jceData/Grades/graph/qcustomplot.h \
     src/jceData/Grades/graph/gradegraph.h \
-    src/jceData/Calendar/calendarPageCourse.h \
     src/jceData/Calendar/Exams/examDialog.h \
     src/jceData/Calendar/Exams/calendarExam.h \
     src/jceData/Calendar/Exams/calendarExamCourse.h \

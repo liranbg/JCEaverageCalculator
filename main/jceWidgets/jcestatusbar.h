@@ -3,11 +3,12 @@
 
 
 #include <QDebug>
+#include <QLayout>
 #include <QStatusBar>
 #include <QProgressBar>
 #include <QLabel>
 
-#define STATUS_ICON_HEIGH 35
+#define STATUS_ICON_HEIGH 48
 
 class jceStatusBar : public QStatusBar
 {
