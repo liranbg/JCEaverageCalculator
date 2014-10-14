@@ -192,10 +192,6 @@ font-size: 15px;
              </item>
             </layout>
            </item>
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="gridLayout_5">
-             <item row="0" column="0" rowspan="3" colspan="2">
-              <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout">
                  <item row="0" column="0">
@@ -304,10 +300,6 @@ font-size: 15px;
                   </widget>
                  </item>
                 </layout>
-               </item>
-              </layout>
-             </item>
-            </layout>
            </item>
           </layout>
          </widget>

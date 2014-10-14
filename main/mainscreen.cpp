@@ -77,6 +77,8 @@ void MainScreen::on_loginButton_clicked()
             }
             else
                 ui->labelPswInputStatus->setVisible(false);
+
+            unlock();
             return;
         }
         else
