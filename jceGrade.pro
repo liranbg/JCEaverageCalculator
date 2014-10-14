@@ -10,7 +10,7 @@ CONFIG += qt c++11
 #CONFIG-=app_bundle
 
 TARGET = jceManager
-VERSION = 1.0.0
+VERSION = 1.1.0
 TEMPLATE = app
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
