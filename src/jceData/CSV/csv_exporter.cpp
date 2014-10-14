@@ -222,9 +222,9 @@ QString CSV_Exporter::makeLine(QString name, QDate *date, int startH, int startM
     }
 
     if(room == "")
-        description = "\"\Good Luck!\n";
+        description = "\"Good Luck!\n";
 
-    description.append("\n Created with JCE Manager.\"");
+    description.append("\nCreated with JCE Manager.\"");
 
     //Create the Fucking Line
     //Header: Subject,Start Date,Start Time,End Date,End Time,Description,Location
