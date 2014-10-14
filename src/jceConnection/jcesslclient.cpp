@@ -212,7 +212,11 @@ void jceSSLClient::readIt()
 
         emit statusBar->progressHasPacket(10);
 
-        if (tempPacket.contains("Go_To_system_After_Login.htm") || tempPacket.contains("</html>"))
+        if ((tempPacket.mid(tempPacket.length()-7,7) == ".HTM-->")
+                || (tempPacket.mid(tempPacket.length()-7,7) == ".htm-->")
+                || tempPacket.contains("</html>")
+                )
+
         {
             //we have the last packet. (uses only in login first step
             recieveLastPacket = true;
