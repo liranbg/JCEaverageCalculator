@@ -10,7 +10,7 @@
 <li>Exams Schedule Exporting</li>
 <li>Fast Data Retrieving</li>
 <li>Added Progress Bar</li>
-<li>GPA grades has color gradient</li>
+<li>Tweaks, Bugs Fixed and more Friendly icons</li>
 </ul>
 
 ---
