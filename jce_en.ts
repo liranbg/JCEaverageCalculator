@@ -64,166 +64,149 @@
         <translation>JCE Manager</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="99"/>
-        <location filename="main/mainscreen.ui" line="190"/>
+        <location filename="main/mainscreen.ui" line="89"/>
+        <location filename="main/mainscreen.ui" line="183"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="174"/>
+        <location filename="main/mainscreen.ui" line="164"/>
         <source>Keep login</source>
         <translation>Keep login</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="252"/>
+        <location filename="main/mainscreen.ui" line="251"/>
         <source>Username</source>
         <translation>Username</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="293"/>
+        <location filename="main/mainscreen.ui" line="292"/>
         <source>Password</source>
         <translation>Password</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="326"/>
+        <location filename="main/mainscreen.ui" line="325"/>
         <source>GPA</source>
         <translation>GPA</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="552"/>
+        <location filename="main/mainscreen.ui" line="551"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Get your grades&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Get your grades&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="533"/>
+        <location filename="main/mainscreen.ui" line="532"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Clear table&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Clear table&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="785"/>
+        <location filename="main/mainscreen.ui" line="784"/>
         <source>Average:</source>
         <translation>Average:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="612"/>
+        <location filename="main/mainscreen.ui" line="611"/>
         <source>Only Main Courses</source>
         <translation>Only Main Courses</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="426"/>
-        <location filename="main/mainscreen.ui" line="692"/>
+        <location filename="main/mainscreen.ui" line="425"/>
+        <location filename="main/mainscreen.ui" line="691"/>
         <source>Year:</source>
         <translation>Year:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="397"/>
-        <location filename="main/mainscreen.ui" line="721"/>
+        <location filename="main/mainscreen.ui" line="396"/>
+        <location filename="main/mainscreen.ui" line="720"/>
         <source>Semester:</source>
         <translation>Semester:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="898"/>
+        <location filename="main/mainscreen.ui" line="897"/>
         <source>Export to CSV</source>
         <translation>Export to .CSV</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="55"/>
+        <location filename="main/mainscreen.ui" line="927"/>
         <source>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</source>
         <oldsource>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</oldsource>
         <translation>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="457"/>
+        <location filename="main/mainscreen.ui" line="456"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;To&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;To&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="536"/>
+        <location filename="main/mainscreen.ui" line="177"/>
+        <source>login</source>
+        <translation>login</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="535"/>
         <source>Clear Table</source>
         <translation>Clear Table</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="555"/>
+        <location filename="main/mainscreen.ui" line="554"/>
         <source>Get GPA</source>
         <translation>Get GPA</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="571"/>
+        <location filename="main/mainscreen.ui" line="570"/>
         <source>Revert Changes</source>
         <translation>Revert Changes</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="749"/>
+        <location filename="main/mainscreen.ui" line="748"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;From&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;From&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="778"/>
+        <location filename="main/mainscreen.ui" line="777"/>
         <source>Graph View</source>
         <translation>Graph View</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="846"/>
+        <location filename="main/mainscreen.ui" line="845"/>
         <source>Schedule</source>
         <translation>Schedule</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="884"/>
+        <location filename="main/mainscreen.ui" line="883"/>
         <source>Get Schedule &amp;&amp; Exam</source>
         <translation>Get Schedule &amp;&amp; Exam</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="891"/>
+        <location filename="main/mainscreen.ui" line="890"/>
         <source>Show Exams</source>
         <translation>Show Exams</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="938"/>
-        <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <location filename="main/mainscreen.ui" line="988"/>
+        <location filename="main/mainscreen.ui" line="1036"/>
+        <source>Team Credit</source>
+        <translation>Team Credit</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="942"/>
+        <location filename="main/mainscreen.ui" line="1198"/>
+        <location filename="main/mainscreen.ui" line="1249"/>
+        <source>Help</source>
+        <translation>Help</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="1090"/>
+        <location filename="main/mainscreen.ui" line="1138"/>
         <source>Language</source>
         <translation>Language</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="957"/>
-        <source>Credits</source>
-        <translation>Credits</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="962"/>
-        <source>Exit</source>
-        <translation>Exit</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="970"/>
-        <source>Hebrew</source>
-        <translation>עברית</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="978"/>
-        <source>English</source>
-        <translation>English</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="986"/>
-        <source>OS Default</source>
-        <translation>OS Default</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="991"/>
-        <source>How To</source>
-        <translation>How To</translation>
     </message>
     <message>
         <location filename="main/mainscreen.cpp" line="139"/>
         <location filename="main/mainscreen.cpp" line="161"/>
         <location filename="main/mainscreen.cpp" line="220"/>
         <location filename="main/mainscreen.cpp" line="234"/>
-        <location filename="main/mainscreen.cpp" line="287"/>
-        <location filename="main/mainscreen.cpp" line="297"/>
+        <location filename="main/mainscreen.cpp" line="286"/>
+        <location filename="main/mainscreen.cpp" line="296"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -235,8 +218,8 @@ Make Sure everything is correct and try again</source>
     </message>
     <message>
         <location filename="main/mainscreen.cpp" line="161"/>
-        <location filename="main/mainscreen.cpp" line="287"/>
-        <location filename="main/mainscreen.cpp" line="297"/>
+        <location filename="main/mainscreen.cpp" line="286"/>
+        <location filename="main/mainscreen.cpp" line="296"/>
         <source>Not Connected</source>
         <translation>Not Connected</translation>
     </message>
@@ -246,29 +229,29 @@ Make Sure everything is correct and try again</source>
         <translation>Missmatching Data</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="322"/>
+        <location filename="main/mainscreen.cpp" line="411"/>
         <source>License:</source>
         <translation>License:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="327"/>
+        <location filename="main/mainscreen.cpp" line="416"/>
         <source>Powered By: </source>
         <oldsource>powered by: </oldsource>
         <translation>Powered By: </translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="329"/>
+        <location filename="main/mainscreen.cpp" line="418"/>
         <source>Developed By</source>
         <translation>Developed By</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="345"/>
+        <location filename="main/mainscreen.cpp" line="430"/>
         <source>Help Guide</source>
         <oldsource>Guide</oldsource>
         <translation>Help Guide</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="331"/>
+        <location filename="main/mainscreen.cpp" line="420"/>
         <source>Liran</source>
         <translation>Liran Ben Gida</translation>
     </message>
@@ -280,50 +263,47 @@ Click on  &apos;Get GPA&apos;</source>
 Click on  &apos;Get GPA&apos;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="332"/>
+        <location filename="main/mainscreen.cpp" line="421"/>
         <source>Sagi</source>
         <translation>Sagi Dayan</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="347"/>
+        <location filename="main/mainscreen.cpp" line="432"/>
         <source>&lt;br&gt;&lt;li&gt;Login: &lt;ul&gt;&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;&lt;li&gt;Once you are connected, you will see a green ball in the right buttom panel.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;Login: &lt;ul&gt;&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;&lt;li&gt;Once you are connected, you will see a green ball in the right buttom panel.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="348"/>
+        <location filename="main/mainscreen.cpp" line="433"/>
         <source>&lt;br&gt;&lt;li&gt;Getting GPA sheet&lt;ul&gt;&lt;li&gt;Click on GPA Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Add&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;Getting GPA sheet&lt;ul&gt;&lt;li&gt;Click on GPA Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Add&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="349"/>
+        <location filename="main/mainscreen.cpp" line="434"/>
         <source>&lt;br&gt;&lt;li&gt;Average Changing&lt;ul&gt;&lt;li&gt;Change one of your grade and see the average in the buttom panel changing.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;Average Changing&lt;ul&gt;&lt;li&gt;Change one of your grade and see the average in the buttom panel changing.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="350"/>
+        <location filename="main/mainscreen.cpp" line="435"/>
         <source>&lt;br&gt;&lt;li&gt;Getting Calendar&lt;ul&gt;&lt;li&gt;Click on Calendar Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Get Calendar&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;Getting Calendar&lt;ul&gt;&lt;li&gt;Click on Calendar Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Get Calendar&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="351"/>
+        <location filename="main/mainscreen.cpp" line="436"/>
         <source>&lt;br&gt;&lt;li&gt;For exporting your calendar to a .CSV file:&lt;ul&gt;&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;&lt;li&gt; Click on Export to CSV&lt;/li&gt;&lt;li&gt;Select your dates and click OK&lt;/li&gt;&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;&lt;/li&gt;</source>
         <translation>&lt;br&gt;&lt;li&gt;For exporting your calendar to a .CSV file:&lt;ul&gt;&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;&lt;li&gt; Click on Export to CSV&lt;/li&gt;&lt;li&gt;Select your dates and click OK&lt;/li&gt;&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;&lt;/li&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="353"/>
+        <location filename="main/mainscreen.cpp" line="438"/>
         <source>&lt;b&gt;For more information, please visit us at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</source>
         <translation>&lt;b&gt;For more information, please visit us at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="364"/>
-        <location filename="main/mainscreen.cpp" line="392"/>
+        <location filename="main/mainscreen.cpp" line="402"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="364"/>
-        <location filename="main/mainscreen.cpp" line="378"/>
-        <location filename="main/mainscreen.cpp" line="392"/>
+        <location filename="main/mainscreen.cpp" line="402"/>
         <source>Your settings will take effect next time you start the program</source>
         <translation>Your settings will take effect next time you start the program</translation>
     </message>
@@ -469,134 +449,134 @@ If this message appear without reason, please contact me at liranbg@gmail.com</t
         <translation>Friday</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="296"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="300"/>
         <source>ConnectionRefusedError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="301"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="305"/>
         <source>RemoteHostClosedError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="311"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="315"/>
         <source>HostNotFoundError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="316"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="320"/>
         <source>SocketAccessError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="320"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="324"/>
         <source>SocketTimeoutError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="327"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="331"/>
         <source>NetworkError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="336"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="340"/>
         <source>SslHandshakeFailedError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="340"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="344"/>
         <source>SslInternalError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="344"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="348"/>
         <source>SslInvalidUserDataError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="348"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="352"/>
         <source>DatagramTooLargeError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="353"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="357"/>
         <source>OperationError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="356"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="360"/>
         <source>AddressInUseError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="359"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="363"/>
         <source>SocketAddressNotAvailableError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="362"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="366"/>
         <source>UnsupportedSocketOperationError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="365"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="369"/>
         <source>ProxyAuthenticationRequiredError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="368"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="372"/>
         <source>ProxyConnectionRefusedError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="371"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="375"/>
         <source>UnfinishedSocketOperationError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="374"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="378"/>
         <source>ProxyConnectionClosedError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="377"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="381"/>
         <source>ProxyConnectionTimeoutError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="380"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="384"/>
         <source>ProxyNotFoundError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="383"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="387"/>
         <source>ProxyProtocolError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="386"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="390"/>
         <source>TemporaryError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceConnection/jcesslclient.cpp" line="389"/>
+        <location filename="src/jceConnection/jcesslclient.cpp" line="393"/>
         <source>UnknownSocketError</source>
         <translation>Your error is critical. Our team need your help, please send your log file named J_M_Log.log to us. see link in About. The file DOES NOT CONTAIN YOUR PASSWORD</translation>
     </message>
     <message>
-        <location filename="src/jceData/CSV/csv_exporter.cpp" line="45"/>
+        <location filename="src/jceData/CSV/csv_exporter.cpp" line="44"/>
         <source>Unable to open or create the file.
 Exporting Failed</source>
         <translation>Unable to open or create the file.
 Exporting Failed</translation>
     </message>
     <message>
-        <location filename="src/jceData/CSV/csv_exporter.cpp" line="114"/>
+        <location filename="src/jceData/CSV/csv_exporter.cpp" line="143"/>
         <source>JceManager Save Schedule Dialog</source>
         <translation>JceManager Save Schedule Dialog</translation>
     </message>
     <message>
-        <location filename="src/jceData/CSV/csv_exporter.cpp" line="115"/>
+        <location filename="src/jceData/CSV/csv_exporter.cpp" line="144"/>
         <source>CSV Files (*.csv);;All Files (*)</source>
         <translation>CSV Files (*.csv);;All Files (*)</translation>
     </message>
@@ -610,37 +590,37 @@ Exporting Failed</translation>
         <translation>Exam Dialog</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="63"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revert changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revert changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="66"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="74"/>
         <source>Revert</source>
         <translation>Revert</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="73"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="81"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Discard and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Discard and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="76"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="84"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="83"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="91"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="86"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="94"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="129"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="120"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Exams Schedule&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Exams Schedule&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -755,53 +735,53 @@ In Example: 08:25 or 12:05</translation>
 <context>
     <name>jceStatusBar</name>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="8"/>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="62"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="7"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="81"/>
         <source>Ready</source>
         <translation>Ready</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="52"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="71"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="57"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="76"/>
         <source>Disconnected</source>
         <translation>Disconnected</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="67"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="86"/>
         <source>Connecting...</source>
         <translation>Connecting...</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="73"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="92"/>
         <source>Sending...</source>
         <translation>Sending...</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="79"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="98"/>
         <source>Recieving...</source>
         <translation>Recieving...</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="84"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="103"/>
         <source>Connected</source>
         <translation>Connected</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="89"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="108"/>
         <source>Inserting</source>
         <translation>Inserting</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="94"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="113"/>
         <source>Logged In.</source>
         <translation>Logged In.</translation>
     </message>
     <message>
-        <location filename="main/jceWidgets/jcestatusbar.cpp" line="99"/>
+        <location filename="main/jceWidgets/jcestatusbar.cpp" line="118"/>
         <source>Done</source>
         <translation>Done</translation>
     </message>
