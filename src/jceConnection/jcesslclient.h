@@ -1,7 +1,7 @@
 #ifndef JCESSLCLIENT_H
 #define JCESSLCLIENT_H
 
-#include <String>
+#include <QString>
 #include <QSslSocket>
 #include <QThread>
 #include <QEventLoop>
