@@ -11,7 +11,7 @@
 #include <QNetworkConfigurationManager>
 #include <QtNetwork/QNetworkInterface>
 
-#include "./main/jceWidgets/jcestatusbar.h"
+#include "../../main/jceWidgets/jcestatusbar.h"
 
 #define packetSize 4096 //4k
 #define milisTimeOut 5000 //4 seconds

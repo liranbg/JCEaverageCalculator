@@ -38,7 +38,7 @@ int jceLogin::makeConnection()
 
   returnMode = checkConnection(); //checking socket status. is connected?
 
-  if (returnMode == false)
+  if (returnMode == (int)false)
     {
       statusBar->setIconConnectionStatus(jceStatusBar::Connecting);
       if (JceConnector->makeConnect(dst_host,dst_port) == false) //couldnt make a connection
@@ -47,19 +47,19 @@ int jceLogin::makeConnection()
         returnMode = true;
     }
 
-  if (returnMode == true) //connected to host
+  if (returnMode == (int)true) //connected to host
     {
       statusBar->setIconConnectionStatus(jceStatusBar::Connected);
       returnMode = makeFirstVisit();
-      if (returnMode == true) //requst and send first validation
+      if (returnMode == (int)true) //requst and send first validation
         {
           status = jceStatus::JCE_START_VALIDATING_PROGRESS;
           returnMode = checkValidation();
-          if (returnMode == true) //check if username and password are matching
+          if (returnMode == (int)true) //check if username and password are matching
             {
               status = jceStatus::JCE_VALIDATION_PASSED;
               returnMode = makeSecondVisit();
-              if (returnMode == true) //siging in the website
+              if (returnMode == (int)true) //siging in the website
                 {
                   qDebug() << Q_FUNC_INFO << "Signed in succeesfully";
                   status = jceStatus::JCE_YOU_ARE_IN;
@@ -317,11 +317,11 @@ void jceLogin::reValidation()
 {
   qDebug() << Q_FUNC_INFO << "Revalidating user";
 
-  if (makeFirstVisit() == true)
+  if (makeFirstVisit() == (int)true)
     {
       if (checkValidation())
         {
-          if (makeSecondVisit() == true)
+          if (makeSecondVisit() == (int)true)
           {
               statusBar->setIconConnectionStatus(jceStatusBar::LoggedIn);
             qDebug() << Q_FUNC_INFO << "Validated";

@@ -1,13 +1,13 @@
 #ifndef CALENDARMANAGER_H
 #define CALENDARMANAGER_H
 
-#include "./src/jceData/Calendar/coursesSchedule/calendarPage.h"
-#include "./src/jceData/Calendar/coursesSchedule/calendarSchedule.h"
-#include "./src/jceData/Calendar/coursesSchedule/calendarDialog.h"
-#include "./src/jceData/CSV/csv_exporter.h"
+#include "../../src/jceData/Calendar/coursesSchedule/calendarPage.h"
+#include "../../src/jceData/Calendar/coursesSchedule/calendarSchedule.h"
+#include "../../src/jceData/Calendar/coursesSchedule/calendarDialog.h"
+#include "../../src/jceData/CSV/csv_exporter.h"
 
-#include "./src/jceData/Calendar/Exams/calendarExam.h"
-#include "./src/jceData/Calendar/Exams/examDialog.h"
+#include "../../src/jceData/Calendar/Exams/calendarExam.h"
+#include "../../src/jceData/Calendar/Exams/examDialog.h"
 
 #include <QObject>
 #include <QWidget>

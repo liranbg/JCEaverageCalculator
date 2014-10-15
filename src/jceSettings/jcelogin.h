@@ -2,8 +2,8 @@
 #define JCELOGIN_H
 
 
-#include "./src/jceConnection/jcesslclient.h"
-#include "./src/jceSettings/user.h"
+#include "../../src/jceConnection/jcesslclient.h"
+#include "../../src/jceSettings/user.h"
 #include "jceLoginHtmlScripts.h"
 
 

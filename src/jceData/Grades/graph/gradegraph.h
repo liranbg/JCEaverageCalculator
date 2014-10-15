@@ -1,8 +1,7 @@
 #ifndef GRADEGRAPH_H
 #define GRADEGRAPH_H
 
-#include "./src/jceData/Grades/gradePage.h"
-#include "qcustomplot.h"
+#include "../gradePage.h"
 #include <QDialog>
 
 namespace Ui {

@@ -8,9 +8,9 @@
 #include <QPixmap>
 #include <QPushButton>
 
-#include "./src/jceSettings/jcelogin.h"
-#include "./src/appDatabase/savedata.h"
-#include "./main/jceWidgets/jcestatusbar.h"
+#include "../../src/jceSettings/jcelogin.h"
+#include "../../src/appDatabase/savedata.h"
+#include "../../main/jceWidgets/jcestatusbar.h"
 
 
 class loginHandler : public QObject

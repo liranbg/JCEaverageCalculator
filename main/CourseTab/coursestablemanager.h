@@ -9,9 +9,9 @@
 #include <QString>
 #include <QMessageBox>
 
-#include "./src/jceData/Grades/graph/gradegraph.h"
-#include "./src/jceData/Grades/gradePage.h"
-#include "./src/jceSettings/user.h"
+#include "../../src/jceData/Grades/graph/gradegraph.h"
+#include "../../src/jceData/Grades/gradePage.h"
+#include "../../src/jceSettings/user.h"
 
 class coursesTableManager
 {

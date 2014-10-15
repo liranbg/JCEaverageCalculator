@@ -1,7 +1,7 @@
 #ifndef JCELOGINHTMLSCRIPTS_H
 #define JCELOGINHTMLSCRIPTS_H
 
-#include "./src/jceSettings/user.h"
+#include "../../src/jceSettings/user.h"
 
 #define dst_host "yedion.jce.ac.il"
 #define dst_port 443
