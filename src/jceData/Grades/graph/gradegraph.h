@@ -2,6 +2,7 @@
 #define GRADEGRAPH_H
 
 #include "../gradePage.h"
+#include "qcustomplot.h"
 #include <QDialog>
 
 namespace Ui {
@@ -27,6 +28,7 @@ private:
 
     GradePage *gp;
 
+    QCustomPlot *tableWidget;
     void setVisualization();
     void setGraphsData();
     void clearGraph();

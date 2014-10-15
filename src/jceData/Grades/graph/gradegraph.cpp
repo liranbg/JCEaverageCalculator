@@ -5,6 +5,8 @@ gradegraph::gradegraph(QWidget *parent) : QDialog(parent), ui(new Ui::gradegraph
   ui->setupUi(this);
   this->setModal(true); //makes it on top of application
   this->gp = NULL;
+  tableWidget = new QCustomPlot(this);
+  ui->verticalLayoutTable->addWidget(tableWidget);
 
 }
 
@@ -13,13 +15,14 @@ void gradegraph::showGraph(GradePage *gpPTR)
   qDebug() << Q_FUNC_INFO;
   this->gp = gpPTR;
 
-  if (ui->graphwidget->graphCount() > 0)
+  if (tableWidget->graphCount() > 0)
     clearGraph();
 
   setVisualization();
   setGraphsData();
 
-  ui->graphwidget->replot();
+
+  tableWidget->replot();
 
   this->show();
 }
@@ -42,8 +45,8 @@ void gradegraph::setGraphsData()
       indicatorX[i] = i;
       if (i%4==1) //years
         {
-          QCPItemText *textLabel = new QCPItemText(ui->graphwidget);
-          ui->graphwidget->addItem(textLabel);
+          QCPItemText *textLabel = new QCPItemText(tableWidget);
+          tableWidget->addItem(textLabel);
 
           double lastAvg = gp->getAvg(minYearInList+yearCount);
 
@@ -72,8 +75,8 @@ void gradegraph::setGraphsData()
         {
           if (i+4 < xRangeForYear) //semesters
             {
-              QCPItemText *textLabel = new QCPItemText(ui->graphwidget);
-              ui->graphwidget->addItem(textLabel);
+              QCPItemText *textLabel = new QCPItemText(tableWidget);
+              tableWidget->addItem(textLabel);
 
               //qDebug() << "year: " << minYearInList+yearCount << "sem " << (i-1)%4;
               double avg = gp->getAvg(minYearInList+yearCount,(i-1)%4);
@@ -105,9 +108,9 @@ void gradegraph::setGraphsData()
         }
     }
   //yearly
-  ui->graphwidget->graph(0)->setData(indicatorX,yearlyAvg);
+  tableWidget->graph(0)->setData(indicatorX,yearlyAvg);
   //yearly
-  ui->graphwidget->graph(1)->setData(indicatorX,SemesterialAvg);
+  tableWidget->graph(1)->setData(indicatorX,SemesterialAvg);
 }
 
 /**
@@ -115,21 +118,21 @@ void gradegraph::setGraphsData()
  */
 void gradegraph::setVisualization()
 {
-  ui->graphwidget->setBackground(QBrush(Qt::white));
-  ui->graphwidget->axisRect()->setupFullAxesBox(true); //make the graph looks like a box
+  tableWidget->setBackground(QBrush(Qt::white));
+  tableWidget->axisRect()->setupFullAxesBox(true); //make the graph looks like a box
 
-  ui->graphwidget->addGraph(); //yearly and semesterial graphs
-  ui->graphwidget->addGraph();
+  tableWidget->addGraph(); //yearly and semesterial graphs
+  tableWidget->addGraph();
 
-  ui->graphwidget->graph(0)->setName(tr("Yearly Average"));
-  ui->graphwidget->graph(0)->setPen(QPen(Qt::GlobalColor::blue));
-  ui->graphwidget->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::blue, Qt::blue, 7));
-  ui->graphwidget->graph(0)->setLineStyle(QCPGraph::lsImpulse );
+  tableWidget->graph(0)->setName(tr("Yearly Average"));
+  tableWidget->graph(0)->setPen(QPen(Qt::GlobalColor::blue));
+  tableWidget->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::blue, Qt::blue, 7));
+  tableWidget->graph(0)->setLineStyle(QCPGraph::lsImpulse );
 
-  ui->graphwidget->graph(1)->setName(tr("Semesterial Average"));
-  ui->graphwidget->graph(1)->setLineStyle(QCPGraph::lsStepLeft);
-  ui->graphwidget->graph(1)->setPen(QPen( QColor(Qt::GlobalColor::red)));
-  ui->graphwidget->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::red, Qt::red, 7));
+  tableWidget->graph(1)->setName(tr("Semesterial Average"));
+  tableWidget->graph(1)->setLineStyle(QCPGraph::lsStepLeft);
+  tableWidget->graph(1)->setPen(QPen( QColor(Qt::GlobalColor::red)));
+  tableWidget->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, Qt::red, Qt::red, 7));
 
   int minYearInList = gp->getMinYearInList()-1;
   int maxYearInList = gp->getMaxYearInList()+1;
@@ -163,33 +166,33 @@ void gradegraph::setVisualization()
 
         }
     }
-  ui->graphwidget->yAxis->setLabel(tr("AVG Grade"));
-  ui->graphwidget->yAxis->setTickLabelFont(QFont(QFont().family(), 8));
-  ui->graphwidget->yAxis->setRange(MIN_GRADE,MAX_GRADE);
-  ui->graphwidget->yAxis->setTickStep(2);
-  ui->graphwidget->yAxis->setAutoSubTicks(false);
-  ui->graphwidget->yAxis->setAutoTickStep(false);
-  ui->graphwidget->yAxis->setSubTickCount(5);
+  tableWidget->yAxis->setLabel(tr("AVG Grade"));
+  tableWidget->yAxis->setTickLabelFont(QFont(QFont().family(), 8));
+  tableWidget->yAxis->setRange(MIN_GRADE,MAX_GRADE);
+  tableWidget->yAxis->setTickStep(2);
+  tableWidget->yAxis->setAutoSubTicks(false);
+  tableWidget->yAxis->setAutoTickStep(false);
+  tableWidget->yAxis->setSubTickCount(5);
 
 
-  ui->graphwidget->xAxis->setLabel(tr("Years"));
-  ui->graphwidget->xAxis->setAutoTickLabels(false);
-  ui->graphwidget->xAxis->setTickLabelFont(QFont(QFont().family(), 7));
-  ui->graphwidget->xAxis->setAutoTickStep(false);
-  ui->graphwidget->xAxis->setTickStep(1);
-  ui->graphwidget->xAxis->setAutoSubTicks(false);
-  ui->graphwidget->xAxis->setSubTickCount(0);
-  ui->graphwidget->xAxis->setTickVectorLabels(xStrings);
-  ui->graphwidget->xAxis->setRange(1,xRangeForYear);
+  tableWidget->xAxis->setLabel(tr("Years"));
+  tableWidget->xAxis->setAutoTickLabels(false);
+  tableWidget->xAxis->setTickLabelFont(QFont(QFont().family(), 7));
+  tableWidget->xAxis->setAutoTickStep(false);
+  tableWidget->xAxis->setTickStep(1);
+  tableWidget->xAxis->setAutoSubTicks(false);
+  tableWidget->xAxis->setSubTickCount(0);
+  tableWidget->xAxis->setTickVectorLabels(xStrings);
+  tableWidget->xAxis->setRange(1,xRangeForYear);
 
-  ui->graphwidget->legend->setVisible(true); //show graph name on top right
+  tableWidget->legend->setVisible(true); //show graph name on top right
 }
 void gradegraph::clearGraph()
 {
   int itemDeleted,graphs,plots;
-  itemDeleted = ui->graphwidget->clearItems();
-  graphs = ui->graphwidget->clearGraphs();
-  plots = ui->graphwidget->clearPlottables();
+  itemDeleted = tableWidget->clearItems();
+  graphs = tableWidget->clearGraphs();
+  plots = tableWidget->clearPlottables();
   qDebug() << Q_FUNC_INFO << "items:" << itemDeleted << "graphs" << graphs << "plots:" << plots;
 }
 void gradegraph::on_pushButton_clicked()
