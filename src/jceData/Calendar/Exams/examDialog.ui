@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>327</height>
+    <width>810</width>
+    <height>306</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -68,10 +68,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonRevert">
            <property name="toolTip">
-            <string>revert any changes</string>
-           </property>
-           <property name="statusTip">
-            <string/>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revert changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Revert</string>
@@ -81,7 +78,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonCancel">
            <property name="toolTip">
-            <string>discard and close</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Discard and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Cancel</string>
@@ -91,7 +88,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonOk">
            <property name="toolTip">
-            <string>save and close</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Ok</string>

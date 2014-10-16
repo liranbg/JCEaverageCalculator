@@ -185,9 +185,6 @@
        </item>
        <item row="0" column="3">
         <widget class="QCheckBox" name="isExam">
-         <property name="statusTip">
-          <string>integrate exam schedule</string>
-         </property>
          <property name="text">
           <string>Include Exams</string>
          </property>
