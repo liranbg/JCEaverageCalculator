@@ -37,13 +37,13 @@ void coursesTableManager::insertJceCoursesIntoTable()
 {
     for (gradeCourse *c: gp->getCourses())
     {
-        if (us->getInfluenceCourseOnly())
+      if (us->getInfluenceCourseOnly())
         {
-            if (isCourseInfluence(c))
-                addRow(c);
-        }
-        else
+          if (isCourseInfluence(c))
             addRow(c);
+        }
+      else
+        addRow(c);
     }
 }
 /**
@@ -66,7 +66,6 @@ void coursesTableManager::setCoursesList(QString &html)
  */
 bool coursesTableManager::changes(QString change, int row, int col)
 {
-
     bool isNumFlag = true;
     if (courseTBL->item(row,gradeCourse::CourseScheme::SERIAL) == NULL)
         return true;
@@ -74,9 +73,9 @@ bool coursesTableManager::changes(QString change, int row, int col)
     int serialCourse = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text().toInt();
     for (gradeCourse *c: gp->getCourses())
     {
-        if (c->getSerialNum() == serialCourse)
+      if (c->getSerialNum() == serialCourse)
         {
-            switch (col)
+          switch (col)
             {
             case (gradeCourse::CourseScheme::COURSE_NUMBER_IN_LIST):
                 c->setCourseNumInList(change.toInt());
@@ -88,35 +87,35 @@ bool coursesTableManager::changes(QString change, int row, int col)
                 c->setSemester(change.toInt());
                 break;
             case (gradeCourse::CourseScheme::NAME):
-                c->setName(change);
-                break;
+              c->setName(change);
+              break;
             case (gradeCourse::CourseScheme::TYPE):
-                c->setType(change);
-                break;
+              c->setType(change);
+              break;
             case (gradeCourse::CourseScheme::POINTS):
-            {
+              {
                 change.toDouble(&isNumFlag);
 
                 if (!isNumFlag)
-                {
+                  {
                     courseTBL->item(row,col)->setText(QString::number(c->getPoints()));
-                }
+                  }
                 else
-                    c->setPoints(change.toDouble());
+                  c->setPoints(change.toDouble());
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::HOURS):
-            {
+              {
                 change.toDouble(&isNumFlag);
 
                 if (!isNumFlag)
-                {
+                  {
                     courseTBL->item(row,col)->setText(QString::number(c->getHours()));
-                }
+                  }
                 else
-                    c->setHours(change.toDouble());
+                  c->setHours(change.toDouble());
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::GRADE):
             {
 
@@ -125,27 +124,27 @@ bool coursesTableManager::changes(QString change, int row, int col)
                 if (!isNumFlag) //not a number
                 {
                     courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
-                }
+                  }
                 else
-                {
+                  {
                     if ((change.toDouble() >= 0) && (change.toDouble() <= 100))
                     {
                         c->setGrade(change.toDouble());
                         colorTheGrade(row);
                     }
                     else
-                        courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
-                }
+                      courseTBL->item(row,col)->setText(QString::number(c->getGrade()));
+                  }
                 break;
-            }
+              }
             case (gradeCourse::CourseScheme::ADDITION):
-                c->setAdditions(change);
-                break;
+              c->setAdditions(change);
+              break;
             }
-            break;
+          break;
         }
     }
-    return isNumFlag;
+  return isNumFlag;
 
 }
 /**
@@ -161,8 +160,8 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
     const gradeCourse * c;
     if (courseToAdd != NULL)
     {
-        c = courseToAdd;
-        if (!isCourseAlreadyInserted(c->getSerialNum()))
+      c = courseToAdd;
+      if (!isCourseAlreadyInserted(c->getSerialNum()))
         {
             courseTBL->setRowCount(courseTBL->rowCount() + 1);
             i = courseTBL->rowCount()-1;
@@ -223,7 +222,7 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
 
         }
     }
-    else
+  else
     {
         qCritical() << Q_FUNC_INFO << " no course to load!";
     }
@@ -234,9 +233,9 @@ void coursesTableManager::addRow(const gradeCourse *courseToAdd)
 }
 double coursesTableManager::getAvg()
 {
-    if (this->gp != NULL)
-        return gp->getAvg();
-    return 0;
+  if (this->gp != NULL)
+    return gp->getAvg();
+  return 0;
 }
 
 bool coursesTableManager::showGraph()
@@ -254,17 +253,17 @@ bool coursesTableManager::showGraph()
 
 void coursesTableManager::influnceCourseChanged(bool ignoreCourseStatus)
 {
-    if (ignoreCourseStatus)
+  if (ignoreCourseStatus)
     {
-        int i = 0;
-        while (i < courseTBL->rowCount())
+      int i = 0;
+      while (i < courseTBL->rowCount())
         {
-            if (courseTBL->item(i,gradeCourse::CourseScheme::POINTS)->text().compare("0") == 0)
-                courseTBL->removeRow(i--);
-            i++;
+          if (courseTBL->item(i,gradeCourse::CourseScheme::POINTS)->text().compare("0") == 0)
+            courseTBL->removeRow(i--);
+          i++;
         }
     }
-    else
+  else
     {
         if (this->gp != NULL)
             for (gradeCourse *c: gp->getCourses())
@@ -279,11 +278,11 @@ void coursesTableManager::influnceCourseChanged(bool ignoreCourseStatus)
 
 void coursesTableManager::clearTable()
 {
-    if (courseTBL->rowCount() == 0)
-        return;
+  if (courseTBL->rowCount() == 0)
+    return;
 
-    int i = 0; //starting point
-    while (courseTBL->rowCount() > i)
+  int i = 0; //starting point
+  while (courseTBL->rowCount() > i)
     {
         if (gp != NULL)
             gp->removeCourse(courseTBL->item(i,gradeCourse::CourseScheme::SERIAL)->text());
@@ -330,10 +329,10 @@ gradeCourse *coursesTableManager::getCourseByRow(int row)
     QString courseSerial = courseTBL->item(row,gradeCourse::CourseScheme::SERIAL)->text();
     for (gradeCourse *c: gp->getCourses())
     {
-        if (c->getSerialNum() == courseSerial.toDouble())
-            return c;
+      if (c->getSerialNum() == courseSerial.toDouble())
+        return c;
     }
-    return NULL;
+  return NULL;
 }
 
 bool coursesTableManager::isCourseAlreadyInserted(double courseID)
@@ -348,14 +347,14 @@ bool coursesTableManager::isCourseAlreadyInserted(double courseID)
                 return true;
         }
     }
-    return false;
+  return false;
 }
 
 bool coursesTableManager::isCourseInfluence(const gradeCourse *courseToCheck)
 {
-    if (courseToCheck->getPoints() > 0)
-        return true;
-    return false;
+  if (courseToCheck->getPoints() > 0)
+    return true;
+  return false;
 
 }
 /**
