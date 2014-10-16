@@ -28,7 +28,8 @@ FORMS    += \
     main/mainscreen.ui \
     src/jceData/Grades/graph/gradegraph.ui \
     src/jceData/Calendar/Exams/examDialog.ui \
-    src/jceData/Calendar/coursesSchedule/calendarDialog.ui
+    src/jceData/Calendar/coursesSchedule/calendarDialog.ui \
+    main/HelpBox/helpbox.ui
 
 RESOURCES += \
     resources/connectionstatus.qrc
@@ -59,7 +60,8 @@ HEADERS += \
     src/jceData/Calendar/coursesSchedule/calendarPage.h \
     src/jceData/Calendar/coursesSchedule/calendarPageCourse.h \
     src/jceData/Calendar/coursesSchedule/calendarSchedule.h \
-    main/jceWidgets/jcestatusbar.h
+    main/jceWidgets/jcestatusbar.h \
+    main/HelpBox/helpbox.h
 
 SOURCES += \
     main/CalendarTab/CalendarManager.cpp \
@@ -86,5 +88,6 @@ SOURCES += \
     src/jceData/Calendar/coursesSchedule/calendarPage.cpp \
     src/jceData/Calendar/coursesSchedule/calendarPageCourse.cpp \
     src/jceData/Calendar/coursesSchedule/calendarSchedule.cpp \
-    main/jceWidgets/jcestatusbar.cpp
+    main/jceWidgets/jcestatusbar.cpp \
+    main/HelpBox/helpbox.cpp
 

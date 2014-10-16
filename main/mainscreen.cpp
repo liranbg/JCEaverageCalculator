@@ -371,7 +371,7 @@ void MainScreen::on_creditButton_clicked()
                        "<a href='http://liranbg.github.io/JceManager/'>Jce Manager</a> "
                        + QString("Version: " + QString(VERSION)) +"<br><br>"
                        +tr("License: ")+ "LGPL v2.1<br>"
-                       "<br><a href='https://github.com/liranbg/JceManager'>JceManager Repository</a>"
+                                         "<br><a href='https://github.com/liranbg/JceManager'>Our GitHub Page</a>"
                        +"<br><br>" + tr("Developed By: ")+
                        "<ul>"+
                        "<li><a href='mailto:liranbg@gmail.com'>"+tr("Liran Ben Gida")+"</a></li>"+
@@ -381,18 +381,21 @@ void MainScreen::on_creditButton_clicked()
 
 void MainScreen::on_howtoButton_clicked()
 {
-    qDebug() << Q_FUNC_INFO;
-    QMessageBox::information(this,"How To",
-                             "<b>"
-                             +tr("Help Guide")+
-                             "</b><ul>"
-                             +tr("<br><li>Login: <ul><li>Type your username and password and click Login.</li><li>Once you are connected, you will see a green ball in the right buttom panel.</li></ul></li>")
-                             +tr("<br><li>Getting GPA sheet<ul><li>Click on GPA Tab</li><li> Select your dates and click on Add</li></ul></li>")
-                             +tr("<br><li>Average Changing<ul><li>Change one of your grade and see the average in the buttom panel changing.</li></ul></li>")
-                             +tr("<br><li>Getting Calendar<ul><li>Click on Calendar Tab</li><li> Select your dates and click on Get Calendar</li></ul></li>")
-                             +tr("<br><li>For exporting your calendar to a .CSV file:<ul><li>Do previous step and continue to next step</li><li> Click on Export to CSV</li><li>Select your dates and click OK</li><li>Once you're Done, go on your calendar and import your csv file</li></li>")+
-                             "<br><br>"
-                             +tr("<b>For more information, please visit us at: <a href='http://liranbg.github.io/JceManager/'>Jce Manager site</a></b>"));
+    helpBox help(this);
+    help.exec();
+//    qDebug() << Q_FUNC_INFO;
+//    QMessageBox::information(
+//                this,"How To",
+//                "<b>"
+//                +tr("Help Guide")+
+//                "</b><ul>"
+//                +tr("<br><li>Login: <ul><li>Type your username and password and click Login.</li><li>Once you are connected, you will see a blue icon in the right buttom panel.</li></ul></li>")
+//                +tr("<br><li>Getting GPA sheet<ul><li>Click on GPA Tab</li><li> Select your dates and click on Add</li></ul></li>")
+//                +tr("<br><li>Average Changing<ul><li>Change one of your grade and see the average in the buttom panel changing.</li></ul></li>")
+//                +tr("<br><li>Getting Calendar<ul><li>Click on Calendar Tab</li><li> Select your dates and click on Get Calendar</li></ul></li>")
+//                +tr("<br><li>For exporting your calendar to a .CSV file:<ul><li>Do previous step and continue to next step</li><li> Click on Export to CSV</li><li>Select your dates and click OK</li><li>Once you're Done, go on your calendar and import your csv file</li></li>")+
+//                "<br><br>"
+//                +tr("<b>For more information, please visit us at: <a href='http://liranbg.github.io/JceManager/'>Jce Manager site</a></b>"));
 }
 
 void MainScreen::checkLocale()

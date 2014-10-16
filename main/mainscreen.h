@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QTextEdit>
 
+#include "./HelpBox/helpbox.h"
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"

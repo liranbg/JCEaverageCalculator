@@ -64,7 +64,7 @@ background: qlineargradient(spread:pad, x1:0.496, y1:0, x2:0.508, y2:1, stop:0 r
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -391,6 +391,9 @@ font-size: 15px;
                  </item>
                  <item row="0" column="3">
                   <widget class="QSpinBox" name="spinBoxCoursesToSemester">
+                   <property name="toolTip">
+                    <string>Ending semester</string>
+                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -420,6 +423,9 @@ font-size: 15px;
                  </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="spinBoxCoursesToYear">
+                   <property name="toolTip">
+                    <string>Ending year</string>
+                   </property>
                    <property name="minimum">
                     <number>2008</number>
                    </property>
@@ -521,7 +527,7 @@ font-size: 15px;
                       </size>
                      </property>
                      <property name="toolTip">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Clear table&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>Clear courses table</string>
                      </property>
                      <property name="text">
                       <string>Clear Table</string>
@@ -539,8 +545,14 @@ font-size: 15px;
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="toolTip">
+                      <string>Get GPA sheet</string>
+                     </property>
+                     <property name="statusTip">
+                      <string/>
+                     </property>
                      <property name="whatsThis">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Get your grades&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string/>
                      </property>
                      <property name="text">
                       <string>Get GPA</string>
@@ -558,6 +570,12 @@ font-size: 15px;
                    </item>
                    <item row="0" column="1">
                     <widget class="QPushButton" name="revertBtn">
+                     <property name="toolTip">
+                      <string>Revert all changes</string>
+                     </property>
+                     <property name="statusTip">
+                      <string/>
+                     </property>
                      <property name="text">
                       <string>Revert Changes</string>
                      </property>
@@ -598,6 +616,9 @@ font-size: 15px;
                         <horstretch>0</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Check to show only courses with grade point &gt; 0</string>
                       </property>
                       <property name="text">
                        <string>Only Main Courses</string>
@@ -686,6 +707,9 @@ font-size: 15px;
                  </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="spinBoxCoursesFromYear">
+                   <property name="toolTip">
+                    <string>Starting year</string>
+                   </property>
                    <property name="minimum">
                     <number>2008</number>
                    </property>
@@ -715,6 +739,9 @@ font-size: 15px;
                  </item>
                  <item row="0" column="3">
                   <widget class="QSpinBox" name="spinBoxCoursesFromSemester">
+                   <property name="toolTip">
+                    <string>Starting semester</string>
+                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -765,6 +792,9 @@ font-size: 15px;
              <layout class="QGridLayout" name="gridLayoutAverage">
               <item row="0" column="0">
                <widget class="QPushButton" name="graphButton">
+                <property name="toolTip">
+                 <string>Show average graph view</string>
+                </property>
                 <property name="text">
                  <string>Graph View</string>
                 </property>
@@ -845,6 +875,12 @@ font-size: 15px;
              <layout class="QHBoxLayout" name="horizontalLayoutScheduleControl">
               <item>
                <widget class="QSpinBox" name="spinBoxYear">
+                <property name="toolTip">
+                 <string>Year</string>
+                </property>
+                <property name="statusTip">
+                 <string/>
+                </property>
                 <property name="minimum">
                  <number>2013</number>
                 </property>
@@ -858,6 +894,12 @@ font-size: 15px;
               </item>
               <item>
                <widget class="QSpinBox" name="spinBoxSemester">
+                <property name="toolTip">
+                 <string>Semester</string>
+                </property>
+                <property name="statusTip">
+                 <string/>
+                </property>
                 <property name="minimum">
                  <number>1</number>
                 </property>
@@ -871,6 +913,12 @@ font-size: 15px;
               </item>
               <item>
                <widget class="QPushButton" name="getCalendarBtn">
+                <property name="toolTip">
+                 <string>Get schedule and exams list</string>
+                </property>
+                <property name="statusTip">
+                 <string/>
+                </property>
                 <property name="text">
                  <string>Get Schedule &amp;&amp; Exam</string>
                 </property>
@@ -878,6 +926,12 @@ font-size: 15px;
               </item>
               <item>
                <widget class="QPushButton" name="examsBtn">
+                <property name="toolTip">
+                 <string>Show exams list</string>
+                </property>
+                <property name="statusTip">
+                 <string/>
+                </property>
                 <property name="text">
                  <string>Show Exams</string>
                 </property>
@@ -885,6 +939,12 @@ font-size: 15px;
               </item>
               <item>
                <widget class="QPushButton" name="exportToCVSBtn">
+                <property name="toolTip">
+                 <string>Export schedule to .CSV file.</string>
+                </property>
+                <property name="statusTip">
+                 <string>You can import this file with your Google calendar</string>
+                </property>
                 <property name="text">
                  <string>Export to CSV</string>
                 </property>
@@ -915,6 +975,12 @@ font-size: 15px;
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="labelMadeBy">
+      <property name="toolTip">
+       <string>Credits</string>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
       <property name="text">
        <string>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</string>
       </property>
