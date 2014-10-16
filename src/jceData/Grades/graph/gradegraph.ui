@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>GPA Graph View</string>
+   <string>JCE Manager</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../../resources/connectionstatus.qrc">
@@ -68,6 +68,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="pushButton">
+         <property name="statusTip">
+          <string>Close</string>
+         </property>
          <property name="text">
           <string>Close</string>
          </property>

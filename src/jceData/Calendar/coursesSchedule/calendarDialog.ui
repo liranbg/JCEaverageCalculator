@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dates Dialog</string>
+   <string>JCE Manager</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -185,6 +185,9 @@
        </item>
        <item row="0" column="3">
         <widget class="QCheckBox" name="isExam">
+         <property name="toolTip">
+          <string>Include exams list in .CSV</string>
+         </property>
          <property name="text">
           <string>Include Exams</string>
          </property>

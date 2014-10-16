@@ -17,7 +17,7 @@ coursesTableManager::coursesTableManager(QTableWidget *ptr, user *usrPtr)
     courseTBL->verticalHeader()->setVisible(false);
     courseTBL->setSelectionMode(QAbstractItemView::SingleSelection);
     courseTBL->setShowGrid(true);
-    courseTBL->setStyleSheet("QTableView {selection-background-color: red;}");
+    courseTBL->setStyleSheet("QTableView {selection-background-color: #004080;}");
 
     graph = new gradegraph(ptr);
 }
@@ -56,6 +56,7 @@ void coursesTableManager::setCoursesList(QString &html)
     gp = new GradePage(html);
     this->gpCpy = new GradePage(*gp);
     insertJceCoursesIntoTable();
+    this->courseTBL->setCurrentCell(0,0);
 }
 /**
  * @brief coursesTableManager::changes  when user changes the table manually it updates it
@@ -144,6 +145,7 @@ bool coursesTableManager::changes(QString change, int row, int col)
           break;
         }
     }
+    this->courseTBL->setCurrentCell(row+1,col); //set focus to next grade
   return isNumFlag;
 
 }

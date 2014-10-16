@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
-    <height>306</height>
+    <width>811</width>
+    <height>327</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Exam Dialog</string>
+   <string>JCE Manager</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../../resources/connectionstatus.qrc">
@@ -68,7 +68,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonRevert">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revert changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Revert all changes</string>
            </property>
            <property name="text">
             <string>Revert</string>
@@ -78,7 +78,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonCancel">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Discard and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Discard changes and close</string>
            </property>
            <property name="text">
             <string>Cancel</string>
@@ -88,7 +88,10 @@
          <item>
           <widget class="QPushButton" name="pushButtonOk">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Keep changes and close</string>
+           </property>
+           <property name="statusTip">
+            <string/>
            </property>
            <property name="text">
             <string>Ok</string>
