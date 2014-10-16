@@ -1,19 +1,33 @@
 #include "CalendarManager.h"
 
-CalendarManager::CalendarManager(QGridLayout *ptr)
+CalendarManager::CalendarManager(QWidget *parent, QGridLayout *ptr) : QWidget(parent)
 {
-    caliSchedPtr = new calendarSchedule();
+    caliSchedPtr = new calendarSchedule(this);
+    examSchePtr = new calendarExam();
     ptr->addWidget(caliSchedPtr);
-    caliDialog = new CalendarDialog();
+    caliDialog = new CalendarDialog(this);
+    examDialogPtr = new examDialog(this,examSchePtr);
 }
 
 void CalendarManager::setCalendar(QString html)
 {
     caliSchedPtr->setPage(html);
+
 }
-void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer bug
+
+void CalendarManager::setExamsSchedule(QString html)
 {
-    if (this->caliSchedPtr->getCourses() == NULL)
+    examSchePtr->setPage(html);
+    examDialogPtr->initializingDataIntoTable();
+}
+
+void CalendarManager::showExamDialog()
+{
+    examDialogPtr->show();
+}
+void CalendarManager::exportCalendarCSV()
+{
+    if (this->caliSchedPtr->getCourses().isEmpty())
         return;
     QMessageBox msgBox;
     int buttonClicked = caliDialog->exec();
@@ -22,7 +36,7 @@ void CalendarManager::exportCalendarCSV() //need to add fix to the null pointer 
     //calDialog.getStartDate(),calDialog.getEndDate()
     if (caliDialog->ok())
     {
-        if (CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog))
+        if (CSV_Exporter::exportCalendar(caliSchedPtr, caliDialog, examSchePtr))
         {
             msgBox.setIcon(QMessageBox::Information);
             msgBox.setText(QObject::tr("Exported Successfuly!"));

@@ -1,10 +1,12 @@
 /**
  * JCE Manager (C)
  *
- * This QDialog widget will hold the dates of a Semester, Start and End.
+ * This QDialog widget hold the dates of a Semester, Start and End.
  *
  * this dialog will help the csv_exporter class to export a CSV file that will contain
  * all the courses within that period of time.
+ *
+ * Made By Sagi Dayan, sagidayan@gmail.com On 22/09/2014
  */
 
 #ifndef CALENDARDIALOG_H
@@ -28,6 +30,7 @@ public:
     QDate getStartDate();
     QDate getEndDate();
     bool ok();
+    bool isExams();
 
 private slots:
     void on_calStart_selectionChanged();

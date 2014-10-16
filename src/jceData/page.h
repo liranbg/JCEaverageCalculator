@@ -1,12 +1,6 @@
 #ifndef PAGE_H
 #define PAGE_H
 
-/*  This Code Made By Sagi Dayan
- *  SagiDayan@gmail.com
- *
- *  Changes  have been made by Liran Ben Gida
- *  LiranBG@gmail.com
-*/
 #include <QDebug>
 #include <QString>
 
@@ -14,6 +8,11 @@
  * @brief The Page class
  * parsing given page - strip and clean html tags
  * use only with JCE
+ *
+ * Made By:
+ *      Sagi Dayan,  SagiDayan@gmail.com
+ *      Liran Ben Gida, LiranBG@gmail.com
+ * On 31/8/2014
  */
 class Page
 {
@@ -33,6 +32,7 @@ private:
 	bool endOfString(int index, int length);
 
     QString text;
+    QString dateHeader;
     QString title;
 
 };

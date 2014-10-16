@@ -1,9 +1,10 @@
-#include "calendarCourse.h"
+#include "calendarPageCourse.h"
 
 calendarCourse::calendarCourse(int serial, QString name, QString type, QString lecturer, double points,
                                double semesterHours, QString dayAndHour,
-                               QString room) : Course(serial,name, type,points)
+                               QString room)  : Course(serial,name, type)
 {
+    this->points = points;
     this->lecturer = lecturer;
     this->semesterHours = semesterHours;
     this->room = room;
@@ -16,35 +17,35 @@ calendarCourse::calendarCourse(int serial, QString name, QString type, QString l
  */
 void calendarCourse::setDayAndHour(QString parse)
 {
-    int ctr = 0;
-    QString temp = "";
-    QTime timetemp;
-    char *tok;
-    char* textToTok = strdup(parse.toStdString().c_str());
-    tok = strtok(textToTok, " -");
-    while(tok != NULL)
-    {
-        temp = tok;
-        switch (ctr)
+        int ctr = 0;
+        QString temp = "";
+        QTime timetemp;
+        char *tok;
+        char* textToTok = strdup(parse.toStdString().c_str());
+        tok = strtok(textToTok, " -");
+        while(tok != NULL)
         {
-        case 0: //day
-            setDay(temp);
-            break;
-        case 1: //hour it begins
-            timetemp = QTime::fromString(temp,"hh:mm");
-            setHourBegin(timetemp.hour());
-            setMinutesBegin(timetemp.minute());
-            break;
-        case 2: //hour it ends
-            timetemp = QTime::fromString(temp,"hh:mm");
-            setHourEnd(timetemp.hour());
-            setMinutesEnd(timetemp.minute());
-            break;
-        }
+            temp = tok;
+            switch (ctr)
+            {
+            case 0: //day
+                setDay(temp);
+                break;
+            case 1: //hour it begins
+                timetemp = QTime::fromString(temp,"hh:mm");
+                setHourBegin(timetemp.hour());
+                setMinutesBegin(timetemp.minute());
+                break;
+            case 2: //hour it ends
+                timetemp = QTime::fromString(temp,"hh:mm");
+                setHourEnd(timetemp.hour());
+                setMinutesEnd(timetemp.minute());
+                break;
+            }
 
-        ctr++;
-        tok = strtok(NULL, " -");
-    }
+            ctr++;
+            tok = strtok(NULL, " -");
+        }
 }
 
 QString calendarCourse::getLecturer() const
@@ -101,26 +102,6 @@ void calendarCourse::setMinutesEnd(int value)
 {
     minutesEnd = value;
 }
-/**
- * @brief calendarCourse::courseToString
- * @return prints the course into string pattern
- */
-QString calendarCourse::courseToString()
-{
-    QString courseText = "";
-    courseText += " " + QString::number(this->getSerialNum());
-    courseText += " " + this->getName();
-    courseText += " " + this->getType();
-    courseText += " " + this->lecturer;
-    courseText += " " + QString::number(this->getPoints());
-    courseText += " " + QString::number(this->semesterHours);
-    courseText += " " + QString::number(this->day);
-    courseText += " " + QString::number(this->hourBegin) + ":" + QString::number(this->minutesBegin) + "-" + QString::number(this->hourEnd) + ":" + QString::number(this->minutesEnd);
-    courseText += " " + this->room;
-    courseText += "\n";
-    return courseText;
-
-}
 int calendarCourse::getDay() const
 {
     return day;
@@ -157,10 +138,31 @@ void calendarCourse::setRoom(const QString &value)
 {
     room = value;
 }
+double calendarCourse::getPoints() const
+{
+    return points;
+}
 
+void calendarCourse::setPoints(double value)
+{
+    points = value;
+}
 
+double points;
+QString lecturer;
+double semesterHours;
+int day;
+int hourBegin;
+int minutesBegin;
+int hourEnd;
+int minutesEnd;
+QString room;
 
-
-
-
-
+QString calendarCourse::toString()
+{
+    QTime begin,end;
+    begin.setHMS(hourBegin,minutesBegin,0);
+    end.setHMS(hourEnd,minutesEnd,0);
+    return QString("%1 %2 %3\n%4 %5\n%6 - %7").arg(QString::number(this->getSerialNum()),this->getName(),QString::number(this->points),this->getLecturer(),this->getRoom(),
+                              begin.toString("hh:mm"),end.toString(("hh:mm")));
+}

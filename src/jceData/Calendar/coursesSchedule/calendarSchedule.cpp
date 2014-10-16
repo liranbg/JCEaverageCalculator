@@ -1,6 +1,5 @@
 #include "calendarSchedule.h"
-
-calendarSchedule::calendarSchedule()
+calendarSchedule::calendarSchedule(QWidget *parent) : QTableWidget(parent)
 {
     QStringList days,hours;
     QTextStream hourString;
@@ -22,7 +21,7 @@ calendarSchedule::calendarSchedule()
     days << QObject::tr("Sunday") << QObject::tr("Monday") << QObject::tr("Tuesday") << QObject::tr("Wednesday") << QObject::tr("Thursday") << QObject::tr("Friday");
 
     setRowCount(endingHour - startingHour + 1);
-    setColumnCount(6);
+    setColumnCount(6); //number of days not including saturday ofcourse :)
 
     setLayoutDirection(Qt::LayoutDirection::RightToLeft);\
 
@@ -37,7 +36,7 @@ calendarSchedule::calendarSchedule()
 void calendarSchedule::setPage(QString html)
 {
     CalendarPage::setPage(html);
-
+    qDebug() << Q_FUNC_INFO << "inserting into table";
     insertCourseIntoTable();
 }
 
@@ -57,15 +56,15 @@ void calendarSchedule::insertCourseIntoTable()
 
     QTableWidgetItem *item;
     QString courseString;
-    int currentHour,currentDay,blocksNumer;
+    int currentHour,currentDay,blocksNumber;
     int row,col;
-    for (calendarCourse *coursePtr: *getCourses())
+    for (calendarCourse *coursePtr: getCourses())
     {
         courseString = "";
         currentHour = coursePtr->getHourBegin();
         currentDay = coursePtr->getDay();
-        blocksNumer = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
-        while (blocksNumer >= 0)
+        blocksNumber = coursePtr->getHourEnd() - coursePtr->getHourBegin(); //every hour is a block to fill!
+        while (blocksNumber >= 0)
         {
             row = currentHour - HOURS_BEGIN;
             col = currentDay-1;
@@ -83,12 +82,13 @@ void calendarSchedule::insertCourseIntoTable()
 
 
             item = new QTableWidgetItem(courseString);
+            item->setToolTip(coursePtr->toString());
             if (this->takeItem(row,col) != NULL)
                 delete this->takeItem(row,col);
             this->setItem(row,col,item);
 
             currentHour++;
-            --blocksNumer;
+            --blocksNumber;
         }
         horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
         verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

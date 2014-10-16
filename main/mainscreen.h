@@ -10,9 +10,10 @@
 #include "./CourseTab/coursestablemanager.h"
 #include "./LoginTab/loginhandler.h"
 #include "./CalendarTab/CalendarManager.h"
+#include "./jceWidgets/jcestatusbar.h"
 
 
-#define STATUS_ICON_HEIGH 35
+
 namespace Ui {
 class MainScreen;
 }
@@ -27,53 +28,49 @@ public:
 
 private slots:
 
-    void on_ratesButton_clicked();
-
+    //Login Tab slots
     void on_loginButton_clicked();
-
+    void on_keepLogin_clicked();
     void on_usrnmLineEdit_editingFinished();
 
-    void on_actionCredits_triggered();
-
+    //GPA Tab slots
+    void on_ratesButton_clicked();
+    void on_graphButton_clicked();
+    void on_revertBtn_clicked();
     void on_clearTableButton_clicked();
-
-    void on_actionExit_triggered();
-
     void on_coursesTable_itemChanged(QTableWidgetItem *item);
-
-    void on_keepLogin_clicked();
-
-    void on_actionHow_To_triggered();
-
-    void on_getCalendarBtn_clicked();
-
     void on_checkBoxCoursesInfluence_toggled(bool checked);
 
+    //Schedule Tab slots
+    void on_getCalendarBtn_clicked();
+    void on_examsBtn_clicked();
     void on_exportToCVSBtn_clicked();
 
-    void on_actionHebrew_triggered();
-
-    void on_actionEnglish_triggered();
-
-    void on_actionOS_Default_triggered();
-
+    //Main screen general slots
     void on_spinBoxCoursesFromSemester_valueChanged(int arg1);
-
     void on_spinBoxCoursesFromYear_valueChanged(int arg1);
-
     void on_spinBoxCoursesToYear_valueChanged(int arg1);
-
     void on_spinBoxCoursesToSemester_valueChanged(int arg1);
-
     void on_labelMadeBy_linkActivated(const QString &link);
 
+    //Setting dock
+    void on_langButton_clicked();
+
+    void on_creditButton_clicked();
+
+    void on_howtoButton_clicked();
+
 private:
-
     void checkLocale();
-
     bool checkIfValidDates();
 
+    bool isBusy();
+    void lock();
+    void unlock();
+
     Ui::MainScreen *ui;
+
+    bool isBlocked;
 
     QPixmap iconPix;
     user *userLoginSetting;
@@ -82,6 +79,8 @@ private:
     CalendarManager * calendar;
     coursesTableManager *courseTableMgr;
     loginHandler *loginHandel;
+
+    jceStatusBar *statusBar;
 
 };
 

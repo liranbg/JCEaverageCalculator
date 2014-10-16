@@ -43,12 +43,14 @@ void CalendarDialog::on_calStart_selectionChanged()
 {
     if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate()) //User input is invalid
     {
+
         changeLabeStatusIcon(false);
-        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
+        ui->lbl_status->setText(tr("Invalid dates interval"));
         this->isOK = false;
     }
     else // input is valid
     {
+        this->resize(610,310);
         changeLabeStatusIcon(true);
         ui->lbl_status->setText(tr("Looks fine, Click \"OK\""));
         this->isOK = true;
@@ -61,7 +63,7 @@ void CalendarDialog::on_calStart_selectionChanged()
 void CalendarDialog::on_buttonBox_accepted()
 {
     if(this->isOK)
-      qDebug() << "CalendarDialog: Valid input";
+      qDebug() << Q_FUNC_INFO << "CalendarDialog: Valid input";
 }
 
 void CalendarDialog::on_calEnd_selectionChanged()
@@ -69,7 +71,8 @@ void CalendarDialog::on_calEnd_selectionChanged()
     if(ui->calStart->selectedDate() >= ui->calEnd->selectedDate())
     {
         changeLabeStatusIcon(false);
-        ui->lbl_status->setText(tr("The end of the semester can NOT be equal or before the semester begin."));
+        ui->lbl_status->setText(tr("Invalid dates interval"));
+
         this->isOK = false;
     }
     else
@@ -92,4 +95,8 @@ void CalendarDialog::changeLabeStatusIcon(bool goodOrBad)
     else
         iconPixStatus.load(":/icons/iconX.png");
     this->ui->labelIconStatus->setPixmap(iconPixStatus);
+}
+
+bool CalendarDialog::isExams(){
+    return ui->isExam->isChecked();
 }

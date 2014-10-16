@@ -1,119 +1,130 @@
 #include "gradePage.h"
 
+static int maxYear = 0;
+static int minYear = 9999;
+
 GradePage::GradePage(QString html) : Page()
 {
-    courses = new std::list<gradeCourse*>();
     tempHtml = getString(html);
-    tempHtml = tokenToLines(tempHtml);
     coursesListInit(tempHtml);
+}
 
+GradePage::GradePage(GradePage &other)
+{
+    for(gradeCourse* c : other.getCourses())
+    {
+        courses.push_back(new gradeCourse(*c));
+    }
 }
 GradePage::~GradePage()
 {
-    for(Course* c : *courses)
+    for (Course* c : courses)
         delete c;
-    delete courses;
 }
 
+/**
+ * @brief GradePage::removeCourse
+ * @param courseSerialID - course ID to remove
+ */
 void GradePage::removeCourse(QString courseSerialID)
 {
-    for(gradeCourse* c : *courses)
+    for(gradeCourse* c : courses)
     {
         if (c->getSerialNum() == courseSerialID.toInt())
         {
-            courses->remove(c);
+            courses.removeAll(c);
             delete c;
             return;
         }
     }
 
 }
+
+/**
+ * @brief GradePage::coursesListInit
+ * using lineToCourse function, its making a list of gradeCourse object from a given string of information
+ * @param linesTokinzedString list of courses, tokenized by lines. containing data of each course
+ */
 void GradePage::coursesListInit(QString &linesTokinzedString)
 {
-    std::list<QString> stringHolder;
-    QString temp;
-    gradeCourse* cTemp = NULL;
-    char* tok;
-    char* textToTok = strdup(linesTokinzedString.toStdString().c_str());
-    tok = strtok(textToTok,"\n");
-    while (tok != NULL)
-    {
-        temp = tok;
-        stringHolder.push_back(temp);
-        tok = strtok(NULL, "\n");
-    }
-    for(QString temp: stringHolder)
-    {
-        cTemp = lineToCourse(temp);
-        if (cTemp != NULL)
-            courses->push_back(cTemp);
-    }
-}
+    QString tempToken;
 
-QString GradePage::tokenToLines(QString &textToPhrase)
-{
-    int ctr = 0;
-    QString temp = "";
-    char *tok;
-    char* textToTok = strdup(textToPhrase.toStdString().c_str());
-    tok = strtok(textToTok, "\n");
-    while(tok != NULL)
+    QStringList holder = linesTokinzedString.split("\n");
+    QStringList::iterator iterator;
+    for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
     {
-        //amount of data before the actual needed data and no empty lines
-        if (strcmp(tok," \t ") != 0)
+        tempToken = (*iterator);
+        if ((!tempToken.isEmpty()) && (tempToken.length() > 1))
         {
-            temp += tok;
-            temp += "\n";
+            gradeCourse *cTemp = lineToCourse(tempToken);
+            if (cTemp != NULL)
+                this->courses.push_back(cTemp);
         }
-        ctr++;
-        tok = strtok(NULL, "\n");
     }
-    return temp;
-
 }
+
+/**
+ * @brief GradePage::lineToCourse
+ * making an object of gradepage with the given information from string
+ * @param line - lines tokenized by tabs containing each course information (year, serial, name, points and etc..)
+ * @return
+ */
 gradeCourse* GradePage::lineToCourse(QString line)
 {
     gradeCourse *tempC = NULL;
-    QString templinearray[COURSE_FIELDS];//[serial,name,type,points,hours,grade,additions]
-    int serial;
+    QString templinearray[COURSE_FIELDS];//[year,semester,numInList,serial,name,type,points,hours,grade,additions]
+    int serial,year,semester,courseNumInList;
     double points,hours,grade;
     QString name,type, additions;
-    QString tempS = "";
+
+    QString tempToken;
     int i = 0;
-    char* tok;
-    char* cLine = strdup(line.toStdString().c_str());
-    tok = strtok(cLine, "\t");
-    while(tok != NULL)
+    QStringList holder = line.split("\t");
+    QStringList::iterator iterator;
+    for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
     {
 
-        tempS = tok;
-        if (i == 1) //skip the tokenizing loop just once
+        tempToken = (*iterator);
+        tempToken = tempToken.trimmed();
+        //we are checking it because in GPA, serial and course name are mixed
+        if (i == gradeCourse::CourseScheme::SERIAL)
         {
-            tempS = "";
-            char *tokTemp;
-            tokTemp = tok;
-            while (!(isdigit((int)*tokTemp)))
-                tokTemp++;
+            QString tempDataOfSerialCourseName;
 
-            while (isdigit((int)*tokTemp))
+            //getting serial
+            QStringList secHolder = tempToken.split(" ");
+            QStringList::iterator secIterator = secHolder.begin();
+            tempDataOfSerialCourseName = *secIterator;
+            templinearray[i] = tempDataOfSerialCourseName.trimmed();
+            //getting course name;
+            ++secIterator;
+            tempDataOfSerialCourseName.clear();
+            while (secIterator != secHolder.end())
             {
-                tempS += QString(*tokTemp);
-                tokTemp++;
+                tempDataOfSerialCourseName.append(*secIterator + " ");
+                secIterator++;
             }
-            templinearray[i-1] = tempS.trimmed();
-            templinearray[i] = QString(tokTemp).trimmed();
-
+            templinearray[++i] = tempDataOfSerialCourseName.trimmed();
         }
-        else if (i > 1)
+        else
         {
-            templinearray[i] = tempS;
+            templinearray[i] = tempToken;
         }
-        i++;
-        tok=strtok(NULL, "\t");
-    }
-    if (templinearray[0] == "") //empty phrasing
-        return NULL;
 
+        i++;
+        if (i >= COURSE_FIELDS)
+            break;
+    }
+
+    if (templinearray[0] == "") //empty parsing
+    {
+        qCritical() << Q_FUNC_INFO << "empty parsing";
+        return NULL;
+    }
+
+    year = templinearray[gradeCourse::CourseScheme::YEAR].toInt();
+    semester = templinearray[gradeCourse::CourseScheme::SEMESTER].toInt();
+    courseNumInList = templinearray[gradeCourse::CourseScheme::COURSE_NUMBER_IN_LIST].toInt();
     serial = templinearray[gradeCourse::CourseScheme::SERIAL].toInt();
 
     name = templinearray[gradeCourse::CourseScheme::NAME];
@@ -129,31 +140,49 @@ gradeCourse* GradePage::lineToCourse(QString line)
 
     additions = templinearray[gradeCourse::CourseScheme::ADDITION];
 
-    tempC = new gradeCourse(serial,name,type,points,hours,grade,additions);
+    if (year >= maxYear)
+        maxYear = year;
+
+    if ((year <= minYear) && (points > 0)) //not graded yet isnt influced year!
+    {
+        minYear = year;
+    }
+
+    tempC = new gradeCourse(year,semester,courseNumInList,serial,name,type,points,hours,grade,additions);
     return tempC;
 }
 
-//checking if one of the chars inside grade is not a number
+/**
+ * @brief GradePage::isGradedYet checking if one of the chars inside grade is not a number
+ * @param grade
+ * @return if has bee  graded or not
+ */
 bool GradePage::isGradedYet(QString grade)
 {
     if (strlen(grade.toStdString().c_str()) <= 1)
         return false;
 
-    for (char c: grade.toStdString())
+    for (QChar c: grade)
     {
         if (c == '\0')
             break;
-        if (((!isdigit((int)c))  && (!isspace((int)c)))) //48 = 0, 57 = 9
+
+        if (((!c.isDigit())  && (!c.isSpace()))) //48 = 0, 57 = 9
             return false;
 
     }
     return true;
 }
+
+/**
+ * @brief GradePage::getAvg  getting avg
+ * @return -  gpa avg of all courses
+ */
 double GradePage::getAvg()
 {
     double avg = 0;
     double points = 0;
-    for(gradeCourse* c : *courses)
+    for (gradeCourse* c : courses)
     {
         if ((c->getGrade() != 0))
         {
@@ -164,4 +193,68 @@ double GradePage::getAvg()
 
     avg /= points;
     return avg;
+}
+
+/**
+ * @brief GradePage::getAvg getting avg of given year
+ * @param year  - year (yyyy)
+ * @return -  gpa avg of given year
+ */
+double GradePage::getAvg(int year)
+{
+    double avg = 0;
+    double points = 0;
+    for (gradeCourse* c : courses)
+    {
+        if ((c->getGrade() != 0) && (c->getYear() == year))
+        {
+            avg += c->getGrade() * c->getPoints();
+            points += c->getPoints();
+        }
+    }
+    if (points != 0)
+        avg /= points;
+    else
+        avg=0;
+    return avg;
+}
+
+/**
+ * @brief GradePage::getAvg
+ * @param year  - year (yyyy)
+ * @param semester - semeser (1-3)
+ * @return -gpa avg of given year in given semester
+ */
+
+double GradePage::getAvg(int year, int semester)
+{
+    double avg = 0;
+    double points = 0;
+    for (gradeCourse* c : courses)
+    {
+        if ((c->getGrade() != 0) && (c->getYear() == year) && (c->getSemester() == semester))
+        {
+            avg += c->getGrade() * c->getPoints();
+            points += c->getPoints();
+        }
+    }
+    if (points != 0)
+        avg /= points;
+    else
+        avg=0;
+    return avg;
+}
+
+/**
+ * @brief GradePage::getMinYearInList
+ * @return the minimal year inside courses list
+ */
+int GradePage::getMinYearInList()
+{
+    return minYear;
+}
+
+int GradePage::getMaxYearInList()
+{
+    return maxYear;
 }
