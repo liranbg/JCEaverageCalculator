@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>626</width>
-    <height>533</height>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,6 @@
          <string>&lt;html&gt;
 &lt;head&gt;&lt;/head&gt;
 &lt;body&gt;
-	&lt;b&gt;Help Guide&lt;/b&gt;
 	&lt;ul&gt;&lt;p&gt;
 		&lt;li&gt;&lt;b&gt;Login:&lt;/b&gt; 
 			&lt;ul&gt;
@@ -99,11 +98,10 @@
 	&lt;/ul&gt;
 	&lt;p&gt;&lt;b&gt;Further information available at: &lt;a href='http://liranbg.github.io/JceManager/'&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</string>
+&lt;/html&gt;</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         <set>Qt::AlignJustify|Qt::AlignTop</set>
         </property>
         <property name="openExternalLinks">
          <bool>true</bool>

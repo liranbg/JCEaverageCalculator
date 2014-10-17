@@ -5,9 +5,8 @@
     <name>CalendarDialog</name>
     <message>
         <location filename="src/jceData/Calendar/coursesSchedule/calendarDialog.ui" line="26"/>
-        <source>Dates Dialog</source>
-        <oldsource>Dialog</oldsource>
-        <translation>בחירת תאריכים</translation>
+        <source>JCE Manager</source>
+        <translation>JCE Manager</translation>
     </message>
     <message>
         <location filename="src/jceData/Calendar/coursesSchedule/calendarDialog.ui" line="34"/>
@@ -31,6 +30,11 @@
     </message>
     <message>
         <location filename="src/jceData/Calendar/coursesSchedule/calendarDialog.ui" line="189"/>
+        <source>Include exams list in .CSV</source>
+        <translation>הוסף לוח בחינות לקובץ</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/coursesSchedule/calendarDialog.ui" line="192"/>
         <source>Include Exams</source>
         <translation>צרף לוח מבחנים</translation>
     </message>
@@ -75,65 +79,55 @@
         <translation>שמור פרטים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="251"/>
+        <location filename="main/mainscreen.ui" line="247"/>
         <source>Username</source>
         <translation>שם משתמש</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="292"/>
+        <location filename="main/mainscreen.ui" line="288"/>
         <source>Password</source>
         <translation>סיסמה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="325"/>
+        <location filename="main/mainscreen.ui" line="317"/>
         <source>GPA</source>
         <translation>גליון ציונים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="551"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Get your grades&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ציונים הצג&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="532"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Clear table&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;טבלה נקהe&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.ui" line="784"/>
+        <location filename="main/mainscreen.ui" line="806"/>
         <source>Average:</source>
         <translation>ממוצע:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="611"/>
+        <location filename="main/mainscreen.ui" line="624"/>
         <source>Only Main Courses</source>
         <translation>הצג קורסים משמעותיים בלבד</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="425"/>
-        <location filename="main/mainscreen.ui" line="691"/>
+        <location filename="main/mainscreen.ui" line="420"/>
+        <location filename="main/mainscreen.ui" line="704"/>
         <source>Year:</source>
         <translation>שנה:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="396"/>
-        <location filename="main/mainscreen.ui" line="720"/>
+        <location filename="main/mainscreen.ui" line="388"/>
+        <location filename="main/mainscreen.ui" line="736"/>
         <source>Semester:</source>
         <translation>סמסטר:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="897"/>
+        <location filename="main/mainscreen.ui" line="949"/>
         <source>Export to CSV</source>
         <translation>.CSV ייצא אל קובץ</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="927"/>
+        <location filename="main/mainscreen.ui" line="985"/>
         <source>&lt;p align=&quot;center&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</source>
         <oldsource>&lt;p align=&quot;right&quot;&gt;Made By &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</oldsource>
         <translation>&lt;p align=&quot;center&quot;&gt;נוצר ע&quot;י: &lt;a href=&quot;http://liranbg.github.io/JceManager/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;JceManager&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="456"/>
+        <location filename="main/mainscreen.ui" line="454"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;To&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;סוף סמסטר&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -143,167 +137,205 @@
         <translation>התחבר</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="535"/>
+        <location filename="main/mainscreen.ui" line="395"/>
+        <source>Ending semester</source>
+        <translation>סוף סמסטר</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="427"/>
+        <source>Ending year</source>
+        <translation>סוף שנה</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="530"/>
+        <source>Clear courses table</source>
+        <translation>נקה טבלת ציונים</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="533"/>
         <source>Clear Table</source>
         <translation>נקה טבלה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="554"/>
+        <location filename="main/mainscreen.ui" line="549"/>
+        <source>Get GPA sheet</source>
+        <translation>הורד גליון ציונים מהאתר</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="558"/>
         <source>Get GPA</source>
         <translation>קבל גליון ציונים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="570"/>
-        <source>Revert Changes</source>
-        <translation>שחזר שינויים</translation>
+        <location filename="main/mainscreen.ui" line="574"/>
+        <source>Revert all changes</source>
+        <translation>נקה את כל השינויים שבוצעו</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="748"/>
+        <location filename="main/mainscreen.ui" line="580"/>
+        <source>Revert Changes</source>
+        <translation>בטל שינויים</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="621"/>
+        <source>Check to show only courses with grade point &gt; 0</source>
+        <translation>סמן על מנת להציג קורסים שבהם הנקודות זכות גדולות מאפס</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="711"/>
+        <source>Starting year</source>
+        <translation>תחילת שנה</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="743"/>
+        <source>Starting semester</source>
+        <translation>תחילת סמסטר</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="767"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;From&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;תחילת סמסטר&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="777"/>
+        <location filename="main/mainscreen.ui" line="796"/>
+        <source>Show average graph view</source>
+        <translation>הצג גרף ממוצע ציונים</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="799"/>
         <source>Graph View</source>
         <translation>הצג גרף</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="845"/>
+        <location filename="main/mainscreen.ui" line="867"/>
         <source>Schedule</source>
         <translation>מערכת שעות</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="883"/>
+        <location filename="main/mainscreen.ui" line="879"/>
+        <source>Year</source>
+        <translation>שנה</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="898"/>
+        <source>Semester</source>
+        <translation>סמסטר</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="917"/>
+        <source>Get schedule and exams list</source>
+        <translation>הורד מערכת שעות &amp;&amp; לוח מבחנים מהאתר</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="923"/>
         <source>Get Schedule &amp;&amp; Exam</source>
         <translation>קבל מערכת שעות &amp;&amp; לוח מבחנים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="890"/>
+        <location filename="main/mainscreen.ui" line="930"/>
+        <source>Show exams list</source>
+        <translation>הצג לוח מבחנים</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="936"/>
         <source>Show Exams</source>
         <translation>הצג מבחנים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="988"/>
-        <location filename="main/mainscreen.ui" line="1036"/>
+        <location filename="main/mainscreen.ui" line="943"/>
+        <source>Export schedule to .CSV file.</source>
+        <translation>יצא את המערכת שעות לקובץ CSV.</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="946"/>
+        <source>You can import this file with your Google calendar</source>
+        <translation>תוכל לייבא קובץ זה בעזרת Calendar Google</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="979"/>
+        <source>Credits</source>
+        <translation>אודות</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.ui" line="1046"/>
+        <location filename="main/mainscreen.ui" line="1094"/>
         <source>Team Credit</source>
         <translation>מי אנחנו</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="1198"/>
-        <location filename="main/mainscreen.ui" line="1249"/>
+        <location filename="main/mainscreen.ui" line="1256"/>
+        <location filename="main/mainscreen.ui" line="1307"/>
         <source>Help</source>
         <translation>עזרה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.ui" line="1090"/>
-        <location filename="main/mainscreen.ui" line="1138"/>
+        <location filename="main/mainscreen.ui" line="1148"/>
+        <location filename="main/mainscreen.ui" line="1196"/>
         <source>Language</source>
         <translation>שפה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="139"/>
-        <location filename="main/mainscreen.cpp" line="161"/>
-        <location filename="main/mainscreen.cpp" line="220"/>
-        <location filename="main/mainscreen.cpp" line="234"/>
-        <location filename="main/mainscreen.cpp" line="286"/>
-        <location filename="main/mainscreen.cpp" line="296"/>
+        <location filename="main/mainscreen.cpp" line="143"/>
+        <location filename="main/mainscreen.cpp" line="165"/>
+        <location filename="main/mainscreen.cpp" line="224"/>
+        <location filename="main/mainscreen.cpp" line="238"/>
+        <location filename="main/mainscreen.cpp" line="290"/>
+        <location filename="main/mainscreen.cpp" line="300"/>
         <source>Error</source>
         <translation>שגיאה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="139"/>
+        <location filename="main/mainscreen.cpp" line="143"/>
         <source>Invalid Dates.
 Make Sure everything is correct and try again</source>
         <translation>תאריכים לא חוקיים. אנא בדוק שהנתונים שהוזנו נכונים ונסה מחדשה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="161"/>
-        <location filename="main/mainscreen.cpp" line="286"/>
-        <location filename="main/mainscreen.cpp" line="296"/>
+        <location filename="main/mainscreen.cpp" line="165"/>
+        <location filename="main/mainscreen.cpp" line="290"/>
+        <location filename="main/mainscreen.cpp" line="300"/>
         <source>Not Connected</source>
         <translation>לא מחובר</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="220"/>
+        <location filename="main/mainscreen.cpp" line="224"/>
         <source>Missmatching data</source>
         <translation>שגיאה בהכנסת נתונים</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="411"/>
-        <source>License:</source>
+        <location filename="main/mainscreen.cpp" line="373"/>
+        <source>License: </source>
         <translation>רישיון:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="416"/>
-        <source>Powered By: </source>
-        <oldsource>powered by: </oldsource>
-        <translation>מנוע:</translation>
+        <location filename="main/mainscreen.cpp" line="375"/>
+        <source>Developed By: </source>
+        <translation>פותח ע&quot;י:</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="418"/>
-        <source>Developed By</source>
-        <translation>פותח ע&quot;י</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="430"/>
-        <source>Help Guide</source>
-        <oldsource>Guide</oldsource>
-        <translation>תפריט עזרה</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="420"/>
-        <source>Liran</source>
+        <location filename="main/mainscreen.cpp" line="377"/>
+        <source>Liran Ben Gida</source>
         <translation>לירן בן גידה</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="234"/>
+        <location filename="main/mainscreen.cpp" line="378"/>
+        <source>Sagi Dayan</source>
+        <translation>שגיא דיין</translation>
+    </message>
+    <message>
+        <location filename="main/mainscreen.cpp" line="238"/>
         <source>You must to load GPA first
 Click on  &apos;Get GPA&apos;</source>
         <translation>עליך לטעון את מערכת השעות קודם.
 לחץ על &apos;קבל מערכת שעות &amp;&amp; לוח מבחנים&apos;</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="421"/>
-        <source>Sagi</source>
-        <translation>שגיא דיין</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="432"/>
-        <source>&lt;br&gt;&lt;li&gt;Login: &lt;ul&gt;&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;&lt;li&gt;Once you are connected, you will see a green ball in the right buttom panel.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
-        <translation>&lt;br&gt;&lt;li&gt;התחברות: &lt;ul&gt;&lt;li&gt;הזן את שם המשתמש והסיסמה ולחץ על התחבר&lt;/li&gt;&lt;li&gt;בגמר ההתחברות תראה בכדור ירוק בשורת המצב. המשמעות שהינך מחובר לאתר&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="433"/>
-        <source>&lt;br&gt;&lt;li&gt;Getting GPA sheet&lt;ul&gt;&lt;li&gt;Click on GPA Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Add&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
-        <translation>&lt;br&gt;&lt;li&gt;קבלת גליון ציונים&lt;ul&gt;&lt;li&gt;לחץ על לשונית הציונים&lt;/li&gt;&lt;li&gt;בחר את טווח התאריכים הרצויים ולחץ על הוספה&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="434"/>
-        <source>&lt;br&gt;&lt;li&gt;Average Changing&lt;ul&gt;&lt;li&gt;Change one of your grade and see the average in the buttom panel changing.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
-        <translation>&lt;br&gt;&lt;li&gt;שינוי ממוצע&lt;ul&gt;&lt;li&gt;שנה את אחד הציונים שלך בקורס והממוצע ישתנה בהתאם.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="435"/>
-        <source>&lt;br&gt;&lt;li&gt;Getting Calendar&lt;ul&gt;&lt;li&gt;Click on Calendar Tab&lt;/li&gt;&lt;li&gt; Select your dates and click on Get Calendar&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</source>
-        <translation>&lt;br&gt;&lt;li&gt;קבלת שעות מערכת&lt;ul&gt;&lt;li&gt;לחץ על לשונית שעות מערכת&lt;/li&gt;&lt;li&gt;בחר את השנה והסמסטר ולחץ על הצג מערכת&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="436"/>
-        <source>&lt;br&gt;&lt;li&gt;For exporting your calendar to a .CSV file:&lt;ul&gt;&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;&lt;li&gt; Click on Export to CSV&lt;/li&gt;&lt;li&gt;Select your dates and click OK&lt;/li&gt;&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;&lt;/li&gt;</source>
-        <translation>&lt;br&gt;&lt;li&gt;על מנת לייצא לקובץ CSV&lt;ul&gt;&lt;li&gt;בצע את השלב הקודם ואז&lt;/li&gt;&lt;li&gt; לחץ על ייצוא לCSV&lt;/li&gt;&lt;li&gt;בחר את התאריכים המתאימים ולחץ אישור&lt;/li&gt;&lt;li&gt;לאחר השלמת הפעולה תוכל לייבא את המערכת שעות&lt;/li&gt;&lt;/li&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="438"/>
-        <source>&lt;b&gt;For more information, please visit us at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</source>
-        <translation>&lt;b&gt;לעוד מידע: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="main/mainscreen.cpp" line="402"/>
+        <location filename="main/mainscreen.cpp" line="363"/>
         <source>Settings</source>
         <translation>הגדרות</translation>
     </message>
     <message>
-        <location filename="main/mainscreen.cpp" line="402"/>
+        <location filename="main/mainscreen.cpp" line="363"/>
         <source>Your settings will take effect next time you start the program</source>
         <translation>ההגדרות שלך ייכנסו לתוקפן בפעם הבאה שתפעיל את התוכנה</translation>
     </message>
@@ -584,25 +616,9 @@ Exporting Failed</source>
 <context>
     <name>examDialog</name>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="20"/>
-        <source>Exam Dialog</source>
-        <oldsource>Dialog</oldsource>
-        <translation>מבחנים</translation>
-    </message>
-    <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="71"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revert changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;בטל שינויים&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="74"/>
         <source>Revert</source>
         <translation>בטל שינויים</translation>
-    </message>
-    <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="81"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Discard and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;בטל שינויים וצא&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="84"/>
@@ -610,17 +626,32 @@ Exporting Failed</source>
         <translation>ביטול</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="91"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save and hide&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;שמור וצא&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="20"/>
+        <source>JCE Manager</source>
+        <translation>JCE Manager</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="94"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="71"/>
+        <source>Revert all changes</source>
+        <translation>נקה את כל השינויים שבוצעו</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="81"/>
+        <source>Discard changes and close</source>
+        <translation>נקה שינויים וסגור</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="91"/>
+        <source>Keep changes and close</source>
+        <translation>שמור שינויים וסגור</translation>
+    </message>
+    <message>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="97"/>
         <source>Ok</source>
         <translation>אישור</translation>
     </message>
     <message>
-        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="120"/>
+        <location filename="src/jceData/Calendar/Exams/examDialog.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Exams Schedule&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;לוח בחינות&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -683,8 +714,8 @@ In Example: 08:25 or 12:05</source>
     <name>gradegraph</name>
     <message>
         <location filename="src/jceData/Grades/graph/gradegraph.ui" line="14"/>
-        <source>GPA Graph View</source>
-        <translation>גרף ציונים</translation>
+        <source>JCE Manager</source>
+        <translation>JCE Manager</translation>
     </message>
     <message>
         <location filename="src/jceData/Grades/graph/gradegraph.ui" line="36"/>
@@ -692,44 +723,234 @@ In Example: 08:25 or 12:05</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;גרף ציונים&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.ui" line="71"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.ui" line="72"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.ui" line="75"/>
         <source>Close</source>
         <translation>סגור</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="124"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="127"/>
         <source>Yearly Average</source>
         <translation>ממוצע שנתי</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="129"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="132"/>
         <source>Semesterial Average</source>
         <translation>ממוצע סמסטריאלי</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="147"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="150"/>
         <source>A</source>
         <translation>א&apos;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="151"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="154"/>
         <source>B</source>
         <translation>ב&apos;</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="155"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="158"/>
         <source>C</source>
         <translation>קיץ</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="166"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="169"/>
         <source>AVG Grade</source>
         <translation>ציר ציון</translation>
     </message>
     <message>
-        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="175"/>
+        <location filename="src/jceData/Grades/graph/gradegraph.cpp" line="178"/>
         <source>Years</source>
         <translation>ציר שנים</translation>
+    </message>
+</context>
+<context>
+    <name>helpBox</name>
+    <message>
+        <location filename="main/HelpBox/helpbox.ui" line="14"/>
+        <source>JCE Manager</source>
+        <translation>JCE Manager</translation>
+    </message>
+    <message>
+        <location filename="main/HelpBox/helpbox.ui" line="45"/>
+        <source>&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+	&lt;ul&gt;&lt;p&gt;
+		&lt;li&gt;&lt;b&gt;Login:&lt;/b&gt; 
+			&lt;ul&gt;
+				&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;
+				&lt;li&gt;Once you are connected, you will see &lt;img src=&quot;:/icons/connected.png&quot; heigh=&quot;16&quot; width=&quot;16&quot;/&gt; at the buttom right&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;GPA:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Getting GPA sheet&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt; Select your starting year &amp; semester, ending year &amp; semester and click on get GPA&lt;/li&gt;
+						&lt;li&gt;Want to see only courses with grade point &gt;0 ?, then check &apos;Only Main Courses&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Average Changing&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;Change one of course&apos;s grade and see the average changing in the buttom panel changing.&lt;/li&gt;
+						&lt;li&gt;You can discard any change you made by click on &apos;Revert Changes&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Graph View&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt; get your GPA sheet and click on &apos;Graph View&apos;&lt;/li&gt;
+						&lt;li&gt; The graph has 2 functions, semesterial and yearly average.&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;Schedule:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Getting daily schedule &amp; exams list&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;Select your dates and click on &apos;Get Schedule &amp; Exam&apos;&lt;/li&gt;
+						&lt;li&gt;You can see the exams lists and edit each exams time by clicking on &apos;Show exams&apos;&lt;/li&gt;
+						&lt;li&gt;**The program will automatically load the daily schedule and exams list**&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Exporting Schedule&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;For exporting your calendar to a .CSV file:
+							&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;
+							&lt;li&gt; Click on Export to CSV&lt;/li&gt;
+							&lt;li&gt;Select your dates and click OK&lt;/li&gt;
+							&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;&lt;b&gt;Further information available at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</source>
+        <oldsource>&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+	&lt;b&gt;Help Guide&lt;/b&gt;
+	&lt;ul&gt;&lt;p&gt;
+		&lt;li&gt;&lt;b&gt;Login:&lt;/b&gt; 
+			&lt;ul&gt;
+				&lt;li&gt;Type your username and password and click Login.&lt;/li&gt;
+				&lt;li&gt;Once you are connected, you will see &lt;img src=&quot;:/icons/connected.png&quot; heigh=&quot;16&quot; width=&quot;16&quot;/&gt; at the buttom right&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;GPA:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Getting GPA sheet&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt; Select your starting year &amp; semester, ending year &amp; semester and click on get GPA&lt;/li&gt;
+						&lt;li&gt;Want to see only courses with grade point &gt;0 ?, then check &apos;Only Main Courses&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Average Changing&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;Change one of course&apos;s grade and see the average changing in the buttom panel changing.&lt;/li&gt;
+						&lt;li&gt;You can discard any change you made by click on &apos;Revert Changes&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Graph View&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt; get your GPA sheet and click on &apos;Graph View&apos;&lt;/li&gt;
+						&lt;li&gt; The graph has 2 functions, semesterial and yearly average.&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;Schedule:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Getting daily schedule &amp; exams list&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;Select your dates and click on &apos;Get Schedule &amp; Exam&apos;&lt;/li&gt;
+						&lt;li&gt;You can see the exams lists and edit each exams time by clicking on &apos;Show exams&apos;&lt;/li&gt;
+						&lt;li&gt;**The program will automatically load the daily schedule and exams list**&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Exporting Schedule&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;For exporting your calendar to a .CSV file:
+							&lt;li&gt;Do previous step and continue to next step&lt;/li&gt;
+							&lt;li&gt; Click on Export to CSV&lt;/li&gt;
+							&lt;li&gt;Select your dates and click OK&lt;/li&gt;
+							&lt;li&gt;Once you&apos;re Done, go on your calendar and import your csv file&lt;/li&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;&lt;b&gt;Further information available at: &lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</oldsource>
+        <translation>&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+	&lt;ul&gt;&lt;p&gt;
+		&lt;li&gt;&lt;b&gt;התחברות:&lt;/b&gt; 
+			&lt;ul&gt;
+				&lt;li&gt;הקלד את שם המשתמש והסיסמה שלך ולחץ על התחברות.&lt;/li&gt;
+				&lt;li&gt;לאחר ההתחברות, יופיע &lt;img src=&quot;:/icons/connected.png&quot; heigh=&quot;16&quot; width=&quot;16&quot;/&gt; בתחתית מצד ימין&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;גליון ציונים:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;קבלת גליון הציונים&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt; בחר את תחילת שנה &amp; סמסטר וסוף שנה &amp; סמסטר ולחץ על &apos;קבל גליון ציונים&apos;&lt;/li&gt;
+						&lt;li&gt;רוצה לראות רק קורסים עם נקודות זכות גדולים מ0? סמן את &apos;הצג קורסים משמעותיים בלבד&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;שינוי הממוצע&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;שנה את ציון אחד הקורסים, הממוצע יתעדכן בהתאם (תחתית הטבלה מצד ימין)&lt;/li&gt;
+						&lt;li&gt;תוכל לבטל את כל השינויים על ידי לחיצה על הכפתור &apos;בטל שינויים&apos;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;הצגת גרף ממוצעים&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;לאחר קבלת גליון הציונים, לחץ על &apos;הצג גרף&apos;&lt;/li&gt;
+						&lt;li&gt;לגרף 2 פונקציות - האחת ממוצע כל סמסטר והשנייה ממוצע לפי שנה&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;li&gt;&lt;b&gt;לוח שנה:&lt;/b&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;קבלת מערכת שעות ולוח בחינות&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;בחר את השנה והסמסטר ולחץ על &apos;קבל מערכת שעות &amp; לוח מבחנים&apos;&lt;/li&gt;
+						&lt;li&gt;תוכל לראות את לוח הבחינות שלך על ידי לחיצה על &apos;הצג מבחנים&apos;&lt;/li&gt;
+						&lt;li&gt;**באופן אוטומטי התוכנה מעדכנת מהאתר את המערכת שעות ולוח הבחינות במקביל**&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ייצוא מערכת השעות והבחינות&lt;/b&gt;
+					&lt;ul&gt;
+						&lt;li&gt;על מנת לייצא לקובץ CSV.:
+							&lt;li&gt;בצע &apos;קבלת מערכת שעות ולוח בחינות&apos; והמשך&lt;/li&gt;
+							&lt;li&gt; לחץ על &apos;ייצוא אל קובץ .CSV&apos;&lt;/li&gt;
+							&lt;li&gt;בחר את התאריכים ולחץ אישור&lt;/li&gt;
+							&lt;li&gt;ברגע שתסיים תוכל לייבא את הקובץ דרך הלוח שנה שלך. (לדוגמה גוגל קלנדר)&lt;/li&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;&lt;/p&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;&lt;b&gt;למידה נוסף בקרו אותנו ב:&lt;a href=&apos;http://liranbg.github.io/JceManager/&apos;&gt;Jce Manager site&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="main/HelpBox/helpbox.ui" line="136"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;center&gt;&lt;img src=&quot;:/icons/help.png&quot; height=&quot;18&quot; width=&quot;18&quot;/&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt; Help Dialog &lt;/span&gt;&lt;img src=&quot;:/icons/help.png&quot; height=&quot;18&quot; width=&quot;18&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;center&gt;&lt;img src=&quot;:/icons/help.png&quot; height=&quot;18&quot; width=&quot;18&quot;/&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt; תפריט עזרה &lt;/span&gt;&lt;img src=&quot;:/icons/help.png&quot; height=&quot;18&quot; width=&quot;18&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
