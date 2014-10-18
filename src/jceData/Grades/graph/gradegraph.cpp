@@ -24,7 +24,7 @@ void gradegraph::showGraph(GradePage *gpPTR)
 
   tableWidget->replot();
 
-  this->show();
+  this->exec();
 }
 
 gradegraph::~gradegraph()

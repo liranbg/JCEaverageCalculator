@@ -54,7 +54,7 @@ void GradePage::coursesListInit(QString &linesTokinzedString)
     for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
     {
         tempToken = (*iterator);
-        if ((!tempToken.isEmpty()) && (tempToken.length() > 1))
+        if ((!tempToken.isEmpty()) && (tempToken.length() > 10))
         {
             gradeCourse *cTemp = lineToCourse(tempToken);
             if (cTemp != NULL)

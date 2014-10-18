@@ -115,18 +115,19 @@ int Page::stitchText(QString &from, QString &to, int index)
         QString bTag = from.mid(index, 3);
         QString dateline = from.mid(index,from.indexOf("</b>",index+4)-index);
         QString temp;
-        QString date;
-        QStringList holder = dateline.split("<>&nbsp;:");
+        QString date = "";
+        dateline.remove(":");
+        QStringList holder = dateline.split("&nbsp;");
         QStringList::iterator iterator;
         int i = 0;
         for (iterator = holder.begin(); iterator != holder.end(); ++iterator)
         {
             temp = (*iterator);
-            if (i == 0)
+            if (i == 1) //year
             {
                 date += temp + "\t";
             }
-            else if (i == 3)
+            else if (i == 4) //semester
             {
                 date += temp;
             }
