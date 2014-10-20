@@ -6,10 +6,9 @@
  */
 void CalendarPage::setPage(QString html)
 {
-   courses.clear();
+  courses.clear();
   tempHtml = getString(html);
   calendarListInit(tempHtml);
-
 }
 /**
  * @brief CalendarPage::calendarListInit - make an object from each line of course

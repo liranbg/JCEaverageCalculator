@@ -113,7 +113,7 @@ int calendarCourse::getDay() const
  */
 void calendarCourse::setDay(const QString &value)
 {
-    std::string dayTemp = value.toStdString().substr(0,2); //recieving two characters respresting days
+    QString dayTemp = value.mid(0,1); //recieving two characters respresting days
     if (dayTemp.compare("\u05D0") == 0) //alef
         day = 1;
     else if (dayTemp.compare("\u05D1") == 0) //bet
@@ -127,7 +127,10 @@ void calendarCourse::setDay(const QString &value)
     else if (dayTemp.compare("\u05D5") == 0) //vav
         day = 6;
     else
+      {
+        qDebug() << "error on parsing day!";
         day= -1;
+      }
 }
 QString calendarCourse::getRoom() const
 {

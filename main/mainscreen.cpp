@@ -271,7 +271,7 @@ void MainScreen::on_getCalendarBtn_clicked()
                 page = loginHandel->getCurrentPageContect();
                 calendar->setCalendar(page);
 
-                qDebug() << Q_FUNC_INFO <<  "calendar is loaded";
+                qDebug() << Q_FUNC_INFO <<  "calendar is loaded. getting exam schedule";
 
                 //auto getting exam
                 if (loginHandel->isLoggedInFlag())

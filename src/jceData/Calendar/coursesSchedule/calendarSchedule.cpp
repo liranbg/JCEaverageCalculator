@@ -28,8 +28,9 @@ calendarSchedule::calendarSchedule(QWidget *parent) : QTableWidget(parent)
     setHorizontalHeaderLabels(days);
     setVerticalHeaderLabels(hours);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
-    horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    this->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    this->resizeRowsToContents();
 
 }
 
@@ -47,8 +48,8 @@ void calendarSchedule::clearTableItems()
         for (j = 0; j < columnCount(); j++)
             if (this->takeItem(i,j) != NULL)
                 delete this->takeItem(i,j);
-    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    this->resizeRowsToContents();
 }
 
 void calendarSchedule::insertCourseIntoTable()
@@ -82,20 +83,22 @@ void calendarSchedule::insertCourseIntoTable()
 
 
             item = new QTableWidgetItem(courseString);
+
             item->setToolTip(coursePtr->toString());
+
             if (this->takeItem(row,col) != NULL)
+              {
                 delete this->takeItem(row,col);
+              }
+
             this->setItem(row,col,item);
+//            qDebug() << "set row,col,item" << row << "," << col << "," << coursePtr->getSerialNum();
 
             currentHour++;
             --blocksNumber;
         }
-        horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-        verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
-
-        horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-        verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+    this->resizeRowsToContents();
 }
 
 

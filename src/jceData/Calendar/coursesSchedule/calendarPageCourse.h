@@ -3,6 +3,7 @@
 
 #include "../../course.h"
 #include <QTime>
+#include <QDebug>
 
 #define	CALENDAR_COURSE_FIELDS	8
 
