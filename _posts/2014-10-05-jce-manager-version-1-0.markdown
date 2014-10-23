@@ -1,44 +1,43 @@
 ---
 layout: post
-title:  "JCE Manager Version 1.0 Released!"
+title:  "JceManager version 1.0 is released!"
 date:   2014-10-05 20:34:25
 categories: Releases
 tags: featured
 image: /JceManager/assets/article_images/first-release/desktop.JPG
 img: v1.png
 ---
-#Proud To Announce Our First Release!
-####*JCE Manager v1.0 is now public*
+#We are proud to announce our first release!
+####*JceManager v1.0 is now public for JCE's students*
 
 <br>
 
 
-After **hard** development, hacking and some *Moadey beit* , we are finaly
-happy with the result. The project is now avalible.
+After a hard working development, we are finaly happy with the result as the project is now avalible.
 
->You can read more about *JCE Manager*, and its team at [About Page][about].
+>You can read more about JCE Manager and our team at [About Page][about].
 
-####V1.0 Release Notes:
- - Login into [JCE Student web site][jce] ("Yedion")
- - Extract your GPA
+####Version 1.0 Release notes:
+ - Login into the student's portal [JCE Student web site][jce]
+ - Extract your GPA into table
  - Edit your grades to see how it affects your GPA
- - Save your *username* and *password* for easy access (Password is encrypted)
- - Fetch your Semester Schedule
- - Export your Semester Schedule to CSV file to import to GoogleCalendar/iCal/Outlook
- - Translated to Hebrew and English
+ - Save your <i>username</i> and <i>password</i> for easy access (Password is encrypted)
+ - Extract your semester's schedule and export it into a .CSV file (and import to GoogleCalendar/iCal/Outlook)
+ - Translation in Hebrew and English
 
-*JCE Manager* is avalible for Windows, OS X and Linux.
+JCE Manager is avalible for Windows.
+(We are working on OS X and Linux)
 
- >**Note:**
+ >Note:
  >
- >Changing your grades will **not** affect the records at JCE.
+ >Changing your grades will NOT affect the records at JCE.
 
 ---
  >Head over to the [**Download Page**][download] to get a fresh copy.
 
 ---
 
- >**Need some help? Head over to the [Help Page][help]**
+ >Need some help? Go to the [Help Page][help]
 
 
 [jce]:     	   https://yedion.jce.ac.il/student/
