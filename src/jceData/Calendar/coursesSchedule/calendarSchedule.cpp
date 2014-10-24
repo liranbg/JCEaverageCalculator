@@ -47,7 +47,7 @@ void calendarSchedule::clearTableItems()
     for (i = 0; i < rowCount(); i++)
         for (j = 0; j < columnCount(); j++)
             if (this->takeItem(i,j) != NULL)
-                delete this->takeItem(i,j);s
+                delete this->takeItem(i,j);
     this->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->resizeRowsToContents();
 }
