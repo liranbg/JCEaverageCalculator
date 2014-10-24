@@ -47,8 +47,8 @@ void calendarSchedule::clearTableItems()
         for (j = 0; j < columnCount(); j++)
             if (this->takeItem(i,j) != NULL)
                 delete this->takeItem(i,j);
-    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void calendarSchedule::insertCourseIntoTable()
@@ -94,8 +94,11 @@ void calendarSchedule::insertCourseIntoTable()
         verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
 
-        horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-        verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+//    horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+//    verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+    horizontalHeader()->stretchLastSection();
+    verticalHeader()->stretchLastSection();
+
 }
 
 

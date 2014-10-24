@@ -23,7 +23,9 @@ public:
     ~CalendarManager()
     {
         delete caliSchedPtr;
+        delete examSchePtr;
         delete caliDialog;
+        delete examDialogPtr;
     }
     void exportCalendarCSV();
     void setCalendar(QString html);
