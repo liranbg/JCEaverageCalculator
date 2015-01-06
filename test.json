@@ -1,0 +1,18 @@
+[
+{
+	"author" : "JCE Manager Team",
+	"date": "05 Oct 2014", 
+	"avatar": "http://liranbg.github.io/JceManager/assets/images/author.jpg",
+	"img": "http://liranbg.github.io/JceManager/assets/article_images/first-release/desktop.JPG",
+	"content": "After a hard working development, we are finaly happy with the result as the project is now avalible.
+You can read more about JCE Manager and our team at About Page.
+Version 1.0 Release notes:
+Login into the student's portal JCE Student web site
+Extract your GPA into table
+Edit your grades to see how it affects your GPA
+Save your username and password for easy access (Password is encrypted)
+Extract your semester's schedule and export it into a .CSV file (and import to GoogleCalendar/iCal/Outlook)
+Translation in Hebrew and English
+JCE Manager is avalible for Windows. (We are working on OS X and Linux)"
+}
+]
