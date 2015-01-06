@@ -1,4 +1,5 @@
-[
+{
+"posts" :[
 {
 	"author" : "JCE Manager Team",
 	"date": "05 Oct 2014", 
@@ -15,4 +16,7 @@ Extract your semester's schedule and export it into a .CSV file (and import to G
 Translation in Hebrew and English
 JCE Manager is avalible for Windows. (We are working on OS X and Linux)"
 }
+
 ]
+
+}
