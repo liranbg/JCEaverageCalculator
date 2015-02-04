@@ -58,7 +58,7 @@ int jceLogin::makeConnection()
             if (returnMode == (int)true) //check if username and password are matching
             {
                 //              status = jceStatus::JCE_VALIDATION_PASSED;
-                returnMode = makeSecondVisit();
+                //returnMode = makeSecondVisit();
                 if (returnMode == (int)true) //siging in the website
                 {
                     qDebug() << Q_FUNC_INFO << "Signed in succeesfully";
@@ -152,7 +152,7 @@ void jceLogin::reMakeConnection()
  */
 int jceLogin::makeFirstVisit()
 {
-    if (JceConnector->sendData(jceLoginHtmlScripts::makeRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
+    if (JceConnector->sendData(jceLoginHtmlScripts::makeLoginRequest(jceLoginHtmlScripts::getFirstValidationStep(*jceA))))
     {
         if (!JceConnector->recieveData(recieverPage))
             return jceLogin::ERROR_ON_GETTING_INFO;
@@ -248,31 +248,33 @@ bool jceLogin::checkValidation()
 {
 
     //finds the hashed password
-    QString constUserID_TAG = "value=\"-N";
-    QString constHassID_TAG = "-A,-N";
+    QString startingIndex = "javascript:send_form('Menu','";
+    QString constUserID_TAG = "-N";
+    QString constHassID_TAG = ",-A,-N";
     QString hasspass,hassid;
     int hasspass_position1,hasspass_position2;
     int id_position1,id_position2;
-    hasspass_position1 = this->recieverPage->indexOf(constHassID_TAG); //looking for hasspass index
-    if (hasspass_position1 == -1) //didnt find the tag
-        return false;
-    else
-        hasspass_position1 += constHassID_TAG.length(); //skip the index of tag
-    hasspass_position2 = this->recieverPage->indexOf(",-A,-A", hasspass_position1);
-    //finds the hass pass
-    if (hasspass_position2 != -1) //found the hasspass! storing it
-        hasspass = recieverPage->mid(hasspass_position1,hasspass_position2-hasspass_position1);
-    else
-        return false;
-    //finds the user id
-    id_position1 = this->recieverPage->indexOf(constUserID_TAG, 0); //looking for hassid index
+
+    id_position1 = this->recieverPage->indexOf(constUserID_TAG,this->recieverPage->indexOf(startingIndex));
     if (id_position1 == -1) //didnt find the tag
         return false;
     else
         id_position1 += constUserID_TAG.length(); //skip the index of tag
-    id_position2 = this->recieverPage->indexOf(",-A", id_position1);
-    if (id_position2 != -1) //found the hassid! storing it
+    id_position2 = this->recieverPage->indexOf(constHassID_TAG,id_position1);
+    if (id_position2 != -1) //found the hasspass! storing it
         hassid = recieverPage->mid(id_position1,id_position2-id_position1);
+    else
+        return false;
+
+    hasspass_position1 = this->recieverPage->indexOf(constHassID_TAG,this->recieverPage->indexOf(startingIndex)); //looking for hasspass index
+    if (hasspass_position1 == -1) //didnt find the tag
+        return false;
+    else
+        hasspass_position1 += constHassID_TAG.length(); //skip the index of tag
+    hasspass_position2 = this->recieverPage->indexOf(",-N150", hasspass_position1);
+    //finds the hass pass
+    if (hasspass_position2 != -1) //found the hasspass! storing it
+        hasspass = recieverPage->mid(hasspass_position1,hasspass_position2-hasspass_position1);
     else
         return false;
 

@@ -4,19 +4,19 @@
  * @brief jceSSLClient::jceSSLClient  Constructer, setting the signals
  */
 jceSSLClient::jceSSLClient(jceStatusBar *statusBar) : loggedIAndConnectedFlag(false), readingFlag(false),
-        reConnectionFlag(false), networkConf(), packet(""), recieveLastPacket(false), packetSizeRecieved(0)
+  reConnectionFlag(false), networkConf(), packet(""), recieveLastPacket(false), packetSizeRecieved(0)
 {
-    this->statusBar = statusBar;
-    //setting signals
-    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
-    connect(this,SIGNAL(connected()),this,SLOT(setConnected()));
-    connect(this,SIGNAL(encrypted()),this,SLOT(setEncrypted()));
-    connect(this,SIGNAL(disconnected()),this,SLOT(setDisconnected()));
-    connect(&networkConf,SIGNAL(onlineStateChanged(bool)),this,SLOT(setOnlineState(bool)));
+  this->statusBar = statusBar;
+  //setting signals
+  connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(checkErrors(QAbstractSocket::SocketError)));
+  connect(this,SIGNAL(connected()),this,SLOT(setConnected()));
+  connect(this,SIGNAL(encrypted()),this,SLOT(setEncrypted()));
+  connect(this,SIGNAL(disconnected()),this,SLOT(setDisconnected()));
+  connect(&networkConf,SIGNAL(onlineStateChanged(bool)),this,SLOT(setOnlineState(bool)));
 
-    //loop event will connect the server, and when it is connected, it will quit - but connection will be open
-    connect(this, SIGNAL(encrypted()), &loginThreadLoop, SLOT(quit()));
-    connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loginThreadLoop,SLOT(quit()));
+  //loop event will connect the server, and when it is connected, it will quit - but connection will be open
+  connect(this, SIGNAL(encrypted()), &loginThreadLoop, SLOT(quit()));
+  connect(this, SIGNAL(error(QAbstractSocket::SocketError)),&loginThreadLoop,SLOT(quit()));
 
 }
 /**
@@ -27,48 +27,48 @@ jceSSLClient::jceSSLClient(jceStatusBar *statusBar) : loggedIAndConnectedFlag(fa
  */
 bool jceSSLClient::makeConnect(QString server, int port)
 {
-    if (this->supportsSsl() == false)
+  if (this->supportsSsl() == false)
     {
-        qCritical() << Q_FUNC_INFO << "Couldnt load ssl package. ERROR";
-        return false;
+      qCritical() << Q_FUNC_INFO << "Couldnt load ssl package. ERROR";
+      return false;
     }
-    else
-        qDebug() << Q_FUNC_INFO << "ssl loaded.";
+  else
+    qDebug() << Q_FUNC_INFO << "ssl loaded.";
 
-    if (isConnectedToNetwork() == false)
+  if (isConnectedToNetwork() == false)
     {
-        qDebug() << Q_FUNC_INFO << "return false. not online";
-        return false;
+      qDebug() << Q_FUNC_INFO << "return false. not online";
+      return false;
     }
-    else
-        qDebug() << Q_FUNC_INFO << "we're online";
+  else
+    qDebug() << Q_FUNC_INFO << "we're online";
 
 
-    if (reConnectionFlag) //reset reconnectiong flag
+  if (reConnectionFlag) //reset reconnectiong flag
     {
-        qDebug() << Q_FUNC_INFO <<  "Making Reconnection";
+      qDebug() << Q_FUNC_INFO <<  "Making Reconnection";
     }
-    else
-        qDebug() << Q_FUNC_INFO <<  "Making Connection";
+  else
+    qDebug() << Q_FUNC_INFO <<  "Making Connection";
 
-    if (isConnected())
+  if (isConnected())
     {
-        qDebug() << Q_FUNC_INFO <<  "flag=true, calling makeDisconnect()";
-        makeDiconnect();
+      qDebug() << Q_FUNC_INFO <<  "flag=true, calling makeDisconnect()";
+      makeDiconnect();
     }
 
-    qDebug() << Q_FUNC_INFO <<  "Connection to: " << server << "On Port: " << port;
-    connectToHostEncrypted(server.toStdString().c_str(), port);
+  qDebug() << Q_FUNC_INFO <<  "Connection to: " << server << "On Port: " << port;
+  connectToHostEncrypted(server.toStdString().c_str(), port);
 
-    loginThreadLoop.exec(); //starting connection, waiting to encryption and then it ends
+  loginThreadLoop.exec(); //starting connection, waiting to encryption and then it ends
 
-    qDebug() << Q_FUNC_INFO <<  "returning the connection status: " << isConnected();
-    if (reConnectionFlag)
+  qDebug() << Q_FUNC_INFO <<  "returning the connection status: " << isConnected();
+  if (reConnectionFlag)
     {
-        reConnectionFlag = false;
-        emit serverDisconnectedbyRemote();
+      reConnectionFlag = false;
+      emit serverDisconnectedbyRemote();
     }
-    return isConnected();
+  return isConnected();
 
 }
 /**
@@ -77,15 +77,15 @@ bool jceSSLClient::makeConnect(QString server, int port)
  */
 bool jceSSLClient::makeDiconnect()
 {
-    if (loginThreadLoop.isRunning())
+  if (loginThreadLoop.isRunning())
     {
-        qWarning() << Q_FUNC_INFO << "Killing connection thread";
-        loginThreadLoop.exit();
+      qWarning() << Q_FUNC_INFO << "Killing connection thread";
+      loginThreadLoop.exit();
     }
-    qDebug() << Q_FUNC_INFO << "disconnecting from host and emitting disconnected()";
-    this->disconnectFromHost(); //emits disconnected > setDisconnected
-    setSocketState(QAbstractSocket::SocketState::UnconnectedState);
-    return (!isConnected());
+  qDebug() << Q_FUNC_INFO << "disconnecting from host and emitting disconnected()";
+  this->disconnectFromHost(); //emits disconnected > setDisconnected
+  setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+  return (!isConnected());
 
 }
 
@@ -95,30 +95,30 @@ bool jceSSLClient::makeDiconnect()
  */
 bool jceSSLClient::isConnected()
 {
-    bool tempFlag = false;
-    //checking state before returning flag!
-    if (state() == QAbstractSocket::SocketState::UnconnectedState)
+  bool tempFlag = false;
+  //checking state before returning flag!
+  if (state() == QAbstractSocket::SocketState::UnconnectedState)
     {
-        tempFlag = false;
+      tempFlag = false;
     }
-    else if (state() == QAbstractSocket::SocketState::ClosingState)
+  else if (state() == QAbstractSocket::SocketState::ClosingState)
     {
-        tempFlag = false;
+      tempFlag = false;
     }
-    else if (state() == QAbstractSocket::SocketState::ConnectedState)
+  else if (state() == QAbstractSocket::SocketState::ConnectedState)
     {
-        if (isConnectedToNetwork())
-            tempFlag = true;
-        else
+      if (isConnectedToNetwork())
+        tempFlag = true;
+      else
         {
-            this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
-            tempFlag = false;
+          this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+          tempFlag = false;
         }
 
     }
-    if (!isConnectedToNetwork()) //no link, ethernet\wifi
-        tempFlag = false;
-    return ((loggedIAndConnectedFlag) && (tempFlag));
+  if (!isConnectedToNetwork()) //no link, ethernet\wifi
+    tempFlag = false;
+  return ((loggedIAndConnectedFlag) && (tempFlag));
 }
 /**
  * @brief jceSSLClient::sendData  - given string, send it to server
@@ -127,23 +127,24 @@ bool jceSSLClient::isConnected()
  */
 bool jceSSLClient::sendData(QString str)
 {
-    bool sendDataFlag = false;
-    int amount = 0;
-    if (isConnected()) //if connected
+  bool sendDataFlag = false;
+  int amount = 0;
+  if (isConnected()) //if connected
     {
-          statusBar->setIconConnectionStatus(jceStatusBar::Sending);
-        amount = write(str.toStdString().c_str(),str.length());
-        qDebug() << Q_FUNC_INFO << "lenght send: " << str.length() << "lenght recieved: " << amount;
-        if (amount == -1)
+      statusBar->setIconConnectionStatus(jceStatusBar::Sending);
+      qDebug() << Q_FUNC_INFO << "sent:\n" << str;
+          amount = write(str.toStdString().c_str(),str.length());
+      qDebug() << Q_FUNC_INFO << "lenght send: " << str.length() << "lenght recieved: " << amount;
+      if (amount == -1)
         {
-            qCritical() << Q_FUNC_INFO << "SendData ended with -1";
-            sendDataFlag = false;
+          qCritical() << Q_FUNC_INFO << "SendData ended with -1";
+          sendDataFlag = false;
         }
-        else if (waitForBytesWritten())
-            sendDataFlag = true;
+      else if (waitForBytesWritten())
+        sendDataFlag = true;
     }
-    qDebug() << Q_FUNC_INFO <<  "Sending Data status is: " << sendDataFlag;
-    return sendDataFlag;
+  qDebug() << Q_FUNC_INFO <<  "Sending Data status is: " << sendDataFlag;
+  return sendDataFlag;
 }
 /**
  * @brief jceSSLClient::recieveData - recieving data through threaded reading and mutex
@@ -152,33 +153,33 @@ bool jceSSLClient::sendData(QString str)
  */
 bool jceSSLClient::recieveData(QString *str)
 {
-      statusBar->setIconConnectionStatus(jceStatusBar::Recieving);
-    qDebug() << Q_FUNC_INFO <<  "Data receiving!";
-    str->clear();
-    packet = "";
-    recieveLastPacket = false;
-    packetSizeRecieved = 0; //counting packet size
-    readingFlag = true; //to ignore timeout socket error
+  statusBar->setIconConnectionStatus(jceStatusBar::Recieving);
+  qDebug() << Q_FUNC_INFO <<  "Data receiving!";
+  str->clear();
+  packet = "";
+  recieveLastPacket = false;
+  packetSizeRecieved = 0; //counting packet size
+  readingFlag = true; //to ignore timeout socket error
 
-    timer.setSingleShot(true); //counting just once.
-    timer.start(milisTimeOut); //if timer is timeout -> it means the connection takes long time
+  timer.setSingleShot(true); //counting just once.
+  timer.start(milisTimeOut); //if timer is timeout -> it means the connection takes long time
 
-    connect(this, SIGNAL(readyRead()), this, SLOT(readIt())); //we have something to read
-    connect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit())); //if timer timeout > exiting event
+  connect(this, SIGNAL(readyRead()), this, SLOT(readIt())); //we have something to read
+  connect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit())); //if timer timeout > exiting event
 
-    readerLoop.exec();
+  readerLoop.exec();
 
-    disconnect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit()));
-    disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
+  disconnect(&timer, SIGNAL(timeout()), &readerLoop, SLOT(quit()));
+  disconnect(this, SIGNAL(readyRead()), this, SLOT(readIt()));
 
-    str->append(packet);
-//    qDebug() << *str; //if you want to see the whole packet, unmark me
+  str->append(packet);
+  qDebug() << *str; //if you want to see the whole packet, unmark me
 
-    qDebug() << Q_FUNC_INFO << "packet size: " << packetSizeRecieved << "received data lenght: " << str->length();
-    qDebug() << Q_FUNC_INFO <<  "return with flag: " << recieveLastPacket;
+  qDebug() << Q_FUNC_INFO << "packet size: " << packetSizeRecieved << "received data lenght: " << str->length();
+  qDebug() << Q_FUNC_INFO <<  "return with flag: " << recieveLastPacket;
 
-    readingFlag = false; //finished reading session
-    return recieveLastPacket; //we have the last packet
+  readingFlag = false; //finished reading session
+  return recieveLastPacket; //we have the last packet
 
 }
 /**
@@ -190,59 +191,59 @@ bool jceSSLClient::recieveData(QString *str)
  */
 void jceSSLClient::readIt()
 {
-    int packSize = bytesAvailable();
-    int doTimes=0;
-    QByteArray tempPacket;
+  int packSize = bytesAvailable();
+  int doTimes=0;
+  QByteArray tempPacket;
 
-    do
+  do
     {
-//        qDebug() << Q_FUNC_INFO << "packet size" << packSize;
+      //        qDebug() << Q_FUNC_INFO << "packet size" << packSize;
 
-        if (doTimes++ > 0) //for debbuging, checking thread looping times
-            qDebug() << Q_FUNC_INFO << "do loop" << doTimes;
+      if (doTimes++ > 0) //for debbuging, checking thread looping times
+        qDebug() << Q_FUNC_INFO << "do loop" << doTimes;
 
-        waitForReadyRead(100);
-        tempPacket = read(packSize);
+      waitForReadyRead(100);
+      tempPacket = read(packSize);
 
-        readerAppendingLocker.lock();
-        packetSizeRecieved += packSize;
-        packet.append(tempPacket);
-        packet.append("\0");
-        readerAppendingLocker.unlock();
+      readerAppendingLocker.lock();
+      packetSizeRecieved += packSize;
+      packet.append(tempPacket);
+      packet.append("\0");
+      readerAppendingLocker.unlock();
 
-        emit statusBar->progressHasPacket(10);
+      emit statusBar->progressHasPacket(10);
 
-        if ((tempPacket.mid(tempPacket.length()-7,7) == ".HTM-->")
-                || (tempPacket.mid(tempPacket.length()-7,7) == ".htm-->")
-                || tempPacket.contains("</html>")
-                )
+      if ((tempPacket.mid(tempPacket.length()-7,7) == ".HTM-->")
+          || (tempPacket.mid(tempPacket.length()-7,7) == ".htm-->")
+          || tempPacket.contains("</html>")
+          )
 
         {
-            //we have the last packet. (uses only in login first step
-            recieveLastPacket = true;
-            timer.setInterval(200);
+          //we have the last packet. (uses only in login first step
+          recieveLastPacket = true;
+          timer.setInterval(200);
         }
-        else
+      else
         {
-            //just a packet with data
+          //just a packet with data
         }
 
     }while ((packSize = bytesAvailable()) > 0);
 }
 void jceSSLClient::setOnlineState(bool isOnline)
 {
-    qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
-    if (isOnline) //to be added later
+  qWarning() << Q_FUNC_INFO << "isOnline status change: " << isOnline;
+  if (isOnline) //to be added later
     {
-        qDebug() << Q_FUNC_INFO << "Online Statue has been changed. we are online";
-        //we can add here auto reconnect if wifi\ethernet link has appear
-        //will be added next version
+      qDebug() << Q_FUNC_INFO << "Online Statue has been changed. we are online";
+      //we can add here auto reconnect if wifi\ethernet link has appear
+      //will be added next version
     }
-    else
+  else
     {
-        qWarning() << Q_FUNC_INFO << "Online State has been changed. emitting NoInternetLink";
-        this->makeDiconnect();
-        emit noInternetLink();
+      qWarning() << Q_FUNC_INFO << "Online State has been changed. emitting NoInternetLink";
+      this->makeDiconnect();
+      emit noInternetLink();
     }
 
 }
@@ -251,19 +252,19 @@ void jceSSLClient::setOnlineState(bool isOnline)
  */
 void jceSSLClient::setConnected()
 {
-    waitForEncrypted();
+  waitForEncrypted();
 }
 /**
  * @brief jceSSLClient::setDisconnected closing socket, updating state and setting flag to false
  */
 void jceSSLClient::setDisconnected()
 {
-    qDebug() << Q_FUNC_INFO << "connection has been DISCONNECTED";
-    this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
-    packet.clear();
-    loggedIAndConnectedFlag = false;
-    if (reConnectionFlag)
-        makeConnect();
+  qDebug() << Q_FUNC_INFO << "connection has been DISCONNECTED";
+  this->setSocketState(QAbstractSocket::SocketState::UnconnectedState);
+  packet.clear();
+  loggedIAndConnectedFlag = false;
+  if (reConnectionFlag)
+    makeConnect();
 
 
 }
@@ -272,14 +273,14 @@ void jceSSLClient::setDisconnected()
  */
 void jceSSLClient::setEncrypted()
 {
-    qDebug() << Q_FUNC_INFO << "connection has been ENCRYPTED";
-    setReadBufferSize(packetSize);
-    setSocketOption(QAbstractSocket::KeepAliveOption,true);
-    loggedIAndConnectedFlag = true;
-    if (!isConnected())
+  qDebug() << Q_FUNC_INFO << "connection has been ENCRYPTED";
+  setReadBufferSize(packetSize);
+  setSocketOption(QAbstractSocket::KeepAliveOption,true);
+  loggedIAndConnectedFlag = true;
+  if (!isConnected())
     {
-        qWarning() << Q_FUNC_INFO <<  "Connection status didnt change! reseting flag to false";
-        loggedIAndConnectedFlag = false;
+      qWarning() << Q_FUNC_INFO <<  "Connection status didnt change! reseting flag to false";
+      loggedIAndConnectedFlag = false;
     }
 
 }
@@ -290,116 +291,116 @@ void jceSSLClient::setEncrypted()
  */
 void jceSSLClient::showIfErrorMsg()
 {
-    QMessageBox msgBox;
-    SocketError enumError = error();
-    QString errorString;
-    bool relevantError = false;
-    switch (enumError)
+  QMessageBox msgBox;
+  SocketError enumError = error();
+  QString errorString;
+  bool relevantError = false;
+  switch (enumError)
     {
     case QAbstractSocket::SocketError::ConnectionRefusedError: /**/
-        errorString = QObject::tr("ConnectionRefusedError");
-        //The connection was refused by the peer (or timed out).
-        relevantError = true;
-        break;
+      errorString = QObject::tr("ConnectionRefusedError");
+      //The connection was refused by the peer (or timed out).
+      relevantError = true;
+      break;
     case QAbstractSocket::SocketError::RemoteHostClosedError: /**/
-        errorString = QObject::tr("RemoteHostClosedError");
-        //The remote host closed the connection
-        if (isConnectedToNetwork()) //we can reconnect
+      errorString = QObject::tr("RemoteHostClosedError");
+      //The remote host closed the connection
+      if (isConnectedToNetwork()) //we can reconnect
         {
-            reConnectionFlag = true;
+          reConnectionFlag = true;
         }
-        else
-            relevantError = true;
-        break;
+      else
+        relevantError = true;
+      break;
     case QAbstractSocket::SocketError::HostNotFoundError: /**/
-        errorString = QObject::tr("HostNotFoundError");
-        //The host address was not found.
-        relevantError = true;
-        break;
+      errorString = QObject::tr("HostNotFoundError");
+      //The host address was not found.
+      relevantError = true;
+      break;
     case QAbstractSocket::SocketError::SocketAccessError: /**/
-        errorString = QObject::tr("SocketAccessError");
-        //The socket operation failed because the application lacked the required privileges.
-        break;
+      errorString = QObject::tr("SocketAccessError");
+      //The socket operation failed because the application lacked the required privileges.
+      break;
     case QAbstractSocket::SocketError::SocketTimeoutError: /**/
-        errorString = QObject::tr("SocketTimeoutError");
-        //The socket operation timed out.
-        if (isConnected()); //ignore it if connected.
-        else
-            relevantError = true;
-        break;
+      errorString = QObject::tr("SocketTimeoutError");
+      //The socket operation timed out.
+      if (isConnected()); //ignore it if connected.
+      else
+        relevantError = true;
+      break;
     case QAbstractSocket::SocketError::NetworkError: /**/
-        errorString = QObject::tr("NetworkError");
-        //An error occurred with the network (e.g., the network cable was accidentally plugged out).
-        if (isConnectedToNetwork()) //we can reconnect
+      errorString = QObject::tr("NetworkError");
+      //An error occurred with the network (e.g., the network cable was accidentally plugged out).
+      if (isConnectedToNetwork()) //we can reconnect
         {
         }
-        else
-            relevantError = true;
-        break;
+      else
+        relevantError = true;
+      break;
     case QAbstractSocket::SocketError::SslHandshakeFailedError: /**/
-        errorString = QObject::tr("SslHandshakeFailedError");
-        relevantError = true;
-        break;
+      errorString = QObject::tr("SslHandshakeFailedError");
+      relevantError = true;
+      break;
     case QAbstractSocket::SocketError::SslInternalError: /**/
-        errorString = QObject::tr("SslInternalError");
-        relevantError = true;
-        break;
+      errorString = QObject::tr("SslInternalError");
+      relevantError = true;
+      break;
     case QAbstractSocket::SocketError::SslInvalidUserDataError: /**/
-        errorString = QObject::tr("SslInvalidUserDataError");
-        relevantError = true;
-        break;
+      errorString = QObject::tr("SslInvalidUserDataError");
+      relevantError = true;
+      break;
     case QAbstractSocket::SocketError::DatagramTooLargeError:  //not relevant to us
-        errorString = QObject::tr("DatagramTooLargeError");
-        break;
+      errorString = QObject::tr("DatagramTooLargeError");
+      break;
     case QAbstractSocket::SocketError::SocketResourceError: //not relevant to us
-        break;
+      break;
     case QAbstractSocket::SocketError::OperationError: //not relevant, except for debug
-        errorString = QObject::tr("OperationError");
-        break;
+      errorString = QObject::tr("OperationError");
+      break;
     case QAbstractSocket::SocketError::AddressInUseError: //not relevant to us
-        errorString = QObject::tr("AddressInUseError");
-        break;
+      errorString = QObject::tr("AddressInUseError");
+      break;
     case QAbstractSocket::SocketError::SocketAddressNotAvailableError: //not relevant to us
-        errorString = QObject::tr("SocketAddressNotAvailableError");
-        break;
+      errorString = QObject::tr("SocketAddressNotAvailableError");
+      break;
     case QAbstractSocket::SocketError::UnsupportedSocketOperationError: //for very old computers, not relevant to us
-        errorString = QObject::tr("UnsupportedSocketOperationError");
-        break;
+      errorString = QObject::tr("UnsupportedSocketOperationError");
+      break;
     case QAbstractSocket::SocketError::ProxyAuthenticationRequiredError: //not relevant to us
-        errorString = QObject::tr("ProxyAuthenticationRequiredError");
-        break;
+      errorString = QObject::tr("ProxyAuthenticationRequiredError");
+      break;
     case QAbstractSocket::SocketError::ProxyConnectionRefusedError: //not relevant to us
-        errorString = QObject::tr("ProxyConnectionRefusedError");
-        break;
+      errorString = QObject::tr("ProxyConnectionRefusedError");
+      break;
     case QAbstractSocket::SocketError::UnfinishedSocketOperationError: //not relevant to us
-        errorString = QObject::tr("UnfinishedSocketOperationError");
-        break;
+      errorString = QObject::tr("UnfinishedSocketOperationError");
+      break;
     case QAbstractSocket::SocketError::ProxyConnectionClosedError: //not relevant to us
-        errorString = QObject::tr("ProxyConnectionClosedError");
-        break;
+      errorString = QObject::tr("ProxyConnectionClosedError");
+      break;
     case QAbstractSocket::SocketError::ProxyConnectionTimeoutError: //not relevant to us
-        errorString = QObject::tr("ProxyConnectionTimeoutError");
-        break;
+      errorString = QObject::tr("ProxyConnectionTimeoutError");
+      break;
     case QAbstractSocket::SocketError::ProxyNotFoundError: //not relevant to us
-        errorString = QObject::tr("ProxyNotFoundError");
-        break;
+      errorString = QObject::tr("ProxyNotFoundError");
+      break;
     case QAbstractSocket::SocketError::ProxyProtocolError: //not relevant to us
-        errorString = QObject::tr("ProxyProtocolError");
-        break;
+      errorString = QObject::tr("ProxyProtocolError");
+      break;
     case QAbstractSocket::SocketError::TemporaryError:  //not relevant to us
-        errorString = QObject::tr("TemporaryError");
-        break;
+      errorString = QObject::tr("TemporaryError");
+      break;
     case QAbstractSocket::SocketError::UnknownSocketError:  //not relevant, except for debug
-        errorString = QObject::tr("UnknownSocketError");
-        relevantError = true;
-        break;
+      errorString = QObject::tr("UnknownSocketError");
+      relevantError = true;
+      break;
     }
-    if (relevantError) //informative string to be shown
+  if (relevantError) //informative string to be shown
     {
-        qDebug() << Q_FUNC_INFO << "relevant error.";
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setText(errorString);
-        msgBox.exec();
+      qDebug() << Q_FUNC_INFO << "relevant error.";
+      msgBox.setIcon(QMessageBox::Warning);
+      msgBox.setText(errorString);
+      msgBox.exec();
     }
 }
 /**
@@ -408,27 +409,27 @@ void jceSSLClient::showIfErrorMsg()
  */
 void jceSSLClient::checkErrors(QAbstractSocket::SocketError a)
 {
-    //ignore this stupid error
-    bool timeout = (a == QAbstractSocket::SocketError::SocketTimeoutError);
-    if (!((isConnected()) && (timeout)))
+  //ignore this stupid error
+  bool timeout = (a == QAbstractSocket::SocketError::SocketTimeoutError);
+  if (!((isConnected()) && (timeout)))
     {
-        qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork();
-        qWarning() << Q_FUNC_INFO << "state is: " << state();
-        qWarning() << Q_FUNC_INFO << "Var Error: " << a;
-        qWarning() << Q_FUNC_INFO << "Error: " << errorString();
+      qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork();
+      qWarning() << Q_FUNC_INFO << "state is: " << state();
+      qWarning() << Q_FUNC_INFO << "Var Error: " << a;
+      qWarning() << Q_FUNC_INFO << "Error: " << errorString();
     }
-    else if (!readingFlag)
+  else if (!readingFlag)
     {
-        qWarning() << Q_FUNC_INFO << "isConnected?: " << isConnected() << "is timeout?" << timeout;
-        qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork()  << "state is: " << state();
-        qWarning() << Q_FUNC_INFO << "Error: " << errorString();
+      qWarning() << Q_FUNC_INFO << "isConnected?: " << isConnected() << "is timeout?" << timeout;
+      qWarning() << Q_FUNC_INFO << "isOnline?: " << isConnectedToNetwork()  << "state is: " << state();
+      qWarning() << Q_FUNC_INFO << "Error: " << errorString();
 
     }
-    else
+  else
     {
-        //timeout when reading
+      //timeout when reading
     }
-    showIfErrorMsg();
+  showIfErrorMsg();
 }
 
 /** written by KARAN BALKAR
@@ -438,20 +439,20 @@ void jceSSLClient::checkErrors(QAbstractSocket::SocketError a)
  */
 bool jceSSLClient::isConnectedToNetwork(){
 
-    QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
-    bool result = false;
+  QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
+  bool result = false;
 
-    for (int i = 0; i < ifaces.count(); ++i)
+  for (int i = 0; i < ifaces.count(); ++i)
     {
-        QNetworkInterface iface = ifaces.at(i);
+      QNetworkInterface iface = ifaces.at(i);
 
-        if ( iface.flags().testFlag(QNetworkInterface::IsUp) && !iface.flags().testFlag(QNetworkInterface::IsLoopBack))
-            for (int j=0; j < iface.addressEntries().count(); ++j)
-                // got an interface which is up, and has an ip address
-                if (result == false)
-                    result = true;
+      if ( iface.flags().testFlag(QNetworkInterface::IsUp) && !iface.flags().testFlag(QNetworkInterface::IsLoopBack))
+        for (int j=0; j < iface.addressEntries().count(); ++j)
+          // got an interface which is up, and has an ip address
+          if (result == false)
+            result = true;
 
     }
-    return result;
+  return result;
 }
 
