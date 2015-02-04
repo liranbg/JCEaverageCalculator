@@ -3,7 +3,17 @@
  <p align="center"><a href="http://liranbg.github.io/JceManager/">![Visit our Website!][logo]<br>Visit our Website!</a></p>
 
 ---
+## <i class="fa fa-cogs"></i> Next Release Features
+####Version 1.1
+<ul>
+<li>Graph View</li>
+<li>Exams Schedule Exporting</li>
+<li>Fast Data Retrieving</li>
+<li>Added Progress Bar</li>
+<li>Tweaks, Bugs Fixed and more Friendly icons</li>
+</ul>
 
+---
 ## <i class="fa fa-cogs"></i> The Vision
 ####Why we came up with the idea
 
