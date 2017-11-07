@@ -1,6 +1,4 @@
- 
- 
- <p align="center"><a href="http://liranbg.github.io/JceManager/">![Visit our Website!][logo]<br>Visit our Website!</a></p>
+[![alt text](http://liranbg.github.io/JceManager/assets/images/logo.png "Visit our Website")](http://liranbg.github.io/JceManager)
 
 ---
 ## <i class="fa fa-cogs"></i> Next Release Features
