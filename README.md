@@ -2,7 +2,7 @@
 
 ---
 ## <i class="fa fa-cogs"></i> Next Release Features
-####Version 1.1
+#### Version 1.1
 <ul>
 <li>Graph View</li>
 <li>Exams Schedule Exporting</li>
@@ -13,7 +13,7 @@
 
 ---
 ## <i class="fa fa-cogs"></i> The Vision
-####Why we came up with the idea
+#### Why we came up with the idea
 
 At the [Jerusalem College of Engineering][JCE], students tend to monitor their grades day in and day out. They try to understand how their grade point average (GPA) was or will be affected by specific exams and whether it is worthwhile to try to take an exam again or to just let it be.
 
